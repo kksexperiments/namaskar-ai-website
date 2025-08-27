@@ -73,16 +73,16 @@ export const content: Record<Language, Content> = {
       error: "Please enter a valid email address."
     },
     community: {
-      headline: "Join Our Growing Community",
-      description: "Connect with fellow AI learners, ask questions, and share your journey with like-minded individuals.",
+      headline: "Get Exclusive Resources",
+      description: "Access premium content, advanced tutorials, and exclusive AI resources available only to community members.",
       whatsapp: {
         title: "WhatsApp Community",
-        description: "Get instant updates and engage in discussions",
+        description: "Get exclusive resources and premium content",
         button: "Join WhatsApp Group"
       },
       telegram: {
         title: "Telegram Channel", 
-        description: "Daily AI tips and exclusive content",
+        description: "Daily exclusive tips and premium resources",
         button: "Follow on Telegram"
       }
     },
@@ -128,16 +128,16 @@ export const content: Record<Language, Content> = {
       error: "অনুগ্ৰহ কৰি এটা বৈধ ইমেইল ঠিকনা দিয়ক।"
     },
     community: {
-      headline: "আমাৰ বৃদ্ধি পোৱা সমাজত যোগ দিয়ক",
-      description: "সহযোগী AI শিক্ষাৰ্থীসকলৰ সৈতে সংযোগ কৰক, প্ৰশ্ন কৰক, আৰু একে চিন্তাধাৰাৰ ব্যক্তিসকলৰ সৈতে আপোনাৰ যাত্ৰা ভাগ-বতৰা কৰক।",
+      headline: "একচেটিয়া সম্পদ পাওক",
+      description: "প্ৰিমিয়াম বিষয়বস্তু, উন্নত টিউটৰিয়েল, আৰু একচেটিয়া AI সম্পদসমূহ পাওক যি কেৱল সমাজৰ সদস্যসকলৰ বাবে উপলব্ধ।",
       whatsapp: {
         title: "WhatsApp সমাজ",
-        description: "তাৎক্ষণিক আপডেট পাওক আৰু আলোচনাত অংশগ্ৰহণ কৰক",
+        description: "একচেটিয়া সম্পদ আৰু প্ৰিমিয়াম বিষয়বস্তু পাওক",
         button: "WhatsApp গ্ৰুপত যোগ দিয়ক"
       },
       telegram: {
         title: "Telegram চেনেল",
-        description: "দৈনিক AI টিপছ আৰু একচেটিয়া বিষয়বস্তু",
+        description: "দৈনিক একচেটিয়া টিপছ আৰু প্ৰিমিয়াম সম্পদ",
         button: "Telegram ত অনুসৰণ কৰক"
       }
     },
