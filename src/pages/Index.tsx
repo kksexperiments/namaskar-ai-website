@@ -1,12 +1,72 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useLanguage } from "@/hooks/useLanguage";
+import LanguageModal from "@/components/LanguageModal";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import NewsletterSection from "@/components/NewsletterSection";
+import CommunitySection from "@/components/CommunitySection";
+import InstagramSection from "@/components/InstagramSection";
+import ResourcesSection from "@/components/ResourcesSection";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  const { language, switchLanguage, showModal, closeModal, t } = useLanguage();
+
+  const scrollToNewsletter = () => {
+    document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToCommunity = () => {
+    document.getElementById('community')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* Language Selection Modal */}
+      <LanguageModal
+        isOpen={showModal}
+        onClose={closeModal}
+        onSelectLanguage={switchLanguage}
+        currentLanguage={language}
+      />
+
+      {/* Header */}
+      <Header
+        currentLanguage={language}
+        onLanguageChange={switchLanguage}
+        t={t}
+      />
+
+      {/* Main Content */}
+      <main>
+        {/* Hero Section */}
+        <HeroSection
+          t={t}
+          onNewsletterClick={scrollToNewsletter}
+          onCommunityClick={scrollToCommunity}
+        />
+
+        {/* Newsletter Section */}
+        <NewsletterSection t={t} />
+
+        {/* Community Section */}
+        <CommunitySection t={t} />
+
+        {/* Instagram Section */}
+        <InstagramSection t={t} />
+
+        {/* Resources Section */}
+        <ResourcesSection
+          t={t}
+          onNewsletterClick={scrollToNewsletter}
+        />
+      </main>
+
+      {/* Footer */}
+      <Footer
+        currentLanguage={language}
+        onLanguageChange={switchLanguage}
+        t={t}
+      />
     </div>
   );
 };
