@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Instagram, Youtube, Linkedin, Mail, Globe } from "lucide-react";
+import { Instagram, Mail, Globe } from "lucide-react";
 import { Language } from "@/types/language";
 
 interface FooterProps {
@@ -11,8 +11,6 @@ interface FooterProps {
 const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/namaskar.ai", label: "Instagram" },
-    { icon: Youtube, href: "https://youtube.com/@namaskar-ai", label: "YouTube" },
-    { icon: Linkedin, href: "https://linkedin.com/company/namaskar-ai", label: "LinkedIn" },
     { icon: Mail, href: "mailto:hello@namaskar.ai", label: "Email" },
   ];
 

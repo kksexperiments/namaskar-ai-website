@@ -45,20 +45,17 @@ const Index = () => {
           onCommunityClick={scrollToCommunity}
         />
 
-        {/* Newsletter Section */}
-        <NewsletterSection t={t} />
+        {/* Instagram Section */}
+        <InstagramSection t={t} />
 
         {/* Community Section */}
         <CommunitySection t={t} />
 
-        {/* Instagram Section */}
-        <InstagramSection t={t} />
-
         {/* Resources Section */}
-        <ResourcesSection
-          t={t}
-          onNewsletterClick={scrollToNewsletter}
-        />
+        <ResourcesSection t={t} />
+
+        {/* Newsletter Section */}
+        <NewsletterSection t={t} />
       </main>
 
       {/* Footer */}

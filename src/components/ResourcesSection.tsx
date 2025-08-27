@@ -4,10 +4,9 @@ import { Download, FileText, Zap, ArrowRight, Gift } from "lucide-react";
 
 interface ResourcesSectionProps {
   t: any;
-  onNewsletterClick: () => void;
 }
 
-const ResourcesSection = ({ t, onNewsletterClick }: ResourcesSectionProps) => {
+const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   const resources = [
     {
       icon: <Zap className="w-6 h-6" />,
@@ -50,9 +49,8 @@ const ResourcesSection = ({ t, onNewsletterClick }: ResourcesSectionProps) => {
           {resources.map((resource, index) => (
             <Card 
               key={index}
-              className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer"
+              className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group"
               style={{ animationDelay: `${index * 150}ms` }}
-              onClick={onNewsletterClick}
             >
               <div className="space-y-4">
                 {/* Icon */}
@@ -99,7 +97,7 @@ const ResourcesSection = ({ t, onNewsletterClick }: ResourcesSectionProps) => {
                 Want All Resources + Weekly Updates?
               </h3>
               <p className="text-white/90 max-w-md mx-auto">
-                Join our newsletter and get instant access to all resources plus weekly AI tips and tutorials.
+                Get instant access to all resources plus weekly AI tips and tutorials.
               </p>
             </div>
 
@@ -110,16 +108,6 @@ const ResourcesSection = ({ t, onNewsletterClick }: ResourcesSectionProps) => {
                 <span>✓ Exclusive content</span>
               </div>
             </div>
-
-            <Button
-              onClick={onNewsletterClick}
-              size="lg"
-              variant="secondary"
-              className="bg-white text-primary hover:bg-white/90 font-medium px-8 py-6 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
-            >
-              {t.resources.cta}
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
           </div>
         </Card>
       </div>
