@@ -129,6 +129,22 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
               </div>
             </blockquote>
           </div>
+
+          {/* 
+            COPY THE REMAINING 5 INSTAGRAM EMBEDS HERE 
+            
+            Each embed should be wrapped like this:
+            
+            <div className="flex justify-center">
+              <blockquote className="instagram-media" ... >
+                [YOUR INSTAGRAM EMBED CODE HERE]
+              </blockquote>
+            </div>
+            
+            Paste each of your 5 remaining Instagram embed codes below this comment,
+            making sure each one is wrapped in the <div className="flex justify-center"> tags.
+          */}
+
         </div>
 
         {/* CTA */}
