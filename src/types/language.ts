@@ -88,7 +88,7 @@ export const content: Record<Language, Content> = {
     },
     instagram: {
       headline: "Latest Content",
-      description: "Follow for daily tips, tutorials, and behind-the-scenes content",
+      description: "Follow for daily tips and tutorials",
       button: "Follow on Instagram"
     },
     resources: {
@@ -143,7 +143,7 @@ export const content: Record<Language, Content> = {
     },
     instagram: {
       headline: "শেহতীয়া বিষয়বস্তু",
-      description: "দৈনিক টিপছ, টিউটৰিয়েল, আৰু পৰ্দাৰ আঁৰৰ বিষয়বস্তুৰ বাবে অনুসৰণ কৰক",
+      description: "দৈনিক টিপছ আৰু টিউটৰিয়েলৰ বাবে অনুসৰণ কৰক",
       button: "Instagram ত অনুসৰণ কৰক"
     },
     resources: {
