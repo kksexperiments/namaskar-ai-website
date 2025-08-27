@@ -55,14 +55,12 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                 onClick={() => onLanguageChange('en')}
                 className={`cursor-pointer ${currentLanguage === 'en' ? 'bg-muted' : ''}`}
               >
-                <span className="mr-2">🇺🇸</span>
                 English
               </DropdownMenuItem>
               <DropdownMenuItem 
                 onClick={() => onLanguageChange('as')}
                 className={`cursor-pointer ${currentLanguage === 'as' ? 'bg-muted' : ''}`}
               >
-                <span className="mr-2">🇮🇳</span>
                 অসমীয়া
               </DropdownMenuItem>
             </DropdownMenuContent>

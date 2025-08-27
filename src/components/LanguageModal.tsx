@@ -34,7 +34,6 @@ const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: L
             onClick={() => handleLanguageSelect('en')}
             className="flex-1 h-16 text-lg font-medium transition-all duration-300 hover:scale-105"
           >
-            <span className="mr-2">🇺🇸</span>
             English
           </Button>
           
@@ -44,7 +43,6 @@ const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: L
             onClick={() => handleLanguageSelect('as')}
             className="flex-1 h-16 text-lg font-medium transition-all duration-300 hover:scale-105"
           >
-            <span className="mr-2">🇮🇳</span>
             অসমীয়া
           </Button>
         </div>
