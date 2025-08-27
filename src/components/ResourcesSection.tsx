@@ -45,7 +45,7 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
         </div>
 
         {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {resources.map((resource, index) => (
             <Card 
               key={index}
@@ -88,28 +88,6 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
             </Card>
           ))}
         </div>
-
-        {/* CTA Card */}
-        <Card className="p-8 bg-gradient-primary text-white border-0 shadow-elegant animate-bounce-in">
-          <div className="text-center space-y-6">
-            <div className="space-y-3">
-              <h3 className="text-2xl font-poppins font-bold">
-                Want All Resources + Weekly Updates?
-              </h3>
-              <p className="text-white/90 max-w-md mx-auto">
-                Get instant access to all resources plus weekly AI tips and tutorials.
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <div className="flex items-center space-x-2 text-white/80 text-sm">
-                <span>✓ Instant access</span>
-                <span>✓ Weekly updates</span>
-                <span>✓ Exclusive content</span>
-              </div>
-            </div>
-          </div>
-        </Card>
       </div>
     </section>
   );
