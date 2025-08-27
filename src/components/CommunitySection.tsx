@@ -118,8 +118,6 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
             <span>•</span>
             <span>🎯 Expert Tips</span>
             <span>•</span>
-            <span>🤝 Peer Support</span>
-            <span>•</span>
             <span>📚 Exclusive Resources</span>
           </div>
         </div>
