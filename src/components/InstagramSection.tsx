@@ -11,14 +11,14 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
     window.open('https://instagram.com/namaskar.ai', '_blank');
   };
 
-  // Mock Instagram reel data
+  // Real Instagram reel data
   const reels = [
-    { id: 1, title: "AI Prompt Engineering Basics", views: "12K", thumbnail: "🤖" },
-    { id: 2, title: "ChatGPT Tips & Tricks", views: "8.5K", thumbnail: "💡" },
-    { id: 3, title: "AI Tools for Productivity", views: "15K", thumbnail: "⚡" },
-    { id: 4, title: "Future of AI in 2024", views: "9.2K", thumbnail: "🚀" },
-    { id: 5, title: "AI Ethics Discussion", views: "6.8K", thumbnail: "🧠" },
-    { id: 6, title: "Build Your First AI Project", views: "11K", thumbnail: "🔨" },
+    { id: 1, title: "Waymo's Revolutionary AI Technology", views: "12K", thumbnail: "🚗", url: "https://www.instagram.com/namaskar.ai/reel/DNLbbJAtmuH/" },
+    { id: 2, title: "ELI10 Prompt Technique Explained", views: "8.5K", thumbnail: "🧒", url: "https://www.instagram.com/namaskar.ai/reel/DMwZ-LHMXuT/" },
+    { id: 3, title: "ChatGPT Study & Learn Feature", views: "15K", thumbnail: "📚", url: "https://www.instagram.com/namaskar.ai/reel/DM_7VJCMzqJ/" },
+    { id: 4, title: "New ChatGPT Features Update", views: "9.2K", thumbnail: "✨", url: "https://www.instagram.com/namaskar.ai/reel/DNuSp0jWDWL/" },
+    { id: 5, title: "Essential AI Tools You Need", views: "6.8K", thumbnail: "🛠️", url: "https://www.instagram.com/namaskar.ai/reel/DNmnzV2NfdI/" },
+    { id: 6, title: "ChatGPT-5: What to Expect", views: "11K", thumbnail: "🚀", url: "https://www.instagram.com/namaskar.ai/reel/DNkAPTcM9JE/" },
   ];
 
   return (
@@ -41,7 +41,7 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
               key={reel.id}
               className="aspect-[9/16] bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 cursor-pointer group overflow-hidden animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
-              onClick={handleInstagramClick}
+              onClick={() => window.open(reel.url, '_blank')}
             >
               <div className="relative h-full p-4 flex flex-col justify-between">
                 {/* Thumbnail/Emoji */}
