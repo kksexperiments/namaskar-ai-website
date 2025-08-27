@@ -131,12 +131,12 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
 
           {/* PASTE YOUR 5 INSTAGRAM BLOCKQUOTES IN THE DIVS BELOW */}
           
-          {/* Instagram Embed 2 */}
+          {/* Instagram Embed 2 - DNmnzV2NfdI */}
           <div className="flex justify-center">
             <blockquote 
               className="instagram-media" 
-              data-instgrm-permalink="https://www.instagram.com/reel/DMwZ-LHMXuT/?utm_source=ig_embed&utm_campaign=loading" 
-              data-instgrm-version="14" 
+              data-instgrm-permalink="https://www.instagram.com/reel/DNmnzV2NfdI/?utm_source=ig_embed&utm_campaign=loading" 
+              data-instgrm-version="14"
               style={{ 
                 background: '#FFF', 
                 border: 0, 
@@ -151,7 +151,7 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
             >
               <div style={{ padding: '16px' }}>
                 <a 
-                  href="https://www.instagram.com/reel/DMwZ-LHMXuT/?utm_source=ig_embed&utm_campaign=loading" 
+                  href="https://www.instagram.com/reel/DNmnzV2NfdI/?utm_source=ig_embed&utm_campaign=loading"
                   style={{ 
                     background: '#FFFFFF', 
                     lineHeight: 0, 
@@ -210,7 +210,7 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
                   </div>
                 </a>
                 <p style={{ color: '#c9c8cd', fontFamily: 'Arial,sans-serif', fontSize: '14px', lineHeight: '17px', marginBottom: 0, marginTop: '8px', overflow: 'hidden', padding: '8px 0 7px', textAlign: 'center', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  <a href="https://www.instagram.com/reel/DMwZ-LHMXuT/?utm_source=ig_embed&utm_campaign=loading" style={{ color: '#c9c8cd', fontFamily: 'Arial,sans-serif', fontSize: '14px', fontStyle: 'normal', fontWeight: 'normal', lineHeight: '17px', textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/reel/DNmnzV2NfdI/?utm_source=ig_embed&utm_campaign=loading" style={{ color: '#c9c8cd', fontFamily: 'Arial,sans-serif', fontSize: '14px', fontStyle: 'normal', fontWeight: 'normal', lineHeight: '17px', textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
                     A post shared by Namaskar.AI (@namaskar.ai)
                   </a>
                 </p>
