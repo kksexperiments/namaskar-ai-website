@@ -54,7 +54,7 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
                   <div className="w-8 h-8 bg-success rounded-full border-2 border-background"></div>
                   <div className="w-8 h-8 bg-accent rounded-full border-2 border-background"></div>
                 </div>
-                <span>2,500+ Learners</span>
+                <span>100+ learners</span>
               </div>
               <div className="text-primary font-medium">
                 📱 5,000+ Followers
