@@ -91,10 +91,6 @@ const NewsletterSection = ({ t }: NewsletterSectionProps) => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4 text-success" />
-                <span>No spam, ever</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-4 h-4 text-success" />
                 <span>Unsubscribe anytime</span>
               </div>
               <div className="flex items-center space-x-2">

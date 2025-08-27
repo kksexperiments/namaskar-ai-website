@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import namaskarLogo from "@/assets/namaskar-logo.png";
 import heroPhoto from "@/assets/hero-photo.jpg";
 
 interface HeroSectionProps {
@@ -53,15 +54,15 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
                   <div className="w-8 h-8 bg-success rounded-full border-2 border-background"></div>
                   <div className="w-8 h-8 bg-accent rounded-full border-2 border-background"></div>
                 </div>
-                <span>500+ Learners</span>
+                <span>2,500+ Learners</span>
               </div>
-              <div className="text-success font-medium">
-                ⭐ 4.9/5 Rating
+              <div className="text-primary font-medium">
+                📱 5,000+ Followers
               </div>
             </div>
           </div>
 
-          {/* Image */}
+          {/* Brand Logo */}
           <div className="relative animate-slide-up">
             <div className="relative max-w-md mx-auto lg:max-w-lg">
               {/* Background Elements */}
@@ -69,21 +70,25 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
               <div className="absolute -top-4 -right-4 w-32 h-32 bg-accent-red rounded-full blur-3xl opacity-30"></div>
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-success rounded-full blur-2xl opacity-30"></div>
               
-              {/* Main Image */}
-              <div className="relative bg-gradient-card rounded-3xl p-2 shadow-elegant">
+              {/* Main Logo */}
+              <div className="relative bg-gradient-card rounded-3xl p-8 shadow-elegant">
                 <img
-                  src={heroPhoto}
-                  alt="AI Educator - Namaskar AI"
-                  className="w-full h-auto rounded-2xl object-cover"
+                  src={namaskarLogo}
+                  alt="Namaskar AI - Learn AI in Your Language"
+                  className="w-full h-auto object-contain"
                   loading="eager"
                 />
-                
-                {/* Floating Elements */}
-                <div className="absolute -top-2 -right-2 bg-success text-success-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg animate-bounce">
-                  AI Expert
-                </div>
-                <div className="absolute -bottom-2 -left-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium shadow-lg">
-                  Creator
+              </div>
+              
+              {/* Small Creator Section */}
+              <div className="mt-6 text-center">
+                <div className="inline-flex items-center space-x-3 bg-background/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm">
+                  <img
+                    src={heroPhoto}
+                    alt="Creator"
+                    className="w-8 h-8 rounded-full object-cover"
+                  />
+                  <span className="text-sm text-muted-foreground">AI Educator & Creator</span>
                 </div>
               </div>
             </div>

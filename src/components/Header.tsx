@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Globe, ChevronDown } from "lucide-react";
 import { Language } from "@/types/language";
+import namaskarLogo from "@/assets/namaskar-logo.png";
 
 interface HeaderProps {
   currentLanguage: Language;
@@ -21,10 +22,12 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">N</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <img 
+                src={namaskarLogo} 
+                alt="Namaskar AI" 
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-xl font-poppins font-bold">
                 Namaskar
                 <span className="text-primary ml-1">AI</span>
