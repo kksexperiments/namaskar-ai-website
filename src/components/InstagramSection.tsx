@@ -84,7 +84,7 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
           </Button>
           
             <p className="text-sm text-muted-foreground mt-4">
-              join 5K+
+              Join 5K+ followers getting daily AI insights and practical tutorials
             </p>
         </div>
       </div>
