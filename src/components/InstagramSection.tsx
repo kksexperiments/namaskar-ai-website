@@ -26,9 +26,6 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="w-16 h-16 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto">
-            <Instagram className="w-8 h-8 text-white" />
-          </div>
           <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
             {t.instagram.headline}
           </h2>
