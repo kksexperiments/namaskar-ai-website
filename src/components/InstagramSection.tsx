@@ -83,9 +83,9 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
             <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
           
-          <p className="text-sm text-muted-foreground mt-4">
-            Join 10K+ followers getting daily AI insights
-          </p>
+            <p className="text-sm text-muted-foreground mt-4">
+              join 5K+
+            </p>
         </div>
       </div>
     </section>
