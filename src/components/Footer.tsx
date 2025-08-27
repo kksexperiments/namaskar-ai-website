@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Instagram, Mail, Globe } from "lucide-react";
 import { Language } from "@/types/language";
+import namaskarLogo from "@/assets/namaskar-logo.png";
 
 interface FooterProps {
   currentLanguage: Language;
@@ -20,10 +21,12 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           {/* Logo & Description */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">N</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <img 
+                src={namaskarLogo} 
+                alt="Namaskar AI" 
+                className="w-8 h-8 object-contain"
+              />
               <span className="text-xl font-poppins font-bold">
                 Namaskar
                 <span className="text-primary ml-1">AI</span>
