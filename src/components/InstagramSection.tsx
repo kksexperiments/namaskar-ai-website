@@ -130,20 +130,32 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
             </blockquote>
           </div>
 
-          {/* 
-            COPY THE REMAINING 5 INSTAGRAM EMBEDS HERE 
-            
-            Each embed should be wrapped like this:
-            
-            <div className="flex justify-center">
-              <blockquote className="instagram-media" ... >
-                [YOUR INSTAGRAM EMBED CODE HERE]
-              </blockquote>
-            </div>
-            
-            Paste each of your 5 remaining Instagram embed codes below this comment,
-            making sure each one is wrapped in the <div className="flex justify-center"> tags.
-          */}
+          {/* PASTE YOUR 5 INSTAGRAM BLOCKQUOTES IN THE DIVS BELOW */}
+          
+          {/* Instagram Embed 2 - Paste your blockquote here */}
+          <div className="flex justify-center">
+            {/* PASTE BLOCKQUOTE CODE HERE */}
+          </div>
+
+          {/* Instagram Embed 3 - Paste your blockquote here */}
+          <div className="flex justify-center">
+            {/* PASTE BLOCKQUOTE CODE HERE */}
+          </div>
+
+          {/* Instagram Embed 4 - Paste your blockquote here */}
+          <div className="flex justify-center">
+            {/* PASTE BLOCKQUOTE CODE HERE */}
+          </div>
+
+          {/* Instagram Embed 5 - Paste your blockquote here */}
+          <div className="flex justify-center">
+            {/* PASTE BLOCKQUOTE CODE HERE */}
+          </div>
+
+          {/* Instagram Embed 6 - Paste your blockquote here */}
+          <div className="flex justify-center">
+            {/* PASTE BLOCKQUOTE CODE HERE */}
+          </div>
 
         </div>
 
