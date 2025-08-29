@@ -34,6 +34,11 @@ export interface Content {
     description: string;
     button: string;
   };
+  news: {
+    headline: string;
+    description: string;
+    readMore: string;
+  };
   resources: {
     headline: string;
     description: string;
@@ -87,9 +92,14 @@ export const content: Record<Language, Content> = {
       }
     },
     instagram: {
-      headline: "Latest Content",
+      headline: "Latest Posts",
       description: "Follow for daily tips and tutorials",
       button: "Follow on Instagram"
+    },
+    news: {
+      headline: "What's New in AI",
+      description: "Stay updated with the latest AI developments, breakthroughs, and industry news you might have missed.",
+      readMore: "Read More"
     },
     resources: {
       headline: "Free AI Resources",
@@ -142,9 +152,14 @@ export const content: Record<Language, Content> = {
       }
     },
     instagram: {
-      headline: "শেহতীয়া বিষয়বস্তু",
+      headline: "শেহতীয়া পোষ্ট",
       description: "দৈনিক টিপছ আৰু টিউটৰিয়েলৰ বাবে অনুসৰণ কৰক",
       button: "Instagram ত অনুসৰণ কৰক"
+    },
+    news: {
+      headline: "AI ত নতুন কি আছে",
+      description: "শেহতীয়া AI উন্নয়ন, সাফল্য, আৰু উদ্যোগৰ খবৰসমূহৰ সৈতে আপডেট থাকক যিবোৰ আপুনি হেৰুৱাব পাৰে।",
+      readMore: "অধিক পঢ়ক"
     },
     resources: {
       headline: "বিনামূলীয়া AI সম্পদ",

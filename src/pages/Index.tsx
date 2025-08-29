@@ -2,10 +2,11 @@ import { useLanguage } from "@/hooks/useLanguage";
 import LanguageModal from "@/components/LanguageModal";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import NewsletterSection from "@/components/NewsletterSection";
+import ResourcesSection from "@/components/ResourcesSection";
+import NewsSection from "@/components/NewsSection";
 import CommunitySection from "@/components/CommunitySection";
 import InstagramSection from "@/components/InstagramSection";
-import ResourcesSection from "@/components/ResourcesSection";
+import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -49,14 +50,17 @@ const Index = () => {
           onCommunityClick={scrollToCommunity}
         />
 
-        {/* Instagram Section */}
-        <InstagramSection t={t} />
+        {/* Resources Section */}
+        <ResourcesSection t={t} />
+
+        {/* News Section */}
+        <NewsSection t={t} />
 
         {/* Community Section */}
         <CommunitySection t={t} />
 
-        {/* Resources Section */}
-        <ResourcesSection t={t} />
+        {/* Instagram Section - Latest Posts */}
+        <InstagramSection t={t} />
 
         {/* Newsletter Section */}
         <NewsletterSection t={t} />
