@@ -30,13 +30,13 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   ];
 
   return (
-    <section id="resources" className="py-20 bg-gradient-to-b from-muted/50 to-background border-t">
+    <section id="resources" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
           {/* Top Icon */}
-          <div className="mx-auto w-20 h-20 bg-gradient-primary rounded-2xl flex items-center justify-center mb-6 animate-scale-in shadow-lg">
-            <Sparkles className="w-10 h-10 text-white" />
+          <div className="mx-auto w-12 h-12 bg-muted/30 rounded-xl flex items-center justify-center mb-4 animate-fade-in">
+            <Sparkles className="w-6 h-6 text-primary/70" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
             {t.resources.headline}
