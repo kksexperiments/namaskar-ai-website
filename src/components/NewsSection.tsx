@@ -252,60 +252,31 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* Newsletter Subscription Band */}
         <div className="mt-16">
-          <Card className="p-8 sm:p-10 bg-gradient-card border-0 shadow-elegant animate-fade-in">
-            <div className="text-center space-y-6">
-              {/* Icon */}
-              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-                <Mail className="w-8 h-8 text-white" />
+          <Card className="p-6 bg-gradient-card border-0 shadow-card">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <span className="text-lg font-medium text-foreground">Stay updated with AI news:</span>
+              <div className="flex gap-3 flex-1 max-w-md">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 h-10"
+                  required
+                />
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="bg-success hover:bg-success/90 text-success-foreground px-6 h-10"
+                >
+                  {isLoading ? (
+                    <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                  ) : (
+                    "Subscribe"
+                  )}
+                </Button>
               </div>
-
-              {/* Content */}
-              <div className="space-y-4">
-                <h3 className="text-2xl sm:text-3xl font-poppins font-bold gradient-text">
-                  {t.newsletter?.headline || "Stay Updated with AI News"}
-                </h3>
-                <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-                  {t.newsletter?.description || "Get the latest AI insights, tool reviews, and industry updates delivered to your inbox weekly."}
-                </p>
-              </div>
-
-              {/* Form */}
-              <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Input
-                    type="email"
-                    placeholder={t.newsletter?.placeholder || "Enter your email"}
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 h-12 px-4 text-base rounded-xl border-2 focus:border-primary transition-colors"
-                    required
-                  />
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="bg-success hover:bg-success/90 text-success-foreground px-8 h-12 rounded-xl font-medium transition-all duration-300 hover:shadow-button transform hover:-translate-y-0.5"
-                  >
-                    {isLoading ? (
-                      <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
-                    ) : (
-                      t.newsletter?.button || "Subscribe"
-                    )}
-                  </Button>
-                </div>
-              </form>
-
-              {/* Trust Indicators */}
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-success" />
-                  <span>Unsubscribe anytime</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-4 h-4 text-success" />
-                  <span>Free resources included</span>
-                </div>
-              </div>
-            </div>
+            </form>
           </Card>
         </div>
       </div>
