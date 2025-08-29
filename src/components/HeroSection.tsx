@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import namaskarLogo from "@/assets/namaskar-logo.png";
-import heroPhoto from "@/assets/hero-photo.jpg";
 
 interface HeroSectionProps {
   t: any;
@@ -14,22 +12,8 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
     <section className="relative py-12 lg:py-16 hero-pattern cultural-pattern overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-8 animate-fade-in">
-          {/* Logo + Headline Integration */}
+          {/* Headline */}
           <div className="space-y-6">
-            <div className="flex justify-center">
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-primary rounded-xl blur-sm opacity-20"></div>
-                <div className="relative bg-gradient-card rounded-xl p-3 shadow-sm">
-                  <img
-                    src={namaskarLogo}
-                    alt="Namaskar AI"
-                    className="w-16 h-16 object-contain"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-            </div>
-            
             <div className="space-y-4">
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold leading-tight max-w-4xl mx-auto">
                 <span className="gradient-text">{t.hero.headline}</span>
