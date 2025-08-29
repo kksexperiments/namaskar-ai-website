@@ -254,7 +254,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
       </div>
 
       {/* Newsletter Subscription Band - Full Width at Bottom */}
-      <div className="bg-gradient-to-r from-rose-200 to-pink-100 py-6 border-t border-rose-300">
+      <div className="bg-gradient-to-r from-rose-200 to-pink-100 py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="flex items-center gap-3 text-rose-800">
