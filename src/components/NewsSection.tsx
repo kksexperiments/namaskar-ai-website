@@ -252,22 +252,25 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* Newsletter Subscription Band */}
         <div className="mt-16">
-          <Card className="p-6 bg-gradient-card border-0 shadow-card">
+          <Card className="p-6 bg-gradient-to-r from-red-950 to-red-900 border-0 shadow-lg">
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <span className="text-lg font-medium text-foreground">Stay updated with AI news:</span>
+              <div className="flex items-center gap-3 text-white">
+                <Mail className="w-5 h-5 text-red-200" />
+                <span className="text-lg font-medium">Stay updated with AI news:</span>
+              </div>
               <div className="flex gap-3 flex-1 max-w-md">
                 <Input
                   type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 h-10"
+                  className="flex-1 h-10 bg-white/10 border-red-800 text-white placeholder:text-red-200"
                   required
                 />
                 <Button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-success hover:bg-success/90 text-success-foreground px-6 h-10"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-10"
                 >
                   {isLoading ? (
                     <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
