@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, Zap, ArrowRight, Gift, Sparkles } from "lucide-react";
+import { FileText, Zap, ArrowRight, Gift, Library } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ResourcesSectionProps {
@@ -34,13 +34,12 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          {/* Top Icon */}
-          <div className="mx-auto w-12 h-12 bg-muted/30 rounded-xl flex items-center justify-center mb-4 animate-fade-in">
-            <Sparkles className="w-6 h-6 text-primary/70" />
+          <div className="flex items-center justify-center gap-3">
+            <Library className="w-8 h-8 text-primary/70" />
+            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+              {t.resources.headline}
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-            {t.resources.headline}
-          </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t.resources.description}
           </p>
