@@ -81,20 +81,21 @@ const NewsSection = ({ t }: NewsSectionProps) => {
   ];
 
   return (
-    <section id="news" className="py-20 bg-gradient-hero">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3">
-            <TrendingUp className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-              {t.news.headline}
-            </h2>
+    <section id="news" className="bg-gradient-hero">
+      <div className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div className="text-center space-y-6 mb-12 animate-fade-in">
+            <div className="flex items-center justify-center gap-3">
+              <TrendingUp className="w-8 h-8 text-primary" />
+              <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+                {t.news.headline}
+              </h2>
+            </div>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              {t.news.description}
+            </p>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {t.news.description}
-          </p>
-        </div>
 
         {/* News Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -249,14 +250,15 @@ const NewsSection = ({ t }: NewsSectionProps) => {
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
+        </div>
       </div>
 
       {/* Newsletter Subscription Band - Full Width at Bottom */}
-      <div className="bg-gradient-to-r from-amber-900 to-yellow-800 py-6">
+      <div className="bg-gradient-to-r from-yellow-600 to-yellow-500 py-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <div className="flex items-center gap-3 text-white">
-              <Mail className="w-5 h-5 text-amber-200" />
+              <Mail className="w-5 h-5 text-yellow-100" />
               <span className="text-lg font-medium">Stay updated with AI news:</span>
             </div>
             <div className="flex gap-3 flex-1 max-w-md">
@@ -265,16 +267,16 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-10 bg-white/10 border-amber-700 text-white placeholder:text-amber-200"
+                className="flex-1 h-10 bg-white/20 border-yellow-400 text-white placeholder:text-yellow-100"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-10"
+                className="bg-white hover:bg-gray-100 text-yellow-600 px-6 h-10 font-semibold"
               >
                 {isLoading ? (
-                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                  <div className="animate-spin w-4 h-4 border-2 border-yellow-600 border-t-transparent rounded-full" />
                 ) : (
                   "Subscribe"
                 )}
