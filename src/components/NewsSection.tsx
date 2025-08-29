@@ -249,38 +249,38 @@ const NewsSection = ({ t }: NewsSectionProps) => {
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
+      </div>
 
-        {/* Newsletter Subscription Band */}
-        <div className="mt-16">
-          <Card className="p-6 bg-gradient-to-r from-red-950 to-red-900 border-0 shadow-lg">
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <div className="flex items-center gap-3 text-white">
-                <Mail className="w-5 h-5 text-red-200" />
-                <span className="text-lg font-medium">Stay updated with AI news:</span>
-              </div>
-              <div className="flex gap-3 flex-1 max-w-md">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 h-10 bg-white/10 border-red-800 text-white placeholder:text-red-200"
-                  required
-                />
-                <Button
-                  type="submit"
-                  disabled={isLoading}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-10"
-                >
-                  {isLoading ? (
-                    <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                  ) : (
-                    "Subscribe"
-                  )}
-                </Button>
-              </div>
-            </form>
-          </Card>
+      {/* Newsletter Subscription Band - Full Width at Bottom */}
+      <div className="bg-gradient-to-r from-amber-900 to-yellow-800 py-6">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex items-center gap-3 text-white">
+              <Mail className="w-5 h-5 text-amber-200" />
+              <span className="text-lg font-medium">Stay updated with AI news:</span>
+            </div>
+            <div className="flex gap-3 flex-1 max-w-md">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 h-10 bg-white/10 border-amber-700 text-white placeholder:text-amber-200"
+                required
+              />
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-10"
+              >
+                {isLoading ? (
+                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                ) : (
+                  "Subscribe"
+                )}
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </section>
