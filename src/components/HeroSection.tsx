@@ -10,7 +10,7 @@ interface HeroSectionProps {
 const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProps) => {
   return (
     <section className="relative pt-0 pb-20 lg:pb-24 hero-pattern cultural-pattern overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-24">
         <div className="text-center space-y-8 animate-fade-in">
           {/* Headline */}
           <div className="space-y-6">
