@@ -61,7 +61,7 @@ export const content: Record<Language, Content> = {
     hero: {
       headline: "Learn AI in Your Language",
       subheadline: "Join thousands learning AI tools and techniques with practical guidance in English and Assamese",
-      primaryCta: "Get Weekly AI Tips",
+      primaryCta: "Explore Free Resources",
       secondaryCta: "Join Community"
     },
     newsletter: {
@@ -116,7 +116,7 @@ export const content: Record<Language, Content> = {
     hero: {
       headline: "আপোনাৰ ভাষাত AI শিকক",
       subheadline: "হাজাৰ হাজাৰ লোকৰ সৈতে AI টুলছ আৰু কৌশল শিকক ইংৰাজী আৰু অসমীয়া ভাষাত",
-      primaryCta: "সাপ্তাহিক AI টিপছ পাওক",
+      primaryCta: "বিনামূলীয়া সম্পদ অন্বেষণ কৰক",
       secondaryCta: "সমাজ যোগ দিয়ক"
     },
     newsletter: {
