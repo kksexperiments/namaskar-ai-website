@@ -11,37 +11,37 @@ interface HeroSectionProps {
 
 const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProps) => {
   return (
-    <section className="relative min-h-[60vh] flex items-center justify-center hero-pattern cultural-pattern overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="text-center lg:text-left space-y-8 animate-fade-in">
-            <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-poppins font-bold leading-tight">
+    <section className="relative py-16 lg:py-20 hero-pattern cultural-pattern overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Content - Takes more space */}
+          <div className="lg:col-span-7 text-center lg:text-left space-y-6 animate-fade-in">
+            <div className="space-y-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-poppins font-bold leading-tight">
                 <span className="gradient-text">{t.hero.headline}</span>
               </h1>
-              <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl">
                 Join hundreds of learners mastering AI tools and techniques with practical guidance in English and Assamese
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <Button
                 size="lg"
                 onClick={onNewsletterClick}
-                className="bg-gradient-primary hover:shadow-button transition-all duration-300 transform hover:-translate-y-1 text-lg px-8 py-6 rounded-xl"
+                className="bg-gradient-primary hover:shadow-button transition-all duration-300 transform hover:-translate-y-1 px-6 py-3 rounded-xl"
               >
                 {t.hero.primaryCta}
-                <ArrowRight className="ml-2 w-5 h-5" />
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
               
               <Button
                 variant="outline"
                 size="lg"
                 onClick={onCommunityClick}
-                className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-lg px-8 py-6 rounded-xl"
+                className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-6 py-3 rounded-xl"
               >
-                <Play className="mr-2 w-5 h-5" />
+                <Play className="mr-2 w-4 h-4" />
                 {t.hero.secondaryCta}
               </Button>
             </div>
@@ -50,9 +50,9 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
             <div className="flex items-center justify-center lg:justify-start space-x-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <div className="flex -space-x-2">
-                  <div className="w-8 h-8 bg-gradient-primary rounded-full border-2 border-background"></div>
-                  <div className="w-8 h-8 bg-success rounded-full border-2 border-background"></div>
-                  <div className="w-8 h-8 bg-accent rounded-full border-2 border-background"></div>
+                  <div className="w-7 h-7 bg-gradient-primary rounded-full border-2 border-background"></div>
+                  <div className="w-7 h-7 bg-success rounded-full border-2 border-background"></div>
+                  <div className="w-7 h-7 bg-accent rounded-full border-2 border-background"></div>
                 </div>
                 <span>100+ learners</span>
               </div>
@@ -62,16 +62,14 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
             </div>
           </div>
 
-          {/* Brand Logo */}
-          <div className="relative animate-slide-up">
-            <div className="relative max-w-md mx-auto lg:max-w-lg">
-              {/* Background Elements */}
-              <div className="absolute -inset-4 bg-gradient-primary rounded-3xl blur-2xl opacity-20 animate-pulse"></div>
-              <div className="absolute -top-4 -right-4 w-32 h-32 bg-accent-red rounded-full blur-3xl opacity-30"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-success rounded-full blur-2xl opacity-30"></div>
+          {/* Brand Logo - More compact */}
+          <div className="lg:col-span-5 relative animate-slide-up">
+            <div className="relative max-w-sm mx-auto">
+              {/* Simplified background effects */}
+              <div className="absolute -inset-2 bg-gradient-primary rounded-2xl blur-xl opacity-15 animate-pulse"></div>
               
-              {/* Main Logo */}
-              <div className="relative bg-gradient-card rounded-3xl p-8 shadow-elegant">
+              {/* Main Logo - More compact */}
+              <div className="relative bg-gradient-card rounded-2xl p-6 shadow-elegant">
                 <img
                   src={namaskarLogo}
                   alt="Namaskar AI - Learn AI in Your Language"
@@ -80,15 +78,15 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
                 />
               </div>
               
-              {/* Small Creator Section */}
-              <div className="mt-6 text-center">
-                <div className="inline-flex items-center space-x-3 bg-background/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm">
+              {/* Creator Badge - Positioned absolute for space efficiency */}
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2">
+                <div className="inline-flex items-center space-x-2 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm border border-border/50">
                   <img
                     src={heroPhoto}
                     alt="Creator"
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-6 h-6 rounded-full object-cover"
                   />
-                  <span className="text-sm text-muted-foreground">AI Educator & Creator</span>
+                  <span className="text-xs text-muted-foreground font-medium">AI Educator</span>
                 </div>
               </div>
             </div>
