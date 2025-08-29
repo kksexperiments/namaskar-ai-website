@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Download, FileText, Zap, ArrowRight, Gift } from "lucide-react";
+import { FileText, Zap, ArrowRight, Gift } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface ResourcesSectionProps {
   t: any;
@@ -12,19 +13,19 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
       icon: <Zap className="w-6 h-6" />,
       title: "Prompt Packs",
       description: "Ready-to-use prompts for content creation, coding, and analysis",
-      downloads: "2.5K+"
+      path: "/prompt-packs"
     },
     {
       icon: <FileText className="w-6 h-6" />,
       title: "AI Tools",
       description: "Complete guide to the best AI tools for different use cases",
-      downloads: "1.8K+"
+      path: "/ai-tools"
     },
     {
       icon: <Gift className="w-6 h-6" />,
       title: "Learning Roadmaps",
       description: "Step-by-step learning path from basics to advanced AI concepts",
-      downloads: "3.2K+"
+      path: "/learning-roadmaps"
     }
   ];
 
@@ -44,11 +45,15 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
         {/* Resources Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {resources.map((resource, index) => (
-            <Card 
+            <Link 
               key={index}
-              className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group"
-              style={{ animationDelay: `${index * 150}ms` }}
+              to={resource.path}
+              className="block transition-transform duration-300 hover:scale-[1.02]"
             >
+              <Card 
+                className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
               <div className="space-y-4">
                 {/* Icon */}
                 <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -67,12 +72,8 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
                   </p>
                 </div>
 
-                {/* Stats & CTA */}
-                <div className="flex items-center justify-between pt-2">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <Download className="w-4 h-4" />
-                    <span>{resource.downloads} downloads</span>
-                  </div>
+                {/* CTA */}
+                <div className="flex justify-end pt-2">
                   <Button 
                     size="sm" 
                     variant="ghost"
@@ -82,7 +83,8 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
                   </Button>
                 </div>
               </div>
-            </Card>
+              </Card>
+            </Link>
           ))}
         </div>
       </div>

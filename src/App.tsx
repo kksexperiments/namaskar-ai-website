@@ -5,6 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import PromptPacks from "./pages/PromptPacks";
+import AITools from "./pages/AITools";
+import LearningRoadmaps from "./pages/LearningRoadmaps";
 
 const queryClient = new QueryClient();
 
@@ -16,6 +19,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/prompt-packs" element={<PromptPacks />} />
+          <Route path="/ai-tools" element={<AITools />} />
+          <Route path="/learning-roadmaps" element={<LearningRoadmaps />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
