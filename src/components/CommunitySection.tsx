@@ -110,17 +110,6 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
             </div>
           </Card>
         </div>
-
-        {/* Additional Community Benefits */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center space-x-6 text-sm text-muted-foreground bg-muted/50 px-6 py-3 rounded-full">
-            <span>✨ Free Access</span>
-            <span>•</span>
-            <span>🎯 Expert Tips</span>
-            <span>•</span>
-            <span>📚 Exclusive Resources</span>
-          </div>
-        </div>
       </div>
     </section>
   );
