@@ -35,8 +35,8 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
           <div className="flex items-center justify-center gap-3">
-            <Library className="w-8 h-8 text-red" />
-            <h2 className="text-3xl sm:text-4xl font-poppins font-bold text-red">
+            <Library className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl sm:text-4xl font-poppins font-bold text-primary">
               {t.resources.headline}
             </h2>
           </div>
