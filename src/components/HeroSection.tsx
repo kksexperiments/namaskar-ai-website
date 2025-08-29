@@ -19,7 +19,7 @@ const HeroSection = ({ t, onNewsletterClick, onCommunityClick }: HeroSectionProp
                 <span className="gradient-text">{t.hero.headline}</span>
               </h1>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-                Join hundreds of learners mastering AI tools and techniques with practical guidance in English and Assamese
+                We help you cut through the AI noise to find tools that solve real problems - with practical guidance
               </p>
             </div>
           </div>
