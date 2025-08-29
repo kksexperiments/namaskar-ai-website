@@ -47,7 +47,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
+    <section className="py-20 bg-gradient-to-b from-red-950 to-red-900 text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
@@ -57,7 +57,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
               {t.news.headline}
             </h2>
           </div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-red-100 max-w-2xl mx-auto leading-relaxed">
             {t.news.description}
           </p>
         </div>
@@ -67,7 +67,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
           {newsItems.map((item, index) => (
             <Card 
               key={index}
-              className={`p-6 bg-slate-800/50 border border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 animate-slide-up group cursor-pointer ${
+              className={`p-6 bg-red-900/50 border border-red-800 shadow-xl hover:shadow-2xl transition-all duration-300 animate-slide-up group cursor-pointer ${
                 index < 2 ? 'lg:col-span-1' : 'lg:col-span-1'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -77,9 +77,9 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      item.trending ? 'bg-gradient-primary' : 'bg-slate-700'
+                      item.trending ? 'bg-gradient-primary' : 'bg-red-800'
                     } group-hover:scale-110 transition-transform duration-300`}>
-                      <div className={item.trending ? 'text-white' : 'text-slate-300'}>
+                      <div className={item.trending ? 'text-white' : 'text-red-200'}>
                         {item.icon}
                       </div>
                     </div>
@@ -87,7 +87,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                       <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                         item.trending 
                           ? 'bg-primary/20 text-primary' 
-                          : 'bg-slate-700 text-slate-300'
+                          : 'bg-red-800 text-red-200'
                       }`}>
                         {item.category}
                       </span>
@@ -106,14 +106,14 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                   <h3 className="text-lg font-poppins font-semibold text-white group-hover:text-primary transition-colors line-clamp-2">
                     {item.title}
                   </h3>
-                  <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
+                  <p className="text-red-100 text-sm leading-relaxed line-clamp-2">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-2 border-t border-slate-700">
-                  <div className="flex items-center space-x-4 text-xs text-slate-400">
+                <div className="flex items-center justify-between pt-2 border-t border-red-800">
+                  <div className="flex items-center space-x-4 text-xs text-red-300">
                     <div className="flex items-center space-x-1">
                       <Clock className="w-3 h-3" />
                       <span>{item.date}</span>
