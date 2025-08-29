@@ -6,14 +6,13 @@ import ResourcesSection from "@/components/ResourcesSection";
 import NewsSection from "@/components/NewsSection";
 import CommunitySection from "@/components/CommunitySection";
 import InstagramSection from "@/components/InstagramSection";
-import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   const { language, switchLanguage, showModal, closeModal, t } = useLanguage();
 
-  const scrollToNewsletter = () => {
-    document.getElementById('newsletter')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToNews = () => {
+    document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const scrollToCommunity = () => {
@@ -46,7 +45,7 @@ const Index = () => {
         {/* Hero Section */}
         <HeroSection
           t={t}
-          onNewsletterClick={scrollToResources}
+          onNewsletterClick={scrollToNews}
           onCommunityClick={scrollToCommunity}
         />
 
@@ -61,9 +60,6 @@ const Index = () => {
 
         {/* Instagram Section - Latest Posts */}
         <InstagramSection t={t} />
-
-        {/* Newsletter Section */}
-        <NewsletterSection t={t} />
       </main>
 
       {/* Footer */}

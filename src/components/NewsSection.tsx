@@ -1,12 +1,46 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Clock, TrendingUp, Zap, Brain, Sparkles } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Clock, TrendingUp, Zap, Brain, Sparkles, Mail, CheckCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface NewsSectionProps {
   t: any;
 }
 
 const NewsSection = ({ t }: NewsSectionProps) => {
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: "Invalid Email",
+        description: t.newsletter?.error || "Please enter a valid email address",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    toast({
+      title: "Success!",
+      description: t.newsletter?.success || "Successfully subscribed to newsletter!",
+    });
+    
+    setEmail("");
+    setIsLoading(false);
+  };
   const newsItems = [
     {
       icon: <Brain className="w-6 h-6" />,
@@ -47,7 +81,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-hero">
+    <section id="news" className="py-20 bg-gradient-hero">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
@@ -64,13 +98,83 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* News Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {newsItems.map((item, index) => (
+          {newsItems.slice(0, 2).map((item, index) => (
             <Card 
               key={index}
               className={`p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer ${
                 index < 2 ? 'lg:col-span-1' : 'lg:col-span-1'
-              }`}
+              } block`}
               style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <div className="space-y-4">
+                {/* Header */}
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                      item.trending ? 'bg-gradient-primary' : 'bg-muted'
+                    } group-hover:scale-110 transition-transform duration-300`}>
+                      <div className={item.trending ? 'text-white' : 'text-muted-foreground'}>
+                        {item.icon}
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                        item.trending 
+                          ? 'bg-primary/20 text-primary' 
+                          : 'bg-muted text-muted-foreground'
+                      }`}>
+                        {item.category}
+                      </span>
+                    </div>
+                  </div>
+                  {item.trending && (
+                    <div className="flex items-center space-x-1 text-xs text-primary">
+                      <TrendingUp className="w-3 h-3" />
+                      <span>Trending</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                    {item.description}
+                  </p>
+                </div>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                  <div className="flex items-center space-x-4 text-xs text-muted-foreground">
+                    <div className="flex items-center space-x-1">
+                      <Clock className="w-3 h-3" />
+                      <span>{item.date}</span>
+                    </div>
+                    <span>•</span>
+                    <span>{item.readTime}</span>
+                  </div>
+                  <Button 
+                    size="sm" 
+                    variant="ghost"
+                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 rounded-full group-hover:translate-x-1 transition-all duration-300"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          ))}
+          
+          {/* Hidden news items on mobile, shown on desktop */}
+          {newsItems.slice(2).map((item, index) => (
+            <Card 
+              key={index + 2}
+              className={`p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer ${
+                index + 2 < 4 ? 'lg:col-span-1' : 'lg:col-span-1'
+              } hidden lg:block`}
+              style={{ animationDelay: `${(index + 2) * 100}ms` }}
             >
               <div className="space-y-4">
                 {/* Header */}
@@ -135,7 +239,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center">
+        <div className="text-center mb-12">
           <Button 
             variant="outline" 
             size="lg"
@@ -144,6 +248,65 @@ const NewsSection = ({ t }: NewsSectionProps) => {
             View All News
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
+        </div>
+
+        {/* Newsletter Subscription Band */}
+        <div className="mt-16">
+          <Card className="p-8 sm:p-10 bg-gradient-card border-0 shadow-elegant animate-fade-in">
+            <div className="text-center space-y-6">
+              {/* Icon */}
+              <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+
+              {/* Content */}
+              <div className="space-y-4">
+                <h3 className="text-2xl sm:text-3xl font-poppins font-bold gradient-text">
+                  {t.newsletter?.headline || "Stay Updated with AI News"}
+                </h3>
+                <p className="text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                  {t.newsletter?.description || "Get the latest AI insights, tool reviews, and industry updates delivered to your inbox weekly."}
+                </p>
+              </div>
+
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    type="email"
+                    placeholder={t.newsletter?.placeholder || "Enter your email"}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1 h-12 px-4 text-base rounded-xl border-2 focus:border-primary transition-colors"
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isLoading}
+                    className="bg-success hover:bg-success/90 text-success-foreground px-8 h-12 rounded-xl font-medium transition-all duration-300 hover:shadow-button transform hover:-translate-y-0.5"
+                  >
+                    {isLoading ? (
+                      <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+                    ) : (
+                      t.newsletter?.button || "Subscribe"
+                    )}
+                  </Button>
+                </div>
+              </form>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-muted-foreground">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-success" />
+                  <span>Unsubscribe anytime</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-success" />
+                  <span>Free resources included</span>
+                </div>
+              </div>
+            </div>
+          </Card>
         </div>
       </div>
     </section>
