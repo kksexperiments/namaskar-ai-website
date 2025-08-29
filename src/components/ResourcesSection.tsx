@@ -73,7 +73,8 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
                 </div>
 
                 {/* CTA */}
-                <div className="flex justify-end pt-2">
+                <div className="flex items-center justify-between pt-2">
+                  <span className="text-sm text-primary font-medium">View Details</span>
                   <Button 
                     size="sm" 
                     variant="ghost"
