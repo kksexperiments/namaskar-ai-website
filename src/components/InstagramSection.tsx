@@ -13,9 +13,9 @@ const InstagramSection = ({ t }: InstagramSectionProps) => {
 
   // Instagram post URLs
   const instagramPosts = [
+    "https://www.instagram.com/reel/DN8GK1KDZBI/",
     "https://www.instagram.com/reel/DNuSp0jWDWL/",
-    "https://www.instagram.com/reel/DNmnzV2NfdI/",
-    "https://www.instagram.com/p/DNUgNQMNWYF/"
+    "https://www.instagram.com/reel/DNmnzV2NfdI/"
   ];
 
   return (
