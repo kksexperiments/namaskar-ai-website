@@ -36,7 +36,7 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
         <div className="text-center space-y-6 mb-12 animate-fade-in">
           <div className="flex items-center justify-center gap-3">
             <Library className="w-8 h-8 text-primary/70" />
-            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+            <h2 className="text-3xl sm:text-4xl font-poppins font-bold text-foreground">
               {t.resources.headline}
             </h2>
           </div>
