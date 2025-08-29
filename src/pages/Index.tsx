@@ -19,6 +19,10 @@ const Index = () => {
     document.getElementById('community')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const scrollToResources = () => {
+    document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Language Selection Modal */}
@@ -41,7 +45,7 @@ const Index = () => {
         {/* Hero Section */}
         <HeroSection
           t={t}
-          onNewsletterClick={scrollToNewsletter}
+          onNewsletterClick={scrollToResources}
           onCommunityClick={scrollToCommunity}
         />
 
