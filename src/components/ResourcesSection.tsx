@@ -10,19 +10,19 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   const resources = [
     {
       icon: <Zap className="w-6 h-6" />,
-      title: "50 AI Prompts Pack",
+      title: "Prompt Packs",
       description: "Ready-to-use prompts for content creation, coding, and analysis",
       downloads: "2.5K+"
     },
     {
       icon: <FileText className="w-6 h-6" />,
-      title: "AI Tools Cheat Sheet",
+      title: "AI Tools",
       description: "Complete guide to the best AI tools for different use cases",
       downloads: "1.8K+"
     },
     {
       icon: <Gift className="w-6 h-6" />,
-      title: "Beginner's AI Roadmap",
+      title: "Learning Roadmaps",
       description: "Step-by-step learning path from basics to advanced AI concepts",
       downloads: "3.2K+"
     }
@@ -33,9 +33,6 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-            <Download className="w-8 h-8 text-white" />
-          </div>
           <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
             {t.resources.headline}
           </h2>
