@@ -21,9 +21,9 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
     <section id="community" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-            {t.community.headline}
-          </h2>
+            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+              Join Our Community
+            </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             {t.community.description}
           </p>
