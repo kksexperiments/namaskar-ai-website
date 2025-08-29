@@ -47,17 +47,17 @@ const NewsSection = ({ t }: NewsSectionProps) => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+    <section className="py-20 bg-gradient-to-b from-slate-900 to-slate-800 text-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-            <TrendingUp className="w-8 h-8 text-white" />
+          <div className="flex items-center justify-center gap-3">
+            <TrendingUp className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+              {t.news.headline}
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-            {t.news.headline}
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
             {t.news.description}
           </p>
         </div>
@@ -67,7 +67,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
           {newsItems.map((item, index) => (
             <Card 
               key={index}
-              className={`p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer ${
+              className={`p-6 bg-slate-800/50 border border-slate-700 shadow-xl hover:shadow-2xl transition-all duration-300 animate-slide-up group cursor-pointer ${
                 index < 2 ? 'lg:col-span-1' : 'lg:col-span-1'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
@@ -77,17 +77,17 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      item.trending ? 'bg-gradient-primary' : 'bg-muted'
+                      item.trending ? 'bg-gradient-primary' : 'bg-slate-700'
                     } group-hover:scale-110 transition-transform duration-300`}>
-                      <div className={item.trending ? 'text-white' : 'text-muted-foreground'}>
+                      <div className={item.trending ? 'text-white' : 'text-slate-300'}>
                         {item.icon}
                       </div>
                     </div>
                     <div className="flex flex-col">
                       <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                         item.trending 
-                          ? 'bg-primary/10 text-primary' 
-                          : 'bg-muted text-muted-foreground'
+                          ? 'bg-primary/20 text-primary' 
+                          : 'bg-slate-700 text-slate-300'
                       }`}>
                         {item.category}
                       </span>
@@ -103,17 +103,17 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
                 {/* Content */}
                 <div className="space-y-3">
-                  <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                  <h3 className="text-lg font-poppins font-semibold text-white group-hover:text-primary transition-colors line-clamp-2">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
+                  <p className="text-slate-300 text-sm leading-relaxed line-clamp-2">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <div className="flex items-center space-x-4 text-xs text-muted-foreground">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-700">
+                  <div className="flex items-center space-x-4 text-xs text-slate-400">
                     <div className="flex items-center space-x-1">
                       <Clock className="w-3 h-3" />
                       <span>{item.date}</span>
