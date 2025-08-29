@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { FileText, Zap, ArrowRight, Gift, Library } from "lucide-react";
+import { MessageSquare, Bot, ArrowRight, Map, Library } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ResourcesSectionProps {
@@ -10,19 +10,19 @@ interface ResourcesSectionProps {
 const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   const resources = [
     {
-      icon: <Zap className="w-6 h-6" />,
+      icon: <MessageSquare className="w-6 h-6" />,
       title: "Prompt Packs",
       description: "Ready-to-use prompts for content creation, coding, and analysis",
       path: "/prompt-packs"
     },
     {
-      icon: <FileText className="w-6 h-6" />,
+      icon: <Bot className="w-6 h-6" />,
       title: "AI Tools",
       description: "Complete guide to the best AI tools for different use cases",
       path: "/ai-tools"
     },
     {
-      icon: <Gift className="w-6 h-6" />,
+      icon: <Map className="w-6 h-6" />,
       title: "Learning Roadmaps",
       description: "Step-by-step learning path from basics to advanced AI concepts",
       path: "/learning-roadmaps"
