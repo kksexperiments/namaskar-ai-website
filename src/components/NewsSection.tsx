@@ -254,11 +254,11 @@ const NewsSection = ({ t }: NewsSectionProps) => {
       </div>
 
       {/* Newsletter Subscription Band - Full Width at Bottom */}
-      <div className="bg-gradient-to-r from-slate-100 to-slate-50 py-6 border-t border-slate-200">
+      <div className="bg-gradient-to-r from-rose-200 to-pink-100 py-6 border-t border-rose-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-3 text-slate-700">
-              <Mail className="w-5 h-5 text-slate-500" />
+            <div className="flex items-center gap-3 text-rose-800">
+              <Mail className="w-5 h-5 text-rose-600" />
               <span className="text-lg font-medium">Stay updated with AI news:</span>
             </div>
             <div className="flex gap-3 flex-1 max-w-md">
@@ -267,13 +267,13 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-10 bg-white border-slate-300 text-slate-800 placeholder:text-slate-400"
+                className="flex-1 h-10 bg-white border-rose-300 text-rose-800 placeholder:text-rose-400"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 h-10 font-semibold"
+                className="bg-rose-600 hover:bg-rose-700 text-white px-6 h-10 font-semibold"
               >
                 {isLoading ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
