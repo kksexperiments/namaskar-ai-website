@@ -45,8 +45,8 @@ const Index = () => {
         {/* Hero Section */}
         <HeroSection
           t={t}
-          onNewsletterClick={scrollToNews}
-          onCommunityClick={scrollToResources}
+          onNewsletterClick={scrollToResources}
+          onCommunityClick={scrollToCommunity}
         />
 
         {/* Resources Section */}
