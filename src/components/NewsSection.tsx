@@ -252,31 +252,36 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* Newsletter Subscription Card */}
-        <Card className="p-6 bg-gradient-card border-0 shadow-card mb-8">
-          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-4">
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-primary" />
-              <span className="text-base font-medium">Get the latest AI news:</span>
+        <Card className="p-8 bg-gradient-primary border-0 shadow-elegant hover:shadow-glow transition-all duration-500 mb-8 group overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-6 relative z-10">
+            <div className="flex items-center gap-3 group-hover:scale-105 transition-transform duration-300">
+              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                <Mail className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-lg font-semibold text-white">Stay ahead with AI insights</span>
             </div>
-            <Input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-64 h-9"
-              required
-            />
-            <Button
-              type="submit"
-              disabled={isLoading}
-              className="px-4 h-9 font-medium"
-            >
-              {isLoading ? (
-                <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full" />
-              ) : (
-                "Subscribe"
-              )}
-            </Button>
+            <div className="flex gap-3">
+              <Input
+                type="email"
+                placeholder="your@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-72 h-11 bg-white/95 border-white/30 text-foreground placeholder:text-muted-foreground focus:bg-white transition-all duration-300"
+                required
+              />
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="px-6 h-11 bg-white text-primary hover:bg-white/90 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              >
+                {isLoading ? (
+                  <div className="animate-spin w-4 h-4 border-2 border-primary border-t-transparent rounded-full" />
+                ) : (
+                  "Subscribe"
+                )}
+              </Button>
+            </div>
           </form>
         </Card>
         </div>
