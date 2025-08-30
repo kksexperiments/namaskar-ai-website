@@ -256,7 +256,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
           <form onSubmit={handleSubmit} className="flex items-center justify-center gap-4">
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Get the latest AI news:</span>
+              <span className="text-base font-medium">Get the latest AI news:</span>
             </div>
             <Input
               type="email"
