@@ -228,9 +228,6 @@ const PromptPacks = () => {
   return <div className="min-h-screen bg-background">
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
 
-      {/* Desktop Sidebar */}
-      <FilterSidebar className="hidden lg:block" />
-      
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
