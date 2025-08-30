@@ -252,7 +252,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* Newsletter Subscription Card */}
-        <Card className="p-6 bg-gradient-card border-0 shadow-card max-w-2xl mx-auto mb-8">
+        <Card className="p-6 bg-gradient-card border-0 shadow-card mb-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="text-center space-y-2">
               <div className="flex items-center justify-center gap-2">
