@@ -158,8 +158,8 @@ const PromptPacks = () => {
   };
 
   const FilterSidebar = ({ className = "" }: { className?: string }) => (
-    <div className={`bg-background border-r ${className}`}>
-      <div className="p-6 space-y-6">
+    <Card className={`fixed top-4 left-4 bottom-4 w-80 overflow-y-auto ${className}`}>
+      <div className="p-6 space-y-6 h-full">
         {/* Search */}
         <div>
           <div className="relative">
@@ -255,7 +255,7 @@ const PromptPacks = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 
   return (
@@ -266,68 +266,162 @@ const PromptPacks = () => {
         t={t}
       />
 
-      <div className="flex min-h-screen">
-        {/* Desktop Sidebar */}
-        <FilterSidebar className="hidden lg:block w-80" />
-        
-        {/* Mobile Sidebar Overlay */}
-        {sidebarOpen && (
-          <div className="fixed inset-0 z-50 lg:hidden">
-            <div 
-              className="absolute inset-0 bg-background/80 backdrop-blur-sm" 
-              onClick={() => setSidebarOpen(false)}
-            />
-            <div className="absolute left-0 top-0 h-full w-80 bg-background border-r shadow-lg">
-              <div className="p-4 border-b flex justify-between items-center">
-                <h2 className="font-semibold">Filters</h2>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <X className="w-4 h-4" />
-                </Button>
-              </div>
-              <FilterSidebar />
+      {/* Desktop Sidebar */}
+      <FilterSidebar className="hidden lg:block z-10" />
+      
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div 
+            className="absolute inset-0 bg-background/80 backdrop-blur-sm" 
+            onClick={() => setSidebarOpen(false)}
+          />
+          <Card className="absolute left-4 top-4 bottom-4 w-80 shadow-lg overflow-y-auto">
+            <div className="p-4 border-b flex justify-between items-center">
+              <h2 className="font-semibold">Filters</h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <X className="w-4 h-4" />
+              </Button>
             </div>
-          </div>
-        )}
-
-        <main className="flex-1">
-          <div className="py-20">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* Header with mobile filter trigger */}
-              <div className="flex items-center gap-4 mb-8">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setSidebarOpen(true)}
-                  className="lg:hidden"
-                >
-                  <Menu className="w-4 h-4 mr-2" />
-                  Filters
-                </Button>
-                <Link 
-                  to="/" 
-                  className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span>Back to Home</span>
-                </Link>
-              </div>
-
-              {/* Page Header */}
-              <div className="text-center space-y-6 mb-12">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-                  <Zap className="w-8 h-8 text-white" />
+            <div className="p-6 space-y-6">
+              {/* Search */}
+              <div>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                  <Input
+                    placeholder="Search prompts..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10"
+                  />
                 </div>
-                <h1 className="text-4xl sm:text-5xl font-poppins font-bold gradient-text">
-                  AI Prompt Packs
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Ready-to-use prompt collections for different use cases. Copy, customize, and enhance your AI interactions.
-                </p>
               </div>
+
+              {/* Active Filters */}
+              {(selectedCategory !== "all" || selectedTags.length > 0 || searchTerm) && (
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-medium">Active Filters</h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearAllFilters}
+                      className="text-xs h-auto p-1"
+                    >
+                      Clear All
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedCategory !== "all" && (
+                      <Badge variant="secondary" className="flex items-center gap-1">
+                        {selectedCategory}
+                        <X 
+                          className="w-3 h-3 cursor-pointer" 
+                          onClick={() => setSelectedCategory("all")}
+                        />
+                      </Badge>
+                    )}
+                    {selectedTags.map((tag) => (
+                      <Badge key={tag} variant="outline" className="flex items-center gap-1">
+                        {tag}
+                        <X 
+                          className="w-3 h-3 cursor-pointer" 
+                          onClick={() => toggleTag(tag)}
+                        />
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Categories */}
+              <div>
+                <h3 className="text-sm font-medium mb-3">Categories</h3>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <Button
+                      key={category}
+                      variant={selectedCategory === category ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => setSelectedCategory(category)}
+                      className="w-full justify-start text-sm"
+                    >
+                      {category === "all" ? "All Categories" : category}
+                      <span className="ml-auto text-xs text-muted-foreground">
+                        {category === "all" 
+                          ? prompts.length 
+                          : prompts.filter(p => p.category === category).length
+                        }
+                      </span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <h3 className="text-sm font-medium mb-3">Tags</h3>
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {allTags.map((tag) => (
+                    <Button
+                      key={tag}
+                      variant={selectedTags.includes(tag) ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => toggleTag(tag)}
+                      className="w-full justify-start text-sm"
+                    >
+                      {tag}
+                      <span className="ml-auto text-xs text-muted-foreground">
+                        {prompts.filter(p => p.tags.includes(tag)).length}
+                      </span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      )}
+
+      <main className="w-full">
+        <div className="pt-20 pb-12 lg:ml-96">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Header with mobile filter trigger */}
+            <div className="flex items-center gap-4 mb-6">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSidebarOpen(true)}
+                className="lg:hidden"
+              >
+                <Menu className="w-4 h-4 mr-2" />
+                Filters
+              </Button>
+              <Link 
+                to="/" 
+                className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back to Home</span>
+              </Link>
+            </div>
+
+            {/* Page Header - More Concise */}
+            <div className="text-center space-y-3 mb-8">
+              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+                AI Prompt Packs
+              </h1>
+              <p className="text-base text-muted-foreground max-w-xl mx-auto">
+                Ready-to-use prompt collections. Copy, customize, and enhance your AI interactions.
+              </p>
+            </div>
 
               {/* Results Count */}
               <div className="mb-6">
@@ -414,7 +508,6 @@ const PromptPacks = () => {
             </div>
           </div>
         </main>
-      </div>
 
       <Footer
         currentLanguage={language}
