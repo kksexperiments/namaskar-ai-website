@@ -6,8 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { Copy, Zap, ArrowLeft, Search, Filter, X } from "lucide-react";
+import { Copy, Zap, ArrowLeft, Search, X, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -18,6 +17,7 @@ const PromptPacks = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const prompts = [
     // Content Creation Prompts
@@ -157,11 +157,11 @@ const PromptPacks = () => {
     }
   };
 
-  const FilterSidebar = () => (
-    <Sidebar className="w-80 border-r">
-      <SidebarContent className="p-6">
+  const FilterSidebar = ({ className = "" }: { className?: string }) => (
+    <div className={`bg-background border-r ${className}`}>
+      <div className="p-6 space-y-6">
         {/* Search */}
-        <div className="mb-6">
+        <div>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
             <Input
@@ -175,7 +175,7 @@ const PromptPacks = () => {
 
         {/* Active Filters */}
         {(selectedCategory !== "all" || selectedTags.length > 0 || searchTerm) && (
-          <div className="mb-6">
+          <div>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-sm font-medium">Active Filters</h3>
               <Button
@@ -211,55 +211,51 @@ const PromptPacks = () => {
         )}
 
         {/* Categories */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Categories</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <div className="space-y-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className="w-full justify-start text-sm"
-                >
-                  {category === "all" ? "All Categories" : category}
-                  <span className="ml-auto text-xs text-muted-foreground">
-                    {category === "all" 
-                      ? prompts.length 
-                      : prompts.filter(p => p.category === category).length
-                    }
-                  </span>
-                </Button>
-              ))}
-            </div>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        <div>
+          <h3 className="text-sm font-medium mb-3">Categories</h3>
+          <div className="space-y-2">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className="w-full justify-start text-sm"
+              >
+                {category === "all" ? "All Categories" : category}
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {category === "all" 
+                    ? prompts.length 
+                    : prompts.filter(p => p.category === category).length
+                  }
+                </span>
+              </Button>
+            ))}
+          </div>
+        </div>
 
         {/* Tags */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Tags</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <div className="space-y-2 max-h-64 overflow-y-auto">
-              {allTags.map((tag) => (
-                <Button
-                  key={tag}
-                  variant={selectedTags.includes(tag) ? "default" : "ghost"}
-                  size="sm"
-                  onClick={() => toggleTag(tag)}
-                  className="w-full justify-start text-sm"
-                >
-                  {tag}
-                  <span className="ml-auto text-xs text-muted-foreground">
-                    {prompts.filter(p => p.tags.includes(tag)).length}
-                  </span>
-                </Button>
-              ))}
-            </div>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-    </Sidebar>
+        <div>
+          <h3 className="text-sm font-medium mb-3">Tags</h3>
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            {allTags.map((tag) => (
+              <Button
+                key={tag}
+                variant={selectedTags.includes(tag) ? "default" : "ghost"}
+                size="sm"
+                onClick={() => toggleTag(tag)}
+                className="w-full justify-start text-sm"
+              >
+                {tag}
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {prompts.filter(p => p.tags.includes(tag)).length}
+                </span>
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 
   return (
@@ -270,125 +266,155 @@ const PromptPacks = () => {
         t={t}
       />
 
-      <SidebarProvider>
-        <div className="flex min-h-screen w-full">
-          <FilterSidebar />
-          
-          <main className="flex-1">
-            <div className="py-20">
-              <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header with trigger */}
-                <div className="flex items-center gap-4 mb-8">
-                  <SidebarTrigger />
-                  <Link 
-                    to="/" 
-                    className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <ArrowLeft className="w-4 h-4" />
-                    <span>Back to Home</span>
-                  </Link>
-                </div>
+      <div className="flex min-h-screen">
+        {/* Desktop Sidebar */}
+        <FilterSidebar className="hidden lg:block w-80" />
+        
+        {/* Mobile Sidebar Overlay */}
+        {sidebarOpen && (
+          <div className="fixed inset-0 z-50 lg:hidden">
+            <div 
+              className="absolute inset-0 bg-background/80 backdrop-blur-sm" 
+              onClick={() => setSidebarOpen(false)}
+            />
+            <div className="absolute left-0 top-0 h-full w-80 bg-background border-r shadow-lg">
+              <div className="p-4 border-b flex justify-between items-center">
+                <h2 className="font-semibold">Filters</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <X className="w-4 h-4" />
+                </Button>
+              </div>
+              <FilterSidebar />
+            </div>
+          </div>
+        )}
 
-                {/* Page Header */}
-                <div className="text-center space-y-6 mb-12">
-                  <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-                    <Zap className="w-8 h-8 text-white" />
-                  </div>
-                  <h1 className="text-4xl sm:text-5xl font-poppins font-bold gradient-text">
-                    AI Prompt Packs
-                  </h1>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                    Ready-to-use prompt collections for different use cases. Copy, customize, and enhance your AI interactions.
-                  </p>
-                </div>
+        <main className="flex-1">
+          <div className="py-20">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Header with mobile filter trigger */}
+              <div className="flex items-center gap-4 mb-8">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setSidebarOpen(true)}
+                  className="lg:hidden"
+                >
+                  <Menu className="w-4 h-4 mr-2" />
+                  Filters
+                </Button>
+                <Link 
+                  to="/" 
+                  className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back to Home</span>
+                </Link>
+              </div>
 
-                {/* Results Count */}
-                <div className="mb-6">
-                  <p className="text-sm text-muted-foreground">
-                    Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
-                    {selectedCategory !== "all" && ` in ${selectedCategory}`}
-                  </p>
+              {/* Page Header */}
+              <div className="text-center space-y-6 mb-12">
+                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
+                  <Zap className="w-8 h-8 text-white" />
                 </div>
+                <h1 className="text-4xl sm:text-5xl font-poppins font-bold gradient-text">
+                  AI Prompt Packs
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                  Ready-to-use prompt collections for different use cases. Copy, customize, and enhance your AI interactions.
+                </p>
+              </div>
 
-                {/* Prompts List */}
-                <div className="space-y-4">
-                  {filteredPrompts.length > 0 ? (
-                    <Accordion type="single" collapsible className="space-y-4">
-                      {filteredPrompts.map((prompt, index) => (
-                        <AccordionItem
-                          key={index}
-                          value={`prompt-${index}`}
-                          className="border rounded-lg bg-gradient-card"
-                        >
-                          <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                            <div className="flex items-start justify-between w-full text-left">
-                              <div className="space-y-2">
-                                <div className="flex items-center gap-2 flex-wrap">
-                                  <Badge variant="secondary" className="text-xs">
-                                    {prompt.category}
+              {/* Results Count */}
+              <div className="mb-6">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
+                  {selectedCategory !== "all" && ` in ${selectedCategory}`}
+                </p>
+              </div>
+
+              {/* Prompts List */}
+              <div className="space-y-4">
+                {filteredPrompts.length > 0 ? (
+                  <Accordion type="single" collapsible className="space-y-4">
+                    {filteredPrompts.map((prompt, index) => (
+                      <AccordionItem
+                        key={index}
+                        value={`prompt-${index}`}
+                        className="border rounded-lg bg-gradient-card"
+                      >
+                        <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                          <div className="flex items-start justify-between w-full text-left">
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <Badge variant="secondary" className="text-xs">
+                                  {prompt.category}
+                                </Badge>
+                                {prompt.tags.slice(0, 2).map((tag) => (
+                                  <Badge key={tag} variant="outline" className="text-xs">
+                                    {tag}
                                   </Badge>
-                                  {prompt.tags.slice(0, 2).map((tag) => (
-                                    <Badge key={tag} variant="outline" className="text-xs">
-                                      {tag}
-                                    </Badge>
-                                  ))}
-                                </div>
-                                <h3 className="text-lg font-medium font-poppins group-hover:text-primary transition-colors">
-                                  {prompt.title}
-                                </h3>
+                                ))}
                               </div>
+                              <h3 className="text-lg font-medium font-poppins group-hover:text-primary transition-colors">
+                                {prompt.title}
+                              </h3>
                             </div>
-                          </AccordionTrigger>
-                          <AccordionContent className="px-6 pb-6">
-                            <div className="space-y-4">
-                              <div className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary">
-                                <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap">
-                                  {prompt.prompt}
-                                </p>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <div className="flex gap-2 flex-wrap">
-                                  {prompt.tags.map((tag) => (
-                                    <Badge key={tag} variant="outline" className="text-xs">
-                                      {tag}
-                                    </Badge>
-                                  ))}
-                                </div>
-                                <Button
-                                  onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
-                                  size="sm"
-                                  className="flex items-center gap-2"
-                                >
-                                  <Copy className="w-4 h-4" />
-                                  Copy Prompt
-                                </Button>
-                              </div>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="px-6 pb-6">
+                          <div className="space-y-4">
+                            <div className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary">
+                              <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap">
+                                {prompt.prompt}
+                              </p>
                             </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      ))}
-                    </Accordion>
-                  ) : (
-                    <Card className="p-8 text-center bg-gradient-card">
-                      <div className="space-y-4">
-                        <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
-                          <Search className="w-8 h-8 text-muted-foreground" />
-                        </div>
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-medium">No prompts found</h3>
-                          <p className="text-muted-foreground">
-                            Try adjusting your search terms or filter settings
-                          </p>
-                        </div>
+                            <div className="flex items-center justify-between">
+                              <div className="flex gap-2 flex-wrap">
+                                {prompt.tags.map((tag) => (
+                                  <Badge key={tag} variant="outline" className="text-xs">
+                                    {tag}
+                                  </Badge>
+                                ))}
+                              </div>
+                              <Button
+                                onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
+                                size="sm"
+                                className="flex items-center gap-2"
+                              >
+                                <Copy className="w-4 h-4" />
+                                Copy Prompt
+                              </Button>
+                            </div>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                ) : (
+                  <Card className="p-8 text-center bg-gradient-card">
+                    <div className="space-y-4">
+                      <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+                        <Search className="w-8 h-8 text-muted-foreground" />
                       </div>
-                    </Card>
-                  )}
-                </div>
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-medium">No prompts found</h3>
+                        <p className="text-muted-foreground">
+                          Try adjusting your search terms or filter settings
+                        </p>
+                      </div>
+                    </div>
+                  </Card>
+                )}
               </div>
             </div>
-          </main>
-        </div>
-      </SidebarProvider>
+          </div>
+        </main>
+      </div>
 
       <Footer
         currentLanguage={language}
