@@ -158,7 +158,7 @@ const PromptPacks = () => {
   };
 
   const FilterSidebar = ({ className = "" }: { className?: string }) => (
-    <Card className={`fixed top-20 left-4 bottom-4 w-80 overflow-y-auto ${className}`}>
+    <Card className={`fixed top-20 left-2 bottom-4 w-80 overflow-y-auto ${className}`}>
       <div className="p-6 space-y-6 h-full">
         {/* Search */}
         <div>
@@ -388,10 +388,10 @@ const PromptPacks = () => {
       )}
 
       <main className="w-full">
-        <div className="pt-8 pb-12 lg:ml-96">
+        <div className="pt-8 pb-12 lg:ml-84">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Compact Header */}
-            <div className="flex items-center gap-3 mb-4">
+            {/* Back Button */}
+            <div className="flex items-center justify-between mb-3">
               <Link 
                 to="/" 
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -399,21 +399,27 @@ const PromptPacks = () => {
                 <ArrowLeft className="w-4 h-4" />
                 <span>Back</span>
               </Link>
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <h1 className="text-3xl font-poppins font-bold gradient-text">
-                AI Prompt Packs
-              </h1>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden ml-auto"
+                className="lg:hidden"
               >
                 <Menu className="w-4 h-4 mr-2" />
                 Filters
               </Button>
+            </div>
+
+            {/* Centered Header */}
+            <div className="text-center mb-4">
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-white" />
+                </div>
+                <h1 className="text-3xl font-poppins font-bold gradient-text">
+                  AI Prompt Packs
+                </h1>
+              </div>
             </div>
 
             {/* Results Count */}
