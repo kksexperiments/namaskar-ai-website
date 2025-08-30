@@ -252,14 +252,13 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* Newsletter Subscription Card */}
-        <Card className="p-8 bg-gradient-primary border-0 shadow-elegant hover:shadow-glow transition-all duration-500 mb-8 group overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-6 relative z-10">
-            <div className="flex items-center gap-3 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                <Mail className="w-4 h-4 text-white" />
+        <Card className="p-8 bg-gradient-card border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
+          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-6">
+            <div className="flex items-center gap-3 group-hover:scale-[1.02] transition-transform duration-300">
+              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                <Mail className="w-4 h-4 text-primary" />
               </div>
-              <span className="text-lg font-semibold text-white">Stay ahead with AI insights</span>
+              <span className="text-lg font-medium text-foreground">Stay ahead with AI insights</span>
             </div>
             <div className="flex gap-3">
               <Input
@@ -267,16 +266,16 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-72 h-11 bg-white/95 border-white/30 text-foreground placeholder:text-muted-foreground focus:bg-white transition-all duration-300"
+                className="w-72 h-11 border-border/30 focus:border-primary/50 transition-all duration-300"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="px-6 h-11 bg-white text-primary hover:bg-white/90 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                className="px-6 h-11 font-medium hover:scale-[1.02] transition-all duration-300"
               >
                 {isLoading ? (
-                  <div className="animate-spin w-4 h-4 border-2 border-primary border-t-transparent rounded-full" />
+                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
                   "Subscribe"
                 )}
