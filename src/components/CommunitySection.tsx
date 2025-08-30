@@ -28,7 +28,7 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
             </h2>
           </div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {t.community.description}
+            Get free weekly AI tools, tutorials, and insights delivered directly to you. No premium content, just valuable resources to help you stay ahead.
           </p>
         </div>
 
@@ -44,21 +44,20 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
               {/* Content */}
               <div className="space-y-3">
                 <h3 className="text-xl font-poppins font-semibold">
-                  {t.community.whatsapp.title}
+                  WhatsApp Community
                 </h3>
                 <p className="text-muted-foreground">
-                  {t.community.whatsapp.description}
+                  Interactive discussions and quick AI tips shared directly in your chat
                 </p>
               </div>
 
-              {/* Stats */}
+              {/* Features */}
               <div className="flex justify-center items-center space-x-4 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-1">
-                  <Users className="w-4 h-4" />
-                  <span>250+ Members</span>
+                <div className="text-green-600 font-medium">
+                  💬 Interactive
                 </div>
                 <div className="text-green-600 font-medium">
-                  🟢 Active Daily
+                  🎯 Weekly Updates
                 </div>
               </div>
 
@@ -67,7 +66,7 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
                 onClick={handleWhatsAppClick}
                 className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
               >
-                {t.community.whatsapp.button}
+                Join WhatsApp
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
             </div>
@@ -84,21 +83,20 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
               {/* Content */}
               <div className="space-y-3">
                 <h3 className="text-xl font-poppins font-semibold">
-                  {t.community.telegram.title}
+                  Telegram Channel
                 </h3>
                 <p className="text-muted-foreground">
-                  {t.community.telegram.description}
+                  Weekly curated AI tools, tutorials, and insights delivered to your feed
                 </p>
               </div>
 
-              {/* Stats */}
+              {/* Features */}
               <div className="flex justify-center items-center space-x-4 text-sm text-muted-foreground">
-                <div className="flex items-center space-x-1">
-                  <Users className="w-4 h-4" />
-                  <span>500+ Subscribers</span>
+                <div className="text-blue-600 font-medium">
+                  📚 Tutorials
                 </div>
                 <div className="text-blue-600 font-medium">
-                  📅 Daily Updates
+                  🛠️ Tool Reviews
                 </div>
               </div>
 
@@ -107,7 +105,7 @@ const CommunitySection = ({ t }: CommunitySectionProps) => {
                 onClick={handleTelegramClick}
                 className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
               >
-                {t.community.telegram.button}
+                Join Telegram
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
             </div>
