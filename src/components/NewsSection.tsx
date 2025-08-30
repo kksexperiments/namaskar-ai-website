@@ -252,10 +252,10 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* Newsletter Subscription Card */}
-        <Card className="p-8 bg-gradient-card border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
+        <Card className="p-8 bg-gradient-to-br from-background to-muted/30 border border-border/50 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
           <form onSubmit={handleSubmit} className="flex items-center justify-center gap-6">
             <div className="flex items-center gap-3 group-hover:scale-[1.02] transition-transform duration-300">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
                 <Mail className="w-4 h-4 text-primary" />
               </div>
               <span className="text-lg font-medium text-foreground">Stay ahead with AI insights</span>
