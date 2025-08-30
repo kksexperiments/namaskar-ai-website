@@ -253,35 +253,30 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* Newsletter Subscription Card */}
         <Card className="p-6 bg-gradient-card border-0 shadow-card mb-8">
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <div className="text-center space-y-1">
-              <div className="flex items-center justify-center gap-2">
-                <Mail className="w-4 h-4 text-primary" />
-                <h3 className="text-base font-poppins font-semibold">Stay Updated</h3>
-              </div>
-              <p className="text-muted-foreground text-xs">Get the latest AI news delivered to your inbox</p>
+          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-4">
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium">Get the latest AI news:</span>
             </div>
-            <div className="flex gap-3 justify-center">
-              <Input
-                type="email"
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-64 h-9"
-                required
-              />
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="px-4 h-9 font-medium"
-              >
-                {isLoading ? (
-                  <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full" />
-                ) : (
-                  "Subscribe"
-                )}
-              </Button>
-            </div>
+            <Input
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-64 h-9"
+              required
+            />
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="px-4 h-9 font-medium"
+            >
+              {isLoading ? (
+                <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full" />
+              ) : (
+                "Subscribe"
+              )}
+            </Button>
           </form>
         </Card>
         </div>
