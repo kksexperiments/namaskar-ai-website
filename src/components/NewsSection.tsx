@@ -240,7 +240,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-8">
           <Button 
             variant="outline" 
             size="lg"
@@ -250,30 +250,30 @@ const NewsSection = ({ t }: NewsSectionProps) => {
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
         </div>
-        </div>
-      </div>
 
-      {/* Newsletter Subscription Band - Full Width at Bottom */}
-      <div className="bg-gradient-to-r from-rose-200 to-pink-100 py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <div className="flex items-center gap-3 text-rose-800">
-              <Mail className="w-5 h-5 text-rose-600" />
-              <span className="text-lg font-medium">Stay updated with AI news:</span>
+        {/* Newsletter Subscription Card */}
+        <Card className="p-6 bg-gradient-card border-0 shadow-card max-w-2xl mx-auto mb-8">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="text-center space-y-2">
+              <div className="flex items-center justify-center gap-2">
+                <Mail className="w-5 h-5 text-primary" />
+                <h3 className="text-lg font-poppins font-semibold">Stay Updated</h3>
+              </div>
+              <p className="text-muted-foreground text-sm">Get the latest AI news delivered to your inbox</p>
             </div>
-            <div className="flex gap-3 flex-1 max-w-md">
+            <div className="flex gap-3">
               <Input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-10 bg-white border-rose-300 text-rose-800 placeholder:text-rose-400"
+                className="flex-1 h-11"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-rose-600 hover:bg-rose-700 text-white px-6 h-10 font-semibold"
+                className="px-6 h-11 font-medium"
               >
                 {isLoading ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
@@ -283,6 +283,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
               </Button>
             </div>
           </form>
+        </Card>
         </div>
       </div>
     </section>
