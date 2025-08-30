@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 11% 13%;
 
-    --primary: 210 70% 55%;
+    --primary: 0 73% 51%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 60% 40%;
+    --secondary: 0 73% 37%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 210 20% 98%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 195 85% 50%;
+    --accent: 43 91% 48%;
     --accent-foreground: 0 0% 13%;
 
     --success: 120 60% 50%;
@@ -37,24 +37,24 @@ All colors MUST be HSL.
 
     --border: 210 20% 90%;
     --input: 210 20% 90%;
-    --ring: 210 70% 55%;
+    --ring: 0 73% 51%;
 
-    /* Custom design tokens - Calmer blue palette */
-    --primary-blue: 210 70% 55%;    /* Soft blue */
-    --secondary-blue: 210 60% 40%;  /* Deeper blue */
-    --gold: 43 91% 48%;             /* Keep gold accent */
+    /* Custom design tokens */
+    --primary-red: 0 73% 51%;     /* #DC2626 */
+    --secondary-red: 0 73% 37%;   /* #B91C1C */
+    --gold: 43 91% 48%;           /* #F59E0B */
     --dark-gray: 215 16% 47%;     /* #374151 */
     --light-gray: 210 20% 98%;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-blue)), hsl(var(--gold)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-blue) / 0.1), hsl(var(--gold) / 0.05));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary-red)), hsl(var(--gold)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-red) / 0.1), hsl(var(--gold) / 0.05));
     --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(var(--light-gray)));
     
     /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary-blue) / 0.2);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary-red) / 0.2);
     --shadow-card: 0 4px 20px -4px hsl(210 11% 13% / 0.1);
-    --shadow-button: 0 4px 14px -2px hsl(var(--primary-blue) / 0.3);
+    --shadow-button: 0 4px 14px -2px hsl(var(--primary-red) / 0.3);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -142,7 +142,7 @@ All colors MUST be HSL.
   
   .hero-pattern {
     background-image: 
-      radial-gradient(circle at 20% 80%, hsl(var(--primary-blue) / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, hsl(var(--primary-red) / 0.03) 0%, transparent 50%),
       radial-gradient(circle at 80% 20%, hsl(var(--gold) / 0.02) 0%, transparent 50%);
   }
   
