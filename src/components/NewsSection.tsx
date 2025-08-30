@@ -253,30 +253,30 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* Newsletter Subscription Card */}
         <Card className="p-6 bg-gradient-card border-0 shadow-card mb-8">
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="text-center space-y-2">
+          <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="text-center space-y-1">
               <div className="flex items-center justify-center gap-2">
-                <Mail className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-poppins font-semibold">Stay Updated</h3>
+                <Mail className="w-4 h-4 text-primary" />
+                <h3 className="text-base font-poppins font-semibold">Stay Updated</h3>
               </div>
-              <p className="text-muted-foreground text-sm">Get the latest AI news delivered to your inbox</p>
+              <p className="text-muted-foreground text-xs">Get the latest AI news delivered to your inbox</p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center">
               <Input
                 type="email"
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 h-11"
+                className="w-64 h-9"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="px-6 h-11 font-medium"
+                className="px-4 h-9 font-medium"
               >
                 {isLoading ? (
-                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
+                  <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full" />
                 ) : (
                   "Subscribe"
                 )}
