@@ -29,27 +29,31 @@ const CommunitySection = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* WhatsApp Community */}
-          <Card className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
-            <div className="text-center space-y-4">
+          <Card className="p-8 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
+            <div className="text-center space-y-6">
               {/* WhatsApp Icon */}
-              <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                <MessageCircle className="w-6 h-6 text-white" />
+              <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                <MessageCircle className="w-8 h-8 text-white" />
               </div>
 
               {/* Content */}
-              <div className="space-y-2">
-                <h3 className="text-lg font-poppins font-semibold">
-                  {t.community.whatsapp.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Weekly AI tools & tutorials
-                </p>
+              <div className="space-y-3">
+                
+                
+              </div>
+
+              {/* Stats */}
+              <div className="flex justify-center items-center space-x-4 text-sm text-muted-foreground">
+                
+                <div className="text-green-600 font-medium">
+                  🟢 Active Daily
+                </div>
               </div>
 
               {/* CTA */}
-              <Button onClick={handleWhatsAppClick} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 rounded-lg transition-all duration-300">
+              <Button onClick={handleWhatsAppClick} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
                 {t.community.whatsapp.button}
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
@@ -57,25 +61,28 @@ const CommunitySection = ({
           </Card>
 
           {/* Telegram Channel */}
-          <Card className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
-            <div className="text-center space-y-4">
+          <Card className="p-8 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
+            <div className="text-center space-y-6">
               {/* Telegram Icon */}
-              <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
-                <Send className="w-6 h-6 text-white" />
+              <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                <Send className="w-8 h-8 text-white" />
               </div>
 
               {/* Content */}
-              <div className="space-y-2">
-                <h3 className="text-lg font-poppins font-semibold">
+              <div className="space-y-3">
+                <h3 className="text-xl font-poppins font-semibold">
                   {t.community.telegram.title}
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  Daily AI insights & updates
+                <p className="text-muted-foreground">
+                  {t.community.telegram.description}
                 </p>
               </div>
 
+              {/* Stats */}
+              
+
               {/* CTA */}
-              <Button onClick={handleTelegramClick} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 rounded-lg transition-all duration-300">
+              <Button onClick={handleTelegramClick} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
                 {t.community.telegram.button}
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
