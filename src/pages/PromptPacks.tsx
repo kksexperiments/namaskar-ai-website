@@ -139,9 +139,7 @@ const PromptPacks = () => {
     className = ""
   }: {
     className?: string;
-  }) => <Card className={`w-80 h-fit ${className}`}>
-      
-    </Card>;
+  }) => {};
   return <div className="min-h-screen bg-background">
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
 
