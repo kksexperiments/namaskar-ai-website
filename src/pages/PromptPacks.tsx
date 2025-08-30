@@ -6,10 +6,30 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Copy, Zap, ArrowLeft, Search, X, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { useQuery } from "@tanstack/react-query";
+
+// Types for our data
+interface Prompt {
+  id: string;
+  title: string;
+  prompt: string;
+  category: string;
+  tags: string[];
+  created_at?: string;
+  updated_at?: string;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  created_at?: string;
+}
 const PromptPacks = () => {
   const {
     language,
@@ -23,93 +43,55 @@ const PromptPacks = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const prompts = [
-  // Content Creation Prompts
-  {
-    title: "Blog Post Outline Generator",
-    prompt: "Create a comprehensive blog post outline for the topic '[TOPIC]'. Include: 1) An attention-grabbing headline, 2) Introduction hook, 3) 5-7 main sections with subpoints, 4) Conclusion with call-to-action. Target audience: [AUDIENCE]. Tone: [TONE].",
-    category: "Content",
-    tags: ["blog", "writing", "outline"]
-  }, {
-    title: "Social Media Caption Creator",
-    prompt: "Write an engaging social media caption for [PLATFORM] about [TOPIC]. Include: relevant hashtags, call-to-action, and emoji. Keep it under [CHARACTER_LIMIT] characters. Tone should be [TONE].",
-    category: "Content",
-    tags: ["social media", "captions", "marketing"]
-  }, {
-    title: "Email Subject Line Generator",
-    prompt: "Generate 10 compelling email subject lines for [EMAIL_TYPE] about [TOPIC]. Focus on [GOAL] and target audience [AUDIENCE]. Include: urgency, personalization, and curiosity-driving elements.",
-    category: "Content",
-    tags: ["email", "marketing", "subject lines"]
-  }, {
-    title: "Product Description Writer",
-    prompt: "Write a compelling product description for [PRODUCT_NAME]. Include: key features, benefits, target audience, and unique selling points. Use persuasive language that converts browsers into buyers. Word count: [WORDS].",
-    category: "Content",
-    tags: ["product", "ecommerce", "description"]
-  },
-  // Development Prompts
-  {
-    title: "Code Review Assistant",
-    prompt: "Review this code for [LANGUAGE]: [CODE]. Analyze for: 1) Code quality and readability, 2) Performance optimizations, 3) Security vulnerabilities, 4) Best practices adherence, 5) Potential bugs. Provide specific suggestions for improvement.",
-    category: "Development",
-    tags: ["code review", "debugging", "optimization"]
-  }, {
-    title: "API Documentation Generator",
-    prompt: "Create comprehensive API documentation for [ENDPOINT_NAME]. Include: endpoint URL, HTTP methods, request/response examples, parameters, error codes, and usage examples in [LANGUAGE].",
-    category: "Development",
-    tags: ["api", "documentation", "backend"]
-  }, {
-    title: "Bug Report Analyzer",
-    prompt: "Analyze this bug report: [BUG_DESCRIPTION]. Provide: 1) Root cause analysis, 2) Step-by-step debugging approach, 3) Potential fixes, 4) Prevention strategies. Focus on [TECHNOLOGY_STACK].",
-    category: "Development",
-    tags: ["debugging", "bugs", "troubleshooting"]
-  }, {
-    title: "Database Query Optimizer",
-    prompt: "Optimize this [DATABASE_TYPE] query: [QUERY]. Analyze performance bottlenecks, suggest indexing strategies, and provide an improved version. Explain the optimizations made.",
-    category: "Development",
-    tags: ["database", "sql", "optimization"]
-  },
-  // Data Analysis Prompts
-  {
-    title: "Data Visualization Recommender",
-    prompt: "I have a dataset with [DESCRIBE_DATA]. Recommend the best visualization types for [ANALYSIS_GOAL]. Provide: chart types, key insights to highlight, and design considerations for [AUDIENCE].",
-    category: "Analytics",
-    tags: ["visualization", "charts", "insights"]
-  }, {
-    title: "Statistical Analysis Guide",
-    prompt: "Perform statistical analysis on [DATA_DESCRIPTION]. Research question: [QUESTION]. Suggest appropriate tests, interpret results, and provide actionable insights. Consider [CONSTRAINTS].",
-    category: "Analytics",
-    tags: ["statistics", "analysis", "insights"]
-  }, {
-    title: "KPI Dashboard Creator",
-    prompt: "Design a KPI dashboard for [BUSINESS_TYPE]. Include: key metrics to track, visualization types, update frequency, and target audience considerations. Focus on [BUSINESS_GOALS].",
-    category: "Analytics",
-    tags: ["kpi", "dashboard", "metrics"]
-  },
-  // Creative Writing Prompts
-  {
-    title: "Story Plot Generator",
-    prompt: "Create a compelling story plot in the [GENRE] genre. Include: protagonist with clear motivation, central conflict, plot twists, and satisfying resolution. Setting: [SETTING]. Theme: [THEME].",
-    category: "Creative",
-    tags: ["story", "plot", "fiction"]
-  }, {
-    title: "Character Development Assistant",
-    prompt: "Develop a complex character for [STORY_TYPE]. Include: background, personality traits, motivations, flaws, relationships, and character arc. Make them relatable to [TARGET_AUDIENCE].",
-    category: "Creative",
-    tags: ["character", "development", "writing"]
-  }, {
-    title: "Creative Ad Copy Generator",
-    prompt: "Write creative advertising copy for [PRODUCT/SERVICE]. Target audience: [AUDIENCE]. Include: headline, body copy, and call-to-action. Tone: [TONE]. Focus on [UNIQUE_BENEFIT].",
-    category: "Creative",
-    tags: ["advertising", "copywriting", "marketing"]
-  }];
-  const categories = ["all", "Content", "Development", "Analytics", "Creative"];
+  // Fetch prompts from Supabase
+  const { data: prompts = [], isLoading: promptsLoading, error: promptsError } = useQuery<Prompt[]>({
+    queryKey: ['prompts'],
+    queryFn: async (): Promise<Prompt[]> => {
+      const { data, error } = await (supabase as any)
+        .from('prompts')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      
+      // Parse tags from JSON and ensure proper typing
+      return (data || []).map((prompt: any) => ({
+        id: prompt.id,
+        title: prompt.title || '',
+        prompt: prompt.prompt || '',
+        category: prompt.category || '',
+        tags: Array.isArray(prompt.tags) ? prompt.tags : [],
+        created_at: prompt.created_at,
+        updated_at: prompt.updated_at
+      }));
+    }
+  });
+
+  // Fetch categories from Supabase
+  const { data: categoriesData = [], isLoading: categoriesLoading } = useQuery<string[]>({
+    queryKey: ['categories'],
+    queryFn: async (): Promise<string[]> => {
+      const { data, error } = await (supabase as any)
+        .from('categories')
+        .select('name')
+        .order('name');
+      
+      if (error) throw error;
+      return (data || []).map((cat: any) => cat.name);
+    }
+  });
+
+  const categories = ["all", ...categoriesData];
 
   // Get all unique tags from prompts
-  const allTags = Array.from(new Set(prompts.flatMap(prompt => prompt.tags)));
+  const allTags = Array.from(new Set(prompts.flatMap(prompt => prompt.tags || [])));
+  
   const filteredPrompts = prompts.filter(prompt => {
-    const matchesSearch = prompt.title.toLowerCase().includes(searchTerm.toLowerCase()) || prompt.prompt.toLowerCase().includes(searchTerm.toLowerCase()) || prompt.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesSearch = prompt.title?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         prompt.prompt?.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                         prompt.tags?.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = selectedCategory === "all" || prompt.category === selectedCategory;
-    const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => prompt.tags.includes(tag));
+    const matchesTags = selectedTags.length === 0 || selectedTags.some(tag => prompt.tags?.includes(tag));
     return matchesSearch && matchesCategory && matchesTags;
   });
   const toggleTag = (tag: string) => {
@@ -216,7 +198,7 @@ const PromptPacks = () => {
               >
                 {tag}
                 <span className="ml-auto text-xs text-muted-foreground">
-                  {prompts.filter(p => p.tags.includes(tag)).length}
+                   {prompts.filter(p => p.tags?.includes(tag)).length}
                 </span>
               </Button>
             ))}
@@ -287,7 +269,7 @@ const PromptPacks = () => {
                   {allTags.map(tag => <Button key={tag} variant={selectedTags.includes(tag) ? "default" : "ghost"} size="sm" onClick={() => toggleTag(tag)} className="w-full justify-start text-sm">
                       {tag}
                       <span className="ml-auto text-xs text-muted-foreground">
-                        {prompts.filter(p => p.tags.includes(tag)).length}
+                        {prompts.filter(p => p.tags?.includes(tag)).length}
                       </span>
                     </Button>)}
                 </div>
@@ -341,8 +323,22 @@ const PromptPacks = () => {
 
                   {/* Prompts List */}
                   <div className="space-y-4">
-                    {filteredPrompts.length > 0 ? <Accordion type="single" collapsible className="space-y-4">
-                        {filteredPrompts.map((prompt, index) => <AccordionItem key={index} value={`prompt-${index}`} className="border rounded-lg bg-gradient-card">
+                    {promptsLoading ? (
+                      <div className="space-y-4">
+                        {[...Array(6)].map((_, i) => (
+                          <Card key={i} className="p-6">
+                            <Skeleton className="h-4 w-1/4 mb-2" />
+                            <Skeleton className="h-6 w-3/4 mb-4" />
+                            <Skeleton className="h-20 w-full" />
+                          </Card>
+                        ))}
+                      </div>
+                    ) : promptsError ? (
+                      <div className="text-center py-8">
+                        <p className="text-muted-foreground">Failed to load prompts. Please try again.</p>
+                      </div>
+                    ) : filteredPrompts.length > 0 ? <Accordion type="single" collapsible className="space-y-4">
+                        {filteredPrompts.map((prompt) => <AccordionItem key={prompt.id} value={`prompt-${prompt.id}`} className="border rounded-lg bg-gradient-card">
                             <AccordionTrigger className="px-6 py-4 hover:no-underline">
                               <div className="flex items-start justify-between w-full text-left">
                                 <div className="space-y-2">
@@ -350,7 +346,7 @@ const PromptPacks = () => {
                                     <Badge variant="secondary" className="text-xs">
                                       {prompt.category}
                                     </Badge>
-                                    {prompt.tags.slice(0, 2).map(tag => <Badge key={tag} variant="outline" className="text-xs">
+                                     {prompt.tags?.slice(0, 2).map(tag => <Badge key={tag} variant="outline" className="text-xs">
                                         {tag}
                                       </Badge>)}
                                   </div>
