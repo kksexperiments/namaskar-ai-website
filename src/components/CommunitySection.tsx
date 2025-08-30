@@ -24,17 +24,17 @@ const CommunitySection = ({
               Join Our Community
             </h2>
           </div>
-          <div className="flex items-center justify-center gap-8 text-muted-foreground">
+          <div className="flex items-center justify-center gap-8 text-foreground">
             <div className="flex items-center gap-2">
-              <Wrench className="w-4 h-4" />
+              <Wrench className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium">Tools</span>
             </div>
             <div className="flex items-center gap-2">
-              <BookOpen className="w-4 h-4" />
+              <BookOpen className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium">Tutorials</span>
             </div>
             <div className="flex items-center gap-2">
-              <Lightbulb className="w-4 h-4" />
+              <Lightbulb className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium">Insights</span>
             </div>
           </div>
