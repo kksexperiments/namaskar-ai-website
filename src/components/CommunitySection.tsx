@@ -18,9 +18,9 @@ const CommunitySection = ({
   return <section id="community" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3">
-            <Users className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+          <div className="flex items-center justify-center gap-2 sm:gap-3">
+            <Users className="w-6 h-6 sm:w-8 sm:h-8 text-primary flex-shrink-0" />
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-poppins font-bold gradient-text text-center">
               Join Our Community
             </h2>
           </div>
