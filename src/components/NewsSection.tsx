@@ -98,7 +98,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
           </div>
 
         {/* News Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {newsItems.slice(0, 2).map((item, index) => (
             <Card 
               key={index}
@@ -159,7 +159,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                   <Button 
                     size="sm" 
                     variant="ghost"
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 rounded-full group-hover:translate-x-1 transition-all duration-300"
+                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 min-w-[32px] min-h-[32px] rounded-full group-hover:translate-x-1 transition-all duration-300"
                   >
                     <ArrowRight className="w-4 h-4" />
                   </Button>
@@ -229,7 +229,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                   <Button 
                     size="sm" 
                     variant="ghost"
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 rounded-full group-hover:translate-x-1 transition-all duration-300"
+                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 min-w-[32px] min-h-[32px] rounded-full group-hover:translate-x-1 transition-all duration-300"
                   >
                     <ArrowRight className="w-4 h-4" />
                   </Button>
@@ -252,27 +252,27 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         </div>
 
         {/* Newsletter Subscription Card */}
-        <Card className="p-8 bg-gradient-to-br from-background to-muted/30 border-2 border-primary/20 hover:border-primary/30 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
-          <form onSubmit={handleSubmit} className="flex items-center justify-center gap-6">
-            <div className="flex items-center gap-3 group-hover:scale-[1.02] transition-transform duration-300">
+        <Card className="p-6 sm:p-8 bg-gradient-to-br from-background to-muted/30 border-2 border-primary/20 hover:border-primary/30 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
+          <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-0 lg:flex lg:items-center lg:justify-center lg:gap-6">
+            <div className="flex items-center gap-3 justify-center lg:justify-start group-hover:scale-[1.02] transition-transform duration-300">
               <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
                 <Mail className="w-4 h-4 text-primary" />
               </div>
-              <span className="text-lg font-medium text-foreground">Subscribe to our AI newsletter</span>
+              <span className="text-base sm:text-lg font-medium text-foreground text-center lg:text-left">Subscribe to our AI newsletter</span>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <Input
                 type="email"
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-72 h-11 border-border/30 focus:border-primary/50 transition-all duration-300"
+                className="w-full sm:w-64 lg:w-72 h-11 border-border/30 focus:border-primary/50 transition-all duration-300"
                 required
               />
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="px-6 h-11 font-medium hover:scale-[1.02] transition-all duration-300"
+                className="w-full sm:w-auto px-6 h-11 font-medium hover:scale-[1.02] transition-all duration-300 min-h-[44px]"
               >
                 {isLoading ? (
                   <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />

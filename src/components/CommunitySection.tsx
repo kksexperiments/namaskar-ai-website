@@ -50,7 +50,7 @@ const CommunitySection = ({
               <h3 className="text-base font-poppins font-semibold">
                 WhatsApp
               </h3>
-              <Button onClick={handleWhatsAppClick} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 rounded-lg transition-all duration-300">
+              <Button onClick={handleWhatsAppClick} className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]">
                 Join WhatsApp
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>
@@ -66,7 +66,7 @@ const CommunitySection = ({
               <h3 className="text-base font-poppins font-semibold">
                 Telegram
               </h3>
-              <Button onClick={handleTelegramClick} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-all duration-300">
+              <Button onClick={handleTelegramClick} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]">
                 Join Telegram
                 <ExternalLink className="ml-2 w-4 h-4" />
               </Button>

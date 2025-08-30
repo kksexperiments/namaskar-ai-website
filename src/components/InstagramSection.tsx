@@ -27,23 +27,25 @@ const InstagramSection = ({
         </div>
 
         {/* Instagram Embeds */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {instagramPosts.map((postUrl, index) => <div key={index} className="flex justify-center">
-              <div className="w-full max-w-sm">
-                <InstagramEmbed url={postUrl} width={326} placeholderDisabled={false} />
+              <div className="w-full max-w-sm mx-auto">
+                <div className="relative w-full" style={{ maxWidth: '326px' }}>
+                  <InstagramEmbed url={postUrl} width="100%" placeholderDisabled={false} />
+                </div>
               </div>
             </div>)}
         </div>
 
         {/* CTA */}
         <div className="text-center">
-          <Button onClick={handleInstagramClick} className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-3 px-8 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1">
+          <Button onClick={handleInstagramClick} className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-3 px-6 sm:px-8 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 min-h-[44px] w-full sm:w-auto">
             <Instagram className="mr-2 w-5 h-5" />
-            Follow @namaskar.ai
+            <span className="text-sm sm:text-base">Follow @namaskar.ai</span>
             <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
           
-          <p className="text-sm text-muted-foreground mt-4">
+          <p className="text-sm text-muted-foreground mt-4 px-4">
             Join 5K+ followers getting daily AI insights and practical tutorials
           </p>
         </div>
