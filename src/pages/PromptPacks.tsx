@@ -139,7 +139,92 @@ const PromptPacks = () => {
     className = ""
   }: {
     className?: string;
-  }) => {};
+  }) => (
+    <Card className={`w-80 h-fit ${className}`}>
+      <div className="p-6 space-y-6">
+        {/* Search */}
+        <div>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+            <Input 
+              placeholder="Search prompts..." 
+              value={searchTerm} 
+              onChange={e => setSearchTerm(e.target.value)} 
+              className="pl-10" 
+            />
+          </div>
+        </div>
+
+        {/* Active Filters */}
+        {(selectedCategory !== "all" || selectedTags.length > 0 || searchTerm) && (
+          <div>
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-medium">Active Filters</h3>
+              <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-xs h-auto p-1">
+                Clear All
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {selectedCategory !== "all" && (
+                <Badge variant="secondary" className="flex items-center gap-1">
+                  {selectedCategory}
+                  <X className="w-3 h-3 cursor-pointer" onClick={() => setSelectedCategory("all")} />
+                </Badge>
+              )}
+              {selectedTags.map(tag => (
+                <Badge key={tag} variant="outline" className="flex items-center gap-1">
+                  {tag}
+                  <X className="w-3 h-3 cursor-pointer" onClick={() => toggleTag(tag)} />
+                </Badge>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Categories */}
+        <div>
+          <h3 className="text-sm font-medium mb-3">Categories</h3>
+          <div className="space-y-2">
+            {categories.map(category => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "ghost"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className="w-full justify-start text-sm"
+              >
+                {category === "all" ? "All Categories" : category}
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {category === "all" ? prompts.length : prompts.filter(p => p.category === category).length}
+                </span>
+              </Button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tags */}
+        <div>
+          <h3 className="text-sm font-medium mb-3">Tags</h3>
+          <div className="space-y-2 max-h-64 overflow-y-auto">
+            {allTags.map(tag => (
+              <Button
+                key={tag}
+                variant={selectedTags.includes(tag) ? "default" : "ghost"}
+                size="sm"
+                onClick={() => toggleTag(tag)}
+                className="w-full justify-start text-sm"
+              >
+                {tag}
+                <span className="ml-auto text-xs text-muted-foreground">
+                  {prompts.filter(p => p.tags.includes(tag)).length}
+                </span>
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Card>
+  );
   return <div className="min-h-screen bg-background">
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
 
