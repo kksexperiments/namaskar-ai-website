@@ -258,7 +258,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
               <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
                 <Mail className="w-4 h-4 text-primary" />
               </div>
-              <span className="text-lg font-medium text-foreground">Stay ahead with AI insights</span>
+              <span className="text-lg font-medium text-foreground">Subscribe to our AI newsletter</span>
             </div>
             <div className="flex gap-3">
               <Input
