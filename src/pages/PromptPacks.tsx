@@ -391,7 +391,7 @@ const PromptPacks = () => {
         <div className="pt-8 pb-12 lg:ml-96">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Compact Header */}
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4">
               <Link 
                 to="/" 
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
@@ -402,7 +402,7 @@ const PromptPacks = () => {
               <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
                 <Zap className="w-4 h-4 text-white" />
               </div>
-              <h1 className="text-2xl font-poppins font-bold gradient-text">
+              <h1 className="text-3xl font-poppins font-bold gradient-text">
                 AI Prompt Packs
               </h1>
               <Button
@@ -416,13 +416,13 @@ const PromptPacks = () => {
               </Button>
             </div>
 
-              {/* Results Count */}
-              <div className="mb-6">
-                <p className="text-sm text-muted-foreground">
-                  Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
-                  {selectedCategory !== "all" && ` in ${selectedCategory}`}
-                </p>
-              </div>
+            {/* Results Count */}
+            <div className="mb-4">
+              <p className="text-sm text-muted-foreground">
+                Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
+                {selectedCategory !== "all" && ` in ${selectedCategory}`}
+              </p>
+            </div>
 
               {/* Prompts List */}
               <div className="space-y-4">
