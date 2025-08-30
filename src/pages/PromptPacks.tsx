@@ -158,7 +158,7 @@ const PromptPacks = () => {
   };
 
   const FilterSidebar = ({ className = "" }: { className?: string }) => (
-    <Card className={`fixed top-4 left-4 bottom-4 w-80 overflow-y-auto ${className}`}>
+    <Card className={`fixed top-20 left-4 bottom-4 w-80 overflow-y-auto ${className}`}>
       <div className="p-6 space-y-6 h-full">
         {/* Search */}
         <div>
@@ -388,39 +388,32 @@ const PromptPacks = () => {
       )}
 
       <main className="w-full">
-        <div className="pt-20 pb-12 lg:ml-96">
+        <div className="pt-8 pb-12 lg:ml-96">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Header with mobile filter trigger */}
-            <div className="flex items-center gap-4 mb-6">
+            {/* Compact Header */}
+            <div className="flex items-center gap-3 mb-6">
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Back</span>
+              </Link>
+              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
+              </div>
+              <h1 className="text-2xl font-poppins font-bold gradient-text">
+                AI Prompt Packs
+              </h1>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden"
+                className="lg:hidden ml-auto"
               >
                 <Menu className="w-4 h-4 mr-2" />
                 Filters
               </Button>
-              <Link 
-                to="/" 
-                className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Back to Home</span>
-              </Link>
-            </div>
-
-            {/* Page Header - More Concise */}
-            <div className="text-center space-y-3 mb-8">
-              <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <h1 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-                AI Prompt Packs
-              </h1>
-              <p className="text-base text-muted-foreground max-w-xl mx-auto">
-                Ready-to-use prompt collections. Copy, customize, and enhance your AI interactions.
-              </p>
             </div>
 
               {/* Results Count */}
