@@ -158,8 +158,8 @@ const PromptPacks = () => {
   };
 
   const FilterSidebar = ({ className = "" }: { className?: string }) => (
-    <Card className={`fixed top-20 left-2 bottom-4 w-80 overflow-y-auto ${className}`}>
-      <div className="p-6 space-y-6 h-full">
+    <Card className={`w-80 h-fit ${className}`}>
+      <div className="p-6 space-y-6">
         {/* Search */}
         <div>
           <div className="relative">
@@ -267,7 +267,7 @@ const PromptPacks = () => {
       />
 
       {/* Desktop Sidebar */}
-      <FilterSidebar className="hidden lg:block z-10" />
+      <FilterSidebar className="hidden lg:block" />
       
       {/* Mobile Sidebar Overlay */}
       {sidebarOpen && (
@@ -388,8 +388,8 @@ const PromptPacks = () => {
       )}
 
       <main className="w-full">
-        <div className="pt-8 pb-12 lg:ml-84">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="pt-8 pb-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Back Button */}
             <div className="flex items-center justify-between mb-3">
               <Link 
@@ -411,7 +411,7 @@ const PromptPacks = () => {
             </div>
 
             {/* Centered Header */}
-            <div className="text-center mb-4">
+            <div className="text-center mb-6">
               <div className="flex items-center justify-center gap-3 mb-2">
                 <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
                   <Zap className="w-4 h-4 text-white" />
@@ -422,91 +422,102 @@ const PromptPacks = () => {
               </div>
             </div>
 
-            {/* Results Count */}
-            <div className="mb-4">
-              <p className="text-sm text-muted-foreground">
-                Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
-                {selectedCategory !== "all" && ` in ${selectedCategory}`}
-              </p>
-            </div>
+            {/* Centered Container with Filter and Content */}
+            <div className="flex justify-center">
+              <div className="flex gap-6 w-full max-w-6xl">
+                {/* Filter Section */}
+                <FilterSidebar className="hidden lg:block flex-shrink-0" />
+                
+                {/* Prompts Content */}
+                <div className="flex-1 min-w-0">
+                  {/* Results Count */}
+                  <div className="mb-4">
+                    <p className="text-sm text-muted-foreground">
+                      Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
+                      {selectedCategory !== "all" && ` in ${selectedCategory}`}
+                    </p>
+                  </div>
 
-              {/* Prompts List */}
-              <div className="space-y-4">
-                {filteredPrompts.length > 0 ? (
-                  <Accordion type="single" collapsible className="space-y-4">
-                    {filteredPrompts.map((prompt, index) => (
-                      <AccordionItem
-                        key={index}
-                        value={`prompt-${index}`}
-                        className="border rounded-lg bg-gradient-card"
-                      >
-                        <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                          <div className="flex items-start justify-between w-full text-left">
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <Badge variant="secondary" className="text-xs">
-                                  {prompt.category}
-                                </Badge>
-                                {prompt.tags.slice(0, 2).map((tag) => (
-                                  <Badge key={tag} variant="outline" className="text-xs">
-                                    {tag}
-                                  </Badge>
-                                ))}
+                  {/* Prompts List */}
+                  <div className="space-y-4">
+                    {filteredPrompts.length > 0 ? (
+                      <Accordion type="single" collapsible className="space-y-4">
+                        {filteredPrompts.map((prompt, index) => (
+                          <AccordionItem
+                            key={index}
+                            value={`prompt-${index}`}
+                            className="border rounded-lg bg-gradient-card"
+                          >
+                            <AccordionTrigger className="px-6 py-4 hover:no-underline">
+                              <div className="flex items-start justify-between w-full text-left">
+                                <div className="space-y-2">
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    <Badge variant="secondary" className="text-xs">
+                                      {prompt.category}
+                                    </Badge>
+                                    {prompt.tags.slice(0, 2).map((tag) => (
+                                      <Badge key={tag} variant="outline" className="text-xs">
+                                        {tag}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                  <h3 className="text-lg font-medium font-poppins group-hover:text-primary transition-colors">
+                                    {prompt.title}
+                                  </h3>
+                                </div>
                               </div>
-                              <h3 className="text-lg font-medium font-poppins group-hover:text-primary transition-colors">
-                                {prompt.title}
-                              </h3>
-                            </div>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="px-6 pb-6">
-                          <div className="space-y-4">
-                            <div className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary">
-                              <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap">
-                                {prompt.prompt}
-                              </p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <div className="flex gap-2 flex-wrap">
-                                {prompt.tags.map((tag) => (
-                                  <Badge key={tag} variant="outline" className="text-xs">
-                                    {tag}
-                                  </Badge>
-                                ))}
+                            </AccordionTrigger>
+                            <AccordionContent className="px-6 pb-6">
+                              <div className="space-y-4">
+                                <div className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary">
+                                  <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap">
+                                    {prompt.prompt}
+                                  </p>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                  <div className="flex gap-2 flex-wrap">
+                                    {prompt.tags.map((tag) => (
+                                      <Badge key={tag} variant="outline" className="text-xs">
+                                        {tag}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                  <Button
+                                    onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
+                                    size="sm"
+                                    className="flex items-center gap-2"
+                                  >
+                                    <Copy className="w-4 h-4" />
+                                    Copy Prompt
+                                  </Button>
+                                </div>
                               </div>
-                              <Button
-                                onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
-                                size="sm"
-                                className="flex items-center gap-2"
-                              >
-                                <Copy className="w-4 h-4" />
-                                Copy Prompt
-                              </Button>
-                            </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        ))}
+                      </Accordion>
+                    ) : (
+                      <Card className="p-8 text-center bg-gradient-card">
+                        <div className="space-y-4">
+                          <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+                            <Search className="w-8 h-8 text-muted-foreground" />
                           </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                ) : (
-                  <Card className="p-8 text-center bg-gradient-card">
-                    <div className="space-y-4">
-                      <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
-                        <Search className="w-8 h-8 text-muted-foreground" />
-                      </div>
-                      <div className="space-y-2">
-                        <h3 className="text-lg font-medium">No prompts found</h3>
-                        <p className="text-muted-foreground">
-                          Try adjusting your search terms or filter settings
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                )}
+                          <div className="space-y-2">
+                            <h3 className="text-lg font-medium">No prompts found</h3>
+                            <p className="text-muted-foreground">
+                              Try adjusting your search terms or filter settings
+                            </p>
+                          </div>
+                        </div>
+                      </Card>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </main>
+        </div>
+      </main>
 
       <Footer
         currentLanguage={language}
