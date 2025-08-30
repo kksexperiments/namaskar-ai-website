@@ -158,38 +158,35 @@ const PromptPacks = () => {
   };
 
   const FilterSidebar = ({ className = "" }: { className?: string }) => (
-    <div className={`bg-background border-r ${className}`}>
-      <div className="p-6 space-y-6">
+    <div className={`bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className}`}>
+      <div className="p-4 space-y-6">
         {/* Search */}
         <div>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-            <Input
-              placeholder="Search prompts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
-          </div>
+          <Input
+            placeholder="Search any keyword, topic or tag"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full"
+          />
         </div>
 
         {/* Active Filters */}
-        {(selectedCategory !== "all" || selectedTags.length > 0 || searchTerm) && (
+        {(selectedCategory !== "all" || selectedTags.length > 0) && (
           <div>
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-sm font-medium">Active Filters</h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-sm font-medium text-foreground">Active Filters</h3>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={clearAllFilters}
-                className="text-xs h-auto p-1"
+                className="text-xs h-6 px-2"
               >
                 Clear All
               </Button>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1">
               {selectedCategory !== "all" && (
-                <Badge variant="secondary" className="flex items-center gap-1">
+                <Badge variant="secondary" className="text-xs flex items-center gap-1">
                   {selectedCategory}
                   <X 
                     className="w-3 h-3 cursor-pointer" 
@@ -198,7 +195,7 @@ const PromptPacks = () => {
                 </Badge>
               )}
               {selectedTags.map((tag) => (
-                <Badge key={tag} variant="outline" className="flex items-center gap-1">
+                <Badge key={tag} variant="outline" className="text-xs flex items-center gap-1">
                   {tag}
                   <X 
                     className="w-3 h-3 cursor-pointer" 
@@ -210,47 +207,49 @@ const PromptPacks = () => {
           </div>
         )}
 
-        {/* Categories */}
+        {/* Filter by Category */}
         <div>
-          <h3 className="text-sm font-medium mb-3">Categories</h3>
+          <h3 className="text-sm font-medium text-foreground mb-3">Filter by category</h3>
           <div className="space-y-2">
             {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "ghost"}
-                size="sm"
-                onClick={() => setSelectedCategory(category)}
-                className="w-full justify-start text-sm"
-              >
-                {category === "all" ? "All Categories" : category}
-                <span className="ml-auto text-xs text-muted-foreground">
-                  {category === "all" 
+              <label key={category} className="flex items-center space-x-2 text-sm cursor-pointer">
+                <input
+                  type="radio"
+                  checked={selectedCategory === category}
+                  onChange={() => setSelectedCategory(category)}
+                  className="w-4 h-4 text-primary"
+                />
+                <span className="text-foreground">
+                  {category === "all" ? "All Categories" : category}
+                </span>
+                <span className="text-xs text-muted-foreground ml-auto">
+                  ({category === "all" 
                     ? prompts.length 
                     : prompts.filter(p => p.category === category).length
-                  }
+                  })
                 </span>
-              </Button>
+              </label>
             ))}
           </div>
         </div>
 
-        {/* Tags */}
+        {/* Filter by Tags */}
         <div>
-          <h3 className="text-sm font-medium mb-3">Tags</h3>
-          <div className="space-y-2 max-h-64 overflow-y-auto">
+          <h3 className="text-sm font-medium text-foreground mb-3">Filter by tag</h3>
+          <div className="space-y-2 max-h-48 overflow-y-auto">
             {allTags.map((tag) => (
-              <Button
-                key={tag}
-                variant={selectedTags.includes(tag) ? "default" : "ghost"}
-                size="sm"
-                onClick={() => toggleTag(tag)}
-                className="w-full justify-start text-sm"
-              >
-                {tag}
-                <span className="ml-auto text-xs text-muted-foreground">
-                  {prompts.filter(p => p.tags.includes(tag)).length}
+              <label key={tag} className="flex items-center space-x-2 text-sm cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selectedTags.includes(tag)}
+                  onChange={() => toggleTag(tag)}
+                  className="w-4 h-4 text-primary"
+                />
+                <span className="text-foreground capitalize">{tag}</span>
+                <span className="text-xs text-muted-foreground ml-auto">
+                  ({prompts.filter(p => p.tags.includes(tag)).length})
                 </span>
-              </Button>
+              </label>
             ))}
           </div>
         </div>
@@ -266,9 +265,9 @@ const PromptPacks = () => {
         t={t}
       />
 
-      <div className="flex min-h-screen">
+      <div className="flex">
         {/* Desktop Sidebar */}
-        <FilterSidebar className="hidden lg:block w-80" />
+        <FilterSidebar className="hidden lg:block w-72 border-r" />
         
         {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
@@ -293,11 +292,11 @@ const PromptPacks = () => {
           </div>
         )}
 
-        <main className="flex-1">
-          <div className="py-20">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-              {/* Header with mobile filter trigger */}
-              <div className="flex items-center gap-4 mb-8">
+        <main className="flex-1 min-h-screen">
+          <div className="p-6">
+            {/* Header with mobile filter trigger */}
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center gap-4">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -315,102 +314,94 @@ const PromptPacks = () => {
                   <span>Back to Home</span>
                 </Link>
               </div>
+            </div>
 
-              {/* Page Header */}
-              <div className="text-center space-y-6 mb-12">
-                <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-                  <Zap className="w-8 h-8 text-white" />
-                </div>
-                <h1 className="text-4xl sm:text-5xl font-poppins font-bold gradient-text">
-                  AI Prompt Packs
-                </h1>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Ready-to-use prompt collections for different use cases. Copy, customize, and enhance your AI interactions.
-                </p>
-              </div>
+            {/* Page Header */}
+            <div className="mb-8">
+              <h1 className="text-3xl font-bold mb-2">LLM Prompts</h1>
+              <p className="text-muted-foreground mb-4">
+                A library of ready-to-use prompts for ChatGPT and other language models. They'll help you write better, solve problems faster, and get more done.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Not sure where to start? Try filtering by tag for 'Staff Pick' or 'Popular' to find our favorites.
+              </p>
+            </div>
 
-              {/* Results Count */}
-              <div className="mb-6">
-                <p className="text-sm text-muted-foreground">
-                  Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
-                  {selectedCategory !== "all" && ` in ${selectedCategory}`}
-                </p>
-              </div>
+            {/* Results Count */}
+            <div className="mb-6">
+              <p className="text-sm text-muted-foreground">
+                Showing {filteredPrompts.length} prompt{filteredPrompts.length !== 1 ? 's' : ''}
+                {selectedCategory !== "all" && ` in ${selectedCategory}`}
+              </p>
+            </div>
 
-              {/* Prompts List */}
-              <div className="space-y-4">
-                {filteredPrompts.length > 0 ? (
-                  <Accordion type="single" collapsible className="space-y-4">
-                    {filteredPrompts.map((prompt, index) => (
-                      <AccordionItem
-                        key={index}
-                        value={`prompt-${index}`}
-                        className="border rounded-lg bg-gradient-card"
-                      >
-                        <AccordionTrigger className="px-6 py-4 hover:no-underline">
-                          <div className="flex items-start justify-between w-full text-left">
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <Badge variant="secondary" className="text-xs">
-                                  {prompt.category}
-                                </Badge>
-                                {prompt.tags.slice(0, 2).map((tag) => (
-                                  <Badge key={tag} variant="outline" className="text-xs">
-                                    {tag}
-                                  </Badge>
-                                ))}
-                              </div>
-                              <h3 className="text-lg font-medium font-poppins group-hover:text-primary transition-colors">
-                                {prompt.title}
-                              </h3>
-                            </div>
-                          </div>
-                        </AccordionTrigger>
-                        <AccordionContent className="px-6 pb-6">
-                          <div className="space-y-4">
-                            <div className="p-4 bg-muted/30 rounded-lg border-l-4 border-primary">
-                              <p className="text-sm leading-relaxed font-mono whitespace-pre-wrap">
-                                {prompt.prompt}
-                              </p>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <div className="flex gap-2 flex-wrap">
-                                {prompt.tags.map((tag) => (
-                                  <Badge key={tag} variant="outline" className="text-xs">
-                                    {tag}
-                                  </Badge>
-                                ))}
-                              </div>
-                              <Button
-                                onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
-                                size="sm"
-                                className="flex items-center gap-2"
-                              >
-                                <Copy className="w-4 h-4" />
-                                Copy Prompt
-                              </Button>
-                            </div>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                ) : (
-                  <Card className="p-8 text-center bg-gradient-card">
+            {/* Prompts Grid */}
+            <div className="space-y-4">
+              {filteredPrompts.length > 0 ? (
+                filteredPrompts.map((prompt, index) => (
+                  <Card key={index} className="p-6 hover:shadow-md transition-shadow">
                     <div className="space-y-4">
-                      <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
-                        <Search className="w-8 h-8 text-muted-foreground" />
+                      {/* Tags */}
+                      <div className="flex gap-2 flex-wrap">
+                        <Badge 
+                          variant="secondary" 
+                          className="bg-purple-100 text-purple-800 hover:bg-purple-200"
+                        >
+                          {prompt.category}
+                        </Badge>
+                        {prompt.tags.map((tag) => (
+                          <Badge 
+                            key={tag} 
+                            variant="outline"
+                            className="text-xs capitalize"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
                       </div>
-                      <div className="space-y-2">
-                        <h3 className="text-lg font-medium">No prompts found</h3>
-                        <p className="text-muted-foreground">
-                          Try adjusting your search terms or filter settings
-                        </p>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {prompt.title}
+                      </h3>
+
+                      {/* Description/Preview */}
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {prompt.prompt.length > 200 
+                          ? `${prompt.prompt.substring(0, 200)}...` 
+                          : prompt.prompt
+                        }
+                      </p>
+
+                      {/* Action Button */}
+                      <div className="flex justify-end">
+                        <Button
+                          onClick={() => copyToClipboard(prompt.prompt, prompt.title)}
+                          size="sm"
+                          className="bg-black text-white hover:bg-gray-800 rounded-md"
+                        >
+                          <Copy className="w-4 h-4 mr-2" />
+                          Copy
+                        </Button>
                       </div>
                     </div>
                   </Card>
-                )}
-              </div>
+                ))
+              ) : (
+                <Card className="p-8 text-center">
+                  <div className="space-y-4">
+                    <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto">
+                      <Search className="w-8 h-8 text-muted-foreground" />
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-medium">No prompts found</h3>
+                      <p className="text-muted-foreground">
+                        Try adjusting your search terms or filter settings
+                      </p>
+                    </div>
+                  </div>
+                </Card>
+              )}
             </div>
           </div>
         </main>
