@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Library } from "lucide-react";
+import { MessageSquare, Bot, ArrowRight, Map, Library } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface ResourcesSectionProps {
@@ -10,19 +10,19 @@ interface ResourcesSectionProps {
 const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   const resources = [
     {
-      image: "/prompt-packs-tile.png",
+      icon: <MessageSquare className="w-6 h-6" />,
       title: "Prompt Packs",
       description: "Ready-to-use prompts for content creation, coding, and analysis",
       path: "/prompt-packs"
     },
     {
-      image: "/ai-tools-tile.png",
+      icon: <Bot className="w-6 h-6" />,
       title: "AI Tools",
       description: "Complete guide to the best AI tools for different use cases",
       path: "/ai-tools"
     },
     {
-      image: "/roadmaps-tile.png",
+      icon: <Map className="w-6 h-6" />,
       title: "Learning Roadmaps",
       description: "Step-by-step learning path from basics to advanced AI concepts",
       path: "/learning-roadmaps"
@@ -57,15 +57,13 @@ const ResourcesSection = ({ t }: ResourcesSectionProps) => {
                 className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
-               <div className="space-y-4">
-                 {/* Image Tile */}
-                 <div className="w-full h-32 rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                   <img 
-                     src={resource.image} 
-                     alt={resource.title}
-                     className="w-full h-full object-cover"
-                   />
-                 </div>
+              <div className="space-y-4">
+                {/* Icon */}
+                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-white">
+                    {resource.icon}
+                  </div>
+                </div>
 
                 {/* Content */}
                 <div className="space-y-2">
