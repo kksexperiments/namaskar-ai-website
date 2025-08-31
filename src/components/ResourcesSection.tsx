@@ -2,9 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, Library } from "lucide-react";
 import { Link } from "react-router-dom";
-import promptPacksImage from "@/assets/prompt-packs-tile.png";
-import aiToolsImage from "@/assets/ai-tools-tile.png";
-import roadmapsImage from "@/assets/roadmaps-tile.png";
 
 interface ResourcesSectionProps {
   t: any;
@@ -13,19 +10,19 @@ interface ResourcesSectionProps {
 const ResourcesSection = ({ t }: ResourcesSectionProps) => {
   const resources = [
     {
-      image: promptPacksImage,
+      image: "/prompt-packs-tile.png",
       title: "Prompt Packs",
       description: "Ready-to-use prompts for content creation, coding, and analysis",
       path: "/prompt-packs"
     },
     {
-      image: aiToolsImage,
+      image: "/ai-tools-tile.png",
       title: "AI Tools",
       description: "Complete guide to the best AI tools for different use cases",
       path: "/ai-tools"
     },
     {
-      image: roadmapsImage,
+      image: "/roadmaps-tile.png",
       title: "Learning Roadmaps",
       description: "Step-by-step learning path from basics to advanced AI concepts",
       path: "/learning-roadmaps"
