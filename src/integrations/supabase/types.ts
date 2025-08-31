@@ -14,7 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      categories: {
+      prompt_categories: {
         Row: {
           created_at: string
           id: string
@@ -59,6 +59,44 @@ export type Database = {
           tags?: Json | null
           title?: string | null
           updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "prompts_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "prompt_categories"
+            referencedColumns: ["name"]
+          },
+        ]
+      }
+      tools: {
+        Row: {
+          "Affiliate Link": string | null
+          Category: string | null
+          Language: string | null
+          "Skill Level": string | null
+          "Starting Cost": string | null
+          Tool: string
+          "Use Cases": string | null
+        }
+        Insert: {
+          "Affiliate Link"?: string | null
+          Category?: string | null
+          Language?: string | null
+          "Skill Level"?: string | null
+          "Starting Cost"?: string | null
+          Tool: string
+          "Use Cases"?: string | null
+        }
+        Update: {
+          "Affiliate Link"?: string | null
+          Category?: string | null
+          Language?: string | null
+          "Skill Level"?: string | null
+          "Starting Cost"?: string | null
+          Tool?: string
+          "Use Cases"?: string | null
         }
         Relationships: []
       }
