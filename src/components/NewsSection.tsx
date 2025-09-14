@@ -32,7 +32,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
       `)
       .eq('status', 'published')
       .order('published_at', { ascending: false })
-      .limit(6);
+      .limit(3);
 
     if (error) {
       console.error('Error fetching articles:', error);
@@ -98,7 +98,8 @@ const NewsSection = ({ t }: NewsSectionProps) => {
     category: article.article_categories?.name || "Uncategorized",
     readTime: Math.ceil(article.content.length / 200) + " min read",
     trending: false,
-    slug: article.slug
+    slug: article.slug,
+    featured_image: article.featured_image
   })) : fallbackNewsItems;
 
   return (
@@ -115,7 +116,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {loadingArticles ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, index) => (
+            {[...Array(3)].map((_, index) => (
               <Card key={index} className="border-0 bg-card/50 backdrop-blur">
                 <CardContent className="p-6">
                   <div className="animate-pulse">
@@ -130,61 +131,17 @@ const NewsSection = ({ t }: NewsSectionProps) => {
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* First two articles always visible */}
-            {newsItems.slice(0, 2).map((item, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-2xl">{item.icon}</div>
-                    {item.trending && (
-                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
-                        <TrendingUp className="w-3 h-3 mr-1" />
-                        Trending
-                      </Badge>
-                    )}
+            {newsItems.map((item, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur overflow-hidden">
+                {item.featured_image && (
+                  <div className="aspect-video w-full overflow-hidden">
+                    <img 
+                      src={item.featured_image} 
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  
-                  <h3 className="font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground mb-4 leading-relaxed">
-                    {item.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-4">
-                      <Badge variant="outline" className="text-xs">
-                        {item.category}
-                      </Badge>
-                      <div className="flex items-center">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {item.readTime}
-                      </div>
-                    </div>
-                    <span>{item.date}</span>
-                  </div>
-                  
-                  {item.slug ? (
-                    <Link to={`/article/${item.slug}`}>
-                      <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
-                        Read More
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
-                      Read More
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
-            
-            {/* Additional articles hidden on small screens */}
-            {newsItems.slice(2).map((item, index) => (
-              <Card key={index + 2} className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur hidden lg:block">
+                )}
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-2xl">{item.icon}</div>
