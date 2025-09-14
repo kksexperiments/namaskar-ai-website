@@ -238,10 +238,12 @@ const NewsSection = ({ t }: NewsSectionProps) => {
 
         {/* View All Button */}
         <div className="text-center mt-8">
-          <Button variant="outline" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
-            View All News
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Button>
+          <Link to="/news">
+            <Button variant="outline" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
+              View All News
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
 
         {/* Newsletter Subscription */}

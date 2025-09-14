@@ -9,6 +9,7 @@ import PromptPacks from "./pages/PromptPacks";
 import AITools from "./pages/AITools";
 import LearningRoadmaps from "./pages/LearningRoadmaps";
 import Admin from "./pages/Admin";
+import News from "./pages/News";
 import Article from "./pages/Article";
 
 const queryClient = new QueryClient();
@@ -24,8 +25,9 @@ const App = () => (
           <Route path="/prompt-packs" element={<PromptPacks />} />
           <Route path="/ai-tools" element={<AITools />} />
           <Route path="/learning-roadmaps" element={<LearningRoadmaps />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/news" element={<News />} />
           <Route path="/article/:slug" element={<Article />} />
+          <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
