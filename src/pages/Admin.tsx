@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,9 +8,10 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { Trash2, Edit, Plus } from 'lucide-react';
+import { Trash2, Edit, Plus, LogOut, Loader2 } from 'lucide-react';
 
 interface Article {
   id: string;
@@ -34,6 +36,8 @@ interface Category {
 }
 
 const Admin = () => {
+  const navigate = useNavigate();
+  const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
@@ -50,6 +54,13 @@ const Admin = () => {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { toast } = useToast();
+
+  // Redirect if not authenticated or not admin
+  useEffect(() => {
+    if (!authLoading && (!user || !isAdmin)) {
+      navigate('/auth');
+    }
+  }, [user, isAdmin, authLoading, navigate]);
 
   useEffect(() => {
     fetchArticles();
@@ -246,11 +257,44 @@ const Admin = () => {
     setSelectedFile(null);
   };
 
+  // Show loading screen while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render admin content if not authenticated or not admin
+  if (!user || !isAdmin) {
+    return null;
+  }
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
+
   return (
     <div className="container mx-auto p-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Content Management</h1>
-        <p className="text-muted-foreground">Manage your articles and content</p>
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
+          <p className="text-muted-foreground">Manage your articles and content</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <span className="text-sm text-muted-foreground">
+            Welcome, {user.email}
+          </span>
+          <Button variant="outline" onClick={handleSignOut}>
+            <LogOut className="h-4 w-4 mr-2" />
+            Sign Out
+          </Button>
+        </div>
       </div>
 
       <Tabs defaultValue="articles" className="space-y-6">

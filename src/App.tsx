@@ -9,6 +9,7 @@ import PromptPacks from "./pages/PromptPacks";
 import AITools from "./pages/AITools";
 import LearningRoadmaps from "./pages/LearningRoadmaps";
 import Admin from "./pages/Admin";
+import Auth from "./pages/Auth";
 import News from "./pages/News";
 import Article from "./pages/Article";
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/news" element={<News />} />
           <Route path="/article/:slug" element={<Article />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

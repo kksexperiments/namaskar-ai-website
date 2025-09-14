@@ -5,8 +5,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Globe, ChevronDown } from "lucide-react";
+import { Globe, ChevronDown, User } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Language } from "@/types/language";
+import { useAuth } from "@/hooks/useAuth";
 import namaskarLogo from "@/assets/namaskar-logo.png";
 
 interface HeaderProps {
@@ -16,13 +18,15 @@ interface HeaderProps {
 }
 
 const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
+  const { user, isAdmin } = useAuth();
+
   return (
     <header className="w-full bg-background/80 backdrop-blur-sm border-b border-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-3">
+            <Link to="/" className="flex items-center space-x-3">
               <img 
                 src={namaskarLogo} 
                 alt="Namaskar AI" 
@@ -32,10 +36,35 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                 Namaskar
                 <span className="text-primary ml-1">AI</span>
               </span>
-            </div>
+            </Link>
           </div>
 
-          {/* Language Toggle */}
+          {/* Right Side - Auth & Language */}
+          <div className="flex items-center space-x-4">
+            {/* Admin Link */}
+            {user && isAdmin && (
+              <Link to="/admin">
+                <Button variant="outline" size="sm">
+                  Admin Panel
+                </Button>
+              </Link>
+            )}
+
+            {/* Auth Button */}
+            {!user ? (
+              <Link to="/auth">
+                <Button variant="outline" size="sm">
+                  <User className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              </Link>
+            ) : (
+              <span className="text-sm text-muted-foreground">
+                Welcome, {user.email?.split('@')[0]}
+              </span>
+            )}
+
+            {/* Language Toggle */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button 
@@ -65,6 +94,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </div>
       </div>
     </header>
