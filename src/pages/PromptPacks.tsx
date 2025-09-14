@@ -69,10 +69,10 @@ const PromptPacks = () => {
 
   // Fetch categories from Supabase
   const { data: categoriesData = [], isLoading: categoriesLoading } = useQuery<string[]>({
-    queryKey: ['categories'],
+    queryKey: ['prompt_categories'],
     queryFn: async (): Promise<string[]> => {
-      const { data, error } = await (supabase as any)
-        .from('categories')
+      const { data, error } = await supabase
+        .from('prompt_categories')
         .select('name')
         .order('name');
       
