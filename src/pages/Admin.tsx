@@ -57,6 +57,7 @@ const Admin = () => {
   }, []);
 
   const fetchArticles = async () => {
+    console.log('Fetching articles...');
     const { data, error } = await supabase
       .from('articles')
       .select(`
@@ -65,9 +66,13 @@ const Admin = () => {
       `)
       .order('created_at', { ascending: false });
 
+    console.log('Articles fetch result:', { data, error });
+    
     if (error) {
+      console.error('Error fetching articles:', error);
       toast({ title: 'Error fetching articles', variant: 'destructive' });
     } else {
+      console.log('Setting articles:', data);
       setArticles(data || []);
     }
   };
