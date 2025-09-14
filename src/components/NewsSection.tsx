@@ -1,9 +1,12 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, Clock, TrendingUp, Zap, Brain, Sparkles, Mail, CheckCircle } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Clock, TrendingUp, ArrowRight, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 interface NewsSectionProps {
   t: any;
@@ -12,17 +15,40 @@ interface NewsSectionProps {
 const NewsSection = ({ t }: NewsSectionProps) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [articles, setArticles] = useState<any[]>([]);
+  const [loadingArticles, setLoadingArticles] = useState(true);
   const { toast } = useToast();
+
+  useEffect(() => {
+    fetchArticles();
+  }, []);
+
+  const fetchArticles = async () => {
+    const { data, error } = await supabase
+      .from('articles')
+      .select(`
+        *,
+        article_categories (name)
+      `)
+      .eq('status', 'published')
+      .order('published_at', { ascending: false })
+      .limit(6);
+
+    if (error) {
+      console.error('Error fetching articles:', error);
+    } else {
+      setArticles(data || []);
+    }
+    setLoadingArticles(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!email) {
       toast({
-        title: "Invalid Email",
-        description: t.newsletter?.error || "Please enter a valid email address",
+        title: t.newsSection.newsletter.error,
+        description: "Please enter a valid email address",
         variant: "destructive",
       });
       return;
@@ -31,259 +57,220 @@ const NewsSection = ({ t }: NewsSectionProps) => {
     setIsLoading(true);
     
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Success!",
-      description: t.newsletter?.success || "Successfully subscribed to newsletter!",
-    });
-    
-    setEmail("");
-    setIsLoading(false);
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast({
+        title: t.newsSection.newsletter.success,
+        description: "You've been subscribed to our newsletter!",
+      });
+      
+      setEmail("");
+    } catch (error) {
+      toast({
+        title: t.newsSection.newsletter.error,
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
-  const newsItems = [
+
+  // Fallback news data if no articles from database
+  const fallbackNewsItems = [
     {
-      icon: <Brain className="w-6 h-6" />,
-      title: "GPT-4 Turbo Gets Major Performance Boost",
-      description: "OpenAI releases significant improvements to response speed and accuracy, making it 40% faster than previous versions.",
-      date: "2 hours ago",
-      category: "AI Models",
-      readTime: "3 min read",
-      trending: true
-    },
-    {
-      icon: <Sparkles className="w-6 h-6" />,
-      title: "Google Unveils Gemini Ultra 1.5",
-      description: "New multimodal capabilities allow processing of 1 million tokens, revolutionizing long-form content analysis.",
-      date: "6 hours ago", 
-      category: "Innovation",
-      readTime: "5 min read",
-      trending: true
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6" />,
-      title: "AI-Generated Content Reaches New Milestone",
-      description: "Studies show 35% increase in AI content creation across industries, with video generation leading the surge.",
-      date: "12 hours ago",
-      category: "Industry News",
-      readTime: "4 min read",
-      trending: false
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Anthropic Claude 3 Opus Performance Analysis",
-      description: "Independent benchmarks reveal Claude 3 Opus outperforming competitors in reasoning and safety metrics.",
-      date: "1 day ago",
-      category: "Analysis",
-      readTime: "6 min read",
+      icon: "🚀",
+      title: "Welcome to Our CMS",
+      description: "Start creating articles from the admin panel to see them here.",
+      date: new Date().toISOString().split('T')[0],
+      category: "Getting Started",
+      readTime: "1 min read",
       trending: false
     }
   ];
 
+  const newsItems = articles.length > 0 ? articles.map(article => ({
+    icon: "📝",
+    title: article.title,
+    description: article.excerpt || article.content.substring(0, 100) + "...",
+    date: article.published_at?.split('T')[0] || article.created_at.split('T')[0],
+    category: article.article_categories?.name || "Uncategorized",
+    readTime: Math.ceil(article.content.length / 200) + " min read",
+    trending: false,
+    slug: article.slug
+  })) : fallbackNewsItems;
+
   return (
-    <section id="news" className="bg-gradient-hero">
-      <div className="pt-20 pb-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center space-y-6 mb-12 animate-fade-in">
-            <div className="flex items-center justify-center gap-3">
-              <TrendingUp className="w-8 h-8 text-primary" />
-              <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
-                {t.news.headline}
-              </h2>
-            </div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              {t.news.description}
-            </p>
-          </div>
-
-        {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {newsItems.slice(0, 2).map((item, index) => (
-            <Card 
-              key={index}
-              className={`p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer ${
-                index < 2 ? 'lg:col-span-1' : 'lg:col-span-1'
-              } block`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="space-y-4">
-                {/* Header */}
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      item.trending ? 'bg-gradient-primary' : 'bg-muted'
-                    } group-hover:scale-110 transition-transform duration-300`}>
-                      <div className={item.trending ? 'text-white' : 'text-muted-foreground'}>
-                        {item.icon}
-                      </div>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                        item.trending 
-                          ? 'bg-primary/20 text-primary' 
-                          : 'bg-muted text-muted-foreground'
-                      }`}>
-                        {item.category}
-                      </span>
-                    </div>
-                  </div>
-                  {item.trending && (
-                    <div className="flex items-center space-x-1 text-xs text-primary">
-                      <TrendingUp className="w-3 h-3" />
-                      <span>Trending</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors line-clamp-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-3 h-3" />
-                      <span>{item.date}</span>
-                    </div>
-                    <span>•</span>
-                    <span>{item.readTime}</span>
-                  </div>
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 min-w-[32px] min-h-[32px] rounded-full group-hover:translate-x-1 transition-all duration-300"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
-          
-          {/* Hidden news items on mobile, shown on desktop */}
-          {newsItems.slice(2).map((item, index) => (
-            <Card 
-              key={index + 2}
-              className={`p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer ${
-                index + 2 < 4 ? 'lg:col-span-1' : 'lg:col-span-1'
-              } hidden lg:block`}
-              style={{ animationDelay: `${(index + 2) * 100}ms` }}
-            >
-              <div className="space-y-4">
-                {/* Header */}
-                <div className="flex items-start justify-between">
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      item.trending ? 'bg-gradient-primary' : 'bg-muted'
-                    } group-hover:scale-110 transition-transform duration-300`}>
-                      <div className={item.trending ? 'text-white' : 'text-muted-foreground'}>
-                        {item.icon}
-                      </div>
-                    </div>
-                    <div className="flex flex-col">
-                      <span className={`text-xs font-medium px-2 py-1 rounded-full ${
-                        item.trending 
-                          ? 'bg-primary/20 text-primary' 
-                          : 'bg-muted text-muted-foreground'
-                      }`}>
-                        {item.category}
-                      </span>
-                    </div>
-                  </div>
-                  {item.trending && (
-                    <div className="flex items-center space-x-1 text-xs text-primary">
-                      <TrendingUp className="w-3 h-3" />
-                      <span>Trending</span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Content */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors line-clamp-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed line-clamp-2">
-                    {item.description}
-                  </p>
-                </div>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                  <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-3 h-3" />
-                      <span>{item.date}</span>
-                    </div>
-                    <span>•</span>
-                    <span>{item.readTime}</span>
-                  </div>
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 min-w-[32px] min-h-[32px] rounded-full group-hover:translate-x-1 transition-all duration-300"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          ))}
+    <section id="news" className="py-20 bg-gradient-to-br from-background via-background to-muted/20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {t.news?.headline || "Latest News & Updates"}
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            {t.news?.description || "Stay updated with the latest AI developments and insights"}
+          </p>
         </div>
 
+        {loadingArticles ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, index) => (
+              <Card key={index} className="border-0 bg-card/50 backdrop-blur">
+                <CardContent className="p-6">
+                  <div className="animate-pulse">
+                    <div className="h-6 bg-muted rounded mb-4"></div>
+                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-4 bg-muted rounded w-3/4"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* First two articles always visible */}
+            {newsItems.slice(0, 2).map((item, index) => (
+              <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl">{item.icon}</div>
+                    {item.trending && (
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                        <TrendingUp className="w-3 h-3 mr-1" />
+                        Trending
+                      </Badge>
+                    )}
+                  </div>
+                  
+                  <h3 className="font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {item.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-4">
+                      <Badge variant="outline" className="text-xs">
+                        {item.category}
+                      </Badge>
+                      <div className="flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {item.readTime}
+                      </div>
+                    </div>
+                    <span>{item.date}</span>
+                  </div>
+                  
+                  {item.slug ? (
+                    <Link to={`/article/${item.slug}`}>
+                      <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
+                        Read More
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
+                      Read More
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+            
+            {/* Additional articles hidden on small screens */}
+            {newsItems.slice(2).map((item, index) => (
+              <Card key={index + 2} className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur hidden lg:block">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="text-2xl">{item.icon}</div>
+                    {item.trending && (
+                      <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
+                        <TrendingUp className="w-3 h-3 mr-1" />
+                        Trending
+                      </Badge>
+                    )}
+                  </div>
+                  
+                  <h3 className="font-semibold text-lg mb-3 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {item.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <div className="flex items-center space-x-4">
+                      <Badge variant="outline" className="text-xs">
+                        {item.category}
+                      </Badge>
+                      <div className="flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {item.readTime}
+                      </div>
+                    </div>
+                    <span>{item.date}</span>
+                  </div>
+                  
+                  {item.slug ? (
+                    <Link to={`/article/${item.slug}`}>
+                      <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
+                        Read More
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
+                      Read More
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        )}
+
         {/* View All Button */}
-        <div className="text-center mb-8">
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-2 border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-6 py-3 rounded-xl group"
-          >
+        <div className="text-center mt-8">
+          <Button variant="outline" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
             View All News
-            <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Button>
         </div>
 
-        {/* Newsletter Subscription Card */}
-        <Card className="p-6 sm:p-8 bg-gradient-to-br from-background to-muted/30 border-2 border-primary/20 hover:border-primary/30 shadow-card hover:shadow-elegant transition-all duration-300 mb-8 group">
-          <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-0 lg:flex lg:items-center lg:justify-center lg:gap-6">
-            <div className="flex items-center gap-3 justify-center lg:justify-start group-hover:scale-[1.02] transition-transform duration-300">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary/20 to-primary/10 rounded-full flex items-center justify-center">
-                <Mail className="w-4 h-4 text-primary" />
-              </div>
-              <span className="text-base sm:text-lg font-medium text-foreground text-center lg:text-left">Subscribe to our AI newsletter</span>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+        {/* Newsletter Subscription */}
+        <Card className="mt-12 border-primary/20 bg-gradient-to-r from-card to-card/50">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2">
+              <Mail className="w-5 h-5" />
+              Stay Updated
+            </CardTitle>
+            <CardDescription>
+              Subscribe to our newsletter for the latest AI news and insights
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder="your@email.com"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full sm:w-64 lg:w-72 h-11 border-border/30 focus:border-primary/50 transition-all duration-300"
+                className="flex-1"
                 required
               />
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full sm:w-auto px-6 h-11 font-medium hover:scale-[1.02] transition-all duration-300 min-h-[44px]"
-              >
-                {isLoading ? (
-                  <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full" />
-                ) : (
-                  "Subscribe"
-                )}
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? "..." : "Subscribe"}
               </Button>
-            </div>
-          </form>
+            </form>
+          </CardContent>
         </Card>
-        </div>
       </div>
     </section>
   );
