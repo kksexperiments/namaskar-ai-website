@@ -47,6 +47,8 @@ const Admin = () => {
     author: '',
     status: 'draft' as 'draft' | 'published'
   });
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -90,12 +92,67 @@ const Admin = () => {
       .replace(/(^-|-$)/g, '');
   };
 
+  const uploadImage = async (file: File): Promise<string | null> => {
+    try {
+      setUploadingImage(true);
+      
+      // Generate unique filename
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
+      
+      const { data, error } = await supabase.storage
+        .from('article-images')
+        .upload(fileName, file);
+
+      if (error) {
+        toast({ title: 'Error uploading image', variant: 'destructive' });
+        return null;
+      }
+
+      // Get public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('article-images')
+        .getPublicUrl(data.path);
+
+      return publicUrl;
+    } catch (error) {
+      toast({ title: 'Error uploading image', variant: 'destructive' });
+      return null;
+    } finally {
+      setUploadingImage(false);
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+      
+      // Create preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setFormData({ ...formData, featured_image: previewUrl });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    let imageUrl = formData.featured_image;
+    
+    // Upload image if a new file is selected
+    if (selectedFile) {
+      const uploadedUrl = await uploadImage(selectedFile);
+      if (uploadedUrl) {
+        imageUrl = uploadedUrl;
+      } else {
+        return; // Don't proceed if image upload failed
+      }
+    }
     
     const slug = generateSlug(formData.title);
     const articleData = {
       ...formData,
+      featured_image: imageUrl,
       slug,
       published_at: formData.status === 'published' ? new Date().toISOString() : null
     };
@@ -180,6 +237,8 @@ const Admin = () => {
       author: '',
       status: 'draft'
     });
+    setSelectedFile(null);
+    setSelectedFile(null);
   };
 
   return (
@@ -291,18 +350,35 @@ const Admin = () => {
                     </div>
 
                     <div>
-                      <Label htmlFor="featured_image">Featured Image URL</Label>
-                      <Input
-                        id="featured_image"
-                        value={formData.featured_image}
-                        onChange={(e) => setFormData({ ...formData, featured_image: e.target.value })}
-                        placeholder="https://example.com/image.jpg"
-                      />
+                      <Label htmlFor="featured_image">Featured Image</Label>
+                      <div className="space-y-4">
+                        <Input
+                          id="featured_image"
+                          type="file"
+                          accept="image/*"
+                          onChange={handleFileSelect}
+                          className="cursor-pointer"
+                        />
+                        {formData.featured_image && (
+                          <div className="mt-2">
+                            <img
+                              src={formData.featured_image}
+                              alt="Preview"
+                              className="w-full max-w-md h-48 object-cover rounded-lg border"
+                            />
+                          </div>
+                        )}
+                        {uploadingImage && (
+                          <div className="text-sm text-muted-foreground">
+                            Uploading image...
+                          </div>
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex gap-2">
-                      <Button type="submit">
-                        {editingArticle ? 'Update' : 'Create'} Article
+                      <Button type="submit" disabled={uploadingImage}>
+                        {uploadingImage ? 'Uploading...' : editingArticle ? 'Update' : 'Create'} Article
                       </Button>
                       <Button type="button" variant="outline" onClick={cancelEdit}>
                         Cancel
