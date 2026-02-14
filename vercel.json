@@ -17,6 +17,18 @@
             "destination": "/news/index.html"
         },
         {
+            "source": "/ai-in-assamese",
+            "destination": "/ai-in-assamese/index.html"
+        },
+        {
+            "source": "/chatgpt-in-assamese",
+            "destination": "/chatgpt-in-assamese/index.html"
+        },
+        {
+            "source": "/ai-course-in-assamese",
+            "destination": "/ai-course-in-assamese/index.html"
+        },
+        {
             "source": "/privacy",
             "destination": "/privacy/index.html"
         },
@@ -47,6 +59,18 @@
         {
             "source": "/as/news",
             "destination": "/as/news/index.html"
+        },
+        {
+            "source": "/as/ai-in-assamese",
+            "destination": "/as/ai-in-assamese/index.html"
+        },
+        {
+            "source": "/as/chatgpt-in-assamese",
+            "destination": "/as/chatgpt-in-assamese/index.html"
+        },
+        {
+            "source": "/as/ai-course-in-assamese",
+            "destination": "/as/ai-course-in-assamese/index.html"
         },
         {
             "source": "/as/privacy",

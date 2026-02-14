@@ -6,6 +6,7 @@ import { ArrowLeft, Check, Copy, ListFilter, Search, Sparkles, TriangleAlert, Za
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
+import PromptPacksGuide from "@/components/PromptPacksGuide";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
@@ -515,6 +516,8 @@ const PromptPacks = () => {
                 <span>{text.back}</span>
               </Link>
             </div>
+
+            <PromptPacksGuide language={language} />
 
             <Card className="relative mb-6 overflow-hidden border-primary/20 bg-[linear-gradient(135deg,hsl(var(--card)),hsl(var(--accent)/0.08),hsl(var(--primary)/0.07))] p-5 shadow-card sm:p-6">
               <div className="pointer-events-none absolute -right-14 -top-14 h-40 w-40 rounded-full bg-primary/20 blur-3xl" />

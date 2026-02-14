@@ -33,13 +33,17 @@ The build uses a prebuild step (`npm run sync:seo`) to generate SEO assets in `p
 Use `.env.example` as reference:
 
 - `VITE_SITE_URL` (required in production): canonical site URL. Use `https://www.namaskarai.in`.
+- `VITE_X_DEFAULT_PATH` (optional): custom path for `hreflang="x-default"` (example: `/start`).
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 - `VITE_POSTHOG_KEY` (optional)
 - `VITE_ENABLE_VERCEL_ANALYTICS` (optional)
+- `VITE_WAITLIST_ENDPOINT` (required for course waitlist form)
 
 Important for Vite builds: `VITE_*` variables are injected at build-time.  
 Set `VITE_SITE_URL` in Vercel **before** the production build runs, or deployed canonical/OG defaults may not match your production domain.
+
+For Google Sheets waitlist setup, follow `/Users/KBBusiness/Documents/Web App Projects/Antigravity Test Apps/Namaskar AI/namaskar-ai-website/docs/waitlist-google-sheets.md`.
 
 ## Canonical-Safe Site URL Handling
 
@@ -58,9 +62,11 @@ Set `VITE_SITE_URL` in Vercel **before** the production build runs, or deployed 
 - Output Directory: `dist`
 - Env vars in Vercel:
   - `VITE_SITE_URL=https://www.namaskarai.in`
+  - `VITE_X_DEFAULT_PATH` (optional, default points to EN URL)
   - `VITE_SUPABASE_URL`
   - `VITE_SUPABASE_ANON_KEY`
   - `VITE_POSTHOG_KEY`
+  - `VITE_WAITLIST_ENDPOINT`
 
 ### 2) Add Domains in Vercel
 

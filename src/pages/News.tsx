@@ -279,7 +279,9 @@ const News = () => {
                         className="h-full w-full object-cover transition duration-300 hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-muted/60 text-4xl">📰</div>
+                      <div className="flex h-full w-full items-center justify-center bg-muted/60">
+                        <Newspaper className="h-10 w-10 text-primary/70" />
+                      </div>
                     )}
                   </div>
 

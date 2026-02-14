@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Clock, TrendingUp, ArrowRight, Mail } from "lucide-react";
+import { Clock, TrendingUp, ArrowRight, Mail, Rocket, FileText, LucideIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Content, Language } from "@/types/language";
@@ -28,7 +28,7 @@ interface ArticlePreview {
 }
 
 interface RenderNewsItem {
-  icon: string;
+  icon: LucideIcon;
   title: string;
   description: string;
   date: string;
@@ -112,7 +112,7 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
 
   const fallbackNewsItems: RenderNewsItem[] = [
     {
-      icon: "🚀",
+      icon: Rocket,
       title: "Welcome to Our CMS",
       description: "Start creating articles from the admin panel to see them here.",
       date: new Date().toISOString().split("T")[0],
@@ -125,7 +125,7 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
   const newsItems: RenderNewsItem[] =
     articles.length > 0
       ? articles.map((article) => ({
-          icon: "📝",
+          icon: FileText,
           title: article.title,
           description: article.excerpt || `${article.content.substring(0, 100)}...`,
           date: article.published_at?.split("T")[0] || article.created_at.split("T")[0],
@@ -178,7 +178,9 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
                 )}
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-2xl">{item.icon}</div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <item.icon className="h-5 w-5" />
+                    </div>
                     {item.trending && (
                       <Badge variant="secondary" className="bg-primary/10 text-primary border-primary/20">
                         <TrendingUp className="w-3 h-3 mr-1" />

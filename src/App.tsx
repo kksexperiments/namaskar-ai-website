@@ -15,6 +15,9 @@ import News from "./pages/News";
 import Article from "./pages/Article";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import AIInAssamese from "./pages/AIInAssamese";
+import ChatGPTInAssamese from "./pages/ChatGPTInAssamese";
+import AICourseInAssamese from "./pages/AICourseInAssamese";
 import ScrollToTop from "./components/ScrollToTop";
 import { getLanguageFromPath } from "./lib/locale";
 
@@ -25,6 +28,9 @@ const baseRoutes = [
   { path: "/ai-tools", element: <AITools /> },
   { path: "/learning-roadmaps", element: <LearningRoadmaps /> },
   { path: "/news", element: <News /> },
+  { path: "/ai-in-assamese", element: <AIInAssamese /> },
+  { path: "/chatgpt-in-assamese", element: <ChatGPTInAssamese /> },
+  { path: "/ai-course-in-assamese", element: <AICourseInAssamese /> },
   { path: "/article/:slug", element: <Article /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/terms", element: <TermsOfService /> },

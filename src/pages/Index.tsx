@@ -3,6 +3,7 @@ import LanguageModal from "@/components/LanguageModal";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ResourcesSection from "@/components/ResourcesSection";
+import PillarGuidesSection from "@/components/PillarGuidesSection";
 import NewsSection from "@/components/NewsSection";
 import CommunitySection from "@/components/CommunitySection";
 import InstagramSection from "@/components/InstagramSection";
@@ -73,6 +74,9 @@ const Index = () => {
 
         {/* Resources Section */}
         <ResourcesSection currentLanguage={language} t={t} />
+
+        {/* Pillar Guides */}
+        <PillarGuidesSection currentLanguage={language} />
 
         {/* News Section */}
         <NewsSection t={t} currentLanguage={language} />

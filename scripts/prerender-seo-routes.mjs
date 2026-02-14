@@ -4,7 +4,18 @@ import path from "node:path";
 const DEFAULT_PROD_SITE_URL = "https://www.namaskarai.in";
 const DEFAULT_LOCAL_SITE_URL = "http://localhost:5173";
 
-const EN_ROUTES = ["/", "/prompt-packs", "/ai-tools", "/learning-roadmaps", "/news", "/privacy", "/terms"];
+const EN_ROUTES = [
+  "/",
+  "/prompt-packs",
+  "/ai-tools",
+  "/learning-roadmaps",
+  "/news",
+  "/ai-in-assamese",
+  "/chatgpt-in-assamese",
+  "/ai-course-in-assamese",
+  "/privacy",
+  "/terms",
+];
 const ROUTE_SEO_COPY = {
   "/": {
     en: {
@@ -64,6 +75,42 @@ const ROUTE_SEO_COPY = {
       title: "AI খবৰ আৰু গাইড | নমস্কাৰ AI",
       description:
         "অসমীয়া শিকাৰ্থীৰ বাবে AI খবৰ, সহজ ব্যাখ্যা আৰু practical guide একেটা ঠাইত পঢ়ক।",
+    },
+  },
+  "/ai-in-assamese": {
+    en: {
+      title: "AI in Assamese | Namaskar AI",
+      description:
+        "Beginner guide to learning AI in Assamese with first steps, core terms, and practical next actions.",
+    },
+    as: {
+      title: "অসমীয়াত AI | নমস্কাৰ AI",
+      description:
+        "অসমীয়া ভাষাত AI শিকাৰ beginner guide: আৰম্ভণিৰ ধাপ, মূল শব্দ আৰু practical পৰৱৰ্তী পদক্ষেপ।",
+    },
+  },
+  "/chatgpt-in-assamese": {
+    en: {
+      title: "ChatGPT in Assamese | Namaskar AI",
+      description:
+        "Practical guide to using ChatGPT in Assamese, including setup, daily use-cases, and safe usage rules.",
+    },
+    as: {
+      title: "অসমীয়াত ChatGPT | নমস্কাৰ AI",
+      description:
+        "অসমীয়াত ChatGPT setup, দৈনিক practical use-case আৰু safe usage নিয়মৰ স্পষ্ট গাইড।",
+    },
+  },
+  "/ai-course-in-assamese": {
+    en: {
+      title: "AI Course in Assamese (Coming Soon) | Namaskar AI",
+      description:
+        "AI Course in Assamese is coming soon. Join the waitlist to receive launch and enrollment updates.",
+    },
+    as: {
+      title: "অসমীয়াত AI Course (Coming Soon) | নমস্কাৰ AI",
+      description:
+        "অসমীয়াত AI Course শীঘ্ৰেই আহিছে। launch আৰু enrollment update পাবলৈ waitlist-ত যোগ দিয়ক।",
     },
   },
   "/privacy": {

@@ -16,6 +16,21 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
   const isAssamese = currentLanguage === "as";
   const privacyPath = toLocalePath("/privacy", currentLanguage);
   const termsPath = toLocalePath("/terms", currentLanguage);
+  const guidesLabel = isAssamese ? "Guides" : "Guides";
+  const guideLinks = [
+    {
+      label: isAssamese ? "অসমীয়াত AI" : "AI in Assamese",
+      to: toLocalePath("/ai-in-assamese", currentLanguage),
+    },
+    {
+      label: isAssamese ? "অসমীয়াত ChatGPT" : "ChatGPT in Assamese",
+      to: toLocalePath("/chatgpt-in-assamese", currentLanguage),
+    },
+    {
+      label: isAssamese ? "AI Course (শীঘ্ৰেই)" : "AI Course (Coming Soon)",
+      to: toLocalePath("/ai-course-in-assamese", currentLanguage),
+    },
+  ];
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/namaskar.ai", label: "Instagram" },
     { icon: Mail, href: "mailto:hello@namaskar.ai", label: "Email" },
@@ -105,6 +120,20 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
               </div>
               <div className="text-sm text-muted-foreground">
                 {t.footer.contact}
+              </div>
+              <div>
+                <p className="mb-2 text-xs font-semibold text-foreground/80">{guidesLabel}</p>
+                <div className="space-y-1.5 text-sm">
+                  {guideLinks.map((guideLink) => (
+                    <Link
+                      key={guideLink.to}
+                      to={guideLink.to}
+                      className="block text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {guideLink.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
