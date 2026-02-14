@@ -1,6 +1,62 @@
 {
     "rewrites": [
         {
+            "source": "/prompt-packs",
+            "destination": "/prompt-packs/index.html"
+        },
+        {
+            "source": "/ai-tools",
+            "destination": "/ai-tools/index.html"
+        },
+        {
+            "source": "/learning-roadmaps",
+            "destination": "/learning-roadmaps/index.html"
+        },
+        {
+            "source": "/news",
+            "destination": "/news/index.html"
+        },
+        {
+            "source": "/privacy",
+            "destination": "/privacy/index.html"
+        },
+        {
+            "source": "/terms",
+            "destination": "/terms/index.html"
+        },
+        {
+            "source": "/as",
+            "destination": "/as/index.html"
+        },
+        {
+            "source": "/as/",
+            "destination": "/as/index.html"
+        },
+        {
+            "source": "/as/prompt-packs",
+            "destination": "/as/prompt-packs/index.html"
+        },
+        {
+            "source": "/as/ai-tools",
+            "destination": "/as/ai-tools/index.html"
+        },
+        {
+            "source": "/as/learning-roadmaps",
+            "destination": "/as/learning-roadmaps/index.html"
+        },
+        {
+            "source": "/as/news",
+            "destination": "/as/news/index.html"
+        },
+        {
+            "source": "/as/privacy",
+            "destination": "/as/privacy/index.html"
+        },
+        {
+            "source": "/as/terms",
+            "destination": "/as/terms/index.html"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
