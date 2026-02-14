@@ -88,6 +88,7 @@ const Seo = ({
 
   useEffect(() => {
     const siteUrl = getSiteUrl();
+    const configuredXDefaultPath = import.meta.env.VITE_X_DEFAULT_PATH;
     const routePath = typeof window !== "undefined" ? location.pathname : path;
     const localeClusterPath = stripLocalePrefix(routePath);
     const enPath = toLocalePath(localeClusterPath, "en");
@@ -97,6 +98,15 @@ const Seo = ({
     const canonicalUrl = toAbsoluteSiteUrl(canonicalPath, siteUrl);
     const englishAlternateUrl = toAbsoluteSiteUrl(enPath, siteUrl);
     const assameseAlternateUrl = toAbsoluteSiteUrl(asPath, siteUrl);
+    const normalizedXDefaultPath =
+      typeof configuredXDefaultPath === "string" && configuredXDefaultPath.trim().length > 0
+        ? configuredXDefaultPath.trim().startsWith("/")
+          ? configuredXDefaultPath.trim()
+          : `/${configuredXDefaultPath.trim()}`
+        : null;
+    const xDefaultAlternateUrl = normalizedXDefaultPath
+      ? toAbsoluteSiteUrl(normalizedXDefaultPath, siteUrl)
+      : englishAlternateUrl;
     const imageUrl = toAbsoluteSiteUrl(image, siteUrl);
     const htmlLanguage = getLanguageFromPath(location.pathname);
 
@@ -126,7 +136,7 @@ const Seo = ({
     upsertCanonical(canonicalUrl);
     upsertAlternate("en", englishAlternateUrl);
     upsertAlternate("as", assameseAlternateUrl);
-    upsertAlternate("x-default", englishAlternateUrl);
+    upsertAlternate("x-default", xDefaultAlternateUrl);
     upsertStructuredData(structuredData);
   }, [description, image, keywords, language, location.pathname, path, robots, structuredData, title, type]);
 

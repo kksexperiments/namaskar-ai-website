@@ -114,6 +114,15 @@ const resolveSiteUrl = () => {
   return DEFAULT_PROD_SITE_URL;
 };
 
+const resolveXDefaultPath = () => {
+  const value = process.env.VITE_X_DEFAULT_PATH?.trim();
+  if (!value) {
+    return null;
+  }
+
+  return value.startsWith("/") ? value : `/${value}`;
+};
+
 const stripLocalePrefix = (pathname) => {
   const normalized = normalizePathname(pathname);
   if (normalized === "/as" || normalized === "/as/") {
@@ -232,6 +241,8 @@ const buildSeoRouteHtml = (templateHtml, siteUrl, pathname) => {
   const canonicalUrl = toAbsoluteUrl(siteUrl, canonicalPath);
   const enAlternateUrl = toAbsoluteUrl(siteUrl, enPath);
   const asAlternateUrl = toAbsoluteUrl(siteUrl, asPath);
+  const xDefaultPath = resolveXDefaultPath();
+  const xDefaultUrl = xDefaultPath ? toAbsoluteUrl(siteUrl, xDefaultPath) : enAlternateUrl;
   const copySet = ROUTE_SEO_COPY[clusterBasePath] ?? ROUTE_SEO_COPY["/"];
   const pageCopy = copySet[pageLanguage];
 
@@ -251,7 +262,7 @@ const buildSeoRouteHtml = (templateHtml, siteUrl, pathname) => {
   html = upsertLink(html, { rel: "canonical", href: canonicalUrl });
   html = upsertLink(html, { rel: "alternate", hreflang: "en", href: enAlternateUrl });
   html = upsertLink(html, { rel: "alternate", hreflang: "as", href: asAlternateUrl });
-  html = upsertLink(html, { rel: "alternate", hreflang: "x-default", href: enAlternateUrl });
+  html = upsertLink(html, { rel: "alternate", hreflang: "x-default", href: xDefaultUrl });
 
   // Ensure no stale canonical-link id mismatch remains from template replacement.
   html = html.replace(new RegExp(`id=["']${escapeRegex("canonical-link")}["']\\s*`, "gi"), "");
