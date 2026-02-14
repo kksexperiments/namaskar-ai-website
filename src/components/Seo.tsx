@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getSiteUrl, toAbsoluteSiteUrl } from "@/lib/site";
+import { getLanguageFromPath, stripLocalePrefix, toLocalePath } from "@/lib/locale";
 
 interface SeoProps {
   title: string;
@@ -33,6 +34,20 @@ const upsertCanonical = (href: string) => {
   if (!link) {
     link = document.createElement("link");
     link.setAttribute("rel", "canonical");
+    document.head.appendChild(link);
+  }
+
+  link.setAttribute("href", href);
+};
+
+const upsertAlternate = (hreflang: string, href: string) => {
+  const selector = `link[rel='alternate'][hreflang='${hreflang}']`;
+  let link = document.head.querySelector(selector) as HTMLLinkElement | null;
+
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", "alternate");
+    link.setAttribute("hreflang", hreflang);
     document.head.appendChild(link);
   }
 
@@ -73,13 +88,20 @@ const Seo = ({
 
   useEffect(() => {
     const siteUrl = getSiteUrl();
-    const resolvedPath =
-      typeof window !== "undefined" ? `${location.pathname}${location.search}` : path;
-    const canonicalUrl = toAbsoluteSiteUrl(resolvedPath, siteUrl);
+    const routePath = typeof window !== "undefined" ? location.pathname : path;
+    const localeClusterPath = stripLocalePrefix(routePath);
+    const enPath = toLocalePath(localeClusterPath, "en");
+    const asPath = toLocalePath(localeClusterPath, "as");
+    const canonicalPath = language === "as" ? asPath : enPath;
+
+    const canonicalUrl = toAbsoluteSiteUrl(canonicalPath, siteUrl);
+    const englishAlternateUrl = toAbsoluteSiteUrl(enPath, siteUrl);
+    const assameseAlternateUrl = toAbsoluteSiteUrl(asPath, siteUrl);
     const imageUrl = toAbsoluteSiteUrl(image, siteUrl);
+    const htmlLanguage = getLanguageFromPath(location.pathname);
 
     document.title = title;
-    document.documentElement.lang = language;
+    document.documentElement.lang = htmlLanguage;
 
     upsertMeta("name", "description", description);
     upsertMeta("name", "robots", robots);
@@ -100,8 +122,11 @@ const Seo = ({
     upsertMeta("property", "og:locale", language === "as" ? "as_IN" : "en_IN");
 
     upsertCanonical(canonicalUrl);
+    upsertAlternate("en", englishAlternateUrl);
+    upsertAlternate("as", assameseAlternateUrl);
+    upsertAlternate("x-default", englishAlternateUrl);
     upsertStructuredData(structuredData);
-  }, [description, image, keywords, language, location.pathname, location.search, path, robots, structuredData, title, type]);
+  }, [description, image, keywords, language, location.pathname, path, robots, structuredData, title, type]);
 
   return null;
 };

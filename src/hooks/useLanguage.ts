@@ -14,8 +14,6 @@ export const useLanguage = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    document.documentElement.lang = language;
-
     try {
       localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
     } catch {
