@@ -109,6 +109,8 @@ const Seo = ({
     upsertMeta("name", "twitter:title", title);
     upsertMeta("name", "twitter:description", description);
     upsertMeta("name", "twitter:image", imageUrl);
+    upsertMeta("name", "twitter:url", canonicalUrl);
+    upsertMeta("property", "twitter:url", canonicalUrl);
 
     if (keywords.length > 0) {
       upsertMeta("name", "keywords", keywords.join(", "));
