@@ -5,11 +5,26 @@ const DEFAULT_PROD_SITE_URL = "https://www.namaskarai.in";
 const DEFAULT_LOCAL_SITE_URL = "http://localhost:5173";
 
 const normalizeSiteUrl = (value) => value.replace(/\/$/, "");
+const toOrigin = (value) => {
+  try {
+    return new URL(value).origin;
+  } catch {
+    return normalizeSiteUrl(value);
+  }
+};
+
+const escapeXml = (value) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
 
 const resolveSiteUrl = () => {
   const fromEnv = process.env.VITE_SITE_URL?.trim();
   if (fromEnv) {
-    return normalizeSiteUrl(fromEnv);
+    return toOrigin(fromEnv);
   }
 
   if (process.env.NODE_ENV === "development") {
@@ -42,7 +57,7 @@ const host = (() => {
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
   .map(
-    (route) => `  <url>\n    <loc>${toAbsolute(route)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
+    (route) => `  <url>\n    <loc>${escapeXml(toAbsolute(route))}</loc>\n    <lastmod>${escapeXml(lastmod)}</lastmod>\n  </url>`,
   )
   .join("\n")}\n</urlset>\n`;
 
