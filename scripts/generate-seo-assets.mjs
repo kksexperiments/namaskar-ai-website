@@ -22,15 +22,7 @@ const resolveSiteUrl = () => {
 const siteUrl = resolveSiteUrl();
 const lastmod = new Date().toISOString().slice(0, 10);
 
-const routes = [
-  { path: "/", changefreq: "daily", priority: "1.0" },
-  { path: "/prompt-packs", changefreq: "daily", priority: "0.95" },
-  { path: "/ai-tools", changefreq: "weekly", priority: "0.9" },
-  { path: "/learning-roadmaps", changefreq: "weekly", priority: "0.9" },
-  { path: "/news", changefreq: "daily", priority: "0.85" },
-  { path: "/privacy", changefreq: "yearly", priority: "0.4" },
-  { path: "/terms", changefreq: "yearly", priority: "0.4" },
-];
+const routes = ["/", "/prompt-packs", "/ai-tools", "/learning-roadmaps", "/news", "/privacy", "/terms"];
 
 const toAbsolute = (pathname) => {
   try {
@@ -50,7 +42,7 @@ const host = (() => {
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes
   .map(
-    (route) => `  <url>\n    <loc>${toAbsolute(route.path)}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${route.changefreq}</changefreq>\n    <priority>${route.priority}</priority>\n  </url>`,
+    (route) => `  <url>\n    <loc>${toAbsolute(route)}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`,
   )
   .join("\n")}\n</urlset>\n`;
 
