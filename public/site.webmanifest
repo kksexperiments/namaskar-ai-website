@@ -1,0 +1,16 @@
+{
+  "name": "Namaskar AI",
+  "short_name": "Namaskar AI",
+  "description": "Assamese-first AI learning platform with prompts, tools, roadmaps, and practical guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fafafa",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

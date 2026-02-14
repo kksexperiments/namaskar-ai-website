@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -62,12 +62,7 @@ const Admin = () => {
     }
   }, [user, isAdmin, authLoading, navigate]);
 
-  useEffect(() => {
-    fetchArticles();
-    fetchCategories();
-  }, []);
-
-  const fetchArticles = async () => {
+  const fetchArticles = useCallback(async () => {
     console.log('Fetching articles...');
     const { data, error } = await supabase
       .from('articles')
@@ -86,9 +81,9 @@ const Admin = () => {
       console.log('Setting articles:', data);
       setArticles(data || []);
     }
-  };
+  }, [toast]);
 
-  const fetchCategories = async () => {
+  const fetchCategories = useCallback(async () => {
     const { data, error } = await supabase
       .from('article_categories')
       .select('*')
@@ -99,7 +94,12 @@ const Admin = () => {
     } else {
       setCategories(data || []);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    void fetchArticles();
+    void fetchCategories();
+  }, [fetchArticles, fetchCategories]);
 
   const generateSlug = (title: string) => {
     return title

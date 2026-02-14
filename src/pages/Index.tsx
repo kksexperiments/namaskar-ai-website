@@ -7,9 +7,11 @@ import NewsSection from "@/components/NewsSection";
 import CommunitySection from "@/components/CommunitySection";
 import InstagramSection from "@/components/InstagramSection";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 
 const Index = () => {
   const { language, switchLanguage, showModal, closeModal, t } = useLanguage();
+  const isAssamese = language === "as";
 
   const scrollToNews = () => {
     document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
@@ -25,6 +27,24 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        title={isAssamese ? "নমস্কাৰ AI | অসমীয়াত AI শিকক" : "Namaskar AI | Learn AI in Assamese"}
+        description={
+          isAssamese
+            ? "অসমীয়া ভাষাত practical AI শিকক। Prompt packs, AI tools, learning roadmaps, আৰু community সহ সহজে আৰম্ভ কৰক।"
+            : "Learn AI in Assamese with practical prompt packs, AI tools, learning roadmaps, and community support."
+        }
+        path="/"
+        language={language}
+        keywords={[
+          "AI in Assamese",
+          "Assamese AI learning",
+          "learn AI Assam",
+          "prompt packs Assamese",
+          "Namaskar AI",
+        ]}
+      />
+
       {/* Language Selection Modal */}
       <LanguageModal
         isOpen={showModal}
@@ -44,19 +64,20 @@ const Index = () => {
       <main>
         {/* Hero Section */}
         <HeroSection
+          currentLanguage={language}
           t={t}
           onNewsletterClick={scrollToResources}
           onCommunityClick={scrollToCommunity}
         />
 
         {/* Resources Section */}
-        <ResourcesSection t={t} />
+        <ResourcesSection currentLanguage={language} t={t} />
 
         {/* News Section */}
         <NewsSection t={t} />
 
         {/* Community Section */}
-        <CommunitySection t={t} />
+        <CommunitySection currentLanguage={language} t={t} />
 
         {/* Instagram Section - Latest Posts */}
         <InstagramSection t={t} />

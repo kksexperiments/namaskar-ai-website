@@ -1,148 +1,186 @@
-import { useLanguage } from "@/hooks/useLanguage";
+import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowRight, BookOpen, Clock3, Rocket, Users, Wand2 } from "lucide-react";
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
+import { useLanguage } from "@/hooks/useLanguage";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Gift, ArrowLeft, Clock, CheckCircle, Users } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const LearningRoadmaps = () => {
   const { language, switchLanguage, t } = useLanguage();
+  const isAssamese = language === "as";
 
   const roadmaps = [
     {
-      title: "AI Fundamentals",
-      description: "Start your AI journey with core concepts and practical applications",
-      level: "Beginner",
-      duration: "4-6 weeks",
-      modules: 8,
-      students: "2.3K+"
+      title: isAssamese ? "AI Career Starter (30 Days)" : "AI Career Starter (30 Days)",
+      description: isAssamese
+        ? "CV, portfolio, interview, আৰু client-facing skill build কৰাৰ step-by-step path।"
+        : "A practical path to build CV, portfolio, interview confidence, and market-ready AI skills.",
+      level: isAssamese ? "Beginner" : "Beginner",
+      duration: isAssamese ? "৪ সপ্তাহ" : "4 weeks",
+      learners: "2.7K+",
+      modules: isAssamese ? "৮ মডিউল" : "8 modules",
+      path: "/prompt-packs?category=career_and_jobs",
     },
     {
-      title: "Prompt Engineering Mastery",
-      description: "Advanced techniques for crafting effective AI prompts",
-      level: "Intermediate", 
-      duration: "3-4 weeks",
-      modules: 6,
-      students: "1.8K+"
+      title: isAssamese ? "Student Productivity AI" : "Student Productivity AI",
+      description: isAssamese
+        ? "পঢ়া-শুনা, revision, আৰু exam answer practice-ৰ বাবে prompt workflow।"
+        : "Prompt workflows for study planning, revision, and exam-answer preparation.",
+      level: isAssamese ? "Beginner" : "Beginner",
+      duration: isAssamese ? "৩ সপ্তাহ" : "3 weeks",
+      learners: "2.1K+",
+      modules: isAssamese ? "৬ মডিউল" : "6 modules",
+      path: "/prompt-packs?category=study_and_skills",
     },
     {
-      title: "AI Tools for Business",
-      description: "Implement AI solutions in business workflows and processes",
-      level: "Intermediate",
-      duration: "5-7 weeks", 
-      modules: 10,
-      students: "1.2K+"
+      title: isAssamese ? "Small Business AI Playbook" : "Small Business AI Playbook",
+      description: isAssamese
+        ? "বিক্ৰী, customer communication, offer campaign আৰু daily tracking automation।"
+        : "Use AI for sales, customer communication, offer campaigns, and daily tracking.",
+      level: isAssamese ? "Intermediate" : "Intermediate",
+      duration: isAssamese ? "৫ সপ্তাহ" : "5 weeks",
+      learners: "1.9K+",
+      modules: isAssamese ? "৯ মডিউল" : "9 modules",
+      path: "/prompt-packs?category=business_and_income",
     },
     {
-      title: "Machine Learning Basics",
-      description: "Understanding ML algorithms and their practical applications",
-      level: "Advanced",
-      duration: "8-10 weeks",
-      modules: 12,
-      students: "890+"
-    }
+      title: isAssamese ? "Parents & Safe AI Usage" : "Parents and Safe AI Usage",
+      description: isAssamese
+        ? "শিশুৰ AI use safety, homework rules, আৰু family charter build কৰক।"
+        : "Build family AI rules, homework boundaries, and safe digital habits for children.",
+      level: isAssamese ? "All Levels" : "All Levels",
+      duration: isAssamese ? "২ সপ্তাহ" : "2 weeks",
+      learners: "1.4K+",
+      modules: isAssamese ? "৪ মডিউল" : "4 modules",
+      path: "/prompt-packs?category=parents_and_family",
+    },
   ];
 
-  const getLevelColor = (level: string) => {
-    switch(level) {
-      case 'Beginner': return 'bg-green-100 text-green-800';
-      case 'Intermediate': return 'bg-blue-100 text-blue-800';
-      case 'Advanced': return 'bg-purple-100 text-purple-800';
-      default: return 'bg-gray-100 text-gray-800';
-    }
+  const cadenceSteps = isAssamese
+    ? [
+        "দিন ১: লক্ষ্য আৰু সময় ঠিক কৰক",
+        "দিন ২-৭: দৈনিক ১টা prompt run + note",
+        "সপ্তাহ শেষ: output share আৰু review",
+      ]
+    : [
+        "Day 1: set goal and daily time",
+        "Day 2-7: run 1 prompt daily and keep notes",
+        "Week end: share one output and review progress",
+      ];
+
+  const text = {
+    title: isAssamese ? "Learning Roadmaps" : "Learning Roadmaps",
+    subtitle: isAssamese
+      ? "বিভিন্ন লক্ষ্য আৰু বয়সৰ মানুহৰ বাবে structured Assamese-first AI learning paths"
+      : "Structured Assamese-first AI learning paths for different goals and age groups.",
+    back: isAssamese ? "পিছলৈ" : "Back",
+    start: isAssamese ? "এই পথ আৰম্ভ কৰক" : "Start this path",
+    routineTitle: isAssamese ? "Weekly Learning Cadence" : "Weekly Learning Cadence",
+    routineBody: isAssamese
+      ? "Consistency-ই ফল দিব। কম সময়েও নিয়মিত শিকিলে বড় উন্নতি দেখা যায়।"
+      : "Consistency drives results. Even short sessions create major progress over weeks.",
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header
-        currentLanguage={language}
-        onLanguageChange={switchLanguage}
-        t={t}
+    <div className="platform-page">
+      <Seo
+        title={isAssamese ? "Learning Roadmaps | নমস্কাৰ AI" : "Learning Roadmaps | Namaskar AI"}
+        description={
+          isAssamese
+            ? "কৰ্মজীৱন, students, small business আৰু parents-ৰ বাবে Assamese AI learning roadmaps।"
+            : "Assamese AI learning roadmaps for careers, students, businesses, and parents."
+        }
+        path="/learning-roadmaps"
+        language={language}
+        keywords={[
+          "AI roadmap Assamese",
+          "learn AI step by step Assam",
+          "AI learning path Assamese",
+          "career AI roadmap",
+        ]}
       />
 
-      <main className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Back Button */}
-          <Link 
-            to="/" 
-            className="inline-flex items-center space-x-2 text-muted-foreground hover:text-primary mb-8 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home</span>
+      <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
+
+      <main className="pb-16 pt-8">
+        <div className="platform-shell">
+          <Link to="/" className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+            <ArrowLeft className="h-4 w-4" />
+            {text.back}
           </Link>
 
-          {/* Header */}
-          <div className="text-center space-y-6 mb-12">
-            <div className="w-16 h-16 bg-gradient-primary rounded-2xl flex items-center justify-center mx-auto">
-              <Gift className="w-8 h-8 text-white" />
+          <Card className="platform-hero-card mb-6">
+            <div className="relative z-10">
+              <div className="platform-chip mb-2">
+                <Wand2 className="mr-1.5 h-3.5 w-3.5" />
+                {isAssamese ? "Guided learning" : "Guided learning"}
+              </div>
+              <h1 className="text-3xl font-poppins font-bold gradient-text sm:text-4xl">{text.title}</h1>
+              <p className="mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">{text.subtitle}</p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-poppins font-bold gradient-text">
-              Learning Roadmaps
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Structured learning paths to master AI concepts and tools. From beginner to advanced, find your perfect starting point.
-            </p>
-          </div>
+          </Card>
 
-          {/* Roadmaps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {roadmaps.map((roadmap, index) => (
-              <Card 
-                key={index}
-                className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 group cursor-pointer"
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {roadmaps.map((roadmap) => (
+              <Card
+                key={roadmap.title}
+                className="flex h-full flex-col border-primary/15 bg-[linear-gradient(150deg,hsl(var(--card)),hsl(var(--primary)/0.08),hsl(var(--accent)/0.1))] p-4 shadow-card transition hover:-translate-y-0.5 hover:shadow-elegant"
               >
-                <div className="space-y-4">
-                  {/* Header */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className={`text-xs font-medium px-2 py-1 rounded-full ${getLevelColor(roadmap.level)}`}>
-                        {roadmap.level}
-                      </div>
-                      <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                        <Users className="w-4 h-4" />
-                        <span>{roadmap.students}</span>
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors">
-                      {roadmap.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {roadmap.description}
-                  </p>
-
-                  {/* Meta Information */}
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div className="flex items-center space-x-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{roadmap.duration}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <CheckCircle className="w-4 h-4" />
-                      <span>{roadmap.modules} modules</span>
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <Button className="w-full">
-                    Start Learning Path
-                  </Button>
+                <div className="mb-2 flex flex-wrap items-center gap-2">
+                  <Badge variant="secondary">{roadmap.level}</Badge>
+                  <Badge variant="outline" className="gap-1">
+                    <Users className="h-3 w-3" />
+                    {roadmap.learners}
+                  </Badge>
                 </div>
+
+                <h2 className="text-lg font-semibold leading-snug">{roadmap.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{roadmap.description}</p>
+
+                <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                  <span className="inline-flex items-center gap-1">
+                    <Clock3 className="h-3.5 w-3.5" />
+                    {roadmap.duration}
+                  </span>
+                  <span className="inline-flex items-center gap-1">
+                    <BookOpen className="h-3.5 w-3.5" />
+                    {roadmap.modules}
+                  </span>
+                </div>
+
+                <Button asChild className="mt-5 bg-gradient-primary text-white">
+                  <Link to={roadmap.path}>
+                    {text.start}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </Card>
             ))}
           </div>
+
+          <Card className="mt-6 border-primary/20 bg-card/95 p-5">
+            <div className="mb-3 inline-flex items-center gap-2 text-primary">
+              <Rocket className="h-4 w-4" />
+              <h3 className="text-base font-semibold">{text.routineTitle}</h3>
+            </div>
+            <p className="mb-4 text-sm text-muted-foreground">{text.routineBody}</p>
+            <div className="grid gap-2 md:grid-cols-3">
+              {cadenceSteps.map((step, index) => (
+                <div key={step} className="rounded-xl border border-border bg-muted/35 p-3">
+                  <div className="mb-1 text-xs font-semibold text-primary">Step {index + 1}</div>
+                  <p className="text-sm leading-relaxed">{step}</p>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       </main>
 
-      <Footer
-        currentLanguage={language}
-        onLanguageChange={switchLanguage}
-        t={t}
-      />
+      <Footer currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
     </div>
   );
 };

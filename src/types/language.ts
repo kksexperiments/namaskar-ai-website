@@ -78,8 +78,8 @@ export const content: Record<Language, Content> = {
       error: "Please enter a valid email address."
     },
     community: {
-      headline: "Get Exclusive Resources",
-      description: "Access premium content, advanced tutorials, and exclusive AI resources available only to community members.",
+      headline: "Join Our Community",
+      description: "Connect with learners, get practical tutorials, and discover useful AI tools together.",
       whatsapp: {
         title: "WhatsApp Community",
         description: "Get exclusive resources and premium content",
@@ -107,7 +107,7 @@ export const content: Record<Language, Content> = {
       cta: "Get Free Resources"
     },
     footer: {
-      copyright: "© 2024 Namaskar AI. All rights reserved.",
+      copyright: "© 2026 Namaskar AI. All rights reserved.",
       contact: "Contact: hello@namaskar.ai"
     },
     nav: {
@@ -138,8 +138,8 @@ export const content: Record<Language, Content> = {
       error: "অনুগ্ৰহ কৰি এটা বৈধ ইমেইল ঠিকনা দিয়ক।"
     },
     community: {
-      headline: "একচেটিয়া সম্পদ পাওক",
-      description: "প্ৰিমিয়াম বিষয়বস্তু, উন্নত টিউটৰিয়েল, আৰু একচেটিয়া AI সম্পদসমূহ পাওক যি কেৱল সমাজৰ সদস্যসকলৰ বাবে উপলব্ধ।",
+      headline: "আমাৰ সমাজত যোগ দিয়ক",
+      description: "শিক্ষাৰ্থীসকলৰ সৈতে সংযোগ কৰক, ব্যৱহাৰিক টিউটৰিয়েল পাওক, আৰু একেলগে উপযোগী AI টুলছ আৱিষ্কাৰ কৰক।",
       whatsapp: {
         title: "WhatsApp সমাজ",
         description: "একচেটিয়া সম্পদ আৰু প্ৰিমিয়াম বিষয়বস্তু পাওক",
@@ -167,7 +167,7 @@ export const content: Record<Language, Content> = {
       cta: "বিনামূলীয়া সম্পদ পাওক"
     },
     footer: {
-      copyright: "© ২০২৪ নমস্কাৰ AI। সকলো অধিকাৰ সংৰক্ষিত।",
+      copyright: "© ২০২৬ নমস্কাৰ AI। সকলো অধিকাৰ সংৰক্ষিত।",
       contact: "যোগাযোগ: hello@namaskar.ai"
     },
     nav: {

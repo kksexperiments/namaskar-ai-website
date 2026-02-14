@@ -1,92 +1,104 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MessageSquare, Bot, ArrowRight, Map, Library } from "lucide-react";
+import { ArrowRight, Bot, Library, Map, MessageSquare, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Content, Language } from "@/types/language";
 
 interface ResourcesSectionProps {
-  t: any;
+  currentLanguage: Language;
+  t: Content;
 }
 
-const ResourcesSection = ({ t }: ResourcesSectionProps) => {
+const ResourcesSection = ({ currentLanguage, t }: ResourcesSectionProps) => {
+  const isAssamese = currentLanguage === "as";
+
   const resources = [
     {
-      icon: <MessageSquare className="w-6 h-6" />,
-      title: "Prompt Packs",
-      description: "Ready-to-use prompts for content creation, coding, and analysis",
-      path: "/prompt-packs"
+      icon: <MessageSquare className="h-5 w-5" />,
+      title: isAssamese ? "AI Prompt Packs" : "AI Prompt Packs",
+      description: isAssamese
+        ? "অসমীয়া-প্ৰধান কপি-ৰেডি prompt, যি আপুনি তৎক্ষণাত ব্যৱহাৰ কৰিব পাৰে।"
+        : "Assamese-first copy-ready prompts you can use immediately.",
+      highlight: isAssamese ? "আজিৰ কাম: ১টা prompt run কৰক" : "Today’s goal: run 1 prompt",
+      path: "/prompt-packs",
+      gradient:
+        "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.08),hsl(var(--accent)/0.18))]",
     },
     {
-      icon: <Bot className="w-6 h-6" />,
-      title: "AI Tools",
-      description: "Complete guide to the best AI tools for different use cases",
-      path: "/ai-tools"
+      icon: <Bot className="h-5 w-5" />,
+      title: isAssamese ? "AI Tools Guide" : "AI Tools Guide",
+      description: isAssamese
+        ? "কোন কামত কোন AI tool, কতখিনি সহজ আৰু কিমান সময় বাচাব পাৰিব।"
+        : "Know which AI tool to use for which task, and how much time it saves.",
+      highlight: isAssamese ? "প্ৰয়োগ-কেন্দ্ৰিক tool তালিকা" : "Practical tool shortlist",
+      path: "/ai-tools",
+      gradient:
+        "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--accent)/0.12),hsl(var(--primary)/0.06))]",
     },
     {
-      icon: <Map className="w-6 h-6" />,
-      title: "Learning Roadmaps",
-      description: "Step-by-step learning path from basics to advanced AI concepts",
-      path: "/learning-roadmaps"
-    }
+      icon: <Map className="h-5 w-5" />,
+      title: isAssamese ? "Learning Roadmaps" : "Learning Roadmaps",
+      description: isAssamese
+        ? "Aspirers, business owner, parent, teacher - সকলোৰে বাবে ধাপে ধাপে পথ।"
+        : "Step-by-step roadmaps for aspirers, business owners, parents, and teachers.",
+      highlight: isAssamese ? "৩০ দিনৰ actionable পথ" : "30-day actionable path",
+      path: "/learning-roadmaps",
+      gradient:
+        "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.1),hsl(var(--accent)/0.1))]",
+    },
   ];
 
   return (
-    <section id="resources" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center space-y-6 mb-12 animate-fade-in">
-          <div className="flex items-center justify-center gap-3">
-            <Library className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl sm:text-4xl font-poppins font-bold gradient-text">
+    <section id="resources" className="relative py-16 sm:py-20">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_5%_40%,hsl(var(--accent)/0.15),transparent_36%),radial-gradient(circle_at_98%_60%,hsl(var(--primary)/0.12),transparent_30%)]" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-10 text-center">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-card/80 px-3 py-1 text-xs font-semibold text-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            {isAssamese ? "Learning Hub" : "Learning Hub"}
+          </div>
+
+          <div className="mb-3 flex items-center justify-center gap-3">
+            <Library className="h-7 w-7 text-primary" />
+            <h2 className="text-3xl font-bold font-poppins gradient-text sm:text-4xl">
               {t.resources.headline}
             </h2>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+
+          <p className="mx-auto max-w-2xl text-base text-muted-foreground sm:text-lg">
             {t.resources.description}
           </p>
         </div>
 
-        {/* Resources Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid gap-5 md:grid-cols-3">
           {resources.map((resource, index) => (
-            <Link 
-              key={index}
+            <Link
+              key={resource.path}
               to={resource.path}
-              className="block transition-transform duration-300 hover:scale-[1.02]"
+              className="group block"
+              style={{ animationDelay: `${index * 120}ms` }}
             >
-              <Card 
-                className="p-6 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group cursor-pointer"
-                style={{ animationDelay: `${index * 150}ms` }}
+              <Card
+                className={`h-full border-primary/15 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/45 hover:shadow-elegant ${resource.gradient}`}
               >
-              <div className="space-y-4">
-                {/* Icon */}
-                <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <div className="text-white">
-                    {resource.icon}
-                  </div>
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary text-white shadow-button">
+                  {resource.icon}
                 </div>
 
-                {/* Content */}
-                <div className="space-y-2">
-                  <h3 className="text-lg font-poppins font-semibold group-hover:text-primary transition-colors">
-                    {resource.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {resource.description}
-                  </p>
+                <h3 className="mb-2 text-lg font-semibold transition-colors group-hover:text-primary">
+                  {resource.title}
+                </h3>
+
+                <p className="mb-3 text-sm leading-relaxed text-muted-foreground">{resource.description}</p>
+
+                <div className="mb-5 rounded-lg border border-primary/20 bg-card/75 p-2.5 text-xs font-medium text-foreground/90">
+                  {resource.highlight}
                 </div>
 
-                {/* CTA */}
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-sm text-primary font-medium">View Details</span>
-                  <Button 
-                    size="sm" 
-                    variant="ghost"
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 w-8 h-8 rounded-full group-hover:translate-x-1 transition-all duration-300"
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </Button>
+                <div className="flex items-center justify-between text-sm font-semibold text-primary">
+                  <span>{isAssamese ? "এতিয়াই অন্বেষণ কৰক" : "Explore now"}</span>
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
-              </div>
               </Card>
             </Link>
           ))}

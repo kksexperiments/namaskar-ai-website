@@ -1,30 +1,45 @@
 import { Button } from "@/components/ui/button";
 import { Instagram, Mail, Globe } from "lucide-react";
-import { Language } from "@/types/language";
+import { Content, Language } from "@/types/language";
+import { Link } from "react-router-dom";
 import namaskarLogo from "@/assets/namaskar-logo.png";
+import NewsletterSignup from "./NewsletterSignup";
 
 interface FooterProps {
   currentLanguage: Language;
   onLanguageChange: (language: Language) => void;
-  t: any;
+  t: Content;
 }
 
 const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
+  const isAssamese = currentLanguage === "as";
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/namaskar.ai", label: "Instagram" },
     { icon: Mail, href: "mailto:hello@namaskar.ai", label: "Email" },
   ];
+  const description = isAssamese
+    ? "আপোনাৰ ভাষাত AI শিক্ষা আগবঢ়াই দিওঁ। আধুনিক AI প্ৰযুক্তিৰ সৈতে শিকক, আগবাঢ়ক আৰু নতুনত্ব সৃষ্টি কৰক।"
+    : "Empowering AI education in your language. Learn, grow, and innovate with cutting-edge AI technologies.";
+  const connectLabel = isAssamese ? "আমাৰ সৈতে সংযোগ কৰক" : "Connect With Us";
+  const settingsLabel = isAssamese ? "ছেটিংছ" : "Settings";
+  const stayUpdatedLabel = isAssamese ? "আপডেট হৈ থাকক" : "Stay Updated";
+  const weeklyLabel = isAssamese
+    ? "সাপ্তাহিক AI টিপছ আৰু আপডেট আপোনাৰ ইনবক্সত পাওক।"
+    : "Get the latest AI tips and updates delivered to your inbox weekly.";
+  const privacyLabel = isAssamese ? "গোপনীয়তা নীতি" : "Privacy Policy";
+  const termsLabel = isAssamese ? "সেৱাৰ শর্তসমূহ" : "Terms of Service";
+  const newsletterLabel = isAssamese ? "নিউজলেটাৰ" : "Newsletter";
 
   return (
     <footer className="bg-muted/30 border-t border-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
           {/* Logo & Description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <img 
-                src={namaskarLogo} 
-                alt="Namaskar AI" 
+              <img
+                src={namaskarLogo}
+                alt="Namaskar AI"
                 className="w-8 h-8 object-contain"
               />
               <span className="text-xl font-poppins font-bold">
@@ -32,14 +47,12 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
                 <span className="text-primary ml-1">AI</span>
               </span>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              Empowering AI education in your language. Learn, grow, and innovate with cutting-edge AI technologies.
-            </p>
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">{description}</p>
           </div>
 
           {/* Social Links */}
           <div className="space-y-4">
-            <h4 className="font-poppins font-semibold text-sm">Connect With Us</h4>
+            <h4 className="font-poppins font-semibold text-sm">{connectLabel}</h4>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((link) => (
                 <Button
@@ -64,7 +77,7 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
 
           {/* Language & Contact */}
           <div className="space-y-4">
-            <h4 className="font-poppins font-semibold text-sm">Settings</h4>
+            <h4 className="font-poppins font-semibold text-sm">{settingsLabel}</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Globe className="w-4 h-4 text-muted-foreground" />
@@ -92,6 +105,13 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
               </div>
             </div>
           </div>
+
+          {/* Newsletter Section */}
+          <div id="newsletter" className="space-y-4">
+            <h4 className="font-poppins font-semibold text-sm">{stayUpdatedLabel}</h4>
+            <p className="text-muted-foreground text-xs leading-relaxed">{weeklyLabel}</p>
+            <NewsletterSignup />
+          </div>
         </div>
 
         {/* Bottom Bar */}
@@ -100,11 +120,17 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
             {t.footer.copyright}
           </div>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
+            <Link to="/privacy" className="hover:text-primary transition-colors">
+              {privacyLabel}
+            </Link>
             <span>•</span>
-            <a href="#" className="hover:text-primary transition-colors">Terms of Service</a>
+            <Link to="/terms" className="hover:text-primary transition-colors">
+              {termsLabel}
+            </Link>
             <span>•</span>
-            <a href="#newsletter" className="hover:text-primary transition-colors">Newsletter</a>
+            <a href="#newsletter" className="hover:text-primary transition-colors">
+              {newsletterLabel}
+            </a>
           </div>
         </div>
       </div>

@@ -8,17 +8,25 @@ export const useLanguage = () => {
   const [language, setLanguage] = useState<Language>('en');
   const [showModal, setShowModal] = useState(false);
 
+  const applyDocumentLanguage = (lang: Language) => {
+    document.documentElement.lang = lang;
+  };
+
   useEffect(() => {
     const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language;
     const modalShown = localStorage.getItem(MODAL_SHOWN_KEY);
     
     if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'as')) {
       setLanguage(savedLanguage);
+      applyDocumentLanguage(savedLanguage);
     } else {
       // Detect browser language
       const browserLang = navigator.language.toLowerCase();
       if (browserLang.includes('as') || browserLang.includes('assamese')) {
         setLanguage('as');
+        applyDocumentLanguage('as');
+      } else {
+        applyDocumentLanguage('en');
       }
     }
     
@@ -31,6 +39,7 @@ export const useLanguage = () => {
   const switchLanguage = (lang: Language) => {
     setLanguage(lang);
     localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    applyDocumentLanguage(lang);
   };
 
   const closeModal = () => {

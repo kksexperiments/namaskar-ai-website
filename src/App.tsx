@@ -12,6 +12,9 @@ import Admin from "./pages/Admin";
 import Auth from "./pages/Auth";
 import News from "./pages/News";
 import Article from "./pages/Article";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/prompt-packs" element={<PromptPacks />} />
@@ -28,6 +32,8 @@ const App = () => (
           <Route path="/learning-roadmaps" element={<LearningRoadmaps />} />
           <Route path="/news" element={<News />} />
           <Route path="/article/:slug" element={<Article />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/auth" element={<Auth />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -17,11 +18,11 @@ export default {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
-			fontFamily: {
-				'poppins': ['Poppins', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
-			},
+			extend: {
+				fontFamily: {
+					'poppins': ['Sora', 'Hind Siliguri', 'sans-serif'],
+					'inter': ['Manrope', 'Hind Siliguri', 'sans-serif'],
+				},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -50,11 +51,10 @@ export default {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-					red: 'hsl(var(--accent-red))',
-				},
+					accent: {
+						DEFAULT: 'hsl(var(--accent))',
+						foreground: 'hsl(var(--accent-foreground))',
+					},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -154,5 +154,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+		plugins: [tailwindcssAnimate],
+	} satisfies Config;

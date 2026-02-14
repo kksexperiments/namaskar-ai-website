@@ -1,6 +1,6 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Language } from "@/types/language";
+import { content, Language } from "@/types/language";
 
 interface LanguageModalProps {
   isOpen: boolean;
@@ -10,6 +10,8 @@ interface LanguageModalProps {
 }
 
 const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: LanguageModalProps) => {
+  const modalCopy = content[currentLanguage].modal;
+
   const handleLanguageSelect = (lang: Language) => {
     onSelectLanguage(lang);
     onClose();
@@ -20,11 +22,11 @@ const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: L
       <DialogContent className="sm:max-w-md mx-4 rounded-2xl bg-gradient-card border-0 shadow-elegant animate-bounce-in">
         <DialogHeader className="text-center space-y-4">
           <DialogTitle className="text-2xl font-poppins font-bold gradient-text">
-            Choose Your Language
+            {modalCopy.title}
           </DialogTitle>
-          <p className="text-muted-foreground">
-            Select your preferred language for the best experience
-          </p>
+          <DialogDescription className="text-muted-foreground">
+            {modalCopy.subtitle}
+          </DialogDescription>
         </DialogHeader>
         
         <div className="flex flex-col sm:flex-row gap-4 mt-6">
@@ -34,7 +36,7 @@ const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: L
             onClick={() => handleLanguageSelect('en')}
             className="flex-1 h-16 text-lg font-medium transition-all duration-300 hover:scale-105"
           >
-            English
+            {modalCopy.english}
           </Button>
           
           <Button
@@ -43,12 +45,14 @@ const LanguageModal = ({ isOpen, onClose, onSelectLanguage, currentLanguage }: L
             onClick={() => handleLanguageSelect('as')}
             className="flex-1 h-16 text-lg font-medium transition-all duration-300 hover:scale-105"
           >
-            অসমীয়া
+            {modalCopy.assamese}
           </Button>
         </div>
         
         <p className="text-xs text-muted-foreground text-center mt-4">
-          You can change this anytime from the language menu
+          {currentLanguage === "as"
+            ? "এইটো আপুনি যিকোনো সময়ে ভাষা মেনুৰ পৰা সলনি কৰিব পাৰিব।"
+            : "You can change this anytime from the language menu"}
         </p>
       </DialogContent>
     </Dialog>

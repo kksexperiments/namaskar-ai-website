@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Instagram, ExternalLink } from "lucide-react";
 import { InstagramEmbed } from "react-social-media-embed";
+import { Content } from "@/types/language";
 interface InstagramSectionProps {
-  t: any;
+  t: Content;
 }
 const InstagramSection = ({
   t
@@ -10,6 +11,7 @@ const InstagramSection = ({
   const handleInstagramClick = () => {
     window.open('https://instagram.com/namaskar.ai', '_blank');
   };
+  const isAssamese = t.instagram.headline.includes("পোষ্ট");
 
   // Instagram post URLs
   const instagramPosts = ["https://www.instagram.com/reel/DN8GK1KDZBI/", "https://www.instagram.com/reel/DNuSp0jWDWL/", "https://www.instagram.com/reel/DNmnzV2NfdI/"];
@@ -23,7 +25,7 @@ const InstagramSection = ({
               {t.instagram.headline}
             </h2>
           </div>
-          
+          <p className="text-muted-foreground">{t.instagram.description}</p>
         </div>
 
         {/* Instagram Embeds */}
@@ -41,12 +43,14 @@ const InstagramSection = ({
         <div className="text-center">
           <Button onClick={handleInstagramClick} className="bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-medium py-3 px-6 sm:px-8 rounded-xl transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 min-h-[44px] w-full sm:w-auto">
             <Instagram className="mr-2 w-5 h-5" />
-            <span className="text-sm sm:text-base">Follow @namaskar.ai</span>
+            <span className="text-sm sm:text-base">{t.instagram.button}</span>
             <ExternalLink className="ml-2 w-4 h-4" />
           </Button>
           
           <p className="text-sm text-muted-foreground mt-4 px-4">
-            Join 5K+ followers getting daily AI insights and practical tutorials
+            {isAssamese
+              ? "২৫,০০০+ অনুসৰণকাৰীৰ সৈতে দৈনিক AI insight আৰু practical tutorial লাভ কৰক"
+              : "Join 25,000+ followers getting daily AI insights and practical tutorials"}
           </p>
         </div>
       </div>
