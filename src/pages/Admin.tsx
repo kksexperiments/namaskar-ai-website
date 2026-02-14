@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -12,6 +12,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Trash2, Edit, Plus, LogOut, Loader2 } from 'lucide-react';
+import { getLanguageFromPath, toLocalePath } from '@/lib/locale';
 
 interface Article {
   id: string;
@@ -37,7 +38,11 @@ interface Category {
 
 const Admin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
+  const routeLanguage = getLanguageFromPath(location.pathname);
+  const authPath = toLocalePath('/auth', routeLanguage);
+  const homePath = toLocalePath('/', routeLanguage);
   const [articles, setArticles] = useState<Article[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingArticle, setEditingArticle] = useState<Article | null>(null);
@@ -58,9 +63,9 @@ const Admin = () => {
   // Redirect if not authenticated or not admin
   useEffect(() => {
     if (!authLoading && (!user || !isAdmin)) {
-      navigate('/auth');
+      navigate(authPath);
     }
-  }, [user, isAdmin, authLoading, navigate]);
+  }, [authLoading, authPath, isAdmin, navigate, user]);
 
   const fetchArticles = useCallback(async () => {
     console.log('Fetching articles...');
@@ -276,7 +281,7 @@ const Admin = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    navigate('/');
+    navigate(homePath);
   };
 
   return (

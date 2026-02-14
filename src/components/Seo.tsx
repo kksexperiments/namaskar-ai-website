@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { getSiteUrl, toAbsoluteSiteUrl } from "@/lib/site";
 
 interface SeoProps {
@@ -68,9 +69,13 @@ const Seo = ({
   language = "en",
   structuredData,
 }: SeoProps) => {
+  const location = useLocation();
+
   useEffect(() => {
     const siteUrl = getSiteUrl();
-    const canonicalUrl = toAbsoluteSiteUrl(path, siteUrl);
+    const resolvedPath =
+      typeof window !== "undefined" ? `${location.pathname}${location.search}` : path;
+    const canonicalUrl = toAbsoluteSiteUrl(resolvedPath, siteUrl);
     const imageUrl = toAbsoluteSiteUrl(image, siteUrl);
 
     document.title = title;
@@ -96,7 +101,7 @@ const Seo = ({
 
     upsertCanonical(canonicalUrl);
     upsertStructuredData(structuredData);
-  }, [description, image, keywords, language, path, robots, structuredData, title, type]);
+  }, [description, image, keywords, language, location.pathname, location.search, path, robots, structuredData, title, type]);
 
   return null;
 };

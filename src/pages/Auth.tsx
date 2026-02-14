@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -9,10 +9,14 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import { getLanguageFromPath, toLocalePath } from '@/lib/locale';
 
 export const Auth = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const routeLanguage = getLanguageFromPath(location.pathname);
+  const homePath = toLocalePath('/', routeLanguage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   
@@ -30,11 +34,11 @@ export const Auth = () => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
-        navigate('/');
+        navigate(homePath);
       }
     };
     checkUser();
-  }, [navigate]);
+  }, [homePath, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,7 +67,7 @@ export const Auth = () => {
         description: "Welcome back!",
       });
 
-      navigate('/');
+      navigate(homePath);
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
     } finally {
@@ -90,7 +94,7 @@ export const Auth = () => {
     }
 
     try {
-      const redirectUrl = `${window.location.origin}/`;
+      const redirectUrl = `${window.location.origin}${homePath}`;
       
       const { error } = await supabase.auth.signUp({
         email: signupData.email,
@@ -262,7 +266,7 @@ export const Auth = () => {
             <div className="mt-6 text-center">
               <Button 
                 variant="ghost" 
-                onClick={() => navigate('/')}
+                onClick={() => navigate(homePath)}
                 className="text-sm text-muted-foreground"
               >
                 ← Back to Home

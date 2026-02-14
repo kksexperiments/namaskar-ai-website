@@ -9,6 +9,7 @@ import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
+import { toLocalePath } from "@/lib/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { Json } from "@/integrations/supabase/types";
 import { Language } from "@/types/language";
@@ -489,7 +490,7 @@ const PromptPacks = () => {
             ? "কৰ্মজীৱন, পঢ়া-শুনা, ব্যৱসায়, পৰিয়াল আৰু অফিচৰ বাবে Assamese-friendly copy-ready AI prompts।"
             : "Copy-ready AI prompt packs for career, study, business, family, and office workflows."
         }
-        path="/prompt-packs"
+        path={toLocalePath("/prompt-packs", language)}
         language={language}
         keywords={[
           "Assamese prompt packs",
@@ -507,7 +508,7 @@ const PromptPacks = () => {
           <div className="platform-shell">
             <div className="mb-4">
               <Link
-                to="/"
+                to={toLocalePath("/", language)}
                 className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
               >
                 <ArrowLeft className="h-4 w-4" />

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Content, Language } from "@/types/language";
+import { toLocalePath } from "@/lib/locale";
 
 interface HeroSectionProps {
   currentLanguage: Language;
@@ -27,6 +28,7 @@ const HeroSection = ({
   onCommunityClick,
 }: HeroSectionProps) => {
   const isAssamese = currentLanguage === "as";
+  const promptPacksPath = toLocalePath("/prompt-packs", currentLanguage);
 
   const learnersText = isAssamese ? "১,০০০+ শিক্ষাৰ্থী" : "1,000+ learners";
   const followersText = isAssamese ? "25,000+ অনুসৰণকাৰী" : "25,000+ followers";
@@ -39,25 +41,25 @@ const HeroSection = ({
       icon: <BriefcaseBusiness className="h-4 w-4" />,
       title: isAssamese ? "Career আৰু Job" : "Career and Job",
       subtitle: isAssamese ? "CV, interview, skill roadmap" : "CV, interview, skill roadmap",
-      path: "/prompt-packs?category=career_and_jobs",
+      path: toLocalePath("/prompt-packs?category=career_and_jobs", currentLanguage),
     },
     {
       icon: <GraduationCap className="h-4 w-4" />,
       title: isAssamese ? "Student আৰু Aspirers" : "Students and Aspirers",
       subtitle: isAssamese ? "exam notes, study discipline" : "exam notes, study discipline",
-      path: "/prompt-packs?category=study_and_skills",
+      path: toLocalePath("/prompt-packs?category=study_and_skills", currentLanguage),
     },
     {
       icon: <Store className="h-4 w-4" />,
       title: isAssamese ? "Small Business" : "Small Business",
       subtitle: isAssamese ? "sales, WhatsApp template" : "sales, WhatsApp templates",
-      path: "/prompt-packs?category=business_and_income",
+      path: toLocalePath("/prompt-packs?category=business_and_income", currentLanguage),
     },
     {
       icon: <Users className="h-4 w-4" />,
       title: isAssamese ? "Parents আৰু Family" : "Parents and Family",
       subtitle: isAssamese ? "safe AI rules, child guide" : "safe AI rules, child guidance",
-      path: "/prompt-packs?category=parents_and_family",
+      path: toLocalePath("/prompt-packs?category=parents_and_family", currentLanguage),
     },
   ];
 
@@ -144,7 +146,7 @@ const HeroSection = ({
                 ))}
               </div>
 
-              <Link to="/prompt-packs" className="mt-4 block">
+              <Link to={promptPacksPath} className="mt-4 block">
                 <Button className="w-full bg-gradient-primary font-semibold text-white">
                   {isAssamese ? "Prompt Packs খোলক" : "Open Prompt Packs"}
                 </Button>

@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
+import { toLocalePath } from "@/lib/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -182,7 +183,7 @@ const News = () => {
             ? "AI-ৰ শেহতীয়া খবৰ, Assamese explainers, আৰু practical learning guides একেলগে পাব।"
             : "Read AI news, Assamese-friendly explainers, and practical learning guides in one place."
         }
-        path="/news"
+        path={toLocalePath("/news", language)}
         language={language}
         keywords={[
           "AI news Assam",
@@ -196,7 +197,10 @@ const News = () => {
 
       <main className="pb-16 pt-8">
         <div className="platform-shell">
-          <Link to="/" className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to={toLocalePath("/", language)}
+            className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+          >
             <ArrowLeft className="h-4 w-4" />
             {text.back}
           </Link>
@@ -301,7 +305,7 @@ const News = () => {
                     </div>
 
                     <Button asChild variant="outline" className="mt-4 w-full">
-                      <Link to={`/article/${article.slug}`}>
+                      <Link to={toLocalePath(`/article/${article.slug}`, language)}>
                         {text.readMore}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
@@ -333,7 +337,7 @@ const News = () => {
                       <h4 className="text-sm font-semibold leading-snug">{guide.title[language]}</h4>
                       <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{guide.description[language]}</p>
                       <Button asChild variant="ghost" className="mt-3 px-0 text-primary hover:text-primary">
-                        <Link to={guide.path}>
+                        <Link to={toLocalePath(guide.path, language)}>
                           {text.readMore}
                           <ArrowRight className="ml-1 h-4 w-4" />
                         </Link>

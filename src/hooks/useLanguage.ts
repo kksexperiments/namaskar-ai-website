@@ -1,50 +1,99 @@
-import { useState, useEffect } from 'react';
-import { Language, content } from '@/types/language';
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const LANGUAGE_STORAGE_KEY = 'namaskar-ai-language';
-const MODAL_SHOWN_KEY = 'namaskar-ai-modal-shown';
+import { Language, content } from "@/types/language";
+import { getLanguageFromPath, toLocalePath } from "@/lib/locale";
+
+const LANGUAGE_STORAGE_KEY = "namaskar-ai-language";
+const MODAL_SHOWN_KEY = "namaskar-ai-modal-shown";
 
 export const useLanguage = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const language = getLanguageFromPath(location.pathname);
   const [showModal, setShowModal] = useState(false);
 
-  const applyDocumentLanguage = (lang: Language) => {
-    document.documentElement.lang = lang;
-  };
+  useEffect(() => {
+    document.documentElement.lang = language;
+
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+    } catch {
+      // Ignore localStorage write issues.
+    }
+  }, [language]);
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language;
-    const modalShown = localStorage.getItem(MODAL_SHOWN_KEY);
-    
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'as')) {
-      setLanguage(savedLanguage);
-      applyDocumentLanguage(savedLanguage);
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.includes('as') || browserLang.includes('assamese')) {
-        setLanguage('as');
-        applyDocumentLanguage('as');
-      } else {
-        applyDocumentLanguage('en');
-      }
+    let modalShown = null;
+
+    try {
+      modalShown = localStorage.getItem(MODAL_SHOWN_KEY);
+    } catch {
+      modalShown = "true";
     }
-    
-    // Show modal only if not shown before
+
     if (!modalShown) {
       setShowModal(true);
     }
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      return;
+    }
+
+    let preferredLanguage: Language | null = null;
+
+    try {
+      const savedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY) as Language | null;
+      if (savedLanguage === "en" || savedLanguage === "as") {
+        preferredLanguage = savedLanguage;
+      } else {
+        const browserLang = navigator.language.toLowerCase();
+        if (browserLang.includes("as") || browserLang.includes("assamese")) {
+          preferredLanguage = "as";
+        }
+      }
+    } catch {
+      preferredLanguage = null;
+    }
+
+    if (preferredLanguage !== "as") {
+      return;
+    }
+
+    const localizedPath = toLocalePath(location.pathname, preferredLanguage);
+    const targetUrl = `${localizedPath}${location.search}${location.hash}`;
+    const currentUrl = `${location.pathname}${location.search}${location.hash}`;
+
+    if (targetUrl !== currentUrl) {
+      navigate(targetUrl, { replace: true });
+    }
+  }, [location.hash, location.pathname, location.search, navigate]);
+
   const switchLanguage = (lang: Language) => {
-    setLanguage(lang);
-    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
-    applyDocumentLanguage(lang);
+    try {
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    } catch {
+      // Ignore localStorage write issues.
+    }
+
+    const localizedPath = toLocalePath(location.pathname, lang);
+    const targetUrl = `${localizedPath}${location.search}${location.hash}`;
+    const currentUrl = `${location.pathname}${location.search}${location.hash}`;
+
+    if (targetUrl !== currentUrl) {
+      navigate(targetUrl);
+    }
   };
 
   const closeModal = () => {
     setShowModal(false);
-    localStorage.setItem(MODAL_SHOWN_KEY, 'true');
+    try {
+      localStorage.setItem(MODAL_SHOWN_KEY, "true");
+    } catch {
+      // Ignore localStorage write issues.
+    }
   };
 
   const t = content[language];
@@ -54,6 +103,6 @@ export const useLanguage = () => {
     switchLanguage,
     showModal,
     closeModal,
-    t
+    t,
   };
 };

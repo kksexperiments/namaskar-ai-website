@@ -20,6 +20,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
+import { toLocalePath } from "@/lib/locale";
 import { supabase } from "@/integrations/supabase/client";
 import { trackEvent } from "@/lib/analytics";
 import { useToast } from "@/hooks/use-toast";
@@ -500,7 +501,7 @@ const AITools = () => {
             ? "ছাত্ৰ, পেশাজীৱী আৰু ব্যৱসায়ৰ বাবে practical AI tools directory। category, price আৰু skill level অনুসৰি ফিল্টাৰ কৰক।"
             : "Practical AI tools directory for students, professionals, and businesses with smart filtering."
         }
-        path="/ai-tools"
+        path={toLocalePath("/ai-tools", language)}
         language={language}
         keywords={[
           "Assamese AI tools",
@@ -516,7 +517,10 @@ const AITools = () => {
       <main className="pb-24 pt-8 md:pb-14">
         <div className="platform-shell">
           <div className="mb-4 flex items-center justify-between gap-3">
-            <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+            <Link
+              to={toLocalePath("/", language)}
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+            >
               <ArrowLeft className="h-4 w-4" />
               {text.back}
             </Link>

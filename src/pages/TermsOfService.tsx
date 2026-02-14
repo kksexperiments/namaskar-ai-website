@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
+import { toLocalePath } from "@/lib/locale";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Scale } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -19,13 +20,16 @@ const TermsOfService = () => {
             ? "নমস্কাৰ AI প্লেটফৰ্ম ব্যৱহাৰৰ নিয়ম, দায়বদ্ধতা আৰু আচৰণ নীতি।"
             : "Terms, responsibilities, and usage rules for the Namaskar AI platform."
         }
-        path="/terms"
+        path={toLocalePath("/terms", language)}
         language={language}
       />
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
       <main className="pb-14 pt-8">
         <div className="platform-shell max-w-4xl">
-          <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6">
+          <Link
+            to={toLocalePath("/", language)}
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-6"
+          >
             <ArrowLeft className="w-4 h-4" />
             <span>{isAssamese ? "ঘৰলৈ উভতি যাওক" : "Back to Home"}</span>
           </Link>

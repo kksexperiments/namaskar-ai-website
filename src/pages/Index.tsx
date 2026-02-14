@@ -8,6 +8,7 @@ import CommunitySection from "@/components/CommunitySection";
 import InstagramSection from "@/components/InstagramSection";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
+import { toLocalePath } from "@/lib/locale";
 
 const Index = () => {
   const { language, switchLanguage, showModal, closeModal, t } = useLanguage();
@@ -34,7 +35,7 @@ const Index = () => {
             ? "অসমীয়া ভাষাত practical AI শিকক। Prompt packs, AI tools, learning roadmaps, আৰু community সহ সহজে আৰম্ভ কৰক।"
             : "Learn AI in Assamese with practical prompt packs, AI tools, learning roadmaps, and community support."
         }
-        path="/"
+        path={toLocalePath("/", language)}
         language={language}
         keywords={[
           "AI in Assamese",
@@ -74,7 +75,7 @@ const Index = () => {
         <ResourcesSection currentLanguage={language} t={t} />
 
         {/* News Section */}
-        <NewsSection t={t} />
+        <NewsSection t={t} currentLanguage={language} />
 
         {/* Community Section */}
         <CommunitySection currentLanguage={language} t={t} />

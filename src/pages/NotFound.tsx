@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
+import { toLocalePath } from "@/lib/locale";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
@@ -21,7 +22,7 @@ const NotFound = () => {
             ? "আপুনি বিচৰা পৃষ্ঠা উপলব্ধ নহয়।"
             : "The page you are looking for is not available."
         }
-        path="/404"
+        path={toLocalePath("/404", language)}
         language={language}
         robots="noindex, nofollow"
       />
@@ -47,13 +48,13 @@ const NotFound = () => {
 
               <div className="mt-5 flex flex-wrap justify-center gap-2">
                 <Button asChild>
-                  <Link to="/">
+                  <Link to={toLocalePath("/", language)}>
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     {isAssamese ? "ঘৰলৈ" : "Home"}
                   </Link>
                 </Button>
                 <Button asChild variant="outline">
-                  <Link to="/prompt-packs">Prompt Packs</Link>
+                  <Link to={toLocalePath("/prompt-packs", language)}>Prompt Packs</Link>
                 </Button>
               </div>
             </div>

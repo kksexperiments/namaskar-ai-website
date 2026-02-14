@@ -4,6 +4,7 @@ import { Content, Language } from "@/types/language";
 import { Link } from "react-router-dom";
 import namaskarLogo from "@/assets/namaskar-logo.png";
 import NewsletterSignup from "./NewsletterSignup";
+import { toLocalePath } from "@/lib/locale";
 
 interface FooterProps {
   currentLanguage: Language;
@@ -13,6 +14,8 @@ interface FooterProps {
 
 const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
   const isAssamese = currentLanguage === "as";
+  const privacyPath = toLocalePath("/privacy", currentLanguage);
+  const termsPath = toLocalePath("/terms", currentLanguage);
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/namaskar.ai", label: "Instagram" },
     { icon: Mail, href: "mailto:hello@namaskar.ai", label: "Email" },
@@ -120,11 +123,11 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
             {t.footer.copyright}
           </div>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <Link to="/privacy" className="hover:text-primary transition-colors">
+            <Link to={privacyPath} className="hover:text-primary transition-colors">
               {privacyLabel}
             </Link>
             <span>•</span>
-            <Link to="/terms" className="hover:text-primary transition-colors">
+            <Link to={termsPath} className="hover:text-primary transition-colors">
               {termsLabel}
             </Link>
             <span>•</span>

@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
+import { toLocalePath } from "@/lib/locale";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -23,7 +24,7 @@ const LearningRoadmaps = () => {
       duration: isAssamese ? "৪ সপ্তাহ" : "4 weeks",
       learners: "2.7K+",
       modules: isAssamese ? "৮ মডিউল" : "8 modules",
-      path: "/prompt-packs?category=career_and_jobs",
+      path: toLocalePath("/prompt-packs?category=career_and_jobs", language),
     },
     {
       title: isAssamese ? "Student Productivity AI" : "Student Productivity AI",
@@ -34,7 +35,7 @@ const LearningRoadmaps = () => {
       duration: isAssamese ? "৩ সপ্তাহ" : "3 weeks",
       learners: "2.1K+",
       modules: isAssamese ? "৬ মডিউল" : "6 modules",
-      path: "/prompt-packs?category=study_and_skills",
+      path: toLocalePath("/prompt-packs?category=study_and_skills", language),
     },
     {
       title: isAssamese ? "Small Business AI Playbook" : "Small Business AI Playbook",
@@ -45,7 +46,7 @@ const LearningRoadmaps = () => {
       duration: isAssamese ? "৫ সপ্তাহ" : "5 weeks",
       learners: "1.9K+",
       modules: isAssamese ? "৯ মডিউল" : "9 modules",
-      path: "/prompt-packs?category=business_and_income",
+      path: toLocalePath("/prompt-packs?category=business_and_income", language),
     },
     {
       title: isAssamese ? "Parents & Safe AI Usage" : "Parents and Safe AI Usage",
@@ -56,7 +57,7 @@ const LearningRoadmaps = () => {
       duration: isAssamese ? "২ সপ্তাহ" : "2 weeks",
       learners: "1.4K+",
       modules: isAssamese ? "৪ মডিউল" : "4 modules",
-      path: "/prompt-packs?category=parents_and_family",
+      path: toLocalePath("/prompt-packs?category=parents_and_family", language),
     },
   ];
 
@@ -94,7 +95,7 @@ const LearningRoadmaps = () => {
             ? "কৰ্মজীৱন, students, small business আৰু parents-ৰ বাবে Assamese AI learning roadmaps।"
             : "Assamese AI learning roadmaps for careers, students, businesses, and parents."
         }
-        path="/learning-roadmaps"
+        path={toLocalePath("/learning-roadmaps", language)}
         language={language}
         keywords={[
           "AI roadmap Assamese",
@@ -108,7 +109,10 @@ const LearningRoadmaps = () => {
 
       <main className="pb-16 pt-8">
         <div className="platform-shell">
-          <Link to="/" className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to={toLocalePath("/", language)}
+            className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+          >
             <ArrowLeft className="h-4 w-4" />
             {text.back}
           </Link>

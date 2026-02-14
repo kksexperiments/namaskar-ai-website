@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
 import { supabase } from "@/integrations/supabase/client";
+import { toLocalePath } from "@/lib/locale";
 import { toAbsoluteSiteUrl } from "@/lib/site";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -100,7 +101,7 @@ const Article = () => {
         datePublished: article.published_at,
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": toAbsoluteSiteUrl(`/article/${article.slug}`),
+          "@id": toAbsoluteSiteUrl(toLocalePath(`/article/${article.slug}`, language)),
         },
       }
     : undefined;
@@ -118,7 +119,7 @@ const Article = () => {
       <Seo
         title={pageTitle}
         description={pageDescription}
-        path={article ? `/article/${article.slug}` : "/news"}
+        path={article ? toLocalePath(`/article/${article.slug}`, language) : toLocalePath("/news", language)}
         language={language}
         type="article"
         structuredData={articleSchema}
@@ -128,7 +129,10 @@ const Article = () => {
 
       <main className="pb-16 pt-8">
         <div className="platform-shell">
-          <Link to="/news" className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to={toLocalePath("/news", language)}
+            className="mb-4 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
+          >
             <ArrowLeft className="h-4 w-4" />
             {isAssamese ? "খবৰলৈ উভতি যাওক" : "Back to News"}
           </Link>
@@ -143,10 +147,12 @@ const Article = () => {
               </p>
               <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
                 <Button asChild>
-                  <Link to="/news">{isAssamese ? "খবৰ চাওক" : "Browse News"}</Link>
+                  <Link to={toLocalePath("/news", language)}>{isAssamese ? "খবৰ চাওক" : "Browse News"}</Link>
                 </Button>
                 <Button asChild variant="outline">
-                  <Link to="/prompt-packs">{isAssamese ? "Prompt Packs" : "Prompt Packs"}</Link>
+                  <Link to={toLocalePath("/prompt-packs", language)}>
+                    {isAssamese ? "Prompt Packs" : "Prompt Packs"}
+                  </Link>
                 </Button>
               </div>
             </Card>

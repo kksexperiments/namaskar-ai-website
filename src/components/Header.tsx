@@ -20,6 +20,7 @@ import { Content, Language } from "@/types/language";
 import { useAuth } from "@/hooks/useAuth";
 import namaskarLogo from "@/assets/namaskar-logo.png";
 import { useState } from "react";
+import { toLocalePath } from "@/lib/locale";
 
 interface HeaderProps {
   currentLanguage: Language;
@@ -30,6 +31,9 @@ interface HeaderProps {
 const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
   const { user, isAdmin } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const homePath = toLocalePath("/", currentLanguage);
+  const adminPath = toLocalePath("/admin", currentLanguage);
+  const authPath = toLocalePath("/auth", currentLanguage);
   const adminLabel = currentLanguage === "as" ? "এডমিন পেনেল" : "Admin Panel";
   const signInLabel = currentLanguage === "as" ? "চাইন ইন" : "Sign In";
   const welcomeLabel = currentLanguage === "as" ? "স্বাগতম" : "Welcome";
@@ -41,19 +45,19 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
       : "Move quickly between learning pages.";
   const navLinks = [
     {
-      to: "/prompt-packs",
+      to: toLocalePath("/prompt-packs", currentLanguage),
       label: currentLanguage === "as" ? "প্ৰম্প্ট পেক" : "Prompt Packs",
     },
     {
-      to: "/ai-tools",
+      to: toLocalePath("/ai-tools", currentLanguage),
       label: currentLanguage === "as" ? "AI টুলছ" : "AI Tools",
     },
     {
-      to: "/learning-roadmaps",
+      to: toLocalePath("/learning-roadmaps", currentLanguage),
       label: currentLanguage === "as" ? "ৰোডমেপ" : "Roadmaps",
     },
     {
-      to: "/news",
+      to: toLocalePath("/news", currentLanguage),
       label: currentLanguage === "as" ? "খবৰ" : "News",
     },
   ];
@@ -68,7 +72,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3">
+            <Link to={homePath} className="flex items-center space-x-3">
               <img
                 src={namaskarLogo}
                 alt="Namaskar AI"
@@ -128,7 +132,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
 
             {/* Admin Link */}
             {user && isAdmin && (
-              <Link to="/admin">
+              <Link to={adminPath}>
                 <Button variant="outline" size="sm">
                   {adminLabel}
                 </Button>
@@ -137,7 +141,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
 
             {/* Auth Button */}
             {!user ? (
-              <Link to="/auth">
+              <Link to={authPath}>
                 <Button
                   variant="outline"
                   size="sm"

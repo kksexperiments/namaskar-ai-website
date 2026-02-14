@@ -37,7 +37,11 @@ const resolveSiteUrl = () => {
 const siteUrl = resolveSiteUrl();
 const lastmod = new Date().toISOString().slice(0, 10);
 
-const routes = ["/", "/prompt-packs", "/ai-tools", "/learning-roadmaps", "/news", "/privacy", "/terms"];
+const baseRoutes = ["/", "/prompt-packs", "/ai-tools", "/learning-roadmaps", "/news", "/privacy", "/terms"];
+const routes = [
+  ...baseRoutes,
+  ...baseRoutes.map((route) => (route === "/" ? "/as/" : `/as${route}`)),
+];
 
 const toAbsolute = (pathname) => {
   try {

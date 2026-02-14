@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { ArrowRight, Bot, Library, Map, MessageSquare, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Content, Language } from "@/types/language";
+import { toLocalePath } from "@/lib/locale";
 
 interface ResourcesSectionProps {
   currentLanguage: Language;
@@ -19,7 +20,7 @@ const ResourcesSection = ({ currentLanguage, t }: ResourcesSectionProps) => {
         ? "অসমীয়া-প্ৰধান কপি-ৰেডি prompt, যি আপুনি তৎক্ষণাত ব্যৱহাৰ কৰিব পাৰে।"
         : "Assamese-first copy-ready prompts you can use immediately.",
       highlight: isAssamese ? "আজিৰ কাম: ১টা prompt run কৰক" : "Today’s goal: run 1 prompt",
-      path: "/prompt-packs",
+      path: toLocalePath("/prompt-packs", currentLanguage),
       gradient:
         "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.08),hsl(var(--accent)/0.18))]",
     },
@@ -30,7 +31,7 @@ const ResourcesSection = ({ currentLanguage, t }: ResourcesSectionProps) => {
         ? "কোন কামত কোন AI tool, কতখিনি সহজ আৰু কিমান সময় বাচাব পাৰিব।"
         : "Know which AI tool to use for which task, and how much time it saves.",
       highlight: isAssamese ? "প্ৰয়োগ-কেন্দ্ৰিক tool তালিকা" : "Practical tool shortlist",
-      path: "/ai-tools",
+      path: toLocalePath("/ai-tools", currentLanguage),
       gradient:
         "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--accent)/0.12),hsl(var(--primary)/0.06))]",
     },
@@ -41,7 +42,7 @@ const ResourcesSection = ({ currentLanguage, t }: ResourcesSectionProps) => {
         ? "Aspirers, business owner, parent, teacher - সকলোৰে বাবে ধাপে ধাপে পথ।"
         : "Step-by-step roadmaps for aspirers, business owners, parents, and teachers.",
       highlight: isAssamese ? "৩০ দিনৰ actionable পথ" : "30-day actionable path",
-      path: "/learning-roadmaps",
+      path: toLocalePath("/learning-roadmaps", currentLanguage),
       gradient:
         "bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.1),hsl(var(--accent)/0.1))]",
     },

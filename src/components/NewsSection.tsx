@@ -7,10 +7,12 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, TrendingUp, ArrowRight, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Content } from "@/types/language";
+import { Content, Language } from "@/types/language";
+import { toLocalePath } from "@/lib/locale";
 
 interface NewsSectionProps {
   t: Content;
+  currentLanguage: Language;
 }
 
 interface ArticlePreview {
@@ -37,7 +39,7 @@ interface RenderNewsItem {
   featured_image?: string | null;
 }
 
-const NewsSection = ({ t }: NewsSectionProps) => {
+const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [articles, setArticles] = useState<ArticlePreview[]>([]);
@@ -203,14 +205,14 @@ const NewsSection = ({ t }: NewsSectionProps) => {
                   </div>
 
                   {item.slug ? (
-                    <Link to={`/article/${item.slug}`}>
+                    <Link to={toLocalePath(`/article/${item.slug}`, currentLanguage)}>
                       <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
                         {t.news.readMore}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </Link>
                   ) : (
-                    <Link to="/news">
+                    <Link to={toLocalePath("/news", currentLanguage)}>
                       <Button variant="ghost" className="w-full mt-4 group-hover:bg-primary/5">
                         {t.news.readMore}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -224,7 +226,7 @@ const NewsSection = ({ t }: NewsSectionProps) => {
         )}
 
         <div className="text-center mt-8">
-          <Link to="/news">
+          <Link to={toLocalePath("/news", currentLanguage)}>
             <Button variant="outline" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
               View All News
               <ArrowRight className="w-4 h-4 ml-2" />
