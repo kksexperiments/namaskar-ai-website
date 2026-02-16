@@ -115,3 +115,22 @@ How to update:
 - Paste new Facebook reel/video post URLs into `url` (keep them **public**).
 - Keep newest items at the top. Only the first 6 are embedded.
 - If a URL is private/unavailable, the site will show a fallback card with a "Watch on Facebook" link.
+
+### Weekly Auto-Update (Last 3 Only)
+
+This repo includes a weekly updater that:
+
+- Keeps the first 3 videos in `src/content/facebookVideos.json` pinned
+- Auto-refreshes the remaining 3 by scraping the public Facebook reels tab
+
+Script:
+
+- `node scripts/update-facebook-videos.mjs`
+
+GitHub Action (weekly):
+
+- `.github/workflows/update-facebook-videos.yml`
+
+Optional secret (only if you want to override the default profile URL):
+
+- `FACEBOOK_PROFILE_REELS_URL`
