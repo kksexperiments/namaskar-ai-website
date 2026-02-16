@@ -103,3 +103,15 @@ Wait for DNS propagation, then re-check domain status in Vercel.
   - `/ai-tools`
   - `/learning-roadmaps`
   - `/news`
+
+## Update Homepage Facebook Videos
+
+Homepage embeds the first 6 items from:
+
+- `src/content/facebookVideos.json`
+
+How to update:
+
+- Paste new Facebook reel/video post URLs into `url` (keep them **public**).
+- Keep newest items at the top. Only the first 6 are embedded.
+- If a URL is private/unavailable, the site will show a fallback card with a "Watch on Facebook" link.

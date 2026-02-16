@@ -298,3 +298,23 @@ All colors MUST be HSL.
     opacity: 0.5;
   }
 }
+
+@layer components {
+  /* Facebook "Embedded Video Player" plugin sizing helpers (responsive) */
+  .namaskar-fb-video,
+  .namaskar-fb-video .fb-video,
+  .namaskar-fb-video .fb-video > span,
+  .namaskar-fb-video iframe {
+    width: 100% !important;
+  }
+
+  .namaskar-fb-video .fb-video {
+    display: block;
+    height: 100%;
+  }
+
+  .namaskar-fb-video .fb-video > span,
+  .namaskar-fb-video iframe {
+    height: 100% !important;
+  }
+}

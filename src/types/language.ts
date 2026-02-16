@@ -29,10 +29,13 @@ export interface Content {
       button: string;
     };
   };
-  instagram: {
+  latestVideos: {
     headline: string;
     description: string;
-    button: string;
+    followFacebook: string;
+    followInstagram: string;
+    followThreads: string;
+    watchOnFacebook: string;
   };
   news: {
     headline: string;
@@ -91,10 +94,13 @@ export const content: Record<Language, Content> = {
         button: "Follow on Telegram"
       }
     },
-    instagram: {
-      headline: "Latest Posts",
-      description: "Follow for daily tips and tutorials",
-      button: "Follow on Instagram"
+    latestVideos: {
+      headline: "Latest Videos",
+      description: "Watch short reels and practical demos from our Facebook page (loads only when you scroll).",
+      followFacebook: "Follow on Facebook",
+      followInstagram: "Follow on Instagram",
+      followThreads: "Threads",
+      watchOnFacebook: "Watch on Facebook"
     },
     news: {
       headline: "What's New in AI",
@@ -151,10 +157,13 @@ export const content: Record<Language, Content> = {
         button: "Telegram ত অনুসৰণ কৰক"
       }
     },
-    instagram: {
-      headline: "শেহতীয়া পোষ্ট",
-      description: "দৈনিক টিপছ আৰু টিউটৰিয়েলৰ বাবে অনুসৰণ কৰক",
-      button: "Instagram ত অনুসৰণ কৰক"
+    latestVideos: {
+      headline: "শেহতীয়া ভিডিঅ’",
+      description: "Facebook পেজৰ পৰা সৰু সৰু reel আৰু practical demo চাওক (স্ক্ৰল কৰিলে তেনেহ’লে লোড হ’ব)।",
+      followFacebook: "Facebook ত অনুসৰণ কৰক",
+      followInstagram: "Instagram ত অনুসৰণ কৰক",
+      followThreads: "Threads",
+      watchOnFacebook: "Facebook ত চাওক"
     },
     news: {
       headline: "AI ত নতুন কি আছে",
