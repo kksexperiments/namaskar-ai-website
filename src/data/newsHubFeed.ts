@@ -41,7 +41,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-17",
     sourceName: "Economic Times",
     sourceUrl:
-      "https://economictimes.indiatimes.com/tech/startups/india-is-becoming-elevenlabs-key-growth-engine-as-enterprises-scale-voice-ai/articleshow/118343898.cms",
+      "https://economictimes.indiatimes.com/tech/technology/india-is-becoming-elevenlabs-key-growth-engine-as-enterprises-scale-voice-ai-ceo-mati-staniszewski/articleshow/128435783.cms/",
     titleAs: "India-ত Voice AI-ৰ গতি: enterprise-এ বৃহৎভাবে adoption আৰম্ভ কৰিছে",
     titleEn: "Voice AI Momentum in India: Enterprises Are Scaling Fast",
     summaryAs:
@@ -53,10 +53,10 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
   },
   {
     id: "india-ai-impact-summit-gpu-access-65",
-    publishedAt: "2026-02-16",
+    publishedAt: "2026-01-19",
     sourceName: "Economic Times (Govt)",
     sourceUrl:
-      "https://government.economictimes.indiatimes.com/news/digital-india/india-ai-impact-summit-2026-offers-gpu-access-at-65-per-hour/118315230",
+      "https://government.economictimes.indiatimes.com/news/digital-india/indiaai-impact-summit-2026-a-game-changer-for-global-ai-development/126666026",
     titleAs: "India AI Impact Summit 2026: ₹৬৫/GPU-ঘণ্টাত compute access — builder-সকলৰ বাবে ডাঙৰ signal",
     titleEn: "India AI Impact Summit 2026: GPU Access at ₹65/Hour",
     summaryAs:
@@ -70,7 +70,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     id: "bytedance-seedance2-safeguards",
     publishedAt: "2026-02-16",
     sourceName: "The Verge",
-    sourceUrl: "https://www.theverge.com/news/615448/bytedance-ai-video-model-seedance-2-safeguards",
+    sourceUrl: "https://www.theverge.com/ai-artificial-intelligence/879644/bytedance-seedance-safeguards-ai-video-copyright-infringement",
     titleAs: "ByteDance-ৰ Seedance 2.0: AI video tool-ত safeguard বঢ়োৱাৰ ঘোষণা",
     titleEn: "ByteDance’s Seedance 2.0: Safeguards for AI Video",
     summaryAs:
@@ -82,10 +82,10 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
   },
   {
     id: "assam-ndc-iim-guwahati-inauguration",
-    publishedAt: "2026-02-16",
-    sourceName: "Economic Times",
+    publishedAt: "2026-02-14",
+    sourceName: "ETInfra",
     sourceUrl:
-      "https://economictimes.indiatimes.com/news/india/pm-modi-inaugurates-iim-guwahati-national-data-centre-for-northeast/articleshow/118306044.cms",
+      "https://infra.economictimes.indiatimes.com/news/urban-infrastructure/pm-modi-inaugurates-iim-guwahati-national-data-centre-in-assam/128342532",
     titleAs: "অসমৰ AI ecosystem-ৰ বাবে infrastructure signal: IIM Guwahati আৰু Northeast-ৰ National Data Centre উদ্বোধন",
     titleEn: "Assam Infrastructure Signal: IIM Guwahati and a National Data Centre for the Northeast",
     summaryAs:
@@ -100,7 +100,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-15",
     sourceName: "TechCrunch",
     sourceUrl:
-      "https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai-to-build-the-next-generation-of-personal-ai-agents/",
+      "https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai/",
     titleAs: "OpenClaw creator OpenAI-ত: personal AI agent-ৰ নতুন wave কেনেকৈ গঢ় লৈছে",
     titleEn: "OpenClaw Creator Joins OpenAI: What the Next Wave of AI Agents Means",
     summaryAs:
@@ -115,7 +115,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-12",
     sourceName: "Business Standard",
     sourceUrl:
-      "https://www.business-standard.com/technology/tech-news/sarvam-ai-s-saaras-v3-sets-benchmark-in-india-s-speech-ai-landscape-126021200542_1.html",
+      "https://www.business-standard.com/technology/tech-news/saaras-v3-beats-gemini-gpt-4o-on-indian-speech-benchmarks-says-sarvam-ai-126021200384_1.html",
     titleAs: "Sarvam AI-ৰ Saaras V3: speech AI-ত নতুন benchmark — Assamese voice use-case-ৰ সম্ভাৱনা",
     titleEn: "Sarvam AI’s Saaras V3: A Speech-AI Benchmark with Regional Potential",
     summaryAs:
@@ -130,7 +130,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-11",
     sourceName: "Forbes India",
     sourceUrl:
-      "https://www.forbesindia.com/article/explainers/it-rules-ai-content-regulation-deepfakes-how-it-works/95787/1",
+      "https://www.forbesindia.com/article/news/explained-how-indias-new-it-rules-regulate-ai-content-and-deepfakes/2991279/1",
     titleAs: "AI deepfake-ত সুৰক্ষা: IT Rules update-এ আপোনাৰ বাবে কি অৰ্থ",
     titleEn: "AI Deepfakes: What India’s IT Rules Update Means in Practice",
     summaryAs:
@@ -145,7 +145,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-10",
     sourceName: "Times of India",
     sourceUrl:
-      "https://timesofindia.indiatimes.com/city/guwahati/assam-congress-files-fir-against-cm-himanta-sarma-over-alleged-ai-generated-video/articleshow/118085931.cms",
+      "https://timesofindia.indiatimes.com/city/guwahati/assam-cong-lodges-fir-against-ai-made-video-of-cm-sarma/articleshow/128171191.cms",
     titleAs: "অসমত AI-generated video বিতর্ক: verification habit কেনেকৈ গঢ়িব",
     titleEn: "Assam Deepfake Controversy: Building Stronger Verification Habits",
     summaryAs:
@@ -157,10 +157,10 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
   },
   {
     id: "data-centre-tax-parity",
-    publishedAt: "2026-02-10",
+    publishedAt: "2026-02-07",
     sourceName: "Economic Times",
     sourceUrl:
-      "https://economictimes.indiatimes.com/news/economy/policy/government-assures-equal-tax-treatment-for-data-centre-players/articleshow/118123988.cms",
+      "https://economictimes.indiatimes.com/tech/technology/domestic-and-foreign-investors-to-get-equal-tax-benefits-on-data-centres-union-minister-ashwini-vaishnaw/articleshow/128038084.cms",
     titleAs: "Data centre policy clarity: AI infrastructure-ত investment বঢ়াবলৈ কিয় সহায় কৰে",
     titleEn: "Data Centre Policy Clarity: Why It Matters for AI Infrastructure",
     summaryAs:
@@ -175,7 +175,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-10",
     sourceName: "Business Standard",
     sourceUrl:
-      "https://www.business-standard.com/technology/tech-news/sarvam-ai-beats-chatgpt-gemini-with-llm-saaras-v3-for-indian-languages-126021000616_1.html",
+      "https://www.business-standard.com/technology/tech-news/sarvam-ai-document-ocr-indic-language-benchmarks-performance-126021001082_1.html",
     titleAs: "Indic LLM race: Indian language performance উন্নতি Assam-ৰ বাবে কিয় গুৰুত্বপূর্ণ",
     titleEn: "Indic LLM Race: Why Better Indian-Language AI Matters for Assam",
     summaryAs:
@@ -190,7 +190,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-09",
     sourceName: "Yotta",
     sourceUrl:
-      "https://yotta.com/press-releases/yotta-bhashini-collaboration-enabling-sovereign-ai-cloud-india/",
+      "https://yotta.com/press-releases/yotta-and-bhashini-collaborate-to-enable-sovereign-ai-cloudshowcasing-indias-readiness-for-population-scale-ai/",
     titleAs: "Yotta x BHASHINI: Assamese ধৰণৰ ভাষাৰ AI-ৰ বাবে ecosystem signal",
     titleEn: "Yotta x BHASHINI: An Ecosystem Signal for Local-Language AI",
     summaryAs:
@@ -204,7 +204,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     id: "notion-claude-opus-4-6",
     publishedAt: "2026-02-09",
     sourceName: "Notion",
-    sourceUrl: "https://www.notion.so/releases/2026-02-09",
+    sourceUrl: "https://www.notion.com/releases",
     titleAs: "Notion-ত Claude Opus 4.6: note-to-action workflow অধিক সহজ",
     titleEn: "Claude Opus 4.6 in Notion: Faster Note-to-Action Workflows",
     summaryAs:
@@ -219,7 +219,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-02-05",
     sourceName: "TechCrunch",
     sourceUrl:
-      "https://techcrunch.com/2026/02/05/anthropic-launches-claude-opus-4-6-with-agent-teams-a-1-million-token-context-window-and-better-reasoning/",
+      "https://techcrunch.com/2026/02/05/anthropic-releases-opus-4-6-with-new-agent-teams/",
     titleAs: "Claude Opus 4.6: long-document analysis-ৰ বাবে 1M-token context",
     titleEn: "Claude Opus 4.6: 1M-Token Context for Long-Document Analysis",
     summaryAs:
@@ -234,7 +234,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-01-21",
     sourceName: "Entrepreneur",
     sourceUrl:
-      "https://www.entrepreneur.com/en-in/news-and-trends/ringg-ai-raises-15-million-in-series-a-led-by-urbane/490970",
+      "https://www.entrepreneur.com/en-in/news-and-trends/voice-ai-startup-ringg-ai-secures-usd-55-mn-series-a/502061",
     titleAs: "Ringg AI-এ Series A তুলিলে: voice AI use-case-সমূহ বাস্তৱ business value দেখুৱাইছে",
     titleEn: "Ringg AI Series A: Voice AI Is Delivering Real Business Value",
     summaryAs:
@@ -248,7 +248,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     id: "bolna-seed-funding-6-3m",
     publishedAt: "2026-01-20",
     sourceName: "Bolna",
-    sourceUrl: "https://www.bolna.ai/blog/bolna-bags-6-3-million-seed-funding",
+    sourceUrl: "https://www.bolna.ai/newsroom/bolna-bags-63-million-seed-funding-led-by-general-catalyst-to-build-indias-voice-ai-platform",
     titleAs: "Bolna-ৰ seed funding: voice agent ecosystem-ত competition বাঢ়িছে",
     titleEn: "Bolna Seed Funding: Competition in Voice Agents Is Heating Up",
     summaryAs:
@@ -263,7 +263,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     publishedAt: "2026-01-07",
     sourceName: "Outlook Business",
     sourceUrl:
-      "https://www.outlookbusiness.com/start-up/funding/voice-ai-startup-arrowhead-bags-4-mn-from-launcher-nexus-and-others",
+      "https://www.outlookbusiness.com/start-up/investors/voice-ai-start-up-arrowhead-raises-3m-led-by-stellaris-to-automate-bfsi-sales",
     titleAs: "Arrowhead funding: voice AI startup-লৈ investor আগ্ৰহ বাঢ়িছে",
     titleEn: "Arrowhead Funding: Growing Investor Interest in Voice AI",
     summaryAs:
