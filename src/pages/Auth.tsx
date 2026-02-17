@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -19,28 +18,84 @@ export const Auth = () => {
   const routeLanguage = getLanguageFromPath(location.pathname);
   const authPath = toLocalePath('/auth', routeLanguage);
   const homePath = toLocalePath('/', routeLanguage);
+  const adminPath = toLocalePath('/admin', routeLanguage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   
   // Form states
   const [loginData, setLoginData] = useState({ email: '', password: '' });
-  const [signupData, setSignupData] = useState({ 
-    email: '', 
-    password: '', 
-    confirmPassword: '',
-    fullName: ''
-  });
+  const isAssamese = routeLanguage === 'as';
+
+  const text = {
+    title: isAssamese ? "এডমিন লগিন" : "Admin Login",
+    subtitle: isAssamese
+      ? "এই পৃষ্ঠা কেবল নমস্কাৰ AI-ৰ এডমিনৰ বাবে।"
+      : "This page is only for Namaskar AI admins.",
+    cardTitle: isAssamese ? "এডমিন অথেনটিকেশ্যন" : "Admin Authentication",
+    cardDescription: isAssamese
+      ? "এডমিন পেনেল ব্যৱহাৰ কৰিবলৈ লগিন কৰক।"
+      : "Sign in to access the admin panel.",
+    email: isAssamese ? "ইমেইল" : "Email",
+    password: isAssamese ? "পাছৱাৰ্ড" : "Password",
+    emailPlaceholder: isAssamese ? "আপোনাৰ ইমেইল" : "your@email.com",
+    passwordPlaceholder: isAssamese ? "আপোনাৰ পাছৱাৰ্ড" : "Your password",
+    signIn: isAssamese ? "লগিন" : "Sign In",
+    signingIn: isAssamese ? "লগিন হৈ আছে..." : "Signing in...",
+    backHome: isAssamese ? "← ঘৰত উভতি যাওক" : "← Back to Home",
+    notAdmin: isAssamese
+      ? "এই লগিন কেবল এডমিনৰ বাবে। অনুগ্ৰহ কৰি সঠিক এডমিন ইমেইল ব্যৱহাৰ কৰক।"
+      : "This login is for admins only. Please use an admin email.",
+    invalidCreds: isAssamese
+      ? "ইমেইল বা পাছৱাৰ্ড ভুল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।"
+      : "Invalid email or password. Please check your credentials and try again.",
+    emailNotConfirmed: isAssamese
+      ? "অনুগ্ৰহ কৰি আপোনাৰ ইমেইলত গৈ একাউণ্ট confirm কৰক, তাৰ পিছত লগিন কৰক।"
+      : "Please check your email and confirm your account before logging in.",
+    unexpected: isAssamese
+      ? "কিবা সমস্যা হৈছে। অনুগ্ৰহ কৰি অলপ পাছত পুনৰ চেষ্টা কৰক।"
+      : "An unexpected error occurred. Please try again.",
+    successTitle: isAssamese ? "লগিন সফল" : "Login successful",
+    successBody: isAssamese ? "স্বাগতম!" : "Welcome back!",
+  };
+
+  const checkAdmin = async (userId: string) => {
+    try {
+      const { data, error: roleError } = await supabase
+        .from('user_roles')
+        .select('role')
+        .eq('user_id', userId)
+        .eq('role', 'admin')
+        .maybeSingle();
+
+      if (roleError) {
+        // If role lookup fails, do not block login here; the /admin page will enforce.
+        return false;
+      }
+
+      return Boolean(data);
+    } catch {
+      return false;
+    }
+  };
 
   // Check if user is already logged in
   useEffect(() => {
     const checkUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user) {
-        navigate(homePath);
+        const isAdmin = await checkAdmin(session.user.id);
+        if (isAdmin) {
+          navigate(adminPath);
+          return;
+        }
+
+        // Non-admin sessions shouldn't linger on an admin-only login surface.
+        await supabase.auth.signOut();
+        setError(text.notAdmin);
       }
     };
     checkUser();
-  }, [homePath, navigate]);
+  }, [adminPath, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,87 +103,40 @@ export const Auth = () => {
     setError('');
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email: loginData.email,
         password: loginData.password,
       });
 
       if (error) {
         if (error.message.includes('Invalid login credentials')) {
-          setError('Invalid email or password. Please check your credentials and try again.');
+          setError(text.invalidCreds);
         } else if (error.message.includes('Email not confirmed')) {
-          setError('Please check your email and confirm your account before logging in.');
+          setError(text.emailNotConfirmed);
         } else {
           setError(error.message);
         }
         return;
       }
 
-      toast({
-        title: "Login successful",
-        description: "Welcome back!",
-      });
-
-      navigate(homePath);
-    } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
-
-    // Validate form
-    if (signupData.password !== signupData.confirmPassword) {
-      setError('Passwords do not match');
-      setLoading(false);
-      return;
-    }
-
-    if (signupData.password.length < 6) {
-      setError('Password must be at least 6 characters long');
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const redirectUrl = `${window.location.origin}${homePath}`;
-      
-      const { error } = await supabase.auth.signUp({
-        email: signupData.email,
-        password: signupData.password,
-        options: {
-          emailRedirectTo: redirectUrl,
-          data: {
-            full_name: signupData.fullName,
-          }
+      const userId = data?.user?.id ?? data?.session?.user?.id;
+      if (userId) {
+        const isAdmin = await checkAdmin(userId);
+        if (!isAdmin) {
+          await supabase.auth.signOut();
+          setError(text.notAdmin);
+          return;
         }
-      });
-
-      if (error) {
-        if (error.message.includes('User already registered')) {
-          setError('An account with this email already exists. Please try logging in instead.');
-        } else if (error.message.includes('Password should be at least')) {
-          setError('Password must be at least 6 characters long.');
-        } else {
-          setError(error.message);
-        }
-        return;
       }
 
       toast({
-        title: "Account created successfully",
-        description: "Please check your email to confirm your account.",
+        title: text.successTitle,
+        description: text.successBody,
       });
 
-      // Clear form
-      setSignupData({ email: '', password: '', confirmPassword: '', fullName: '' });
+      navigate(adminPath);
     } catch (err) {
-      setError('An unexpected error occurred. Please try again.');
+      setError(text.unexpected);
     } finally {
       setLoading(false);
     }
@@ -138,7 +146,7 @@ export const Auth = () => {
     <>
       <Seo
         title={routeLanguage === 'as' ? "অথেনটিকেশ্যন | নমস্কাৰ AI" : "Authentication | Namaskar AI"}
-        description={routeLanguage === 'as' ? "লগিন/চাইনআপ (private route)." : "Login and signup (private route)."}
+        description={routeLanguage === 'as' ? "এডমিন লগিন (private route)." : "Admin login (private route)."}
         path={authPath}
         language={routeLanguage}
         robots="noindex, nofollow"
@@ -146,132 +154,58 @@ export const Auth = () => {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20 p-4">
         <div className="w-full max-w-md">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-foreground mb-2">Welcome</h1>
-            <p className="text-muted-foreground">Sign in to access the admin panel</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">{text.title}</h1>
+            <p className="text-muted-foreground">{text.subtitle}</p>
           </div>
 
           <Card className="border-border/50 shadow-lg">
           <CardHeader className="text-center">
-            <CardTitle>Authentication</CardTitle>
-            <CardDescription>
-              Login to your account or create a new one
-            </CardDescription>
+            <CardTitle>{text.cardTitle}</CardTitle>
+            <CardDescription>{text.cardDescription}</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="login" className="w-full">
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="login">Login</TabsTrigger>
-                <TabsTrigger value="signup">Sign Up</TabsTrigger>
-              </TabsList>
+            {error && (
+              <Alert variant="destructive" className="mb-4">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-              {error && (
-                <Alert variant="destructive" className="mt-4">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
-
-              <TabsContent value="login">
-                <form onSubmit={handleLogin} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="login-email">Email</Label>
-                    <Input
-                      id="login-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      value={loginData.email}
-                      onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="login-password">Password</Label>
-                    <Input
-                      id="login-password"
-                      type="password"
-                      placeholder="Your password"
-                      value={loginData.password}
-                      onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Signing in...
-                      </>
-                    ) : (
-                      'Sign In'
-                    )}
-                  </Button>
-                </form>
-              </TabsContent>
-
-              <TabsContent value="signup">
-                <form onSubmit={handleSignup} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-name">Full Name</Label>
-                    <Input
-                      id="signup-name"
-                      type="text"
-                      placeholder="Your full name"
-                      value={signupData.fullName}
-                      onChange={(e) => setSignupData({ ...signupData, fullName: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-email">Email</Label>
-                    <Input
-                      id="signup-email"
-                      type="email"
-                      placeholder="your@email.com"
-                      value={signupData.email}
-                      onChange={(e) => setSignupData({ ...signupData, email: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-password">Password</Label>
-                    <Input
-                      id="signup-password"
-                      type="password"
-                      placeholder="Choose a password (min. 6 characters)"
-                      value={signupData.password}
-                      onChange={(e) => setSignupData({ ...signupData, password: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="signup-confirm">Confirm Password</Label>
-                    <Input
-                      id="signup-confirm"
-                      type="password"
-                      placeholder="Confirm your password"
-                      value={signupData.confirmPassword}
-                      onChange={(e) => setSignupData({ ...signupData, confirmPassword: e.target.value })}
-                      required
-                      disabled={loading}
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={loading}>
-                    {loading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Creating account...
-                      </>
-                    ) : (
-                      'Create Account'
-                    )}
-                  </Button>
-                </form>
-              </TabsContent>
-            </Tabs>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="login-email">{text.email}</Label>
+                <Input
+                  id="login-email"
+                  type="email"
+                  placeholder={text.emailPlaceholder}
+                  value={loginData.email}
+                  onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
+                  required
+                  disabled={loading}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="login-password">{text.password}</Label>
+                <Input
+                  id="login-password"
+                  type="password"
+                  placeholder={text.passwordPlaceholder}
+                  value={loginData.password}
+                  onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
+                  required
+                  disabled={loading}
+                />
+              </div>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    {text.signingIn}
+                  </>
+                ) : (
+                  text.signIn
+                )}
+              </Button>
+            </form>
 
             <div className="mt-6 text-center">
               <Button 
@@ -279,7 +213,7 @@ export const Auth = () => {
                 onClick={() => navigate(homePath)}
                 className="text-sm text-muted-foreground"
               >
-                ← Back to Home
+                {text.backHome}
               </Button>
             </div>
           </CardContent>

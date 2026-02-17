@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Globe, ChevronDown, User, Sparkles, Menu } from "lucide-react";
+import { Globe, ChevronDown, Sparkles, Menu } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Content, Language } from "@/types/language";
 import { useAuth } from "@/hooks/useAuth";
@@ -33,9 +33,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const homePath = toLocalePath("/", currentLanguage);
   const adminPath = toLocalePath("/admin", currentLanguage);
-  const authPath = toLocalePath("/auth", currentLanguage);
   const adminLabel = currentLanguage === "as" ? "এডমিন পেনেল" : "Admin Panel";
-  const signInLabel = currentLanguage === "as" ? "চাইন ইন" : "Sign In";
   const welcomeLabel = currentLanguage === "as" ? "স্বাগতম" : "Welcome";
   const openMenuLabel = currentLanguage === "as" ? "মেনু" : "Menu";
   const mobileMenuTitle = currentLanguage === "as" ? "মেনু" : "Navigation";
@@ -159,23 +157,12 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
               </Link>
             )}
 
-            {/* Auth Button */}
-            {!user ? (
-              <Link to={authPath}>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-primary/30 hover:bg-primary/10"
-                >
-                  <User className="w-4 h-4 mr-2" />
-                  <span className="hidden sm:inline">{signInLabel}</span>
-                </Button>
-              </Link>
-            ) : (
+            {/* Admin-only: don't show auth entry points publicly */}
+            {user && isAdmin ? (
               <span className="hidden text-sm text-muted-foreground sm:inline">
                 {welcomeLabel}, {user.email?.split("@")[0]}
               </span>
-            )}
+            ) : null}
 
             {/* Language Toggle */}
             <DropdownMenu>

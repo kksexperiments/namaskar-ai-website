@@ -104,9 +104,11 @@ const Admin = () => {
   }, [toast]);
 
   useEffect(() => {
+    if (authLoading) return;
+    if (!user || !isAdmin) return;
     void fetchArticles();
     void fetchCategories();
-  }, [fetchArticles, fetchCategories]);
+  }, [authLoading, fetchArticles, fetchCategories, isAdmin, user]);
 
   const generateSlug = (title: string) => {
     return title
