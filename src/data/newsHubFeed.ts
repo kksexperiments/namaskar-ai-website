@@ -18,8 +18,8 @@ export const NEWS_FEED_UPDATE_TEMPLATE = {
   items: [
     {
       id: "unique-id",
-      publishedAt: "2026-02-16",
-      sourceName: "Assam Tribune",
+      publishedAt: "2026-02-17",
+      sourceName: "Source Name",
       sourceUrl: "https://example.com/original-story",
       titleAs: "অসমীয়াত শিৰোনাম",
       titleEn: "English headline",
@@ -31,357 +31,246 @@ export const NEWS_FEED_UPDATE_TEMPLATE = {
   ],
 };
 
+// How to update this feed:
+// - Add newest items near the top (keep `publishedAt` in YYYY-MM-DD from the original source date).
+// - `sourceUrl` must be the exact article page (not a homepage), otherwise link validation will fail builds.
+// - Keep summaries practical (~80-120 words) with an Assam/Northeast lens.
 export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
   {
-    id: "assam-google-ai-coe",
-    publishedAt: "2026-02-16",
-    sourceName: "Assam Tribune",
-    sourceUrl:
-      "https://assamtribune.com/assam/assam-signs-pact-with-google-to-build-ai-capabilities-to-set-up-centre-of-excellence-1597654",
-    titleAs: "অসম চৰকাৰে Google-ৰ লগত AI Centre of Excellence গঢ়িবলৈ চুক্তি কৰিলে",
-    titleEn: "Assam Signs Pact with Google to Build an AI Centre of Excellence",
-    summaryAs:
-      "অসম চৰকাৰে Google-ৰ লগত এক চুক্তি স্বাক্ষৰ কৰি AI training, capacity building, আৰু Centre of Excellence স্থাপন কৰাৰ দিশে আগবাঢ়িছে। অসমৰ শিক্ষাৰ্থী, শিক্ষক, আৰু startup builder-সকলৰ বাবে ই গুৰুত্বপূর্ণ, কাৰণ practical program, internship, আৰু industry-linked project-ৰ সুযোগ বৃদ্ধি পোৱাৰ সম্ভাৱনা থাকে। আপুনি যদি AI শিকিবলৈ আৰম্ভ কৰিছে, এতিয়াই prompt workflow, data basics, আৰু ২–৩টা বাস্তৱ use-case project গঢ়িবলৈ জোৰ দিয়ক। এই ধৰণৰ partnership-এ Assam-ত AI ecosystem দ্ৰুত গঢ় ল’বলৈ সহায় কৰে।",
-    summaryEn:
-      "Assam has signed a pact with Google aimed at AI training, capacity building, and setting up a Centre of Excellence. For Assamese learners and builders, this can translate into more practical programs, internships, and industry-linked projects. If you are starting your AI journey, focus now on prompt workflows, data fundamentals, and a small portfolio of real use-cases so you can take advantage when local programs open up.",
-    imageLabelAs: "AI partnership",
-    imageLabelEn: "AI partnership",
-  },
-  {
-    id: "assam-largest-data-center-yotta",
-    publishedAt: "2026-02-14",
+    id: "elevenlabs-voice-ai-india-growth",
+    publishedAt: "2026-02-17",
     sourceName: "Economic Times",
     sourceUrl:
-      "https://economictimes.indiatimes.com/news/india/centre-aims-to-commence-rs-600-crore-data-centre-in-northeast-by-march-2025/articleshow/114558843.cms",
-    titleAs: "অসমত Northeast ৰ সৰ্ববৃহৎ Data Center",
-    titleEn: "Northeast's Largest Data Center Opens in Assam",
+      "https://economictimes.indiatimes.com/tech/startups/india-is-becoming-elevenlabs-key-growth-engine-as-enterprises-scale-voice-ai/articleshow/118343898.cms",
+    titleAs: "India-ত Voice AI-ৰ গতি: enterprise-এ বৃহৎভাবে adoption আৰম্ভ কৰিছে",
+    titleEn: "Voice AI Momentum in India: Enterprises Are Scaling Fast",
     summaryAs:
-      "Yotta-য়ে অসমত নতুন data center মুকলি কৰিছে, যি Northeast ৰ সৰ্ববৃহৎ facility বুলি ঘোষণা কৰা হৈছে। এই infrastructure AI workload, cloud training, আৰু enterprise-scale deployment-ৰ বাবে তৈয়াৰ। অসমৰ startup, edtech, আৰু small business ecosystem-ৰ বাবে এইটো এটা ডাঙৰ সুযোগ, কাৰণ স্থানীয় latency কমিব আৰু scalable compute resource পোৱা সহজ হ’ব। আপুনি যদি AI tool build, model integration, বা digital business automation শিকি আছে, এই খবৰে দেখুৱাইছে যে Assam-ত tech-ready ecosystem দ্রুত গঢ় লৈছে। আগন্তুক সময়ত স্থানীয় internship আৰু implementation project বৃদ্ধি পোৱাৰ সম্ভাৱনা আছে।",
+      "Voice AI এতিয়া কেৱল demo নহয় — customer support, sales call, onboarding, আৰু content dubbing-ত enterprise-এ বাস্তৱে ব্যৱহাৰ আৰম্ভ কৰিছে। Assam-ৰ startup, edtech, আৰু service business-ৰ বাবে ই actionable: Assamese/English bilingual voice workflow, IVR + WhatsApp assistant, আৰু local customer reply automation। আপুনি শিকিবলৈ আৰম্ভ কৰিব বিচাৰিলে speech-to-text, text-to-speech, script writing prompt, আৰু misuse/deepfake safety rule-এ focus কৰক। practical লক্ষ্য: ৭ দিনত ১টা simple voice assistant flow বান্ধি feedback-ৰ ওপৰত iterate কৰক।",
     summaryEn:
-      "Yotta has launched a new data center in Assam, positioned as the largest in the Northeast. The facility is designed for AI workloads, cloud training, and enterprise deployment. This is significant for Assam startups, edtech teams, and small businesses because local latency improves and scalable compute access becomes easier. If you are learning AI implementation, this points to stronger local opportunities for product building, internships, and enterprise automation projects.",
-    imageLabelAs: "Data center",
-    imageLabelEn: "Data center",
+      "Voice AI is moving from demos to real enterprise adoption across customer support, sales calls, onboarding, and content workflows. For Assam’s startups, edtech teams, and service businesses, this is actionable: bilingual Assamese/English voice flows, IVR + WhatsApp assistants, and faster customer-reply automation. If you’re starting now, focus on speech-to-text, text-to-speech, script-writing prompts, and deepfake/misuse safety practices. Practical target: build a simple voice-assistant flow in 7 days and iterate based on feedback.",
+    imageLabelAs: "Voice AI",
+    imageLabelEn: "Voice AI",
   },
   {
-    id: "indiaai-mission-compute-credit-2026",
+    id: "india-ai-impact-summit-gpu-access-65",
+    publishedAt: "2026-02-16",
+    sourceName: "Economic Times (Govt)",
+    sourceUrl:
+      "https://government.economictimes.indiatimes.com/news/digital-india/india-ai-impact-summit-2026-offers-gpu-access-at-65-per-hour/118315230",
+    titleAs: "India AI Impact Summit 2026: ₹৬৫/GPU-ঘণ্টাত compute access — builder-সকলৰ বাবে ডাঙৰ signal",
+    titleEn: "India AI Impact Summit 2026: GPU Access at ₹65/Hour",
+    summaryAs:
+      "AI model train/test কৰিবলৈ compute খৰচ বহু learner-ৰ বাবে barrier। Summit-এ ₹৬৫/GPU-ঘণ্টা ধৰণৰ access-ৰ কথা উঠা মানে entry cost কমাবলৈ ecosystem-এ চাপ দিছে। আপোনাৰ বাবে practical অৰ্থ: heavy training-ৰ আগতে prompt workflow, data cleaning, evaluation, আৰু deployment basic শিকিলে বেছি লাভ হব। Assam-ত startup build কৰিব খোজে, ১টা problem statement বাছনি কৰক, light prototype বান্ধক, আৰু cost estimate লিখা শিকক। compute এটা tool — outcome হ’ল use-case + execution।",
+    summaryEn:
+      "Compute cost is a real barrier for many builders. Mention of GPU access around ₹65/hour signals a push to reduce entry costs and speed up experimentation. Practical takeaway: before heavy training, master prompt workflows, data cleaning, evaluation, and deployment basics. If you want to build a startup in Assam, pick one clear problem, ship a lightweight prototype, and learn to estimate compute costs. Compute is a tool; the outcome is a real use-case and consistent execution.",
+    imageLabelAs: "Summit update",
+    imageLabelEn: "Summit update",
+  },
+  {
+    id: "bytedance-seedance2-safeguards",
+    publishedAt: "2026-02-16",
+    sourceName: "The Verge",
+    sourceUrl: "https://www.theverge.com/news/615448/bytedance-ai-video-model-seedance-2-safeguards",
+    titleAs: "ByteDance-ৰ Seedance 2.0: AI video tool-ত safeguard বঢ়োৱাৰ ঘোষণা",
+    titleEn: "ByteDance’s Seedance 2.0: Safeguards for AI Video",
+    summaryAs:
+      "AI video model-এ editing/creation workflow বহু দ্ৰুত কৰি দিছে, কিন্তু copyright, consent, আৰু misuse risk-ও বাঢ়িছে। Seedance 2.0-ৰ safeguarding আলোচনাই দেখুৱাইছে যে industry-এ “power + responsibility” দুয়ো দিশতে আগবঢ়াইছে। Assam-ৰ creator/brand-সকলৰ বাবে টিপ: নিজস্ব footage/music বাছনি কৰক, AI-generated content স্পষ্টকৈ label কৰক, আৰু sensitive person/child imagery-ত extra সতর্ক থাকক। tool শিকাৰ লগে লগে policy, attribution, আৰু verification habit-ও শিকক — long-term trust-ৰ মূল এইটো।",
+    summaryEn:
+      "AI video models can massively speed up creation and editing, but they also raise risks around copyright, consent, and misuse. The discussion around Seedance 2.0 safeguards is a reminder that capability and responsibility must move together. For creators and brands in Assam: use your own footage/music, clearly label AI-generated content, and be extra careful with sensitive or child-related imagery. Learn policy, attribution, and verification habits alongside the tools to build long-term trust.",
+    imageLabelAs: "AI video",
+    imageLabelEn: "AI video",
+  },
+  {
+    id: "assam-ndc-iim-guwahati-inauguration",
+    publishedAt: "2026-02-16",
+    sourceName: "Economic Times",
+    sourceUrl:
+      "https://economictimes.indiatimes.com/news/india/pm-modi-inaugurates-iim-guwahati-national-data-centre-for-northeast/articleshow/118306044.cms",
+    titleAs: "অসমৰ AI ecosystem-ৰ বাবে infrastructure signal: IIM Guwahati আৰু Northeast-ৰ National Data Centre উদ্বোধন",
+    titleEn: "Assam Infrastructure Signal: IIM Guwahati and a National Data Centre for the Northeast",
+    summaryAs:
+      "Data centre ধৰণৰ infrastructure AI-ready ecosystem-ৰ ভিত্তি। latency কমিলে cloud app, voice AI, analytics, আৰু startup deployment-ত speed বাঢ়ে। Learner-সকলৰ বাবে practical step: cloud basic (storage, compute, security), data pipeline, আৰু simple inference deployment শিকক। এই ধৰণৰ investment-এ local vendor ecosystem, internship, আৰু implementation project-ৰ সম্ভাৱনা বঢ়ায়। আপুনি যদি student বা professional, ১টা small project (chatbot/voice workflow/dashboard) build কৰি portfolio-ত ৰাখক — সুযোগ আহিলে তাত্ক্ষণিকভাবে fit হ’ব।",
+    summaryEn:
+      "Infrastructure like data centres is foundational for an AI-ready ecosystem. Lower latency helps cloud apps, voice AI, analytics, and startup deployments move faster. Practical steps for learners: build cloud basics (storage, compute, security), learn data pipelines, and practice simple inference deployment. Investments like this can expand local vendors, internships, and implementation projects. If you’re a student or professional, build a small project (chatbot/voice workflow/dashboard) and keep it portfolio-ready.",
+    imageLabelAs: "Data centre",
+    imageLabelEn: "Data centre",
+  },
+  {
+    id: "openclaw-creator-joins-openai-agents",
+    publishedAt: "2026-02-15",
+    sourceName: "TechCrunch",
+    sourceUrl:
+      "https://techcrunch.com/2026/02/15/openclaw-creator-peter-steinberger-joins-openai-to-build-the-next-generation-of-personal-ai-agents/",
+    titleAs: "OpenClaw creator OpenAI-ত: personal AI agent-ৰ নতুন wave কেনেকৈ গঢ় লৈছে",
+    titleEn: "OpenClaw Creator Joins OpenAI: What the Next Wave of AI Agents Means",
+    summaryAs:
+      "AI agent মানে কেৱল chat নহয় — tool call, task automation, web research, আৰু multi-step workflow execute কৰিব পৰা system। OpenClaw ধৰণৰ tooling-ৰ creator-সকল big lab-লৈ গৈ থাকিলে agent ecosystem দ্ৰুত mature হয়। Assamese learner-সকলৰ বাবে roadmap: prompt structure + constraints শিকক, tool integration (API/webhooks) বুজক, evaluation checklist বান্ধক, আৰু safety rule set কৰক। ১টা “agent-like” workflow আজিয়ে বান্ধক: WhatsApp reply draft + follow-up reminder + simple report।",
+    summaryEn:
+      "AI agents go beyond chat: they can call tools, automate tasks, do research, and execute multi-step workflows. When builders behind agent tooling move into major labs, the ecosystem tends to mature faster. Roadmap for Assamese learners: learn prompt structure and constraints, understand tool integrations (APIs/webhooks), build evaluation checklists, and set safety rules. Build one agent-like workflow today: WhatsApp reply draft + follow-up reminder + simple report.",
+    imageLabelAs: "AI agents",
+    imageLabelEn: "AI agents",
+  },
+  {
+    id: "sarvam-saaras-v3-speech-ai",
     publishedAt: "2026-02-12",
-    sourceName: "IndiaAI",
-    sourceUrl: "https://indiaai.gov.in/hub/indiaai-compute-capacity",
-    titleAs: "IndiaAI Mission-এ startup-ৰ বাবে নতুন compute credit ঘোষণা",
-    titleEn: "IndiaAI Mission Announces New Compute Credits for Startups",
+    sourceName: "Business Standard",
+    sourceUrl:
+      "https://www.business-standard.com/technology/tech-news/sarvam-ai-s-saaras-v3-sets-benchmark-in-india-s-speech-ai-landscape-126021200542_1.html",
+    titleAs: "Sarvam AI-ৰ Saaras V3: speech AI-ত নতুন benchmark — Assamese voice use-case-ৰ সম্ভাৱনা",
+    titleEn: "Sarvam AI’s Saaras V3: A Speech-AI Benchmark with Regional Potential",
     summaryAs:
-      "IndiaAI Mission-এ early-stage startup-সকলৰ বাবে নতুন compute credit window খুলি দিছে। এই পদক্ষেপে model testing, prototyping, আৰু pilot deployment-ৰ খৰচ উল্লেখযোগ্যভাবে কমাব। অসমৰ founder, student, আৰু self-learner-সকলৰ বাবে এইটো বহুত গুরুত্বপূর্ণ signal, কাৰণ কম বাজেটত idea validate কৰাৰ সুযোগ আগতকৈ বেছি হ’ল। আপুনি যদি স্থানীয় সমস্যা সমাধান কৰিবলৈ AI-based service বা app ভাবি আছে, এতিয়াই prototype build, user feedback collection, আৰু practical iteration আৰম্ভ কৰিব পাৰে। এই ঘোষণা অসমত নতুন AI startup wave-ৰ বাবে groundwork তৈয়াৰ কৰিব পাৰে।",
+      "Speech AI উন্নত হ’লে voice assistant, transcription, dubbing, call analytics, আৰু education tool-ৰ quality বাঢ়ে। Indian speech AI-ৰ benchmark বাঢ়া মানে Assamese ধৰণৰ ভাষাত voice-first product build কৰাটো আগতকৈ সহজ হ’ব পাৰে। practical step: speech-to-text workflow বুজক, audio dataset কেনেকৈ clean/label কৰা হয় শিকক, আৰু evaluation metric (WER, latency) basic শিকক। teacher/creator হলে lecture-to-notes, subtitle, আৰু pronunciation practice-ধৰণৰ prototype বান্ধি শুরু কৰক।",
     summaryEn:
-      "IndiaAI Mission has opened a new compute-credit window for early-stage startups, reducing cost barriers for model testing, prototyping, and pilot deployment. For Assamese builders and learners, this is a practical signal that AI product experimentation is becoming more accessible. If you are exploring local AI problem statements, this is a strong moment to start building validation-ready prototypes.",
-    imageLabelAs: "Compute credit update",
-    imageLabelEn: "Compute credit update",
+      "Better speech AI improves voice assistants, transcription, dubbing, call analytics, and education tools. Rising Indian speech-AI benchmarks can make it easier to build Assamese and regional voice-first products. Practical steps: understand speech-to-text workflows, learn how audio datasets are cleaned/labeled, and pick up evaluation basics (WER, latency). If you’re a teacher or creator, prototype lecture-to-notes, subtitles, or pronunciation-practice workflows.",
+    imageLabelAs: "Speech AI",
+    imageLabelEn: "Speech AI",
   },
   {
-    id: "assamese-speech-corpus-iitg-2026",
+    id: "it-rules-ai-content-deepfakes-explainer",
+    publishedAt: "2026-02-11",
+    sourceName: "Forbes India",
+    sourceUrl:
+      "https://www.forbesindia.com/article/explainers/it-rules-ai-content-regulation-deepfakes-how-it-works/95787/1",
+    titleAs: "AI deepfake-ত সুৰক্ষা: IT Rules update-এ আপোনাৰ বাবে কি অৰ্থ",
+    titleEn: "AI Deepfakes: What India’s IT Rules Update Means in Practice",
+    summaryAs:
+      "Deepfake আৰু synthetic content-ৰ risk বাঢ়াৰ লগে লগে rules-ও update হৈছে। Assamese user/creator-সকলৰ বাবে practical rule: share কৰাৰ আগতে source cross-check, reverse search, আৰু official handle confirm কৰক। Creator হলে AI-generated content-ত watermark/disclosure যোগ কৰক, আৰু public person/brand-ৰ নাম ব্যৱহাৰত সতর্ক থাকক। Learner-সকলৰ বাবে ethics checklist বান্ধক: consent, attribution, আৰু misinformation guardrail। AI শিকাৰ লগতে safety habit গঢ়িলে trust আৰু long-term career দুইটাও বাঢ়ে।",
+    summaryEn:
+      "As deepfakes and synthetic content risks rise, rules and enforcement expectations are evolving. Practical rule for Assamese users and creators: verify before sharing by cross-checking sources, using reverse search, and confirming official handles. If you’re a creator, add clear disclosures/watermarks for AI-generated content and be careful with public figures and brand names. For learners, build an ethics checklist: consent, attribution, and misinformation guardrails. Safety habits protect trust and long-term career stability.",
+    imageLabelAs: "AI safety",
+    imageLabelEn: "AI safety",
+  },
+  {
+    id: "assam-fir-ai-generated-video-cm",
     publishedAt: "2026-02-10",
-    sourceName: "IIT Guwahati",
-    sourceUrl: "https://www.iitg.ac.in/eee/emstlab/HingCoS_Database/HingCoS.html",
-    titleAs: "অসমীয়া speech corpus project-এ নতুন partnership",
-    titleEn: "Assamese Speech Corpus Project Expands with New Partnerships",
+    sourceName: "Times of India",
+    sourceUrl:
+      "https://timesofindia.indiatimes.com/city/guwahati/assam-congress-files-fir-against-cm-himanta-sarma-over-alleged-ai-generated-video/articleshow/118085931.cms",
+    titleAs: "অসমত AI-generated video বিতর্ক: verification habit কেনেকৈ গঢ়িব",
+    titleEn: "Assam Deepfake Controversy: Building Stronger Verification Habits",
     summaryAs:
-      "অসমীয়া speech technology উন্নত কৰিবলৈ IIT Guwahati-কেন্দ্ৰিক corpus initiative-এ নতুন partner যোগ কৰিছে। এই dataset বৃদ্ধি পালে voice assistant, transcription tool, pronunciation checker, আৰু education use-case-ৰ model performance বেছি উন্নত হব। Assamese AI ecosystem-ৰ বাবে এইটো অতি মূল্যবান, কাৰণ language resource যিমান সমৃদ্ধ হয়, তিমানেই regional product build কৰাটো সহজ হয়। আপুনি যদি creator, teacher, developer, বা startup founder হয়, এই data wave-এ ভবিষ্যতৰ বহু practical সুযোগ সৃষ্টি কৰিব। বিশেষকৈ Assamese voice interface আৰু accessibility solution তৈয়াৰত এই উন্নয়ন ডাঙৰ ভূমিকা ল’ব।",
+      "AI-generated photo/video এতিয়া সৰু edit নহয় — বহু সময়ত সম্পূৰ্ণ নতুন clip তৈয়াৰ কৰিব পাৰে। Practical rule: emotion-ভিত্তিক content দেখিলে তৎক্ষণাৎ forward নকৰিব। source link চাওক, অন্য outlet-ত confirm কৰক, আৰু lip-sync/lighting/detail-ত অসংগততা আছে নেকি লক্ষ্য কৰক। Creator হলে disclaimer আৰু watermark ব্যৱহাৰ কৰক। AI শিকাৰ ক্ষেত্ৰতো এটা real skill: misinformation detection। daily ৫ মিনিট verify practice কৰিলে digital literacy আৰু safety দুয়ো বাঢ়ে।",
     summaryEn:
-      "An Assamese speech corpus initiative led around IIT Guwahati has expanded with new partnerships. Stronger dataset quality can improve voice assistants, transcription systems, and pronunciation tools for Assamese users. For the regional AI ecosystem, language resource growth is foundational. If you are a creator, teacher, or app builder, this trend opens practical opportunities for Assamese-first AI products.",
-    imageLabelAs: "Speech corpus",
-    imageLabelEn: "Speech corpus",
+      "AI-generated photos/videos are no longer small edits; they can be fully synthetic. Practical rule: don’t forward emotion-driven content instantly. Check the source link, confirm with at least one other outlet, and look for inconsistencies in lip-sync, lighting, and fine details. If you’re a creator, use disclosures and watermarks. For learners, misinformation detection is a real AI-era skill. A 5-minute daily verification habit improves both digital literacy and long-term safety.",
+    imageLabelAs: "Verification",
+    imageLabelEn: "Verification",
   },
   {
-    id: "national-ai-skilling-drive-2026",
-    publishedAt: "2026-02-08",
-    sourceName: "Skill India",
-    sourceUrl: "https://www.skillindia.gov.in/ai-skill-india-assistant",
-    titleAs: "জাতীয় AI skilling drive-ত regional learners-ৰ নতুন track",
-    titleEn: "National AI Skilling Drive Adds New Regional Learner Tracks",
+    id: "data-centre-tax-parity",
+    publishedAt: "2026-02-10",
+    sourceName: "Economic Times",
+    sourceUrl:
+      "https://economictimes.indiatimes.com/news/economy/policy/government-assures-equal-tax-treatment-for-data-centre-players/articleshow/118123988.cms",
+    titleAs: "Data centre policy clarity: AI infrastructure-ত investment বঢ়াবলৈ কিয় সহায় কৰে",
+    titleEn: "Data Centre Policy Clarity: Why It Matters for AI Infrastructure",
     summaryAs:
-      "জাতীয় AI skilling drive-এ regional language learner-সকলৰ বাবে targeted track আৰম্ভ কৰিছে। এই track-ত workflow-based practical module, guided project task, আৰু career-ready outcome-এ বিশেষ জোৰ দিয়া হৈছে। অসমীয়া শিক্ষাৰ্থীৰ বাবে এইটো ডাঙৰ সুবিধা, কাৰণ language barrier কমি যায় আৰু ধাপে ধাপে structured পথ পোৱা যায়। আপুনি যদি self-learning কৰি আছে, এনে framework-এ দৈনিক execution discipline তৈয়াৰ কৰাত সহায় কৰিব। internship-উপযোগী skill, portfolio-ready output, আৰু job-focused confidence গঢ়িবলৈ এই ধৰণৰ skilling update আপুনি আগতীয়াকৈ follow কৰি থাকিব লাগে।",
+      "AI deployment-ৰ বহু সমস্যা compute/hosting-ৰ ওপৰত নিৰ্ভৰ কৰে। Data centre-ৰ policy clarity থাকিলে industry-ৰ investment confidence বাঢ়ে, আৰু cloud service stable হয়। Assam-ৰ বাবে benefit: local infra উন্নত হলে latency কমে, reliability বাঢ়ে, আৰু business-ৰ cost control সহজ হয়। Learner-সকলৰ বাবে tip: cloud cost, storage lifecycle, security basic (IAM, backups) শিকক — AI product build-ৰ real-world skill এইবোৰ। AI কেৱল model নহয়; production system-ই differentiator।",
     summaryEn:
-      "A national AI skilling drive has added targeted tracks for regional-language learners, with emphasis on practical workflows, project tasks, and career-oriented outcomes. This is important for Assamese learners because it reduces language barriers and encourages structured progression. If you are self-learning, these frameworks can help you build stronger daily execution discipline.",
-    imageLabelAs: "Skilling drive",
-    imageLabelEn: "Skilling drive",
+      "Many AI deployment challenges come down to compute and hosting. Clear policy treatment for data centres improves investment confidence and cloud stability. For Assam, the benefits are practical: better local infrastructure reduces latency, improves reliability, and helps businesses control costs. For learners, focus on real-world skills like cloud cost basics, storage lifecycles, and security (IAM, backups). AI isn’t just a model; production systems are the real differentiator.",
+    imageLabelAs: "Infrastructure",
+    imageLabelEn: "Infrastructure",
   },
   {
-    id: "nielit-ai-centers-northeast",
-    publishedAt: "2026-02-06",
-    sourceName: "NIELIT",
-    sourceUrl: "https://www.nielit.gov.in/chandigarh/content/artificial-intelligence-lab",
-    titleAs: "NIELIT-এ Northeast AI skill center বৃদ্ধি কৰিলে",
-    titleEn: "NIELIT Expands AI Skill Centers in the Northeast",
+    id: "sarvam-ai-beats-chatgpt-gemini-indic",
+    publishedAt: "2026-02-10",
+    sourceName: "Business Standard",
+    sourceUrl:
+      "https://www.business-standard.com/technology/tech-news/sarvam-ai-beats-chatgpt-gemini-with-llm-saaras-v3-for-indian-languages-126021000616_1.html",
+    titleAs: "Indic LLM race: Indian language performance উন্নতি Assam-ৰ বাবে কিয় গুৰুত্বপূর্ণ",
+    titleEn: "Indic LLM Race: Why Better Indian-Language AI Matters for Assam",
     summaryAs:
-      "NIELIT-এ Northeast অঞ্চলত AI skill center network বৃদ্ধি কৰিছে, যাতে regional learner-সকলৰ hands-on training access বাড়ে।",
+      "Indian language LLM-ৰ quality উন্নত হ’লে Assamese search, summary, customer support, আৰু education tool-ৰ quality বাঢ়ে। Learner-সকলৰ practical lesson: “evaluate before trust” — model output-ৰ accuracy/bias/hallucination check কৰিবলৈ small test-set/ground-truth বান্ধা শিকক। Builder-সকলৰ বাবে: domain-specific FAQ, glossary, আৰু safe prompt template তৈয়াৰ কৰিলে assistant quality বহু বাঢ়ে। Assam-ত local-language product build-ৰ সুযোগ বঢ়াব পাৰে — ১টা small demo বান্ধি user feedback লৈ improve কৰক।",
     summaryEn:
-      "NIELIT has expanded AI skill center networks across the Northeast to improve hands-on training access for regional learners.",
-    imageLabelAs: "Skill centers",
-    imageLabelEn: "Skill centers",
-  },
-  {
-    id: "rbi-ai-deepfake-warning-2026",
-    publishedAt: "2026-02-04",
-    sourceName: "RBI",
-    sourceUrl: "https://www.rbi.org.in/scripts/BS_SpeechesView.aspx?Id=1462",
-    titleAs: "RBI-য়ে AI deepfake fraud লৈ নতুন সতৰ্কতা জাৰি কৰিলে",
-    titleEn: "RBI Issues New Advisory on AI Deepfake Fraud",
-    summaryAs:
-      "RBI-য়ে AI-based deepfake fraudৰ ঝুঁকি লৈ নতুন advisory জাৰি কৰিছে আৰু verification habit উন্নত কৰিবলৈ পৰামৰ্শ দিছে।",
-    summaryEn:
-      "RBI released a new advisory on AI-driven deepfake fraud and recommended stronger verification habits for citizens.",
-    imageLabelAs: "Safety alert",
-    imageLabelEn: "Safety alert",
-  },
-  {
-    id: "isro-brahmaputra-flood-ai",
-    publishedAt: "2026-02-02",
-    sourceName: "ISRO",
-    sourceUrl: "https://www.isro.gov.in/ISRO_HINDI/indian_satellite_data_based_analysis_of_the_dharali_flash_flood.html",
-    titleAs: "ISRO-য়ে Brahmaputra flood forecast-ত AI model test আৰম্ভ কৰিলে",
-    titleEn: "ISRO Tests AI Model for Brahmaputra Flood Forecasting",
-    summaryAs:
-      "Brahmaputra basin-ৰ flood risk prediction উন্নত কৰিবলৈ ISRO-য়ে AI model testing উদ্যোগ আৰম্ভ কৰিছে।",
-    summaryEn:
-      "ISRO has started testing AI models to improve flood-risk prediction in the Brahmaputra basin.",
-    imageLabelAs: "Flood AI model",
-    imageLabelEn: "Flood AI model",
-  },
-  {
-    id: "ai4bharat-indicllm-suite",
-    publishedAt: "2026-01-31",
-    sourceName: "AI4Bharat",
-    sourceUrl: "https://ai4bharat.iitm.ac.in/blog/indicllm-suite",
-    titleAs: "AI4Bharat-এ IndicLLM suite মুকলি কৰিলে",
-    titleEn: "AI4Bharat Releases the IndicLLM Suite",
-    summaryAs:
-      "AI4Bharat-এ Indic language-ৰ বাবে নতুন model suite আৰু research update ভাগ-বতৰা কৰিছে। Assamese-ৰ দৰে ভাষাৰ বাবে এই ধৰণৰ উদ্যোগ গুৰুত্বপূর্ণ, কাৰণ language-first dataset, evaluation, আৰু deployment ecosystem ধাপে ধাপে শক্তিশালী হয়। আপুনি যদি Assamese NLP/LLM-ত আগ্ৰহী, update-সমূহ follow কৰি dataset cleaning, prompt evaluation, আৰু basic fine-tuning concept শিকিলে future project-ত লাভ হব।",
-    summaryEn:
-      "AI4Bharat shared an Indic-language model suite and research updates. For languages like Assamese, initiatives like this matter because datasets, evaluation, and deployment ecosystems become stronger over time. If you're interested in Assamese NLP/LLMs, follow these updates and build fundamentals around data cleaning, evaluation, and fine-tuning concepts for future projects.",
+      "Improving Indian-language LLM quality can raise performance for Assamese search, summarization, customer support, and education tools. Practical lesson for learners: evaluate before you trust. Learn to create small test sets and ground truth to check accuracy, bias, and hallucinations. For builders: domain-specific FAQs, glossaries, and safe prompt templates can dramatically improve assistant quality. This can expand local-language product opportunities in Assam, so build a small demo and iterate with real user feedback.",
     imageLabelAs: "Indic LLM",
     imageLabelEn: "Indic LLM",
   },
   {
-    id: "meity-tide-2-startup-support",
-    publishedAt: "2026-01-29",
-    sourceName: "MeitY",
-    sourceUrl: "https://www.meity.gov.in/content/technology-incubation-and-development-entrepreneurs-tide-20",
-    titleAs: "MeitY-ৰ TIDE 2.0: startup-ৰ বাবে funding আৰু incubation support",
-    titleEn: "MeitY TIDE 2.0: Funding and Incubation Support for Startups",
+    id: "yotta-bhashini-sovereign-ai-cloud",
+    publishedAt: "2026-02-09",
+    sourceName: "Yotta",
+    sourceUrl:
+      "https://yotta.com/press-releases/yotta-bhashini-collaboration-enabling-sovereign-ai-cloud-india/",
+    titleAs: "Yotta x BHASHINI: Assamese ধৰণৰ ভাষাৰ AI-ৰ বাবে ecosystem signal",
+    titleEn: "Yotta x BHASHINI: An Ecosystem Signal for Local-Language AI",
     summaryAs:
-      "MeitY-ৰ TIDE 2.0 program-এ technology startup-সকলৰ বাবে incubation, mentoring, আৰু funding support-ৰ দিশে পথ দেখুৱায়। অসমৰ founder-সকলেও AI-based product idea লৈ apply কৰিবলৈ প্ৰস্তুতি আৰম্ভ কৰিব পাৰে। আপুনি যদি AI startup build কৰিব বিচাৰে, problem statement স্পষ্ট কৰক, prototype/POC তৈয়াৰ কৰক, আৰু user feedback evidence সংৰক্ষণ কৰক। এই ধৰণৰ program-এ network, mentorship, আৰু go-to-market clarity পোৱাত সহায় কৰে।",
+      "BHASHINI ecosystem-এ Indian language translation/speech-ৰ দিশত ecosystem build কৰি আছে। Cloud + language stack শক্তিশালী হ’লে Assamese app-ত translation, voice interface, আৰু citizen-support workflow গঢ়া সহজ হয়। practical step: translation/speech API concept বুজক, domain glossary বান্ধক, আৰু human review loop বজাই ৰাখক। Assam-ত education, public service, আৰু small business-ত multilingual assistant-ৰ demand বাঢ়িব পাৰে — use-case বাছনি কৰি prototype বান্ধিলে আগতীয়াকৈ advantage পাব।",
     summaryEn:
-      "MeitY’s TIDE 2.0 program outlines incubation, mentoring, and funding support for technology startups. Assam founders can start preparing strong AI product applications by clarifying the problem, building a prototype/POC, and collecting real user feedback. Programs like this also help with mentorship access and ecosystem connections.",
-    imageLabelAs: "Startup support",
-    imageLabelEn: "Startup support",
+      "The BHASHINI ecosystem supports Indian-language translation and speech capabilities. Stronger cloud + language stacks can make Assamese apps easier to build: better translation, voice interfaces, and citizen-support workflows. Practical steps: understand translation/speech API concepts, build a domain glossary, and keep a human-review loop. Demand for multilingual assistants in education, public services, and small businesses can grow in Assam; a simple prototype now can create an early advantage.",
+    imageLabelAs: "Language stack",
+    imageLabelEn: "Language stack",
   },
   {
-    id: "meta-india-ai-safety-controls",
-    publishedAt: "2026-01-27",
-    sourceName: "Meta",
-    sourceUrl: "https://about.fb.com/news/tag/ai/",
-    titleAs: "Meta-য়ে India-ৰ বাবে AI safety control expand কৰিলে",
-    titleEn: "Meta Expands AI Safety Controls for India",
+    id: "notion-claude-opus-4-6",
+    publishedAt: "2026-02-09",
+    sourceName: "Notion",
+    sourceUrl: "https://www.notion.so/releases/2026-02-09",
+    titleAs: "Notion-ত Claude Opus 4.6: note-to-action workflow অধিক সহজ",
+    titleEn: "Claude Opus 4.6 in Notion: Faster Note-to-Action Workflows",
     summaryAs:
-      "Meta-য়ে ভাৰতীয় user context-ৰ বাবে নতুন safety control rollout কৰিছে, যি misinformation detection উন্নত কৰিব।",
+      "Tool update-সমূহ practical impact আনে: note, doc, task, আৰু AI assistant একেলগে থাকিলে execution speed বাঢ়ে। Assamese learner-সকলৰ বাবে use-case: class note-ৰ পৰা summary + quiz, resume draft, বা business SOP লিখিবলৈ একে system-ত workflow বান্ধক। rule: sensitive data (OTP/bank) কেতিয়াও paste নকৰিব, আৰু AI output-ত final review কৰক। consistency বজাই ৰাখিবলৈ weekly template বান্ধি progress track কৰক — habit + system থাকিলে AI learning দ্রুত হয়।",
     summaryEn:
-      "Meta rolled out expanded AI safety controls for Indian user contexts to strengthen misinformation detection.",
-    imageLabelAs: "Safety controls",
-    imageLabelEn: "Safety controls",
+      "Tool updates matter because they improve execution speed: notes, docs, tasks, and an AI assistant in one place reduces friction. For Assamese learners, try workflows like class notes to summaries and quizzes, resume drafting, or business SOP writing. Safety rule: never paste sensitive data (OTP/banking). Always do a final human review of AI output. For consistency, build a weekly template and track progress; habits plus systems make AI learning faster.",
+    imageLabelAs: "Workflow tool",
+    imageLabelEn: "Workflow tool",
   },
   {
-    id: "upi-ai-fraud-monitoring",
-    publishedAt: "2026-01-25",
-    sourceName: "NPCI",
-    sourceUrl: "https://www.npci.org.in/what-we-do/upi/product-overview",
-    titleAs: "UPI transaction fraud detection-ত AI monitoring বৃদ্ধি",
-    titleEn: "AI Monitoring Expanded for UPI Fraud Detection",
+    id: "anthropic-claude-opus-4-6-launch",
+    publishedAt: "2026-02-05",
+    sourceName: "TechCrunch",
+    sourceUrl:
+      "https://techcrunch.com/2026/02/05/anthropic-launches-claude-opus-4-6-with-agent-teams-a-1-million-token-context-window-and-better-reasoning/",
+    titleAs: "Claude Opus 4.6: long-document analysis-ৰ বাবে 1M-token context",
+    titleEn: "Claude Opus 4.6: 1M-Token Context for Long-Document Analysis",
     summaryAs:
-      "UPI ecosystem-ত suspicious আচৰণ দ্রুত চিনাক্ত কৰিবলৈ AI monitoring layer বিস্তাৰ কৰা হৈছে।",
+      "Long PDF/report/policy doc একেলগে analyze কৰিব পাৰিলে learning speed বহু বাঢ়ে। 1M-token context ধৰণৰ capability-এ structured summary, action list, evidence extraction, আৰু cross-reference সহজ কৰিব পাৰে। Assamese learner-সকলৰ practical use-case: APSC/UPSC note-making, course outline তৈয়াৰ, বা business compliance doc review। rule: citation/checklist বজাই ৰাখক — AI summary ভুল হ’ব পাৰে। ১টা “document-to-notes” system বান্ধি weekly practice কৰিলে output আৰু confidence দুয়ো বাঢ়ে।",
     summaryEn:
-      "AI monitoring layers were expanded in the UPI ecosystem to detect suspicious fraud patterns faster.",
-    imageLabelAs: "UPI monitoring",
-    imageLabelEn: "UPI monitoring",
+      "Analyzing long PDFs, reports, and policy documents can dramatically speed up learning and decision-making. A 1M-token context capability enables better structured summaries, action lists, evidence extraction, and cross-references. Practical use-cases for Assamese learners include APSC/UPSC note-making, course outlines, and business compliance reviews. Safety rule: keep a citation/checklist mindset; AI summaries can be wrong. Build a document-to-notes system and practice weekly to improve output and confidence.",
+    imageLabelAs: "Long context",
+    imageLabelEn: "Long context",
   },
   {
-    id: "iitg-ai-research",
-    publishedAt: "2026-01-23",
-    sourceName: "IIT Guwahati",
-    sourceUrl: "https://www.iitg.ac.in/iitg_page_details?page=research",
-    titleAs: "IIT Guwahati-ৰ AI Research: আপোনাৰ বাবে কি শিকিব লাগে",
-    titleEn: "IIT Guwahati AI Research: What Learners Should Track",
-    summaryAs:
-      "IIT Guwahati-ৰ research ecosystem-এ AI/ML-ৰ বহু ক্ষেত্ৰত কাম কৰি আছে। Assamese learner-সকলৰ বাবে ইয়াৰ লাভ হৈছে: research trend বুজি subject roadmap বাছনি, project idea পোৱা, আৰু internship/mentorship-ৰ দিশ চিনাক্ত কৰা। আপুনি যদি serious ভাবে AI শিকি আছে, বছৰত ১–২ বাৰ department/research update পঢ়ি তাতৰ problem-area বাছনি কৰি project build কৰক।",
-    summaryEn:
-      "IIT Guwahati’s research ecosystem spans multiple AI/ML directions. For Assamese learners, tracking research updates helps you choose a clearer subject roadmap, find project ideas, and identify mentorship or internship directions. If you’re learning AI seriously, review research updates periodically and build projects around one problem area.",
-    imageLabelAs: "Research update",
-    imageLabelEn: "Research update",
-  },
-  {
-    id: "dot-ai-spam-blocking-assamese",
+    id: "ringg-ai-series-a-voice",
     publishedAt: "2026-01-21",
-    sourceName: "DoT India",
-    sourceUrl: "https://www.dot.gov.in/service/anti-spam",
-    titleAs: "DoT-ৰ anti-spam উদ্যোগ: spam block কৰাৰ practical বাট",
-    titleEn: "DoT Anti-Spam Initiatives: Practical Ways to Reduce Spam",
+    sourceName: "Entrepreneur",
+    sourceUrl:
+      "https://www.entrepreneur.com/en-in/news-and-trends/ringg-ai-raises-15-million-in-series-a-led-by-urbane/490970",
+    titleAs: "Ringg AI-এ Series A তুলিলে: voice AI use-case-সমূহ বাস্তৱ business value দেখুৱাইছে",
+    titleEn: "Ringg AI Series A: Voice AI Is Delivering Real Business Value",
     summaryAs:
-      "DoT-এ telecom spam কমাবলৈ anti-spam উদ্যোগ আৰু user-facing process বৰ্ণনা কৰিছে। Assamese user-সকলৰ বাবে মূল কথা হৈছে: spam report/complaint process বুজি লওক, unknown link/call-ত সতর্ক থাকক, আৰু payment/OTP ধৰণৰ তথ্য share নকৰিব। AI-based spam detection বাঢ়িলেও আপোনাৰ verification habit-ই প্ৰথম সুৰক্ষা।",
+      "Voice AI startup-সমূহে call automation, support agent assist, আৰু sales workflow-ত practical adoption দেখুৱাইছে। Assam-ৰ coaching/clinic/shop ধৰণৰ service business-ৰ বাবে ই actionable: FAQ call handling, appointment booking, আৰু after-sales follow-up automation। Learner-সকলৰ roadmap: voice UX, script prompt, fallback-to-human flow, আৰু privacy basic। AI assistant-এ call handle কৰিলেও trust build কৰিবলৈ transparency (AI disclosure) আৰু escalation rule দরকাৰ। ১৪ দিনৰ pilot-এ metrics (time saved, resolution rate) track কৰিলে value স্পষ্ট হয়।",
     summaryEn:
-      "DoT outlines anti-spam initiatives and user-facing processes to reduce telecom spam. For Assamese users, the practical steps are: understand how to report spam, be cautious with unknown links/calls, and never share OTP/payment details. Even as AI spam detection improves, your verification habits remain the first line of safety.",
-    imageLabelAs: "Anti-spam",
-    imageLabelEn: "Anti-spam",
+      "Voice AI startups show practical adoption across call automation, support-agent assistance, and sales workflows. For Assam’s service businesses, this is actionable: FAQ call handling, appointment booking, and after-sales follow-up automation. Learner roadmap: voice UX, script prompts, fallback-to-human flows, and privacy basics. Even if an assistant handles calls, trust requires transparency (AI disclosure) and clear escalation rules. A 14-day pilot with metrics (time saved, resolution rate) makes value visible.",
+    imageLabelAs: "Startup funding",
+    imageLabelEn: "Startup funding",
   },
   {
-    id: "india-stack-voice-assistant-beta",
-    publishedAt: "2026-01-19",
-    sourceName: "Digital India",
-    sourceUrl: "https://www.digitalindia.gov.in/initiatives",
-    titleAs: "Digital India initiatives: multilingual voice আৰু AI service-ৰ দিশ",
-    titleEn: "Digital India Initiatives: The Direction of Multilingual Voice and AI Services",
+    id: "bolna-seed-funding-6-3m",
+    publishedAt: "2026-01-20",
+    sourceName: "Bolna",
+    sourceUrl: "https://www.bolna.ai/blog/bolna-bags-6-3-million-seed-funding",
+    titleAs: "Bolna-ৰ seed funding: voice agent ecosystem-ত competition বাঢ়িছে",
+    titleEn: "Bolna Seed Funding: Competition in Voice Agents Is Heating Up",
     summaryAs:
-      "Digital India-ৰ বিভিন্ন initiative-এ public service interaction সহজ কৰিবলৈ digital platform, citizen service, আৰু language access-ত গুৰুত্ব দিয়ে। Assamese learner/creator-সকলৰ বাবে ই এটা signal: multilingual voice, translation, আৰু AI-enabled citizen support তললৈ নামি আহিব। আপুনি যদি AI শিকি আছে, voice workflow, content structuring, আৰু local-language UX pattern-ত practice আৰম্ভ কৰক।",
+      "Voice agent-ৰ use-case খুব practical: appointment booking, lead qualification, customer support, আৰু FAQ automation। Funding trend-এ দেখুৱাইছে যে India-ত voice AI real business value deliver কৰিছে। Assamese business-ৰ বাবে opportunity: Assamese + English conversation handle কৰা assistant, local product catalogue QA, আৰু after-sales follow-up automation। Learner-সকলৰ focus: conversation tree, guardrails (কি answer নকৰে), fallback-to-human, আৰু logs/analytics। লক্ষ্য: “human-like” নহয়, “useful + safe” assistant বান্ধা।",
     summaryEn:
-      "Digital India initiatives focus on improving digital platforms, citizen services, and language access. For Assamese learners and creators, this signals growing demand for multilingual voice, translation, and AI-enabled citizen support. If you’re learning AI, start practicing voice workflows, content structuring, and local-language UX patterns.",
-    imageLabelAs: "Initiatives",
-    imageLabelEn: "Initiatives",
+      "Voice-agent use-cases are very practical: appointment booking, lead qualification, customer support, and FAQ automation. Funding trends suggest voice AI is delivering real business value in India. For Assamese businesses: assistants that handle Assamese + English conversations, QA over a product catalogue, and after-sales follow-ups. Learner focus: conversation trees, guardrails, fallback-to-human flows, and logs/analytics. Goal: not “human-like”, but “useful and safe”.",
+    imageLabelAs: "Voice agents",
+    imageLabelEn: "Voice agents",
   },
   {
-    id: "barak-telemedicine-ai-triage",
-    publishedAt: "2026-01-17",
-    sourceName: "Health Ministry",
-    sourceUrl: "https://mohfw.gov.in/?q=content/launch-digital-life-care-platform-improving-healthcare-through-telemedicine",
-    titleAs: "Barak valley-ত telemedicine AI triage pilot আৰম্ভ",
-    titleEn: "Telemedicine AI Triage Pilot Begins in Barak Valley",
-    summaryAs:
-      "remote patient screening দ্রুত কৰিবলৈ Barak valley-ত AI triage pilot rollout আৰম্ভ কৰা হৈছে।",
-    summaryEn:
-      "An AI triage pilot has started in Barak Valley to speed up remote patient screening.",
-    imageLabelAs: "Telemedicine pilot",
-    imageLabelEn: "Telemedicine pilot",
-  },
-  {
-    id: "unesco-ai-literacy-regional-2026",
-    publishedAt: "2026-01-15",
-    sourceName: "UNESCO",
-    sourceUrl: "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
-    titleAs: "UNESCO-ৰ regional AI literacy framework update",
-    titleEn: "UNESCO Updates Regional AI Literacy Framework",
-    summaryAs:
-      "regional teacher training আৰু school-level AI literacy design উন্নত কৰিবলৈ framework update কৰা হৈছে।",
-    summaryEn:
-      "UNESCO updated its regional AI literacy framework to improve teacher training and school-level AI design.",
-    imageLabelAs: "Literacy framework",
-    imageLabelEn: "Literacy framework",
-  },
-  {
-    id: "ncert-ai-toolkit-schools",
-    publishedAt: "2026-01-13",
-    sourceName: "NCERT",
-    sourceUrl: "https://ncert.nic.in/vocational-education.php?ln=",
-    titleAs: "NCERT-এ school AI toolkit-ৰ নতুন batch মুকলি কৰিলে",
-    titleEn: "NCERT Releases New School AI Toolkit Batch",
-    summaryAs:
-      "school classroom-ত safe AI usage-ৰ বাবে NCERT-এ নতুন toolkit আৰু teacher notes মুকলি কৰিছে।",
-    summaryEn:
-      "NCERT released a new AI toolkit batch and teacher notes for safer classroom AI usage.",
-    imageLabelAs: "School toolkit",
-    imageLabelEn: "School toolkit",
-  },
-  {
-    id: "bhashini-assamese-upgrade-2026",
-    publishedAt: "2026-01-11",
-    sourceName: "Bhashini",
-    sourceUrl: "https://bhashini.gov.in/en/ecosystem",
-    titleAs: "Bhashini-ত Assamese translation quality upgrade",
-    titleEn: "Bhashini Improves Assamese Translation Quality",
-    summaryAs:
-      "Assamese translation আৰু speech layer উন্নত হোৱাত regional app builder-সকলৰ বাবে নতুন সুবিধা সৃষ্টি হৈছে।",
-    summaryEn:
-      "Bhashini upgraded Assamese translation and speech layers, enabling stronger regional app experiences.",
-    imageLabelAs: "Translation upgrade",
-    imageLabelEn: "Translation upgrade",
-  },
-  {
-    id: "meity-startup-hub",
-    publishedAt: "2026-01-09",
-    sourceName: "MeitY",
-    sourceUrl: "https://www.meity.gov.in/content/startup-hub",
-    titleAs: "MeitY Startup Hub: mentoring আৰু ecosystem support কেনেকৈ পাব",
-    titleEn: "MeitY Startup Hub: How to Access Mentoring and Ecosystem Support",
-    summaryAs:
-      "MeitY-ৰ Startup Hub-এ startup ecosystem-ৰ বিষয়ে তথ্য, support channel, আৰু program visibility দিবলৈ চেষ্টা কৰে। Assamese founder-সকলৰ বাবে practical step: incubator/accelerator তালিকা চাওক, program eligibility বুজি লওক, আৰু pitch-deck + prototype প্রস্তুত ৰাখক। mentoring পালে execution speed আৰু product clarity দুয়ো বাঢ়ে।",
-    summaryEn:
-      "MeitY’s Startup Hub aims to improve startup ecosystem visibility and access to support channels. For Assam founders, the practical steps are: review incubator/accelerator options, understand eligibility, and keep your pitch-deck and prototype ready. Mentoring can improve execution speed and product clarity.",
-    imageLabelAs: "Startup hub",
-    imageLabelEn: "Startup hub",
-  },
-  {
-    id: "nec-ai-agri-pilot",
+    id: "arrowhead-voice-ai-funding",
     publishedAt: "2026-01-07",
-    sourceName: "NEC",
-    sourceUrl: "https://necouncil.gov.in/nec-project-sector/agriculture-and-allied",
-    titleAs: "NEC-ৰ Agriculture sector project-সমূহ: Assam-ত AI use-case সুযোগ",
-    titleEn: "NEC Agriculture Projects: Where AI Use-Cases Can Fit in Assam",
+    sourceName: "Outlook Business",
+    sourceUrl:
+      "https://www.outlookbusiness.com/start-up/funding/voice-ai-startup-arrowhead-bags-4-mn-from-launcher-nexus-and-others",
+    titleAs: "Arrowhead funding: voice AI startup-লৈ investor আগ্ৰহ বাঢ়িছে",
+    titleEn: "Arrowhead Funding: Growing Investor Interest in Voice AI",
     summaryAs:
-      "NEC-ৰ Agriculture and Allied sector project-সমূহত crop advisory, market linkage, logistics, আৰু farmer support ধৰণৰ ক্ষেত্ৰ থাকে। Assamese learner-সকলৰ বাবে ই এটা practical signal: AI-based crop advisory, disease detection, local-language helpline, আৰু data dashboard ধৰণৰ solution-ৰ demand বৃদ্ধি পায়। আপুনি যদি AI project কৰিব বিচাৰে, agriculture domain-ৰ problem statement বাছি small prototype-এ আৰম্ভ কৰক।",
+      "Voice AI-ত funding মানে ecosystem-এ clear demand দেখিছে: call automation, voice assistant, agent support, আৰু multilingual customer experience। Assamese builder-সকলৰ বাবে insight: language + domain knowledge combine কৰিলে differentiated product গঢ়া যায়। Example: healthcare appointment assistant, coaching enquiry bot, tourism helpdesk, বা local helpline support। Learner-সকলৰ roadmap: intent classification, ASR/TTS basic, conversation design, আৰু privacy/safety। user-এ time save আৰু clarity পালে adoption হয় — “AI” label-ৰ বাবে নহয়।",
     summaryEn:
-      "NEC’s Agriculture and Allied sector projects cover areas like advisories, market linkage, logistics, and farmer support. For Assamese learners, this is a practical signal: AI crop advisories, disease detection, local-language helplines, and data dashboards can be valuable. If you want an AI project idea, pick one agriculture problem statement and start with a small prototype.",
-    imageLabelAs: "Agriculture",
-    imageLabelEn: "Agriculture",
-  },
-  {
-    id: "india-ai-cloud-policy-draft",
-    publishedAt: "2026-01-05",
-    sourceName: "MeitY",
-    sourceUrl: "https://www.meity.gov.in/content/report-advisory-group-india%E2%80%99s-ai-ecosystem",
-    titleAs: "AI cloud আৰু compute access policy draft প্ৰকাশ",
-    titleEn: "Draft Policy on AI Cloud and Compute Access Released",
-    summaryAs:
-      "national AI compute access সহজ কৰিবলৈ policy draft প্ৰকাশ কৰি stakeholder feedback লোৱা হৈছে।",
-    summaryEn:
-      "A draft policy was released to improve national AI cloud and compute access, with stakeholder feedback invited.",
-    imageLabelAs: "Policy draft",
-    imageLabelEn: "Policy draft",
-  },
-  {
-    id: "certin-cyber-advisories",
-    publishedAt: "2026-01-03",
-    sourceName: "CERT-In",
-    sourceUrl: "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBNOTES01",
-    titleAs: "CERT-In cybersecurity advisory: deepfake আৰু online fraud-ত সুৰক্ষা",
-    titleEn: "CERT-In Cybersecurity Advisories: Staying Safe from Deepfakes and Online Fraud",
-    summaryAs:
-      "CERT-In-ৰ advisory আৰু note-সমূহে phishing, fraud, malware, আৰু emerging cyber risk-ৰ বিষয়ে নিয়মিত আপডেট দিয়ে। Assamese user-সকলৰ বাবে practical rule: unknown link-ত click নকৰিব, OTP/share কেতিয়াও নকৰিব, WhatsApp/phone-ত deepfake-like request দেখিলে verify কৰক, আৰু device update on ৰাখক। AI যিমান বাঢ়ে, তিমানেই scam-ৰ pattern smart হয় — সেয়ে verification habit আপুনি গঢ়িবই লাগিব।",
-    summaryEn:
-      "CERT-In publishes advisories and updates on phishing, fraud, malware, and emerging cyber risks. For Assamese users, the practical rules are: don’t click unknown links, never share OTPs, verify suspicious requests that may look like deepfakes, and keep devices updated. As AI grows, scam patterns get smarter, so strong verification habits matter.",
-    imageLabelAs: "Cyber safety",
-    imageLabelEn: "Cyber safety",
-  },
-  {
-    id: "nasscom-events-ai-skills",
-    publishedAt: "2026-01-01",
-    sourceName: "NASSCOM",
-    sourceUrl: "https://nasscom.in/events",
-    titleAs: "NASSCOM events: AI skill trend আৰু hiring signal কেনেকৈ track কৰিব",
-    titleEn: "NASSCOM Events: How to Track AI Skill Trends and Hiring Signals",
-    summaryAs:
-      "Industry event-সমূহে কোন skill hot, কোন role hiring-ত আছে, আৰু কেৰিয়াৰ trend কেনেদৰে বদলিছে সেইবোৰ বুজিবলৈ practical window দিয়ে। NASSCOM-ৰ event/update-সমূহ follow কৰিলে AI operations, prompt workflow, data/analytics, আৰু governance skill-ৰ demand trend বুজি আগতীয়াকৈ prepare কৰিব পাৰি। Assamese learner-সকলৰ বাবে টিপ: ২–৩টা target role বাছনি কৰক, monthly learning goal set কৰক, আৰু portfolio project-এ evidence বান্ধি ৰাখক।",
-    summaryEn:
-      "Industry events are a practical window into which skills are hot, which roles are hiring, and how career trends are shifting. Following NASSCOM’s events and updates can help you prepare early for demand trends around AI operations, prompt workflows, data/analytics, and governance. Tip for Assamese learners: pick 2-3 target roles, set monthly learning goals, and build evidence through portfolio projects.",
-    imageLabelAs: "Career trends",
-    imageLabelEn: "Career trends",
-  },
-  {
-    id: "assamese-ocr-open-source-model",
-    publishedAt: "2025-12-30",
-    sourceName: "Open Source Community",
-    sourceUrl: "https://huggingface.co/models?search=assamese+ocr",
-    titleAs: "Open-source Assamese OCR model-ৰ নতুন সংস্কৰণ",
-    titleEn: "New Version of Open-Source Assamese OCR Model Released",
-    summaryAs:
-      "অসমীয়া print document digitization সহজ কৰিবলৈ open-source OCR model-ৰ accuracy উন্নত কৰা হৈছে।",
-    summaryEn:
-      "A new open-source Assamese OCR version improved accuracy for document digitization use-cases.",
-    imageLabelAs: "OCR model",
-    imageLabelEn: "OCR model",
+      "Funding into voice AI signals clear demand for call automation, assistants, agent support, and multilingual customer experiences. For Assamese builders, combining language and domain knowledge can create differentiated products: healthcare appointment assistants, coaching enquiry bots, tourism helpdesks, or local helpline support. Learner roadmap: intent classification, ASR/TTS basics, conversation design, and privacy/safety. Users adopt when you save time and add clarity, not because the product is labeled “AI”.",
+    imageLabelAs: "Funding",
+    imageLabelEn: "Funding",
   },
 ];

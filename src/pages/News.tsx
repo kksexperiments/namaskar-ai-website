@@ -17,7 +17,7 @@ import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
 import { toLocalePath } from "@/lib/locale";
 import { toAbsoluteSiteUrl } from "@/lib/site";
-import { NEWS_FEED_ITEMS, NEWS_FEED_UPDATE_TEMPLATE } from "@/data/newsHubFeed";
+import { NEWS_FEED_ITEMS } from "@/data/newsHubFeed";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -130,7 +130,7 @@ const News = () => {
       : "Assam, India, and global AI updates explained simply with practical career relevance.",
     back: isAssamese ? "ঘৰলৈ উভতি যাওক" : "Back to home",
     searchPlaceholder: isAssamese ? "খবৰ সন্ধান কৰক..." : "Search news updates...",
-    todayUpdates: isAssamese ? "আজিৰ আপডেট" : "Latest Updates",
+    todayUpdates: isAssamese ? "সাম্প্ৰতিক আপডেট" : "Latest Updates",
     archiveTitle: isAssamese ? "আগৰ আপডেটসমূহ (Archive)" : "Archive (Past Updates)",
     readButton: isAssamese ? "পঢ়ক" : "Read",
     originalLink: isAssamese ? "Original Link" : "Original Link",
@@ -155,7 +155,6 @@ const News = () => {
       ? "খবৰ পঢ়ি থকাৰ লগে লগে practical prompt workflow-এ অভ্যাস আৰম্ভ কৰক।"
       : "Pair every news update with practical prompt workflows and start executing.",
     ctaButton: isAssamese ? "Prompt Packs খোলক" : "Open Prompt Packs",
-    updateFormatTitle: isAssamese ? "২ দিনীয়া update JSON format" : "2-day update JSON format",
   };
 
   const latestDateLabel = latestItems[0] ? formatDateLabel(latestItems[0].publishedAt, isAssamese) : formatDateLabel("2026-02-16", isAssamese);
@@ -343,18 +342,6 @@ const News = () => {
                 <Button asChild className="mt-4 w-full bg-gradient-primary text-white">
                   <Link to={toLocalePath("/prompt-packs", language)}>{text.ctaButton}</Link>
                 </Button>
-              </Card>
-
-              <Card className="border-primary/15 bg-card/95 p-5">
-                <h3 className="text-base font-semibold">{text.updateFormatTitle}</h3>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {isAssamese
-                    ? "Content team-এ প্ৰতি ২ দিনত এই JSON structure-এ নতুন item যোগ কৰিব পাৰে।"
-                    : "Content team can add new items every 2 days using this JSON structure."}
-                </p>
-                <pre className="mt-3 overflow-x-auto rounded-lg border border-border bg-muted/35 p-3 text-[11px] leading-relaxed text-muted-foreground">
-                  {JSON.stringify(NEWS_FEED_UPDATE_TEMPLATE, null, 2)}
-                </pre>
               </Card>
             </div>
           </div>
