@@ -1,0 +1,34 @@
+name: Validate news Original Links (Playwright)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly check (every Monday). Adjust anytime.
+    - cron: "35 5 * * 1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install deps
+        run: npm ci
+
+      # Keep Playwright out of production installs (Vercel) by installing it only inside CI.
+      - name: Install Playwright (no-save)
+        run: npm install --no-save playwright
+
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate news source links
+        run: node scripts/validate-news-links-playwright.mjs
+
