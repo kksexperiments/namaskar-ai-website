@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "sync:seo": "node scripts/generate-seo-assets.mjs",
-    "prebuild": "npm run sync:seo",
+    "validate:news-links": "node scripts/validate-news-links.mjs",
+    "prebuild": "npm run sync:seo && npm run validate:news-links",
     "postbuild": "node scripts/prerender-seo-routes.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",

@@ -29,6 +29,42 @@
             "destination": "/ai-course-in-assamese/index.html"
         },
         {
+            "source": "/faq",
+            "destination": "/faq/index.html"
+        },
+        {
+            "source": "/learn-ai-in-assamese-30-days",
+            "destination": "/learn-ai-in-assamese-30-days/index.html"
+        },
+        {
+            "source": "/best-ai-course-for-assamese-speakers",
+            "destination": "/best-ai-course-for-assamese-speakers/index.html"
+        },
+        {
+            "source": "/learning-assamese-with-ai",
+            "destination": "/learning-assamese-with-ai/index.html"
+        },
+        {
+            "source": "/assamese-llm-chatbot-guide",
+            "destination": "/assamese-llm-chatbot-guide/index.html"
+        },
+        {
+            "source": "/about",
+            "destination": "/about/index.html"
+        },
+        {
+            "source": "/contact",
+            "destination": "/contact/index.html"
+        },
+        {
+            "source": "/editorial-policy",
+            "destination": "/editorial-policy/index.html"
+        },
+        {
+            "source": "/press-collaboration",
+            "destination": "/press-collaboration/index.html"
+        },
+        {
             "source": "/privacy",
             "destination": "/privacy/index.html"
         },
@@ -73,6 +109,42 @@
             "destination": "/as/ai-course-in-assamese/index.html"
         },
         {
+            "source": "/as/faq",
+            "destination": "/as/faq/index.html"
+        },
+        {
+            "source": "/as/learn-ai-in-assamese-30-days",
+            "destination": "/as/learn-ai-in-assamese-30-days/index.html"
+        },
+        {
+            "source": "/as/best-ai-course-for-assamese-speakers",
+            "destination": "/as/best-ai-course-for-assamese-speakers/index.html"
+        },
+        {
+            "source": "/as/learning-assamese-with-ai",
+            "destination": "/as/learning-assamese-with-ai/index.html"
+        },
+        {
+            "source": "/as/assamese-llm-chatbot-guide",
+            "destination": "/as/assamese-llm-chatbot-guide/index.html"
+        },
+        {
+            "source": "/as/about",
+            "destination": "/as/about/index.html"
+        },
+        {
+            "source": "/as/contact",
+            "destination": "/as/contact/index.html"
+        },
+        {
+            "source": "/as/editorial-policy",
+            "destination": "/as/editorial-policy/index.html"
+        },
+        {
+            "source": "/as/press-collaboration",
+            "destination": "/as/press-collaboration/index.html"
+        },
+        {
             "source": "/as/privacy",
             "destination": "/as/privacy/index.html"
         },
@@ -92,6 +164,24 @@
                 {
                     "key": "Content-Type",
                     "value": "application/xml; charset=utf-8"
+                }
+            ]
+        },
+        {
+            "source": "/llms.txt",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/plain; charset=utf-8"
+                }
+            ]
+        },
+        {
+            "source": "/llms-full.txt",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/plain; charset=utf-8"
                 }
             ]
         },

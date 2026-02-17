@@ -36,12 +36,39 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
       icon: MessageSquareText,
     },
     {
-      title: isAssamese ? "অসমীয়াত AI Course (শীঘ্ৰেই)" : "AI Course in Assamese (Coming Soon)",
+      title: isAssamese ? "অসমীয়াত AI Course" : "AI Course in Assamese",
       description: isAssamese
-        ? "Course launch আপডেটৰ বাবে waitlist-ত নাম অন্তর্ভুক্ত কৰক।"
-        : "Join the waitlist to get notified when the course launches.",
+        ? "curriculum, track আৰু enrollment flow একেটা পৃষ্ঠাত চাওক।"
+        : "Explore curriculum, tracks, and enrollment flow in one page.",
       path: toLocalePath("/ai-course-in-assamese", currentLanguage),
       icon: GraduationCap,
+    },
+  ];
+
+  const searchGuides = [
+    {
+      title: isAssamese ? "৩০ দিনত AI শিকক" : "Learn AI in 30 Days",
+      path: toLocalePath("/learn-ai-in-assamese-30-days", currentLanguage),
+    },
+    {
+      title: isAssamese ? "Best AI Course তুলনা" : "Best AI Course Comparison",
+      path: toLocalePath("/best-ai-course-for-assamese-speakers", currentLanguage),
+    },
+    {
+      title: isAssamese ? "AI-এ অসমীয়া শিকা" : "Learning Assamese with AI",
+      path: toLocalePath("/learning-assamese-with-ai", currentLanguage),
+    },
+    {
+      title: isAssamese ? "Assamese LLM Guide" : "Assamese LLM Guide",
+      path: toLocalePath("/assamese-llm-chatbot-guide", currentLanguage),
+    },
+    {
+      title: isAssamese ? "Editorial Policy" : "Editorial Policy",
+      path: toLocalePath("/editorial-policy", currentLanguage),
+    },
+    {
+      title: isAssamese ? "Press & Collaboration" : "Press & Collaboration",
+      path: toLocalePath("/press-collaboration", currentLanguage),
     },
   ];
 
@@ -73,6 +100,22 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
             </Card>
           ))}
         </div>
+
+        <Card className="mt-5 border-primary/15 bg-card/95 p-4">
+          <h3 className="text-sm font-semibold text-foreground">
+            {isAssamese ? "Search-targeted long-form guides" : "Search-targeted long-form guides"}
+          </h3>
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {searchGuides.map((guide) => (
+              <Button key={guide.path} asChild variant="outline" className="justify-start">
+                <Link to={guide.path}>
+                  {guide.title}
+                  <ArrowRight className="ml-auto h-4 w-4" />
+                </Link>
+              </Button>
+            ))}
+          </div>
+        </Card>
       </div>
     </section>
   );

@@ -18,6 +18,15 @@ import TermsOfService from "./pages/TermsOfService";
 import AIInAssamese from "./pages/AIInAssamese";
 import ChatGPTInAssamese from "./pages/ChatGPTInAssamese";
 import AICourseInAssamese from "./pages/AICourseInAssamese";
+import FAQ from "./pages/FAQ";
+import LearnAIInAssamese30Days from "./pages/LearnAIInAssamese30Days";
+import BestAICourseForAssameseSpeakers from "./pages/BestAICourseForAssameseSpeakers";
+import LearningAssameseWithAI from "./pages/LearningAssameseWithAI";
+import AssameseLLMChatbotGuide from "./pages/AssameseLLMChatbotGuide";
+import EditorialPolicy from "./pages/EditorialPolicy";
+import PressAndCollaboration from "./pages/PressAndCollaboration";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import ScrollToTop from "./components/ScrollToTop";
 import { getLanguageFromPath } from "./lib/locale";
 
@@ -31,6 +40,15 @@ const baseRoutes = [
   { path: "/ai-in-assamese", element: <AIInAssamese /> },
   { path: "/chatgpt-in-assamese", element: <ChatGPTInAssamese /> },
   { path: "/ai-course-in-assamese", element: <AICourseInAssamese /> },
+  { path: "/faq", element: <FAQ /> },
+  { path: "/learn-ai-in-assamese-30-days", element: <LearnAIInAssamese30Days /> },
+  { path: "/best-ai-course-for-assamese-speakers", element: <BestAICourseForAssameseSpeakers /> },
+  { path: "/learning-assamese-with-ai", element: <LearningAssameseWithAI /> },
+  { path: "/assamese-llm-chatbot-guide", element: <AssameseLLMChatbotGuide /> },
+  { path: "/about", element: <About /> },
+  { path: "/contact", element: <Contact /> },
+  { path: "/editorial-policy", element: <EditorialPolicy /> },
+  { path: "/press-collaboration", element: <PressAndCollaboration /> },
   { path: "/article/:slug", element: <Article /> },
   { path: "/privacy", element: <PrivacyPolicy /> },
   { path: "/terms", element: <TermsOfService /> },

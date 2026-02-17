@@ -1,5 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /auth
+Disallow: /as/admin
+Disallow: /as/auth
 
 Sitemap: https://www.namaskarai.in/sitemap.xml
 Host: www.namaskarai.in

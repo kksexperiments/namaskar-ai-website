@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
 import { toLocalePath } from "@/lib/locale";
+import { toAbsoluteSiteUrl } from "@/lib/site";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -13,14 +14,62 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const AIInAssamese = () => {
   const { language, switchLanguage, t } = useLanguage();
   const isAssamese = language === "as";
+  const canonicalPath = toLocalePath("/ai-in-assamese", language);
 
   const tocItems = [
+    { id: "fast-answers", label: isAssamese ? "দ্রুত উত্তৰ" : "Fast answers" },
     { id: "who", label: isAssamese ? "এই পৃষ্ঠা কাকৰ বাবে" : "Who this is for" },
     { id: "start", label: isAssamese ? "৩০ মিনিটে আৰম্ভ কৰক" : "30-minute start" },
     { id: "terms", label: isAssamese ? "মূল শব্দসমূহ" : "Core terms" },
     { id: "next", label: isAssamese ? "আগলৈ কি শিকিব" : "What to learn next" },
     { id: "faq", label: "FAQ" },
   ];
+
+  const fastAnswers = isAssamese
+    ? [
+        {
+          query: "AI শিকিবলৈ কেনেকৈ আৰম্ভ কৰিম?",
+          answer:
+            "প্ৰথমে এটা goal বাছনি কৰক, তাৰপিছত এটা prompt pack run কৰক, আৰু দৈনিক ১০-১৫ মিনিট practice-এ আৰম্ভ কৰক।",
+        },
+        {
+          query: "learn AI in Assamese",
+          answer:
+            "Namaskar AI-ত আপুনি Assamese + English-ত beginner guide, ৩০ দিনৰ plan, আৰু practical prompt workflow-এ আৰম্ভ কৰিব পাৰে।",
+        },
+        {
+          query: "learning AI in Assamese",
+          answer:
+            "দৈনিক short routine, weekly review, আৰু use-case ভিত্তিক learning path-এ Assamese learner-ৰ বাবে fastest path।",
+        },
+        {
+          query: "Assamese AI tutorial",
+          answer:
+            "tutorial-ত role + context + task + output format formula follow কৰিলে প্ৰথম সপ্তাহৰ ভিতৰতে visible output quality improve হয়।",
+        },
+      ]
+    : [
+        {
+          query: "How do I start learning AI in Assamese?",
+          answer:
+            "Pick one goal, run one prompt pack workflow, and practice 10-15 minutes daily to build momentum.",
+        },
+        {
+          query: "learn AI in Assamese",
+          answer:
+            "On Namaskar AI, start with Assamese plus English beginner guides, the 30-day plan, and practical prompt workflows.",
+        },
+        {
+          query: "learning AI in Assamese",
+          answer:
+            "A short daily routine, weekly review, and use-case-specific path is the fastest route for Assamese learners.",
+        },
+        {
+          query: "Assamese AI tutorial",
+          answer:
+            "Use the role, context, task, output-format structure to improve output quality within the first week.",
+        },
+      ];
 
   const quickStartSteps = isAssamese
     ? [
@@ -78,6 +127,10 @@ const AIInAssamese = () => {
           answer: "নালাগে। এই platform-ত আপুনি non-technical prompt-based পদ্ধতিৰে আৰম্ভ কৰিব পাৰে।",
         },
         {
+          question: "AI শিকিবলৈ কেনেকৈ আৰম্ভ কৰিম?",
+          answer: "goal বাছনি কৰক, এটা prompt run কৰক, result refine কৰক, আৰু দৈনিক ১০-১৫ মিনিট নিয়মিত practice কৰক।",
+        },
+        {
           question: "অসমীয়াত ভাল output পামনে?",
           answer: "পাম। role + context + clear instruction দিলে Assamese output বহুত উন্নত হয়।",
         },
@@ -92,6 +145,11 @@ const AIInAssamese = () => {
           answer: "No. You can start with prompt-based workflows and practical tasks.",
         },
         {
+          question: "How do I start learning AI in Assamese?",
+          answer:
+            "Pick one use-case, run one prompt workflow, refine the output once, and repeat daily for 10-15 minutes.",
+        },
+        {
           question: "Can I get strong output in Assamese?",
           answer: "Yes. Use role, context, and explicit output instructions for better Assamese responses.",
         },
@@ -100,6 +158,56 @@ const AIInAssamese = () => {
           answer: "A consistent 10 to 15 minutes per day is enough to build momentum.",
         },
       ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: isAssamese ? "as-IN" : "en-IN",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: isAssamese ? "অসমীয়াত AI শিকাৰ ৩০ মিনিটৰ আৰম্ভণি" : "30-minute start for learning AI in Assamese",
+    description: isAssamese
+      ? "Assamese-first শিক্ষাৰ্থীৰ বাবে practical আৰম্ভণি ধাপসমূহ।"
+      : "Practical first steps for Assamese-first AI learners.",
+    totalTime: "PT30M",
+    inLanguage: isAssamese ? "as-IN" : "en-IN",
+    step: quickStartSteps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: isAssamese ? `ধাপ ${index + 1}` : `Step ${index + 1}`,
+      text: step,
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: isAssamese ? "ঘৰ" : "Home",
+        item: toAbsoluteSiteUrl(toLocalePath("/", language)),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: isAssamese ? "অসমীয়াত AI" : "AI in Assamese",
+        item: toAbsoluteSiteUrl(canonicalPath),
+      },
+    ],
+  };
 
   return (
     <div className="platform-page">
@@ -110,9 +218,10 @@ const AIInAssamese = () => {
             ? "অসমীয়া ভাষাত AI শিকাৰ beginner guide: আৰম্ভণিৰ পদক্ষেপ, মূল শব্দ, practical পথ আৰু পৰৱৰ্তী শিকণ সম্পদ।"
             : "Beginner guide to learning AI in Assamese with core terms, practical first steps, and next learning resources."
         }
-        path={toLocalePath("/ai-in-assamese", language)}
+        path={canonicalPath}
         language={language}
         keywords={["AI in Assamese", "learn AI Assam", "Assamese AI beginner guide", "Namaskar AI"]}
+        structuredData={[faqSchema, howToSchema, breadcrumbSchema]}
       />
 
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />
@@ -157,6 +266,18 @@ const AIInAssamese = () => {
             </Card>
 
             <div className="space-y-5">
+              <Card id="fast-answers" className="border-primary/15 bg-card/95 p-5">
+                <h2 className="text-xl font-semibold">{isAssamese ? "দ্রুত উত্তৰ: common search queries" : "Fast answers: common search queries"}</h2>
+                <div className="mt-3 space-y-2">
+                  {fastAnswers.map((item) => (
+                    <div key={item.query} className="rounded-lg border border-border bg-muted/35 p-3 text-sm leading-relaxed">
+                      <p className="font-semibold text-foreground">{item.query}</p>
+                      <p className="mt-1 text-muted-foreground">{item.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
               <Card id="who" className="border-primary/15 bg-card/95 p-5">
                 <h2 className="text-xl font-semibold">{isAssamese ? "এই পৃষ্ঠা কাকৰ বাবে" : "Who this page is for"}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

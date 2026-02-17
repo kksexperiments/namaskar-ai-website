@@ -53,12 +53,32 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
       label: currentLanguage === "as" ? "AI টুলছ" : "AI Tools",
     },
     {
+      to: toLocalePath("/ai-course-in-assamese", currentLanguage),
+      label: currentLanguage === "as" ? "AI Course" : "AI Course",
+    },
+    {
       to: toLocalePath("/learning-roadmaps", currentLanguage),
       label: currentLanguage === "as" ? "ৰোডমেপ" : "Roadmaps",
     },
     {
       to: toLocalePath("/news", currentLanguage),
       label: currentLanguage === "as" ? "খবৰ" : "News",
+    },
+    {
+      to: toLocalePath("/faq", currentLanguage),
+      label: "FAQ",
+    },
+    {
+      to: toLocalePath("/about", currentLanguage),
+      label: currentLanguage === "as" ? "আমাৰ বিষয়ে" : "About",
+    },
+    {
+      to: toLocalePath("/contact", currentLanguage),
+      label: currentLanguage === "as" ? "যোগাযোগ" : "Contact",
+    },
+    {
+      to: toLocalePath("/press-collaboration", currentLanguage),
+      label: currentLanguage === "as" ? "Press" : "Press",
     },
   ];
   const shortcutLabel =

@@ -19,7 +19,7 @@ const RATE_LIMIT_MS = 60_000;
 const MIN_TIME_TO_SUBMIT_MS = 3_000;
 const LAST_SUBMIT_STORAGE_KEY = "namaskar-ai-course-waitlist-last-submit";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const CONSENT_TEXT = "We’ll only use this to notify you when the course launches. No spam.";
+const CONSENT_TEXT = "We’ll only use this for course and enrollment updates. No spam.";
 
 const normalizeIndiaMobile = (phoneInput: string): string | null => {
   const digits = phoneInput.replace(/\D/g, "");
@@ -57,18 +57,18 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
   const copy = useMemo(() => {
     if (language === "as") {
       return {
-        title: "Waitlist-ত নাম অন্তর্ভুক্ত কৰক",
-        subtitle: "Course launch হ’লেই আপুনি নোটিফিকেশন পাব।",
+        title: "Course updates list-ত যোগ দিয়ক",
+        subtitle: "cohort schedule, enrollment window আৰু fee update পাব।",
         nameLabel: "নাম (ঐচ্ছিক)",
         namePlaceholder: "আপোনাৰ নাম",
         emailLabel: "ইমেইল (ঐচ্ছিক)",
         emailPlaceholder: "আপোনাৰ ইমেইল",
         phoneLabel: "ফোন (ঐচ্ছিক)",
         phonePlaceholder: "+91 9XXXXXXXXX",
-        consentLabel: "মই নোটিফিকেশন পাবলৈ সন্মতি দিছোঁ।",
-        submit: "Waitlist Submit কৰক",
+        consentLabel: "মই course আৰু enrollment update পাবলৈ সন্মতি দিছোঁ।",
+        submit: "Updates Submit কৰক",
         submitting: "Submit হৈ আছে...",
-        success: "ধন্যবাদ। আপুনি waitlist-ত যোগ হ’ল।",
+        success: "ধন্যবাদ। আপুনি course updates list-ত যোগ হ’ল।",
         failure: "এই মুহূর্তত submit কৰিব পৰা নগ’ল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।",
         requirementError: "ইমেইল বা ফোনৰ ভিতৰত কমেও এটা দিয়ক।",
         emailError: "অনুগ্ৰহ কৰি বৈধ ইমেইল দিয়ক।",
@@ -81,18 +81,18 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
     }
 
     return {
-      title: "Join the Waitlist",
-      subtitle: "Get notified as soon as the course launches.",
+      title: "Join the Course Updates List",
+      subtitle: "Get cohort, enrollment window, and fee updates.",
       nameLabel: "Name (optional)",
       namePlaceholder: "Your name",
       emailLabel: "Email (optional)",
       emailPlaceholder: "your@email.com",
       phoneLabel: "Phone (optional)",
       phonePlaceholder: "+91 9XXXXXXXXX",
-      consentLabel: "I agree to receive launch notifications.",
-      submit: "Submit Waitlist",
+      consentLabel: "I agree to receive course and enrollment updates.",
+      submit: "Submit updates",
       submitting: "Submitting...",
-      success: "Thanks. You have joined the waitlist.",
+      success: "Thanks. You have joined the course updates list.",
       failure: "Could not submit right now. Please try again.",
       requirementError: "Provide at least one of email or phone.",
       emailError: "Please enter a valid email address.",

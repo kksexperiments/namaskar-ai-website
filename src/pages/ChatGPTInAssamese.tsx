@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { useLanguage } from "@/hooks/useLanguage";
 import { toLocalePath } from "@/lib/locale";
+import { toAbsoluteSiteUrl } from "@/lib/site";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -13,6 +14,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const ChatGPTInAssamese = () => {
   const { language, switchLanguage, t } = useLanguage();
   const isAssamese = language === "as";
+  const canonicalPath = toLocalePath("/chatgpt-in-assamese", language);
 
   const tocItems = [
     { id: "setup", label: isAssamese ? "Setup গাইড" : "Setup guide" },
@@ -90,6 +92,56 @@ const ChatGPTInAssamese = () => {
         },
       ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: isAssamese ? "as-IN" : "en-IN",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: isAssamese ? "অসমীয়াত ChatGPT ব্যৱহাৰ আৰম্ভণি" : "How to start using ChatGPT in Assamese",
+    description: isAssamese
+      ? "Assamese-first prompt workflow-এ ChatGPT ব্যৱহাৰ কৰাৰ ধাপসমূহ।"
+      : "Step-by-step beginner setup and prompting workflow for ChatGPT in Assamese.",
+    totalTime: "PT20M",
+    inLanguage: isAssamese ? "as-IN" : "en-IN",
+    step: setupSteps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: isAssamese ? `ধাপ ${index + 1}` : `Step ${index + 1}`,
+      text: step,
+    })),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: isAssamese ? "ঘৰ" : "Home",
+        item: toAbsoluteSiteUrl(toLocalePath("/", language)),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: isAssamese ? "অসমীয়াত ChatGPT" : "ChatGPT in Assamese",
+        item: toAbsoluteSiteUrl(canonicalPath),
+      },
+    ],
+  };
+
   const internalLinks = [
     { label: isAssamese ? "AI Prompt Packs" : "AI Prompt Packs", to: toLocalePath("/prompt-packs", language) },
     { label: isAssamese ? "AI Tools" : "AI Tools", to: toLocalePath("/ai-tools", language) },
@@ -106,9 +158,10 @@ const ChatGPTInAssamese = () => {
             ? "অসমীয়াত ChatGPT setup, দৈনিক ব্যৱহাৰ, practical use-case আৰু safe usage নিয়মৰ সম্পূৰ্ণ গাইড।"
             : "Practical guide to using ChatGPT in Assamese: setup, daily workflows, use-cases, and safety rules."
         }
-        path={toLocalePath("/chatgpt-in-assamese", language)}
+        path={canonicalPath}
         language={language}
         keywords={["ChatGPT in Assamese", "Assamese ChatGPT guide", "learn ChatGPT Assam", "Namaskar AI"]}
+        structuredData={[faqSchema, howToSchema, breadcrumbSchema]}
       />
 
       <Header currentLanguage={language} onLanguageChange={switchLanguage} t={t} />

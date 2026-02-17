@@ -12,6 +12,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Trash2, Edit, Plus, LogOut, Loader2 } from 'lucide-react';
+import Seo from '@/components/Seo';
 import { getLanguageFromPath, toLocalePath } from '@/lib/locale';
 
 interface Article {
@@ -41,6 +42,7 @@ const Admin = () => {
   const location = useLocation();
   const { user, isAdmin, loading: authLoading, signOut } = useAuth();
   const routeLanguage = getLanguageFromPath(location.pathname);
+  const adminPath = toLocalePath('/admin', routeLanguage);
   const authPath = toLocalePath('/auth', routeLanguage);
   const homePath = toLocalePath('/', routeLanguage);
   const [articles, setArticles] = useState<Article[]>([]);
@@ -265,12 +267,21 @@ const Admin = () => {
   // Show loading screen while checking authentication
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading...</p>
+      <>
+        <Seo
+          title={routeLanguage === 'as' ? "এডমিন | নমস্কাৰ AI" : "Admin | Namaskar AI"}
+          description={routeLanguage === 'as' ? "এডমিন পেনেল (private route)." : "Admin dashboard (private route)."}
+          path={adminPath}
+          language={routeLanguage}
+          robots="noindex, nofollow"
+        />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4" />
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
@@ -285,7 +296,15 @@ const Admin = () => {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <>
+      <Seo
+        title={routeLanguage === 'as' ? "এডমিন | নমস্কাৰ AI" : "Admin | Namaskar AI"}
+        description={routeLanguage === 'as' ? "এডমিন পেনেল (private route)." : "Admin dashboard (private route)."}
+        path={adminPath}
+        language={routeLanguage}
+        robots="noindex, nofollow"
+      />
+      <div className="container mx-auto p-6">
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
@@ -498,7 +517,8 @@ const Admin = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </>
   );
 };
 

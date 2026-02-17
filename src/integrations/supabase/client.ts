@@ -2,9 +2,9 @@
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "./types";
 
-const FALLBACK_SUPABASE_URL = "https://khpxpdgcwaixofpyvuic.supabase.co";
+const FALLBACK_SUPABASE_URL = "https://icjvjjcfweioesambaez.supabase.co";
 const FALLBACK_SUPABASE_PUBLISHABLE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtocHhwZGdjd2FpeG9mcHl2dWljIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY1NjQzMDgsImV4cCI6MjA3MjE0MDMwOH0.7xSHKiTI1CUBbp_EFDfTDp4GcowIQMzyF4RvRszeZbE";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljanZqamNmd2Vpb2VzYW1iYWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzExOTY2OTYsImV4cCI6MjA4Njc3MjY5Nn0.iURaSLcZQREsplJoz_XyPQKhFoTTo1DRLELucS2iM1g";
 
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || FALLBACK_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY =

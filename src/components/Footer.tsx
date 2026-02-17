@@ -27,8 +27,40 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
       to: toLocalePath("/chatgpt-in-assamese", currentLanguage),
     },
     {
-      label: isAssamese ? "AI Course (শীঘ্ৰেই)" : "AI Course (Coming Soon)",
+      label: isAssamese ? "AI Course" : "AI Course",
       to: toLocalePath("/ai-course-in-assamese", currentLanguage),
+    },
+    {
+      label: "FAQ",
+      to: toLocalePath("/faq", currentLanguage),
+    },
+    {
+      label: isAssamese ? "৩০ দিনৰ AI Plan" : "30-Day AI Plan",
+      to: toLocalePath("/learn-ai-in-assamese-30-days", currentLanguage),
+    },
+    {
+      label: isAssamese ? "Editorial Policy" : "Editorial Policy",
+      to: toLocalePath("/editorial-policy", currentLanguage),
+    },
+    {
+      label: isAssamese ? "Press & Collaboration" : "Press & Collaboration",
+      to: toLocalePath("/press-collaboration", currentLanguage),
+    },
+    {
+      label: isAssamese ? "আমাৰ বিষয়ে" : "About",
+      to: toLocalePath("/about", currentLanguage),
+    },
+    {
+      label: isAssamese ? "যোগাযোগ" : "Contact",
+      to: toLocalePath("/contact", currentLanguage),
+    },
+    {
+      label: isAssamese ? "GEO Tracking" : "GEO Tracking",
+      to: toLocalePath("/geo-tracking-playbook", currentLanguage),
+    },
+    {
+      label: isAssamese ? "GEO Tracker (Internal)" : "GEO Tracker (Internal)",
+      to: toLocalePath("/geo-tracker", currentLanguage),
     },
   ];
   const socialLinks = [

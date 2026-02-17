@@ -9,6 +9,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2 } from 'lucide-react';
+import Seo from '@/components/Seo';
 import { getLanguageFromPath, toLocalePath } from '@/lib/locale';
 
 export const Auth = () => {
@@ -16,6 +17,7 @@ export const Auth = () => {
   const location = useLocation();
   const { toast } = useToast();
   const routeLanguage = getLanguageFromPath(location.pathname);
+  const authPath = toLocalePath('/auth', routeLanguage);
   const homePath = toLocalePath('/', routeLanguage);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -133,14 +135,22 @@ export const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20 p-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Welcome</h1>
-          <p className="text-muted-foreground">Sign in to access the admin panel</p>
-        </div>
+    <>
+      <Seo
+        title={routeLanguage === 'as' ? "অথেনটিকেশ্যন | নমস্কাৰ AI" : "Authentication | Namaskar AI"}
+        description={routeLanguage === 'as' ? "লগিন/চাইনআপ (private route)." : "Login and signup (private route)."}
+        path={authPath}
+        language={routeLanguage}
+        robots="noindex, nofollow"
+      />
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-secondary/20 p-4">
+        <div className="w-full max-w-md">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Welcome</h1>
+            <p className="text-muted-foreground">Sign in to access the admin panel</p>
+          </div>
 
-        <Card className="border-border/50 shadow-lg">
+          <Card className="border-border/50 shadow-lg">
           <CardHeader className="text-center">
             <CardTitle>Authentication</CardTitle>
             <CardDescription>
@@ -273,9 +283,10 @@ export const Auth = () => {
               </Button>
             </div>
           </CardContent>
-        </Card>
+          </Card>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
