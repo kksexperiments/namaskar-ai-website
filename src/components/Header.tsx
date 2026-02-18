@@ -14,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Globe, ChevronDown, Sparkles, Menu } from "lucide-react";
+import { Globe, ChevronDown, Sparkles, Menu, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Content, Language } from "@/types/language";
 import { useAuth } from "@/hooks/useAuth";
@@ -41,7 +41,7 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
     currentLanguage === "as"
       ? "দ্ৰুতভাৱে পেজ বাছনি কৰক আৰু শিকাৰ যাত্ৰা আগবঢ়াওক।"
       : "Move quickly between learning pages.";
-  const navLinks = [
+  const primaryLinks = [
     {
       to: toLocalePath("/prompt-packs", currentLanguage),
       label: currentLanguage === "as" ? "প্ৰম্প্ট পেক" : "Prompt Packs",
@@ -51,38 +51,26 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
       label: currentLanguage === "as" ? "AI টুলছ" : "AI Tools",
     },
     {
-      to: toLocalePath("/ai-course-in-assamese", currentLanguage),
+      to: toLocalePath("/learning-roadmaps", currentLanguage),
       label: currentLanguage === "as" ? "AI Course" : "AI Course",
     },
     {
-      to: toLocalePath("/learning-roadmaps", currentLanguage),
-      label: currentLanguage === "as" ? "ৰোডমেপ" : "Roadmaps",
-    },
-    {
       to: toLocalePath("/news", currentLanguage),
-      label: currentLanguage === "as" ? "খবৰ" : "News",
+      label: currentLanguage === "as" ? "খবৰ" : "Updates",
     },
-    {
-      to: toLocalePath("/faq", currentLanguage),
-      label: "FAQ",
-    },
-    {
-      to: toLocalePath("/about", currentLanguage),
-      label: currentLanguage === "as" ? "আমাৰ বিষয়ে" : "About",
-    },
-    {
-      to: toLocalePath("/contact", currentLanguage),
-      label: currentLanguage === "as" ? "যোগাযোগ" : "Contact",
-    },
-    {
-      to: toLocalePath("/press-collaboration", currentLanguage),
-      label: currentLanguage === "as" ? "Press" : "Press",
-    },
+  ];
+  const moreLabel = currentLanguage === "as" ? "অধিক" : "More";
+  const moreLinks = [
+    { to: toLocalePath("/faq", currentLanguage), label: "FAQ" },
+    { to: toLocalePath("/about", currentLanguage), label: currentLanguage === "as" ? "আমাৰ বিষয়ে" : "About" },
+    { to: toLocalePath("/contact", currentLanguage), label: currentLanguage === "as" ? "যোগাযোগ" : "Contact" },
+    { to: toLocalePath("/press-collaboration", currentLanguage), label: currentLanguage === "as" ? "Press" : "Press" },
   ];
   const shortcutLabel =
     currentLanguage === "as"
       ? "আজিৰ দ্ৰুত আৰম্ভণি: ১০ মিনিটত ১টা প্ৰম্প্ট কপি কৰি চেষ্টা কৰক।"
       : "Today’s quick start: copy and run 1 prompt in 10 minutes.";
+  const communityPath = `${homePath}#community`;
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/15 bg-[linear-gradient(135deg,hsl(var(--card)/0.95),hsl(var(--accent)/0.08),hsl(var(--primary)/0.12))] backdrop-blur-md">
@@ -104,13 +92,31 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
           </div>
 
           <nav className="hidden items-center gap-2 lg:flex">
-            {navLinks.map((link) => (
+            {primaryLinks.map((link) => (
               <Link key={link.to} to={link.to}>
                 <Button variant="ghost" size="sm" className="text-sm font-medium hover:bg-primary/10">
                   {link.label}
                 </Button>
               </Link>
             ))}
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="text-sm font-medium hover:bg-primary/10">
+                  {moreLabel}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-popover border border-border shadow-card">
+                {moreLinks.map((link) => (
+                  <DropdownMenuItem key={link.to} asChild>
+                    <Link to={link.to} className="cursor-pointer">
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
 
           {/* Right Side - Auth & Language */}
@@ -131,8 +137,16 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                 </SheetHeader>
 
                 <div className="mt-6 space-y-2">
-                  {navLinks.map((link) => (
-                    <SheetClose asChild key={`mobile-${link.to}`}>
+                  <SheetClose asChild>
+                    <Link to={communityPath} className="block">
+                      <Button className="w-full justify-start bg-gradient-primary text-white">
+                        {t.hero.secondaryCta}
+                      </Button>
+                    </Link>
+                  </SheetClose>
+
+                  {primaryLinks.map((link) => (
+                    <SheetClose asChild key={`mobile-primary-${link.to}`}>
                       <Link to={link.to} className="block">
                         <Button variant="outline" className="w-full justify-start">
                           {link.label}
@@ -140,6 +154,23 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                       </Link>
                     </SheetClose>
                   ))}
+
+                  <div className="pt-3">
+                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {moreLabel}
+                    </p>
+                    <div className="space-y-2">
+                      {moreLinks.map((link) => (
+                        <SheetClose asChild key={`mobile-more-${link.to}`}>
+                          <Link to={link.to} className="block">
+                            <Button variant="outline" className="w-full justify-start">
+                              {link.label}
+                            </Button>
+                          </Link>
+                        </SheetClose>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-6 rounded-xl border border-primary/20 bg-card/80 p-3 text-xs text-muted-foreground">
@@ -163,6 +194,22 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                 {welcomeLabel}, {user.email?.split("@")[0]}
               </span>
             ) : null}
+
+            {/* Join Community CTA */}
+            <Link to={communityPath} className="hidden sm:inline-flex">
+              <Button size="sm" className="bg-gradient-primary text-white shadow-button">
+                {t.hero.secondaryCta}
+              </Button>
+            </Link>
+            <Link to={communityPath} className="sm:hidden">
+              <Button
+                size="icon"
+                aria-label={t.hero.secondaryCta}
+                className="bg-gradient-primary text-white shadow-button"
+              >
+                <Users className="h-4 w-4" />
+              </Button>
+            </Link>
 
             {/* Language Toggle */}
             <DropdownMenu>
