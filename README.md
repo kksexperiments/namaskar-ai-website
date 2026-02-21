@@ -44,6 +44,7 @@ Important for Vite builds: `VITE_*` variables are injected at build-time.
 Set `VITE_SITE_URL` in Vercel **before** the production build runs, or deployed canonical/OG defaults may not match your production domain.
 
 For Google Sheets waitlist setup, follow `/Users/KBBusiness/Documents/Web App Projects/Antigravity Test Apps/Namaskar AI/namaskar-ai-website/docs/waitlist-google-sheets.md`.
+That setup now supports automatic lead-notification emails via `NOTIFY_EMAILS` in `apps_script/waitlist.gs`.
 
 ## Canonical-Safe Site URL Handling
 
@@ -103,6 +104,25 @@ Wait for DNS propagation, then re-check domain status in Vercel.
   - `/ai-tools`
   - `/learning-roadmaps`
   - `/news`
+
+## Launch Ops Commands
+
+- Standard readiness check: `npm run check:launch`
+- Strict readiness check (fails on missing env vars): `npm run check:launch:strict`
+
+Persistent backlog file for unfinished launch items:
+
+- `/Users/KBBusiness/Documents/Web App Projects/Antigravity Test Apps/Namaskar AI/namaskar-ai-website/docs/launch-backlog.md`
+
+## Theme Variants
+
+The site now supports three switchable visual themes in the header:
+
+- `Saffron Dawn`
+- `Tea Garden`
+- `River Sky`
+
+Selection is persisted in browser storage (`namaskar-site-theme`), making it easy to test and compare design directions quickly.
 
 ## Update Homepage Facebook Videos
 

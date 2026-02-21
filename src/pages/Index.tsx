@@ -17,10 +17,6 @@ const Index = () => {
   const isAssamese = language === "as";
   const canonicalPath = toLocalePath("/", language);
 
-  const scrollToNews = () => {
-    document.getElementById('news')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const scrollToCommunity = () => {
     document.getElementById('community')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -186,27 +182,39 @@ const Index = () => {
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <HeroSection
-          currentLanguage={language}
-          t={t}
-          onNewsletterClick={scrollToResources}
-          onCommunityClick={scrollToCommunity}
-        />
+        <div className="section-reveal" style={{ animationDelay: "60ms" }}>
+          <HeroSection
+            currentLanguage={language}
+            t={t}
+            onNewsletterClick={scrollToResources}
+            onCommunityClick={scrollToCommunity}
+          />
+        </div>
 
         {/* Resources Section */}
-        <ResourcesSection currentLanguage={language} t={t} />
+        <div className="section-reveal" style={{ animationDelay: "120ms" }}>
+          <ResourcesSection currentLanguage={language} t={t} />
+        </div>
 
         {/* Pillar Guides */}
-        <PillarGuidesSection currentLanguage={language} />
+        <div className="section-reveal" style={{ animationDelay: "180ms" }}>
+          <PillarGuidesSection currentLanguage={language} />
+        </div>
 
         {/* News Section */}
-        <NewsSection t={t} currentLanguage={language} />
+        <div className="section-reveal" style={{ animationDelay: "220ms" }}>
+          <NewsSection t={t} currentLanguage={language} />
+        </div>
 
         {/* Community Section */}
-        <CommunitySection currentLanguage={language} t={t} />
+        <div className="section-reveal" style={{ animationDelay: "260ms" }}>
+          <CommunitySection currentLanguage={language} t={t} />
+        </div>
 
         {/* Latest Videos (Facebook embeds) */}
-        <InstagramSection t={t} />
+        <div className="section-reveal" style={{ animationDelay: "300ms" }}>
+          <InstagramSection t={t} />
+        </div>
       </main>
 
       {/* Footer */}

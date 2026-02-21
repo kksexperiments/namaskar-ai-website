@@ -9,8 +9,10 @@ interface CommunitySectionProps {
 }
 
 const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
-  const whatsappUrl = import.meta.env.VITE_WHATSAPP_GROUP_URL || "https://www.instagram.com/namaskar.ai";
-  const telegramUrl = import.meta.env.VITE_TELEGRAM_CHANNEL_URL || "https://www.instagram.com/namaskar.ai";
+  const whatsappUrl = import.meta.env.VITE_WHATSAPP_GROUP_URL?.trim() || "";
+  const telegramUrl = import.meta.env.VITE_TELEGRAM_CHANNEL_URL?.trim() || "";
+  const channelUnavailableText =
+    currentLanguage === "as" ? "এই লিংক এতিয়ালৈ কনফিগাৰ হোৱা নাই।" : "This link is not configured yet.";
 
   const labels =
     currentLanguage === "as"
@@ -52,15 +54,27 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
               </div>
               <h3 className="text-base font-poppins font-semibold">{t.community.whatsapp.title}</h3>
               <p className="text-sm text-muted-foreground">{t.community.whatsapp.description}</p>
-              <Button
-                asChild
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
-              >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  {t.community.whatsapp.button}
-                  <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </Button>
+              {whatsappUrl ? (
+                <Button
+                  asChild
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
+                >
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    {t.community.whatsapp.button}
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </a>
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    disabled
+                    className="w-full bg-green-500 text-white font-medium py-2 rounded-lg min-h-[44px] disabled:opacity-60"
+                  >
+                    {t.community.whatsapp.button}
+                  </Button>
+                  <p className="text-xs text-muted-foreground">{channelUnavailableText}</p>
+                </>
+              )}
             </div>
           </Card>
 
@@ -71,15 +85,27 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
               </div>
               <h3 className="text-base font-poppins font-semibold">{t.community.telegram.title}</h3>
               <p className="text-sm text-muted-foreground">{t.community.telegram.description}</p>
-              <Button
-                asChild
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
-              >
-                <a href={telegramUrl} target="_blank" rel="noopener noreferrer">
-                  {t.community.telegram.button}
-                  <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </Button>
+              {telegramUrl ? (
+                <Button
+                  asChild
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
+                >
+                  <a href={telegramUrl} target="_blank" rel="noopener noreferrer">
+                    {t.community.telegram.button}
+                    <ExternalLink className="ml-2 w-4 h-4" />
+                  </a>
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    disabled
+                    className="w-full bg-blue-500 text-white font-medium py-2 rounded-lg min-h-[44px] disabled:opacity-60"
+                  >
+                    {t.community.telegram.button}
+                  </Button>
+                  <p className="text-xs text-muted-foreground">{channelUnavailableText}</p>
+                </>
+              )}
             </div>
           </Card>
         </div>

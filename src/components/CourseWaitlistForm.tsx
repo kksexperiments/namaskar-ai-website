@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
+import { submitLead } from "@/lib/leadCapture";
 import { Language } from "@/types/language";
 
 interface CourseWaitlistFormProps {
@@ -76,7 +77,6 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
         consentError: "অগ্ৰসর হ’বলৈ consent দিব লাগিব।",
         minTimeError: "অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি পুনৰ চেষ্টা কৰক।",
         rateLimitError: "অনুগ্ৰহ কৰি ১ মিনিট পিছত পুনৰ submit কৰক।",
-        endpointError: "Waitlist endpoint configured নহয়।",
       };
     }
 
@@ -100,7 +100,6 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
       consentError: "Consent is required to proceed.",
       minTimeError: "Please wait a moment and submit again.",
       rateLimitError: "Please wait 1 minute before submitting again.",
-      endpointError: "Waitlist endpoint is not configured.",
     };
   }, [language]);
 
@@ -142,12 +141,6 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
       return;
     }
 
-    const endpoint = import.meta.env.VITE_WAITLIST_ENDPOINT?.trim();
-    if (!endpoint) {
-      setErrorMessage(copy.endpointError);
-      return;
-    }
-
     const now = Date.now();
     const lastSubmittedAt = Number(localStorage.getItem(LAST_SUBMIT_STORAGE_KEY) || "0");
     if (lastSubmittedAt && now - lastSubmittedAt < RATE_LIMIT_MS) {
@@ -162,6 +155,7 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
         timestamp: new Date().toISOString(),
         locale: language,
         page: location.pathname,
+        source: "ai-course-waitlist",
         name: name.trim(),
         email: normalizedEmail,
         phone_raw: rawPhone,
@@ -171,23 +165,28 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
         referrer: document.referrer || "",
       };
 
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const result = await submitLead({
+        endpoint: import.meta.env.VITE_WAITLIST_ENDPOINT?.trim(),
+        endpointPayload: payload,
+        fallbackTable: "waitlist_fallback_submissions",
+        fallbackPayload: {
+          source: payload.source,
+          locale: payload.locale,
+          page: payload.page,
+          name: payload.name,
+          email: payload.email,
+          phone_raw: payload.phone_raw,
+          phone_e164: payload.phone_e164,
+          course_interest: "",
+          course_interest_label: "",
+          consent: payload.consent,
+          user_agent: payload.user_agent,
+          referrer: payload.referrer,
+          payload,
         },
-        body: JSON.stringify(payload),
       });
-
-      let responseBody: { ok?: boolean; error?: string } | null = null;
-      try {
-        responseBody = (await response.json()) as { ok?: boolean; error?: string };
-      } catch {
-        responseBody = null;
-      }
-
-      if (!response.ok || responseBody?.ok === false) {
-        throw new Error(responseBody?.error || `HTTP ${response.status}`);
+      if (!result.ok) {
+        throw new Error(result.error || "Waitlist submission failed.");
       }
 
       localStorage.setItem(LAST_SUBMIT_STORAGE_KEY, String(now));

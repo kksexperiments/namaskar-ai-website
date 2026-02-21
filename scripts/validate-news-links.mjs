@@ -20,6 +20,9 @@ const shouldRunValidation = () => {
 
   // Default: do not enforce automatically because many news sites return false negatives
   // (403/404/redirects) to non-browser HTTP clients. Run explicitly in CI when desired.
+  console.log(
+    "[news-links] Validation is optional by default. Set RUN_NEWS_LINK_VALIDATION=true to enforce checks.",
+  );
   return false;
 };
 

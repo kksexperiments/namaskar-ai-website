@@ -14,13 +14,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Globe, ChevronDown, Sparkles, Menu, Users } from "lucide-react";
+import { Globe, ChevronDown, Sparkles, Menu, Users, Palette, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Content, Language } from "@/types/language";
 import { useAuth } from "@/hooks/useAuth";
 import namaskarLogo from "@/assets/namaskar-logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toLocalePath } from "@/lib/locale";
+import { SITE_THEMES, SiteTheme, getStoredSiteTheme, setStoredSiteTheme } from "@/lib/siteTheme";
 
 interface HeaderProps {
   currentLanguage: Language;
@@ -31,6 +32,7 @@ interface HeaderProps {
 const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
   const { user, isAdmin } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeTheme, setActiveTheme] = useState<SiteTheme>("saffron-dawn");
   const homePath = toLocalePath("/", currentLanguage);
   const adminPath = toLocalePath("/admin", currentLanguage);
   const adminLabel = currentLanguage === "as" ? "এডমিন পেনেল" : "Admin Panel";
@@ -71,6 +73,22 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
       ? "আজিৰ দ্ৰুত আৰম্ভণি: ১০ মিনিটত ১টা প্ৰম্প্ট কপি কৰি চেষ্টা কৰক।"
       : "Today’s quick start: copy and run 1 prompt in 10 minutes.";
   const communityPath = `${homePath}#community`;
+  const themeLabel = currentLanguage === "as" ? "থিম" : "Theme";
+  const themeHint = currentLanguage === "as" ? "চেহেৰা সলনি কৰক" : "Switch look";
+  const defaultThemeLabel = currentLanguage === "as" ? SITE_THEMES[0].labelAs : SITE_THEMES[0].labelEn;
+  const selectedThemeLabel =
+    SITE_THEMES.find((theme) => theme.id === activeTheme)?.[
+      currentLanguage === "as" ? "labelAs" : "labelEn"
+    ] ?? defaultThemeLabel;
+
+  useEffect(() => {
+    setActiveTheme(getStoredSiteTheme());
+  }, []);
+
+  const handleThemeChange = (theme: SiteTheme) => {
+    setStoredSiteTheme(theme);
+    setActiveTheme(theme);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-primary/15 bg-[linear-gradient(135deg,hsl(var(--card)/0.95),hsl(var(--accent)/0.08),hsl(var(--primary)/0.12))] backdrop-blur-md">
@@ -171,6 +189,26 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                       ))}
                     </div>
                   </div>
+
+                  <div className="pt-3">
+                    <p className="px-1 pb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      {themeLabel}
+                    </p>
+                    <div className="grid gap-2 sm:grid-cols-3">
+                      {SITE_THEMES.map((theme) => (
+                        <Button
+                          key={theme.id}
+                          type="button"
+                          variant={activeTheme === theme.id ? "default" : "outline"}
+                          className="justify-start"
+                          onClick={() => handleThemeChange(theme.id)}
+                        >
+                          {activeTheme === theme.id ? <Check className="mr-2 h-4 w-4" /> : null}
+                          {currentLanguage === "as" ? theme.labelAs : theme.labelEn}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="mt-6 rounded-xl border border-primary/20 bg-card/80 p-3 text-xs text-muted-foreground">
@@ -210,6 +248,36 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
                 <Users className="h-4 w-4" />
               </Button>
             </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  aria-label={themeLabel}
+                  variant="ghost"
+                  size="sm"
+                  className="hidden items-center space-x-2 hover:bg-muted transition-colors md:inline-flex"
+                >
+                  <Palette className="w-4 h-4" />
+                  <span className="hidden lg:inline">{selectedThemeLabel}</span>
+                  <ChevronDown className="w-4 h-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-popover border border-border shadow-card min-w-[180px]">
+                <div className="px-2 pb-1 pt-1 text-xs text-muted-foreground">{themeHint}</div>
+                {SITE_THEMES.map((theme) => (
+                  <DropdownMenuItem
+                    key={theme.id}
+                    onClick={() => handleThemeChange(theme.id)}
+                    className="cursor-pointer"
+                  >
+                    <span className="flex w-full items-center justify-between">
+                      <span>{currentLanguage === "as" ? theme.labelAs : theme.labelEn}</span>
+                      {activeTheme === theme.id ? <Check className="h-4 w-4 text-primary" /> : null}
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* Language Toggle */}
             <DropdownMenu>

@@ -6,10 +6,14 @@
   "scripts": {
     "dev": "vite",
     "sync:seo": "node scripts/generate-seo-assets.mjs",
-    "validate:news-links": "node scripts/validate-news-links.mjs",
-    "prebuild": "npm run sync:seo && npm run validate:news-links",
+    "validate:news-links:optional": "node scripts/validate-news-links.mjs",
+    "validate:news-links": "RUN_NEWS_LINK_VALIDATION=true node scripts/validate-news-links.mjs",
+    "validate:news-links:ci": "RUN_NEWS_LINK_VALIDATION=true node scripts/validate-news-links.mjs",
+    "prebuild": "npm run sync:seo && npm run validate:news-links:optional",
     "postbuild": "node scripts/prerender-seo-routes.mjs",
     "build": "vite build",
+    "check:launch": "node scripts/check-launch-readiness.mjs",
+    "check:launch:strict": "node scripts/check-launch-readiness.mjs --strict",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

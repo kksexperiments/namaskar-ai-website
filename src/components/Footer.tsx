@@ -54,14 +54,6 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
       label: isAssamese ? "যোগাযোগ" : "Contact",
       to: toLocalePath("/contact", currentLanguage),
     },
-    {
-      label: isAssamese ? "GEO Tracking" : "GEO Tracking",
-      to: toLocalePath("/geo-tracking-playbook", currentLanguage),
-    },
-    {
-      label: isAssamese ? "GEO Tracker (Internal)" : "GEO Tracker (Internal)",
-      to: toLocalePath("/geo-tracker", currentLanguage),
-    },
   ];
   const socialLinks = [
     { icon: Instagram, href: "https://instagram.com/namaskar.ai", label: "Instagram" },

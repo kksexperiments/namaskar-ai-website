@@ -70,7 +70,6 @@ const Admin = () => {
   }, [authLoading, authPath, isAdmin, navigate, user]);
 
   const fetchArticles = useCallback(async () => {
-    console.log('Fetching articles...');
     const { data, error } = await supabase
       .from('articles')
       .select(`
@@ -78,14 +77,11 @@ const Admin = () => {
         article_categories (name)
       `)
       .order('created_at', { ascending: false });
-
-    console.log('Articles fetch result:', { data, error });
     
     if (error) {
       console.error('Error fetching articles:', error);
       toast({ title: 'Error fetching articles', variant: 'destructive' });
     } else {
-      console.log('Setting articles:', data);
       setArticles(data || []);
     }
   }, [toast]);
@@ -262,7 +258,6 @@ const Admin = () => {
       author: '',
       status: 'draft'
     });
-    setSelectedFile(null);
     setSelectedFile(null);
   };
 

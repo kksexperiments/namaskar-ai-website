@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 import { trackEvent } from "@/lib/analytics";
+import { submitLead } from "@/lib/leadCapture";
 import { Loader2, Mail } from "lucide-react";
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const NewsletterSignup = () => {
     const [email, setEmail] = useState("");
@@ -13,31 +15,43 @@ const NewsletterSignup = () => {
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!email) return;
+        const normalizedEmail = email.trim().toLowerCase();
+
+        if (!normalizedEmail || !EMAIL_REGEX.test(normalizedEmail)) {
+            toast({
+                title: "Subscription failed",
+                description: "Please enter a valid email address.",
+                variant: "destructive",
+            });
+            return;
+        }
 
         setLoading(true);
         try {
-            const { error } = await supabase
-                .from("newsletter_subscribers")
-                .insert([{ email }]);
+            const result = await submitLead({
+                fallbackTable: "newsletter_subscribers",
+                fallbackPayload: { email: normalizedEmail },
+                treatFallbackDuplicateAsSuccess: true,
+            });
 
-            if (error) {
-                if (error.code === "23505") { // Unique violation
-                    toast({
-                        title: "Already subscribed!",
-                        description: "You're already on our list. Stay tuned for updates!",
-                    });
-                } else {
-                    throw error;
-                }
-            } else {
-                trackEvent("newsletter_subscribed", { email_domain: email.split("@")[1] });
-                toast({
-                    title: "Successfully subscribed!",
-                    description: "Welcome to the Namaskar AI community.",
-                });
-                setEmail("");
+            if (!result.ok) {
+                throw new Error(result.error || "Subscription request failed.");
             }
+
+            if (result.duplicate) {
+                toast({
+                    title: "Already subscribed!",
+                    description: "You're already on our list. Stay tuned for updates!",
+                });
+                return;
+            }
+
+            trackEvent("newsletter_subscribed", { email_domain: normalizedEmail.split("@")[1] });
+            toast({
+                title: "Successfully subscribed!",
+                description: "Welcome to the Namaskar AI community.",
+            });
+            setEmail("");
         } catch (error: unknown) {
             console.error("Newsletter error:", error);
             toast({

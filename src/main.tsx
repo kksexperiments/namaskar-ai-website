@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import App from "./App.tsx";
 import { initAnalytics } from "./lib/analytics";
 import { getSiteUrl, toAbsoluteSiteUrl } from "./lib/site";
+import { initSiteTheme } from "./lib/siteTheme";
 import "./index.css";
 
 const applyInitialSeoHost = () => {
@@ -73,6 +74,7 @@ const applyInitialSeoHost = () => {
 };
 
 applyInitialSeoHost();
+initSiteTheme();
 
 const removeStaticSeoContent = () => {
     const staticContent = document.getElementById("seo-static-content");

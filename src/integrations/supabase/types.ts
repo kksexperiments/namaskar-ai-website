@@ -109,6 +109,60 @@ export type Database = {
         }
         Relationships: []
       }
+      waitlist_fallback_submissions: {
+        Row: {
+          consent: boolean
+          course_interest: string
+          course_interest_label: string
+          created_at: string
+          email: string
+          id: string
+          locale: string
+          name: string
+          page: string
+          payload: Json
+          phone_e164: string
+          phone_raw: string
+          referrer: string
+          source: string
+          user_agent: string
+        }
+        Insert: {
+          consent?: boolean
+          course_interest?: string
+          course_interest_label?: string
+          created_at?: string
+          email?: string
+          id?: string
+          locale?: string
+          name?: string
+          page?: string
+          payload?: Json
+          phone_e164?: string
+          phone_raw?: string
+          referrer?: string
+          source: string
+          user_agent?: string
+        }
+        Update: {
+          consent?: boolean
+          course_interest?: string
+          course_interest_label?: string
+          created_at?: string
+          email?: string
+          id?: string
+          locale?: string
+          name?: string
+          page?: string
+          payload?: Json
+          phone_e164?: string
+          phone_raw?: string
+          referrer?: string
+          source?: string
+          user_agent?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

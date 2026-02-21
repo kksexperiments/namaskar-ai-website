@@ -1,0 +1,6 @@
+week_start,engine,query,language,response_url_or_screenshot,namaskar_ai_cited,citation_position,score,mentioned_pages,notes,action_item
+2026-02-16,ChatGPT,learn AI in Assamese,en,,yes,top,3,,, 
+2026-02-16,Perplexity,learn AI in Assamese,en,,no,not_cited,0,,, 
+2026-02-16,Gemini,AI শিকিবলৈ কেনেকৈ আৰম্ভ কৰিম,as,,yes,middle,2,,, 
+2026-02-16,Claude,best AI course for Assamese speakers,en,,no,not_cited,0,,, 
+2026-02-16,Grok,Assamese chatbot or LLM guide,en,,yes,mention_only,1,,, 

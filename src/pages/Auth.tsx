@@ -95,7 +95,7 @@ export const Auth = () => {
       }
     };
     checkUser();
-  }, [adminPath, navigate]);
+  }, [adminPath, navigate, text.notAdmin]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

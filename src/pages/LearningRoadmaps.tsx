@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowLeft,
@@ -24,6 +24,7 @@ import { useLanguage } from "@/hooks/useLanguage";
 import { toLocalePath } from "@/lib/locale";
 import { toAbsoluteSiteUrl } from "@/lib/site";
 import { trackEvent } from "@/lib/analytics";
+import { submitLead } from "@/lib/leadCapture";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -34,7 +35,9 @@ import { Label } from "@/components/ui/label";
 type CourseInterest = "all" | "ai_basics" | "career" | "govt_jobs" | "business" | "teachers";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-const ROADMAP_WAITLIST_STORAGE_KEY = "namaskar-learning-roadmaps-waitlist";
+const ROADMAP_RATE_LIMIT_MS = 60_000;
+const ROADMAP_MIN_TIME_TO_SUBMIT_MS = 3_000;
+const ROADMAP_LAST_SUBMIT_STORAGE_KEY = "namaskar-learning-roadmaps-last-submit";
 const TARGET_LAUNCH_IST = "2026-03-15T00:00:00+05:30";
 
 const assameseDigitMap: Record<string, string> = {
@@ -94,6 +97,7 @@ const LearningRoadmaps = () => {
   const canonicalPath = toLocalePath("/learning-roadmaps", language);
   const absolutePageUrl = toAbsoluteSiteUrl(canonicalPath);
   const youtubeChannelUrl = import.meta.env.VITE_YOUTUBE_CHANNEL_URL?.trim() || "https://www.youtube.com/@namaskarai";
+  const pageLoadTimeRef = useRef(Date.now());
 
   const [countdown, setCountdown] = useState(() => getCountdown());
   const [waitlistOpen, setWaitlistOpen] = useState(false);
@@ -101,6 +105,7 @@ const LearningRoadmaps = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -302,6 +307,9 @@ const LearningRoadmaps = () => {
       ? "অনুগ্ৰহ কৰি বৈধ ফোন নম্বৰ দিয়ক (উদাহৰণ: +91 9876543210)।"
       : "Please enter a valid phone number (example: +91 9876543210).",
     emailError: isAssamese ? "অনুগ্ৰহ কৰি বৈধ ইমেইল দিয়ক।" : "Please enter a valid email address.",
+    requirementError: isAssamese ? "ইমেইল বা ফোনৰ ভিতৰত কমেও এটা দিয়ক।" : "Provide at least one of email or phone.",
+    minTimeError: isAssamese ? "অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি পুনৰ চেষ্টা কৰক।" : "Please wait a moment and submit again.",
+    rateLimitError: isAssamese ? "অনুগ্ৰহ কৰি ১ মিনিট পিছত পুনৰ submit কৰক।" : "Please wait 1 minute before submitting again.",
     teaserTitle: isAssamese ? "মোৰ YouTube Series (Teaser)" : "Upcoming Series",
     teaserLead: "AI in Assamese — Coming Soon",
     teaserSub: isAssamese
@@ -326,6 +334,15 @@ const LearningRoadmaps = () => {
     setErrorMessage(null);
     setSuccessMessage(null);
 
+    if (honeypot.trim().length > 0) {
+      return;
+    }
+
+    if (Date.now() - pageLoadTimeRef.current < ROADMAP_MIN_TIME_TO_SUBMIT_MS) {
+      setErrorMessage(copy.minTimeError);
+      return;
+    }
+
     const trimmedName = name.trim();
     const normalizedPhone = normalizeIndiaMobile(phone);
     const normalizedEmail = email.trim().toLowerCase();
@@ -335,20 +352,31 @@ const LearningRoadmaps = () => {
       return;
     }
 
-    if (!normalizedPhone) {
+    if (!normalizedEmail && !phone.trim()) {
+      setErrorMessage(copy.requirementError);
+      return;
+    }
+
+    if (phone.trim() && !normalizedPhone) {
       setErrorMessage(copy.phoneError);
       return;
     }
 
-    if (!normalizedEmail || !EMAIL_REGEX.test(normalizedEmail)) {
+    if (normalizedEmail && !EMAIL_REGEX.test(normalizedEmail)) {
       setErrorMessage(copy.emailError);
+      return;
+    }
+
+    const now = Date.now();
+    const lastSubmittedAt = Number(localStorage.getItem(ROADMAP_LAST_SUBMIT_STORAGE_KEY) || "0");
+    if (lastSubmittedAt && now - lastSubmittedAt < ROADMAP_RATE_LIMIT_MS) {
+      setErrorMessage(copy.rateLimitError);
       return;
     }
 
     setSubmitting(true);
 
     const selectedLabel = courseOptions.find((item) => item.value === selectedCourse);
-    const endpoint = import.meta.env.VITE_WAITLIST_ENDPOINT?.trim();
     const payload = {
       timestamp: new Date().toISOString(),
       locale: language,
@@ -356,26 +384,39 @@ const LearningRoadmaps = () => {
       source: "learning-roadmaps-coming-soon",
       name: trimmedName,
       phone_raw: phone.trim(),
-      phone_e164: normalizedPhone,
+      phone_e164: normalizedPhone ?? "",
       email: normalizedEmail,
       course_interest: selectedCourse,
       course_interest_label: selectedLabel ? (isAssamese ? selectedLabel.as : selectedLabel.en) : selectedCourse,
+      consent: true,
+      user_agent: navigator.userAgent,
+      referrer: document.referrer || "",
     };
 
     try {
-      if (endpoint) {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!response.ok) {
-          throw new Error(`Waitlist request failed with ${response.status}`);
-        }
-      } else {
-        const existing = JSON.parse(window.localStorage.getItem(ROADMAP_WAITLIST_STORAGE_KEY) || "[]");
-        const nextEntries = Array.isArray(existing) ? [payload, ...existing].slice(0, 200) : [payload];
-        window.localStorage.setItem(ROADMAP_WAITLIST_STORAGE_KEY, JSON.stringify(nextEntries));
+      const result = await submitLead({
+        endpoint: import.meta.env.VITE_WAITLIST_ENDPOINT?.trim(),
+        endpointPayload: payload,
+        fallbackTable: "waitlist_fallback_submissions",
+        fallbackPayload: {
+          source: payload.source,
+          locale: payload.locale,
+          page: payload.page,
+          name: payload.name,
+          email: payload.email,
+          phone_raw: payload.phone_raw,
+          phone_e164: payload.phone_e164,
+          course_interest: payload.course_interest,
+          course_interest_label: payload.course_interest_label,
+          consent: payload.consent,
+          user_agent: payload.user_agent,
+          referrer: payload.referrer,
+          payload,
+        },
+      });
+
+      if (!result.ok) {
+        throw new Error(result.error || "Waitlist submission failed.");
       }
 
       trackEvent("learning_roadmap_waitlist_submitted", {
@@ -387,7 +428,10 @@ const LearningRoadmaps = () => {
       setName("");
       setPhone("");
       setEmail("");
+      setHoneypot("");
       setSelectedCourse("all");
+      localStorage.setItem(ROADMAP_LAST_SUBMIT_STORAGE_KEY, String(now));
+      pageLoadTimeRef.current = Date.now();
     } catch (error) {
       setErrorMessage(isAssamese ? "এতিয়া submit কৰিব পৰা নগ'ল। অনুগ্ৰহ কৰি আকৌ চেষ্টা কৰক।" : "Could not submit right now. Please try again.");
       trackEvent("learning_roadmap_waitlist_failed", {
@@ -657,6 +701,19 @@ const LearningRoadmaps = () => {
           </DialogHeader>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="hidden" aria-hidden="true">
+              <Label htmlFor="roadmap-company_website">Company website</Label>
+              <Input
+                id="roadmap-company_website"
+                name="company_website"
+                type="text"
+                value={honeypot}
+                onChange={(event) => setHoneypot(event.target.value)}
+                autoComplete="off"
+                tabIndex={-1}
+              />
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="roadmap-waitlist-name">{copy.nameLabel}</Label>
               <Input
@@ -678,7 +735,6 @@ const LearningRoadmaps = () => {
                 placeholder={isAssamese ? "+91 ৯৮৭৬৫৪৩২১০" : "+91 9876543210"}
                 inputMode="tel"
                 disabled={submitting}
-                required
               />
             </div>
 
@@ -691,7 +747,6 @@ const LearningRoadmaps = () => {
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder={isAssamese ? "আপোনাৰ ইমেইল লিখক" : "Enter your email"}
                 disabled={submitting}
-                required
               />
             </div>
 

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { Clock, TrendingUp, ArrowRight, Mail, Rocket, FileText, LucideIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { trackEvent } from "@/lib/analytics";
+import { submitLead } from "@/lib/leadCapture";
 import { Content, Language } from "@/types/language";
 import { toLocalePath } from "@/lib/locale";
 
@@ -38,6 +40,8 @@ interface RenderNewsItem {
   slug?: string;
   featured_image?: string | null;
 }
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
   const [email, setEmail] = useState("");
@@ -78,8 +82,9 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const normalizedEmail = email.trim().toLowerCase();
 
-    if (!email) {
+    if (!normalizedEmail || !EMAIL_REGEX.test(normalizedEmail)) {
       toast({
         title: t.newsletter.error,
         description: "Please enter a valid email address",
@@ -91,7 +96,25 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const result = await submitLead({
+        fallbackTable: "newsletter_subscribers",
+        fallbackPayload: { email: normalizedEmail },
+        treatFallbackDuplicateAsSuccess: true,
+      });
+
+      if (!result.ok) {
+        throw new Error(result.error || "Newsletter submission failed.");
+      }
+
+      if (result.duplicate) {
+        toast({
+          title: "Already subscribed!",
+          description: "You're already on our list. Stay tuned for updates!",
+        });
+        return;
+      }
+
+      trackEvent("newsletter_subscribed", { email_domain: normalizedEmail.split("@")[1] });
 
       toast({
         title: t.newsletter.success,

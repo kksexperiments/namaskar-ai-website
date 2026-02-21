@@ -1,0 +1,40 @@
+# Namaskar AI
+
+> Assamese-first practical AI learning platform focused on learners, professionals, and small businesses in Assam.
+
+## Primary learning resources
+- [Namaskar AI Home](https://www.namaskarai.in/): Assamese-first AI learning platform with practical guides and tools.
+- [AI in Assamese](https://www.namaskarai.in/ai-in-assamese): Beginner guide for learning AI in Assamese with first-step workflows.
+- [ChatGPT in Assamese](https://www.namaskarai.in/chatgpt-in-assamese): Practical setup and day-to-day ChatGPT usage in Assamese.
+- [AI Course in Assamese](https://www.namaskarai.in/ai-course-in-assamese): Program overview with curriculum, tracks, and enrollment updates.
+- [Learn AI in Assamese in 30 Days](https://www.namaskarai.in/learn-ai-in-assamese-30-days): Structured 30-day roadmap for Assamese learners.
+- [Best AI Course for Assamese Speakers](https://www.namaskarai.in/best-ai-course-for-assamese-speakers): Free vs paid vs cohort comparison with clear selection criteria.
+- [Learning Assamese with AI](https://www.namaskarai.in/learning-assamese-with-ai): Use AI for Assamese vocabulary, speaking practice, and grammar support.
+- [Assamese LLM and Chatbot Guide](https://www.namaskarai.in/assamese-llm-chatbot-guide): Implementation guide for Assamese chatbot and LLM use-cases.
+- [About Namaskar AI](https://www.namaskarai.in/about): Mission, principles, and Assam-focused AI education approach.
+- [Contact Namaskar AI](https://www.namaskarai.in/contact): Support, collaboration, and media contact channels.
+- [Assamese AI FAQ](https://www.namaskarai.in/faq): Direct answers to common AI-learning questions from Assamese audiences.
+- [Editorial Policy](https://www.namaskarai.in/editorial-policy): Source standards, fact-check workflow, and correction policy.
+- [Press and Collaboration](https://www.namaskarai.in/press-collaboration): Media contact, guest post topics, and collaboration workflow.
+
+## Assamese versions
+- [Namaskar AI Home (Assamese)](https://www.namaskarai.in/as/)
+- [AI in Assamese (Assamese)](https://www.namaskarai.in/as/ai-in-assamese)
+- [ChatGPT in Assamese (Assamese)](https://www.namaskarai.in/as/chatgpt-in-assamese)
+- [AI Course in Assamese (Assamese)](https://www.namaskarai.in/as/ai-course-in-assamese)
+- [Learn AI in Assamese in 30 Days (Assamese)](https://www.namaskarai.in/as/learn-ai-in-assamese-30-days)
+- [Best AI Course for Assamese Speakers (Assamese)](https://www.namaskarai.in/as/best-ai-course-for-assamese-speakers)
+- [Learning Assamese with AI (Assamese)](https://www.namaskarai.in/as/learning-assamese-with-ai)
+- [Assamese LLM and Chatbot Guide (Assamese)](https://www.namaskarai.in/as/assamese-llm-chatbot-guide)
+- [About Namaskar AI (Assamese)](https://www.namaskarai.in/as/about)
+- [Contact Namaskar AI (Assamese)](https://www.namaskarai.in/as/contact)
+- [Assamese AI FAQ (Assamese)](https://www.namaskarai.in/as/faq)
+- [Editorial Policy (Assamese)](https://www.namaskarai.in/as/editorial-policy)
+- [Press and Collaboration (Assamese)](https://www.namaskarai.in/as/press-collaboration)
+
+## Published articles (latest available)
+- No published article routes available in this build.
+
+## Crawl notes
+- Canonical host: https://www.namaskarai.in
+- Sitemap: https://www.namaskarai.in/sitemap.xml
