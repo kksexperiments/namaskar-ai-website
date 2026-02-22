@@ -188,6 +188,54 @@ All colors MUST be HSL.
   h1, h2, h3, h4, h5, h6 {
     @apply font-poppins;
   }
+
+  html[lang="as"] body {
+    font-family: "Noto Sans Bengali", "Hind Siliguri", "Nirmala UI", sans-serif;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  html[lang="as"] h1,
+  html[lang="as"] h2,
+  html[lang="as"] h3,
+  html[lang="as"] h4,
+  html[lang="as"] h5,
+  html[lang="as"] h6 {
+    font-family: "Noto Sans Bengali", "Hind Siliguri", "Nirmala UI", sans-serif;
+    line-height: 1.3;
+    padding-top: 0.08em;
+  }
+
+  html[lang="as"] p,
+  html[lang="as"] li,
+  html[lang="as"] label,
+  html[lang="as"] a,
+  html[lang="as"] button,
+  html[lang="as"] input,
+  html[lang="as"] textarea,
+  html[lang="as"] select,
+  html[lang="as"] th,
+  html[lang="as"] td {
+    line-height: 1.45;
+  }
+
+  html[lang="as"] .font-poppins,
+  html[lang="as"] .font-inter {
+    font-family: "Noto Sans Bengali", "Hind Siliguri", "Nirmala UI", sans-serif !important;
+  }
+
+  html[lang="as"] .gradient-text {
+    display: inline-block;
+    padding-top: 0.08em;
+    padding-bottom: 0.03em;
+    line-height: 1.24;
+  }
+
+  html[lang="as"] .as-glyph-safe {
+    line-height: 1.4;
+    padding-top: 0.08em;
+    padding-bottom: 0.02em;
+  }
 }
 
 @layer components {

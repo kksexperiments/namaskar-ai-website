@@ -71,6 +71,11 @@ const HeroSection = ({
       ]
     : ["Pick your category", "Open and copy a prompt", "Run with your own data"];
 
+  const localizedStepNumber = (value: number) => {
+    if (!isAssamese) return String(value);
+    return new Intl.NumberFormat("as-IN", { useGrouping: false }).format(value);
+  };
+
   return (
     <section className="relative overflow-hidden border-b border-primary/10 bg-[radial-gradient(circle_at_10%_0%,hsl(var(--accent)/0.22),transparent_42%),radial-gradient(circle_at_95%_15%,hsl(var(--primary)/0.2),transparent_38%),linear-gradient(180deg,hsl(var(--background)),hsl(var(--background)))] py-12 lg:py-14">
       <div className="pointer-events-none absolute inset-0 cultural-pattern opacity-50" />
@@ -116,12 +121,20 @@ const HeroSection = ({
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-primary/25 bg-card/80 p-3">
-                <div className="text-xs text-muted-foreground">{isAssamese ? "সম্প্ৰদায়ৰ শক্তি" : "Community Scale"}</div>
-                <div className="mt-1 text-base font-semibold text-primary">{learnersText}</div>
+                <div className={`text-xs text-muted-foreground ${isAssamese ? "as-glyph-safe" : ""}`}>
+                  {isAssamese ? "সম্প্ৰদায়ৰ শক্তি" : "Community Scale"}
+                </div>
+                <div className={`mt-1 text-base font-semibold text-primary ${isAssamese ? "as-glyph-safe" : ""}`}>
+                  {learnersText}
+                </div>
               </div>
               <div className="rounded-xl border border-accent/35 bg-card/80 p-3">
-                <div className="text-xs text-muted-foreground">{isAssamese ? "সামাজিক প্ৰভাৱ" : "Social Reach"}</div>
-                <div className="mt-1 text-base font-semibold text-primary">{followersText}</div>
+                <div className={`text-xs text-muted-foreground ${isAssamese ? "as-glyph-safe" : ""}`}>
+                  {isAssamese ? "সামাজিক প্ৰভাৱ" : "Social Reach"}
+                </div>
+                <div className={`mt-1 text-base font-semibold text-primary ${isAssamese ? "as-glyph-safe" : ""}`}>
+                  {followersText}
+                </div>
               </div>
             </div>
           </Card>
@@ -138,10 +151,14 @@ const HeroSection = ({
               <div className="space-y-2">
                 {quickSteps.map((step, index) => (
                   <div key={step} className="flex items-start gap-3 rounded-lg border border-border/70 bg-muted/40 p-2.5">
-                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-[11px] font-bold text-white">
-                      {index + 1}
+                    <div
+                      className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/15 bg-gradient-primary text-xs font-bold text-white shadow-sm ${
+                        isAssamese ? "as-glyph-safe" : ""
+                      }`}
+                    >
+                      {localizedStepNumber(index + 1)}
                     </div>
-                    <p className="text-sm">{step}</p>
+                    <p className={`text-sm ${isAssamese ? "as-glyph-safe" : ""}`}>{step}</p>
                   </div>
                 ))}
               </div>
