@@ -142,8 +142,8 @@ const News = () => {
     whyPoints: isAssamese
       ? [
           "আজি যি খবৰ, কাইলৈ সেয়াই skill requirement হব পাৰে।",
-          "Assam-ত local tech সুযোগ বৃদ্ধি পাই আছে — আপুনি প্রস্তুত থাকক।",
-          "AI tool practical ভাবে ব্যৱহাৰ কৰিলে চাকৰি আৰু business-ত speed বাড়ে।",
+          "Assam-ত local tech সুযোগ বৃদ্ধি পাই আছে — আপুনি প্ৰস্তুত থাকক।",
+          "AI tool practical ভাৱে ব্যৱহাৰ কৰিলে চাকৰি আৰু business-ত speed বাঢ়ে।",
         ]
       : [
           "Today's updates become tomorrow's skill requirements.",

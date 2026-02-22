@@ -42,7 +42,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     sourceName: "Economic Times",
     sourceUrl:
       "https://economictimes.indiatimes.com/tech/technology/india-is-becoming-elevenlabs-key-growth-engine-as-enterprises-scale-voice-ai-ceo-mati-staniszewski/articleshow/128435783.cms/",
-    titleAs: "India-ত Voice AI-ৰ গতি: enterprise-এ বৃহৎভাবে adoption আৰম্ভ কৰিছে",
+    titleAs: "India-ত Voice AI-ৰ গতি: enterprise-এ বৃহৎভাৱে adoption আৰম্ভ কৰিছে",
     titleEn: "Voice AI Momentum in India: Enterprises Are Scaling Fast",
     summaryAs:
       "Voice AI এতিয়া কেৱল demo নহয় — customer support, sales call, onboarding, আৰু content dubbing-ত enterprise-এ বাস্তৱে ব্যৱহাৰ আৰম্ভ কৰিছে। Assam-ৰ startup, edtech, আৰু service business-ৰ বাবে ই actionable: Assamese/English bilingual voice workflow, IVR + WhatsApp assistant, আৰু local customer reply automation। আপুনি শিকিবলৈ আৰম্ভ কৰিব বিচাৰিলে speech-to-text, text-to-speech, script writing prompt, আৰু misuse/deepfake safety rule-এ focus কৰক। practical লক্ষ্য: ৭ দিনত ১টা simple voice assistant flow বান্ধি feedback-ৰ ওপৰত iterate কৰক।",
@@ -74,7 +74,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "ByteDance-ৰ Seedance 2.0: AI video tool-ত safeguard বঢ়োৱাৰ ঘোষণা",
     titleEn: "ByteDance’s Seedance 2.0: Safeguards for AI Video",
     summaryAs:
-      "AI video model-এ editing/creation workflow বহু দ্ৰুত কৰি দিছে, কিন্তু copyright, consent, আৰু misuse risk-ও বাঢ়িছে। Seedance 2.0-ৰ safeguarding আলোচনাই দেখুৱাইছে যে industry-এ “power + responsibility” দুয়ো দিশতে আগবঢ়াইছে। Assam-ৰ creator/brand-সকলৰ বাবে টিপ: নিজস্ব footage/music বাছনি কৰক, AI-generated content স্পষ্টকৈ label কৰক, আৰু sensitive person/child imagery-ত extra সতর্ক থাকক। tool শিকাৰ লগে লগে policy, attribution, আৰু verification habit-ও শিকক — long-term trust-ৰ মূল এইটো।",
+      "AI video model-এ editing/creation workflow বহু দ্ৰুত কৰি দিছে, কিন্তু copyright, consent, আৰু misuse risk-ও বাঢ়িছে। Seedance 2.0-ৰ safeguarding আলোচনাই দেখুৱাইছে যে industry-এ “power + responsibility” দুয়ো দিশতে আগবঢ়াইছে। Assam-ৰ creator/brand-সকলৰ বাবে টিপ: নিজস্ব footage/music বাছনি কৰক, AI-generated content স্পষ্টকৈ label কৰক, আৰু sensitive person/child imagery-ত extra সতৰ্ক থাকক। tool শিকাৰ লগে লগে policy, attribution, আৰু verification habit-ও শিকক — long-term trust-ৰ মূল এইটো।",
     summaryEn:
       "AI video models can massively speed up creation and editing, but they also raise risks around copyright, consent, and misuse. The discussion around Seedance 2.0 safeguards is a reminder that capability and responsibility must move together. For creators and brands in Assam: use your own footage/music, clearly label AI-generated content, and be extra careful with sensitive or child-related imagery. Learn policy, attribution, and verification habits alongside the tools to build long-term trust.",
     imageLabelAs: "AI video",
@@ -89,7 +89,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "অসমৰ AI ecosystem-ৰ বাবে infrastructure signal: IIM Guwahati আৰু Northeast-ৰ National Data Centre উদ্বোধন",
     titleEn: "Assam Infrastructure Signal: IIM Guwahati and a National Data Centre for the Northeast",
     summaryAs:
-      "Data centre ধৰণৰ infrastructure AI-ready ecosystem-ৰ ভিত্তি। latency কমিলে cloud app, voice AI, analytics, আৰু startup deployment-ত speed বাঢ়ে। Learner-সকলৰ বাবে practical step: cloud basic (storage, compute, security), data pipeline, আৰু simple inference deployment শিকক। এই ধৰণৰ investment-এ local vendor ecosystem, internship, আৰু implementation project-ৰ সম্ভাৱনা বঢ়ায়। আপুনি যদি student বা professional, ১টা small project (chatbot/voice workflow/dashboard) build কৰি portfolio-ত ৰাখক — সুযোগ আহিলে তাত্ক্ষণিকভাবে fit হ’ব।",
+      "Data centre ধৰণৰ infrastructure AI-ready ecosystem-ৰ ভিত্তি। latency কমিলে cloud app, voice AI, analytics, আৰু startup deployment-ত speed বাঢ়ে। Learner-সকলৰ বাবে practical step: cloud basic (storage, compute, security), data pipeline, আৰু simple inference deployment শিকক। এই ধৰণৰ investment-এ local vendor ecosystem, internship, আৰু implementation project-ৰ সম্ভাৱনা বঢ়ায়। আপুনি যদি student বা professional, ১টা small project (chatbot/voice workflow/dashboard) build কৰি portfolio-ত ৰাখক — সুযোগ আহিলে তাত্ক্ষণিকভাৱে fit হ’ব।",
     summaryEn:
       "Infrastructure like data centres is foundational for an AI-ready ecosystem. Lower latency helps cloud apps, voice AI, analytics, and startup deployments move faster. Practical steps for learners: build cloud basics (storage, compute, security), learn data pipelines, and practice simple inference deployment. Investments like this can expand local vendors, internships, and implementation projects. If you’re a student or professional, build a small project (chatbot/voice workflow/dashboard) and keep it portfolio-ready.",
     imageLabelAs: "Data centre",
@@ -119,7 +119,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "Sarvam AI-ৰ Saaras V3: speech AI-ত নতুন benchmark — Assamese voice use-case-ৰ সম্ভাৱনা",
     titleEn: "Sarvam AI’s Saaras V3: A Speech-AI Benchmark with Regional Potential",
     summaryAs:
-      "Speech AI উন্নত হ’লে voice assistant, transcription, dubbing, call analytics, আৰু education tool-ৰ quality বাঢ়ে। Indian speech AI-ৰ benchmark বাঢ়া মানে Assamese ধৰণৰ ভাষাত voice-first product build কৰাটো আগতকৈ সহজ হ’ব পাৰে। practical step: speech-to-text workflow বুজক, audio dataset কেনেকৈ clean/label কৰা হয় শিকক, আৰু evaluation metric (WER, latency) basic শিকক। teacher/creator হলে lecture-to-notes, subtitle, আৰু pronunciation practice-ধৰণৰ prototype বান্ধি শুরু কৰক।",
+      "Speech AI উন্নত হ’লে voice assistant, transcription, dubbing, call analytics, আৰু education tool-ৰ quality বাঢ়ে। Indian speech AI-ৰ benchmark বাঢ়া মানে Assamese ধৰণৰ ভাষাত voice-first product build কৰাটো আগতকৈ সহজ হ’ব পাৰে। practical step: speech-to-text workflow বুজক, audio dataset কেনেকৈ clean/label কৰা হয় শিকক, আৰু evaluation metric (WER, latency) basic শিকক। teacher/creator হ’লে lecture-to-notes, subtitle, আৰু pronunciation practice-ধৰণৰ prototype বান্ধি শুৰু কৰক।",
     summaryEn:
       "Better speech AI improves voice assistants, transcription, dubbing, call analytics, and education tools. Rising Indian speech-AI benchmarks can make it easier to build Assamese and regional voice-first products. Practical steps: understand speech-to-text workflows, learn how audio datasets are cleaned/labeled, and pick up evaluation basics (WER, latency). If you’re a teacher or creator, prototype lecture-to-notes, subtitles, or pronunciation-practice workflows.",
     imageLabelAs: "Speech AI",
@@ -134,7 +134,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "AI deepfake-ত সুৰক্ষা: IT Rules update-এ আপোনাৰ বাবে কি অৰ্থ",
     titleEn: "AI Deepfakes: What India’s IT Rules Update Means in Practice",
     summaryAs:
-      "Deepfake আৰু synthetic content-ৰ risk বাঢ়াৰ লগে লগে rules-ও update হৈছে। Assamese user/creator-সকলৰ বাবে practical rule: share কৰাৰ আগতে source cross-check, reverse search, আৰু official handle confirm কৰক। Creator হলে AI-generated content-ত watermark/disclosure যোগ কৰক, আৰু public person/brand-ৰ নাম ব্যৱহাৰত সতর্ক থাকক। Learner-সকলৰ বাবে ethics checklist বান্ধক: consent, attribution, আৰু misinformation guardrail। AI শিকাৰ লগতে safety habit গঢ়িলে trust আৰু long-term career দুইটাও বাঢ়ে।",
+      "Deepfake আৰু synthetic content-ৰ risk বাঢ়াৰ লগে লগে rules-ও update হৈছে। Assamese user/creator-সকলৰ বাবে practical rule: share কৰাৰ আগতে source cross-check, reverse search, আৰু official handle confirm কৰক। Creator হ’লে AI-generated content-ত watermark/disclosure যোগ কৰক, আৰু public person/brand-ৰ নাম ব্যৱহাৰত সতৰ্ক থাকক। Learner-সকলৰ বাবে ethics checklist বান্ধক: consent, attribution, আৰু misinformation guardrail। AI শিকাৰ লগতে safety habit গঢ়িলে trust আৰু long-term career দুইটাও বাঢ়ে।",
     summaryEn:
       "As deepfakes and synthetic content risks rise, rules and enforcement expectations are evolving. Practical rule for Assamese users and creators: verify before sharing by cross-checking sources, using reverse search, and confirming official handles. If you’re a creator, add clear disclosures/watermarks for AI-generated content and be careful with public figures and brand names. For learners, build an ethics checklist: consent, attribution, and misinformation guardrails. Safety habits protect trust and long-term career stability.",
     imageLabelAs: "AI safety",
@@ -146,10 +146,10 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     sourceName: "Times of India",
     sourceUrl:
       "https://timesofindia.indiatimes.com/city/guwahati/assam-cong-lodges-fir-against-ai-made-video-of-cm-sarma/articleshow/128171191.cms",
-    titleAs: "অসমত AI-generated video বিতর্ক: verification habit কেনেকৈ গঢ়িব",
+    titleAs: "অসমত AI-generated video বিতৰ্ক: verification habit কেনেকৈ গঢ়িব",
     titleEn: "Assam Deepfake Controversy: Building Stronger Verification Habits",
     summaryAs:
-      "AI-generated photo/video এতিয়া সৰু edit নহয় — বহু সময়ত সম্পূৰ্ণ নতুন clip তৈয়াৰ কৰিব পাৰে। Practical rule: emotion-ভিত্তিক content দেখিলে তৎক্ষণাৎ forward নকৰিব। source link চাওক, অন্য outlet-ত confirm কৰক, আৰু lip-sync/lighting/detail-ত অসংগততা আছে নেকি লক্ষ্য কৰক। Creator হলে disclaimer আৰু watermark ব্যৱহাৰ কৰক। AI শিকাৰ ক্ষেত্ৰতো এটা real skill: misinformation detection। daily ৫ মিনিট verify practice কৰিলে digital literacy আৰু safety দুয়ো বাঢ়ে।",
+      "AI-generated photo/video এতিয়া সৰু edit নহয় — বহু সময়ত সম্পূৰ্ণ নতুন clip তৈয়াৰ কৰিব পাৰে। Practical rule: emotion-ভিত্তিক content দেখিলে তৎক্ষণাৎ forward নকৰিব। source link চাওক, অন্য outlet-ত confirm কৰক, আৰু lip-sync/lighting/detail-ত অসংগততা আছে নেকি লক্ষ্য কৰক। Creator হ’লে disclaimer আৰু watermark ব্যৱহাৰ কৰক। AI শিকাৰ ক্ষেত্ৰতো এটা real skill: misinformation detection। daily ৫ মিনিট verify practice কৰিলে digital literacy আৰু safety দুয়ো বাঢ়ে।",
     summaryEn:
       "AI-generated photos/videos are no longer small edits; they can be fully synthetic. Practical rule: don’t forward emotion-driven content instantly. Check the source link, confirm with at least one other outlet, and look for inconsistencies in lip-sync, lighting, and fine details. If you’re a creator, use disclosures and watermarks. For learners, misinformation detection is a real AI-era skill. A 5-minute daily verification habit improves both digital literacy and long-term safety.",
     imageLabelAs: "Verification",
@@ -164,7 +164,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "Data centre policy clarity: AI infrastructure-ত investment বঢ়াবলৈ কিয় সহায় কৰে",
     titleEn: "Data Centre Policy Clarity: Why It Matters for AI Infrastructure",
     summaryAs:
-      "AI deployment-ৰ বহু সমস্যা compute/hosting-ৰ ওপৰত নিৰ্ভৰ কৰে। Data centre-ৰ policy clarity থাকিলে industry-ৰ investment confidence বাঢ়ে, আৰু cloud service stable হয়। Assam-ৰ বাবে benefit: local infra উন্নত হলে latency কমে, reliability বাঢ়ে, আৰু business-ৰ cost control সহজ হয়। Learner-সকলৰ বাবে tip: cloud cost, storage lifecycle, security basic (IAM, backups) শিকক — AI product build-ৰ real-world skill এইবোৰ। AI কেৱল model নহয়; production system-ই differentiator।",
+      "AI deployment-ৰ বহু সমস্যা compute/hosting-ৰ ওপৰত নিৰ্ভৰ কৰে। Data centre-ৰ policy clarity থাকিলে industry-ৰ investment confidence বাঢ়ে, আৰু cloud service stable হয়। Assam-ৰ বাবে benefit: local infra উন্নত হ’লে latency কমে, reliability বাঢ়ে, আৰু business-ৰ cost control সহজ হয়। Learner-সকলৰ বাবে tip: cloud cost, storage lifecycle, security basic (IAM, backups) শিকক — AI product build-ৰ real-world skill এইবোৰ। AI কেৱল model নহয়; production system-ই differentiator।",
     summaryEn:
       "Many AI deployment challenges come down to compute and hosting. Clear policy treatment for data centres improves investment confidence and cloud stability. For Assam, the benefits are practical: better local infrastructure reduces latency, improves reliability, and helps businesses control costs. For learners, focus on real-world skills like cloud cost basics, storage lifecycles, and security (IAM, backups). AI isn’t just a model; production systems are the real differentiator.",
     imageLabelAs: "Infrastructure",
@@ -176,7 +176,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     sourceName: "Business Standard",
     sourceUrl:
       "https://www.business-standard.com/technology/tech-news/sarvam-ai-document-ocr-indic-language-benchmarks-performance-126021001082_1.html",
-    titleAs: "Indic LLM race: Indian language performance উন্নতি Assam-ৰ বাবে কিয় গুৰুত্বপূর্ণ",
+    titleAs: "Indic LLM race: Indian language performance উন্নতি Assam-ৰ বাবে কিয় গুৰুত্বপূৰ্ণ",
     titleEn: "Indic LLM Race: Why Better Indian-Language AI Matters for Assam",
     summaryAs:
       "Indian language LLM-ৰ quality উন্নত হ’লে Assamese search, summary, customer support, আৰু education tool-ৰ quality বাঢ়ে। Learner-সকলৰ practical lesson: “evaluate before trust” — model output-ৰ accuracy/bias/hallucination check কৰিবলৈ small test-set/ground-truth বান্ধা শিকক। Builder-সকলৰ বাবে: domain-specific FAQ, glossary, আৰু safe prompt template তৈয়াৰ কৰিলে assistant quality বহু বাঢ়ে। Assam-ত local-language product build-ৰ সুযোগ বঢ়াব পাৰে — ১টা small demo বান্ধি user feedback লৈ improve কৰক।",
@@ -208,7 +208,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "Notion-ত Claude Opus 4.6: note-to-action workflow অধিক সহজ",
     titleEn: "Claude Opus 4.6 in Notion: Faster Note-to-Action Workflows",
     summaryAs:
-      "Tool update-সমূহ practical impact আনে: note, doc, task, আৰু AI assistant একেলগে থাকিলে execution speed বাঢ়ে। Assamese learner-সকলৰ বাবে use-case: class note-ৰ পৰা summary + quiz, resume draft, বা business SOP লিখিবলৈ একে system-ত workflow বান্ধক। rule: sensitive data (OTP/bank) কেতিয়াও paste নকৰিব, আৰু AI output-ত final review কৰক। consistency বজাই ৰাখিবলৈ weekly template বান্ধি progress track কৰক — habit + system থাকিলে AI learning দ্রুত হয়।",
+      "Tool update-সমূহ practical impact আনে: note, doc, task, আৰু AI assistant একেলগে থাকিলে execution speed বাঢ়ে। Assamese learner-সকলৰ বাবে use-case: class note-ৰ পৰা summary + quiz, resume draft, বা business SOP লিখিবলৈ একে system-ত workflow বান্ধক। rule: sensitive data (OTP/bank) কেতিয়াও paste নকৰিব, আৰু AI output-ত final review কৰক। consistency বজাই ৰাখিবলৈ weekly template বান্ধি progress track কৰক — habit + system থাকিলে AI learning দ্ৰুত হয়।",
     summaryEn:
       "Tool updates matter because they improve execution speed: notes, docs, tasks, and an AI assistant in one place reduces friction. For Assamese learners, try workflows like class notes to summaries and quizzes, resume drafting, or business SOP writing. Safety rule: never paste sensitive data (OTP/banking). Always do a final human review of AI output. For consistency, build a weekly template and track progress; habits plus systems make AI learning faster.",
     imageLabelAs: "Workflow tool",
@@ -238,7 +238,7 @@ export const NEWS_FEED_ITEMS: NewsFeedItem[] = [
     titleAs: "Ringg AI-এ Series A তুলিলে: voice AI use-case-সমূহ বাস্তৱ business value দেখুৱাইছে",
     titleEn: "Ringg AI Series A: Voice AI Is Delivering Real Business Value",
     summaryAs:
-      "Voice AI startup-সমূহে call automation, support agent assist, আৰু sales workflow-ত practical adoption দেখুৱাইছে। Assam-ৰ coaching/clinic/shop ধৰণৰ service business-ৰ বাবে ই actionable: FAQ call handling, appointment booking, আৰু after-sales follow-up automation। Learner-সকলৰ roadmap: voice UX, script prompt, fallback-to-human flow, আৰু privacy basic। AI assistant-এ call handle কৰিলেও trust build কৰিবলৈ transparency (AI disclosure) আৰু escalation rule দরকাৰ। ১৪ দিনৰ pilot-এ metrics (time saved, resolution rate) track কৰিলে value স্পষ্ট হয়।",
+      "Voice AI startup-সমূহে call automation, support agent assist, আৰু sales workflow-ত practical adoption দেখুৱাইছে। Assam-ৰ coaching/clinic/shop ধৰণৰ service business-ৰ বাবে ই actionable: FAQ call handling, appointment booking, আৰু after-sales follow-up automation। Learner-সকলৰ roadmap: voice UX, script prompt, fallback-to-human flow, আৰু privacy basic। AI assistant-এ call handle কৰিলেও trust build কৰিবলৈ transparency (AI disclosure) আৰু escalation rule দৰকাৰ। ১৪ দিনৰ pilot-এ metrics (time saved, resolution rate) track কৰিলে value স্পষ্ট হয়।",
     summaryEn:
       "Voice AI startups show practical adoption across call automation, support-agent assistance, and sales workflows. For Assam’s service businesses, this is actionable: FAQ call handling, appointment booking, and after-sales follow-up automation. Learner roadmap: voice UX, script prompts, fallback-to-human flows, and privacy basics. Even if an assistant handles calls, trust requires transparency (AI disclosure) and clear escalation rules. A 14-day pilot with metrics (time saved, resolution rate) makes value visible.",
     imageLabelAs: "Startup funding",

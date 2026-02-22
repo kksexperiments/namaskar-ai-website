@@ -141,11 +141,11 @@ const AICourseInAssamese = () => {
     ? [
         {
           question: "এইটো সম্পূৰ্ণ online নেকি?",
-          answer: "হয়। course flow mobile-friendly আৰু online delivery model-এ প্রস্তুত।",
+          answer: "হয়। course flow mobile-friendly আৰু online delivery model-এ প্ৰস্তুত।",
         },
         {
           question: "আগতে coding জানিব লাগিবনে?",
-          answer: "নালাগে। prompt-first workflow-এৰে আৰম্ভ কৰি gradual ভাবে advanced module-লৈ যাব।",
+          answer: "নালাগে। prompt-first workflow-এৰে আৰম্ভ কৰি gradual ভাৱে advanced module-লৈ যাব।",
         },
         {
           question: "এই course কাক বেছি fit?",
@@ -305,7 +305,7 @@ const AICourseInAssamese = () => {
                 </div>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                   {isAssamese
-                    ? "Assamese speaker-সকলৰ practical AI execution speed বাড়াবলৈ এই course-টো structured module আৰু project-based design-এ প্রস্তুত।"
+                    ? "Assamese speaker-সকলৰ practical AI execution speed বঢ়াবলৈ এই course-টো structured module আৰু project-based design-এ প্ৰস্তুত।"
                     : "This course is designed to increase practical AI execution speed for Assamese speakers with structured modules and project-based work."}
                 </p>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">

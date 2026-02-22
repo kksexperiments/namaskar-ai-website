@@ -69,7 +69,7 @@ const Footer = ({ currentLanguage, onLanguageChange, t }: FooterProps) => {
     ? "সাপ্তাহিক AI টিপছ আৰু আপডেট আপোনাৰ ইনবক্সত পাওক।"
     : "Get the latest AI tips and updates delivered to your inbox weekly.";
   const privacyLabel = isAssamese ? "গোপনীয়তা নীতি" : "Privacy Policy";
-  const termsLabel = isAssamese ? "সেৱাৰ শর্তসমূহ" : "Terms of Service";
+  const termsLabel = isAssamese ? "সেৱাৰ শৰ্তসমূহ" : "Terms of Service";
   const newsletterLabel = isAssamese ? "নিউজলেটাৰ" : "Newsletter";
 
   return (

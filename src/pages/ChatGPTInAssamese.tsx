@@ -65,7 +65,7 @@ const ChatGPTInAssamese = () => {
   const faqs = isAssamese
     ? [
         {
-          question: "ChatGPT free plan-এ শুরু কৰিব পাৰিমনে?",
+          question: "ChatGPT free plan-এ শুৰু কৰিব পাৰিমনে?",
           answer: "হয়, free plan-এ আৰম্ভ কৰিব পাৰে। শিকাৰ বাবে এইটো যথেষ্ট।",
         },
         {

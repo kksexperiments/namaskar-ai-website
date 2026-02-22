@@ -14,7 +14,7 @@ const TermsOfService = () => {
   return (
     <div className="platform-page">
       <Seo
-        title={isAssamese ? "সেৱাৰ শর্তসমূহ | নমস্কাৰ AI" : "Terms of Service | Namaskar AI"}
+        title={isAssamese ? "সেৱাৰ শৰ্তসমূহ | নমস্কাৰ AI" : "Terms of Service | Namaskar AI"}
         description={
           isAssamese
             ? "নমস্কাৰ AI প্লেটফৰ্ম ব্যৱহাৰৰ নিয়ম, দায়বদ্ধতা আৰু আচৰণ নীতি।"
@@ -41,7 +41,7 @@ const TermsOfService = () => {
                 {isAssamese ? "Platform Rules" : "Platform Rules"}
               </div>
               <h1 className="text-3xl font-poppins font-bold gradient-text">
-                {isAssamese ? "সেৱাৰ শর্তসমূহ" : "Terms of Service"}
+                {isAssamese ? "সেৱাৰ শৰ্তসমূহ" : "Terms of Service"}
               </h1>
             </div>
           </Card>

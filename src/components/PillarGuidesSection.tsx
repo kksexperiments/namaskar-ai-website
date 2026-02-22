@@ -15,7 +15,7 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
 
   const heading = isAssamese ? "Pillar Guides" : "Pillar Guides";
   const subtitle = isAssamese
-    ? "আৰম্ভণিৰ পৰা বাস্তৱ ব্যৱহাৰলৈকে Assamese-first পথনির্দেশিকা"
+    ? "আৰম্ভণিৰ পৰা বাস্তৱ ব্যৱহাৰলৈকে Assamese-first পথনিৰ্দেশিকা"
     : "Assamese-first topic guides from first steps to practical use.";
 
   const guides = [

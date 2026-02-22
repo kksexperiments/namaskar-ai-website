@@ -70,11 +70,11 @@ const CourseWaitlistForm = ({ language }: CourseWaitlistFormProps) => {
         submit: "Updates Submit কৰক",
         submitting: "Submit হৈ আছে...",
         success: "ধন্যবাদ। আপুনি course updates list-ত যোগ হ’ল।",
-        failure: "এই মুহূর্তত submit কৰিব পৰা নগ’ল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।",
+        failure: "এই মুহূৰ্তত submit কৰিব পৰা নগ’ল। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।",
         requirementError: "ইমেইল বা ফোনৰ ভিতৰত কমেও এটা দিয়ক।",
         emailError: "অনুগ্ৰহ কৰি বৈধ ইমেইল দিয়ক।",
         phoneError: "অনুগ্ৰহ কৰি বৈধ ভাৰতীয় ১০-সংখ্যাৰ মোবাইল নম্বৰ দিয়ক।",
-        consentError: "অগ্ৰসর হ’বলৈ consent দিব লাগিব।",
+        consentError: "অগ্ৰসৰ হ’বলৈ consent দিব লাগিব।",
         minTimeError: "অনুগ্ৰহ কৰি কিছু সময় অপেক্ষা কৰি পুনৰ চেষ্টা কৰক।",
         rateLimitError: "অনুগ্ৰহ কৰি ১ মিনিট পিছত পুনৰ submit কৰক।",
       };

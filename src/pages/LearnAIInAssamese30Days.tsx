@@ -121,7 +121,7 @@ const LearnAIInAssamese30Days = () => {
 
   const howToSteps = isAssamese
     ? [
-        "এটা নির্দিষ্ট লক্ষ্য লিখক: study, চাকৰি, নে business.",
+        "এটা নিৰ্দিষ্ট লক্ষ্য লিখক: study, চাকৰি, নে business.",
         "Prompt Packs-ৰ পৰা goal-fit prompt বাছনি কৰি run কৰক।",
         "AI output-ত ৩টা ভুল/সংশোধন লিখি prompt refine কৰক।",
         "সপ্তাহৰ শেষত ১টা usable final output সংৰক্ষণ কৰক।",
@@ -169,8 +169,8 @@ const LearnAIInAssamese30Days = () => {
           answer: "হয়। এই plan mobile-friendly prompt workflow ধৰি তৈয়াৰ কৰা হৈছে।",
         },
         {
-          question: "English দুর্বল হলেও শিকা সম্ভৱ নে?",
-          answer: "সম্ভৱ। Assamese-first prompt লিখি আৰম্ভ কৰক আৰু ধীরে ধীরে mixed style ব্যৱহাৰ কৰক।",
+          question: "English দুৰ্বল হ’লেও শিকা সম্ভৱ নে?",
+          answer: "সম্ভৱ। Assamese-first prompt লিখি আৰম্ভ কৰক আৰু ধীৰে ধীৰে mixed style ব্যৱহাৰ কৰক।",
         },
         {
           question: "দিন মিস কৰিলে কি কৰিম?",
@@ -231,7 +231,7 @@ const LearnAIInAssamese30Days = () => {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: isAssamese ? "অসমীয়াত ৩০ দিনত AI শিকাৰ পরিকল্পনা" : "Learn AI in Assamese in 30 Days",
+    headline: isAssamese ? "অসমীয়াত ৩০ দিনত AI শিকাৰ পৰিকল্পনা" : "Learn AI in Assamese in 30 Days",
     description: isAssamese
       ? "Assamese-first beginner-সকলৰ বাবে ৩০ দিনৰ practical AI plan."
       : "A practical 30-day beginner AI plan for Assamese speakers.",

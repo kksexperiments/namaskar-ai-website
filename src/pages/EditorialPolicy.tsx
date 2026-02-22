@@ -51,7 +51,7 @@ const EditorialPolicy = () => {
         {
           question: "ভুল তথ্য দেখিলে কেনেকৈ report কৰিব পাৰিম?",
           answer:
-            "আপুনি email-এ issue report কৰিব পাৰে। valid হলে correction priority basis-এ update কৰা হয়।",
+            "আপুনি email-এ issue report কৰিব পাৰে। valid হ’লে correction priority basis-এ update কৰা হয়।",
         },
         {
           question: "content কিমান সঘনাই update হয়?",
@@ -160,7 +160,7 @@ const EditorialPolicy = () => {
               </h1>
               <p className="mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
                 {isAssamese
-                  ? "আমাৰ মূল নীতি: দ্রুত নহয়, reliable guidance। অসমীয়া learner-সকলৰ বাবে clear, practical আৰু verifiable AI তথ্য।"
+                  ? "আমাৰ মূল নীতি: দ্ৰুত নহয়, reliable guidance। অসমীয়া learner-সকলৰ বাবে clear, practical আৰু verifiable AI তথ্য।"
                   : "Our core principle is reliability over speed. We publish clear, practical, and verifiable AI guidance for Assamese-first learners."}
               </p>
             </div>
@@ -214,7 +214,7 @@ const EditorialPolicy = () => {
             </div>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>{isAssamese ? "ভুল/অসম্পূৰ্ণ তথ্য পালে correction note সহ update কৰা হয়।" : "Factual corrections are published with clear update notes."}</li>
-              <li>{isAssamese ? "AI tool pricing/policy change হলে সংশ্লিষ্ট guide revise কৰা হয়।" : "Tool pricing/policy changes trigger page revisions."}</li>
+              <li>{isAssamese ? "AI tool pricing/policy change হ’লে সংশ্লিষ্ট guide revise কৰা হয়।" : "Tool pricing/policy changes trigger page revisions."}</li>
               <li>{isAssamese ? "community feedback-ৰ ভিত্তিত FAQs আৰু examples refine কৰা হয়।" : "Community feedback is used to refine FAQs and practical examples."}</li>
             </ul>
           </Card>

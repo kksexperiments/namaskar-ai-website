@@ -49,7 +49,7 @@ const Contact = () => {
           answer: "email-ত topic, audience type, timeline, আৰু expected format উল্লেখ কৰি পঠাওক।",
         },
         {
-          question: "course-related প্রশ্ন ক’ত পঠাম?",
+          question: "course-related প্ৰশ্ন ক’ত পঠাম?",
           answer: "subject-ত 'Course Query' লিখি hello@namaskar.ai-লৈ পঠাওক।",
         },
       ]

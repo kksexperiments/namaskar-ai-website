@@ -33,7 +33,7 @@ const FAQ = () => {
             {
               question: "AI শিকিবলৈ coding জনা বাধ্যতামূলক নেকি?",
               answer:
-                "নহয়। prompt-based practical workflow-এ আৰম্ভ কৰিব পাৰি, আৰু পিচত প্রয়োজনে technical skill যোগ কৰিব পাৰে।",
+                "নহয়। prompt-based practical workflow-এ আৰম্ভ কৰিব পাৰি, আৰু পিচত প্ৰয়োজনে technical skill যোগ কৰিব পাৰে।",
             },
             {
               question: "দৈনিক কিমান সময় দিলে ফল পাব?",
@@ -56,7 +56,7 @@ const FAQ = () => {
                 "হয়। beginner use-case যেনে summary, draft, revision plan, customer reply আদিৰ বাবে free plan যথেষ্ট।",
             },
             {
-              question: "কোন AI tool-টো প্রথমে বাছনি কৰিম?",
+              question: "কোন AI tool-টো প্ৰথমে বাছনি কৰিম?",
               answer:
                 "আপোনাৰ লক্ষ্যৰ ওপৰত নিৰ্ভৰ কৰে। study-ৰ বাবে summarization tool, business-ৰ বাবে writing + messaging tool, research-ৰ বাবে citation-friendly tool বাছনি কৰক।",
             },
@@ -285,7 +285,7 @@ const FAQ = () => {
           <div className="space-y-5">
             <Card className="border-primary/15 bg-card/95 p-5">
               <h2 className="text-xl font-semibold">
-                {isAssamese ? "দ্রুত উত্তৰ: high-intent search queries" : "Fast answers: high-intent search queries"}
+                {isAssamese ? "দ্ৰুত উত্তৰ: high-intent search queries" : "Fast answers: high-intent search queries"}
               </h2>
               <div className="mt-3 grid gap-2 md:grid-cols-2">
                 {searchIntentAnswers.map((item) => (

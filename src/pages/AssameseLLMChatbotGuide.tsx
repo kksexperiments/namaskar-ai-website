@@ -66,7 +66,7 @@ const AssameseLLMChatbotGuide = () => {
   const buildSteps = isAssamese
     ? [
         "একটা narrow use-case বাছনি কৰক (যেনে coaching center FAQ).",
-        "৫০-২০০ high-quality Assamese Q&A dataset প্রস্তুত কৰক.",
+        "৫০-২০০ high-quality Assamese Q&A dataset প্ৰস্তুত কৰক.",
         "prompt template + fallback response strategy লিখক.",
         "pilot group-ত test কৰি ভুল query log কৰক.",
         "weekly data update আৰু safety review কৰক.",
@@ -137,7 +137,7 @@ const AssameseLLMChatbotGuide = () => {
         {
           question: "Assamese chatbot build কৰিবলৈ first stack কি হওঁক?",
           answer:
-            "hosted model API + curated Assamese FAQ dataset + prompt template + fallback + human escalation-এ প্রথম version build কৰক।",
+            "hosted model API + curated Assamese FAQ dataset + prompt template + fallback + human escalation-এ প্ৰথম version build কৰক।",
         },
         {
           question: "Assamese chatbot-ৰ বাবে কিমান data লাগে?",
@@ -283,7 +283,7 @@ const AssameseLLMChatbotGuide = () => {
               </h1>
               <p className="mt-3 max-w-3xl text-sm text-muted-foreground sm:text-base">
                 {isAssamese
-                  ? "হয়, Assamese chatbot দ্রুত build কৰিব পাৰি যদি আপুনি narrow use-case, clean Q&A data আৰু safety escalation-এ আৰম্ভ কৰে।"
+                  ? "হয়, Assamese chatbot দ্ৰুত build কৰিব পাৰি যদি আপুনি narrow use-case, clean Q&A data আৰু safety escalation-এ আৰম্ভ কৰে।"
                   : "Yes, you can launch a useful Assamese chatbot quickly if you start with a narrow use-case, clean Q&A data, and safety escalation rules."}
               </p>
             </div>
@@ -291,7 +291,7 @@ const AssameseLLMChatbotGuide = () => {
 
           <div className="space-y-5">
             <Card className="border-primary/15 bg-card/95 p-5">
-              <h2 className="text-xl font-semibold">{isAssamese ? "দ্রুত উত্তৰ: Assamese LLM / chatbot" : "Fast answers: Assamese LLM and chatbot"}</h2>
+              <h2 className="text-xl font-semibold">{isAssamese ? "দ্ৰুত উত্তৰ: Assamese LLM / chatbot" : "Fast answers: Assamese LLM and chatbot"}</h2>
               <div className="mt-3 space-y-2">
                 {quickAnswerItems.map((item) => (
                   <div key={item.query} className="rounded-lg border border-border bg-muted/35 p-3 text-sm">

@@ -53,7 +53,7 @@ const PressAndCollaboration = () => {
         "Topic + publication নাম share কৰক (email/DM).",
         "deadline আৰু quote format উল্লেখ কৰক.",
         "Namaskar AI concise Assamese + English input দিব.",
-        "publish-ৰ পিছত link share কৰিলে আমরা amplify কৰিম.",
+        "publish-ৰ পিছত link share কৰিলে আমি amplify কৰিম.",
       ]
     : [
         "Share your topic and publication name (email or DM).",
@@ -70,7 +70,7 @@ const PressAndCollaboration = () => {
         },
         {
           question: "podcast/YouTube interview দিবনে?",
-          answer: "topic fit আৰু timeline match হলে হ্যাঁ। short practical segment-ত focus থকা format preferred.",
+          answer: "topic fit আৰু timeline match হ’লে হয়। short practical segment-ত focus থকা format preferred.",
         },
         {
           question: "media kit-ত কি include থাকে?",

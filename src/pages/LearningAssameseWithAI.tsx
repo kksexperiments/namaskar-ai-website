@@ -67,7 +67,7 @@ const LearningAssameseWithAI = () => {
     ? [
         "আজি কি শিকিব ঠিক কৰক: শব্দ, কথা, grammar, বা reading.",
         "AI-ক স্পষ্ট instruction দিয়ক: level + topic + output format.",
-        "AI output পড়ি/কথা কৈ practical repeat কৰক.",
+        "AI output পঢ়ি/কথা কৈ practical repeat কৰক.",
         "দিনশেষে ৫ মিনিট review note লিখক।",
       ]
     : [

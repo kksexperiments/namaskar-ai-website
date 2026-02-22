@@ -79,7 +79,7 @@ export const LOCAL_PROMPT_PACKS: PromptPack[] = [
 6) শেষত "আজিৰ প্ৰথম ২০ মিনিট" টাস্ক
 
 নিয়ম:
-- সহজ অসমীয়াত লিখিব, প্ৰয়োজন হলে English tech term ব্যৱহাৰ কৰিব পাৰে
+- সহজ অসমীয়াত লিখিব, প্ৰয়োজন হ’লে English tech term ব্যৱহাৰ কৰিব পাৰে
 - আপুনি/আপোনাৰ সম্বোধন বজাই ৰাখিব
 - অতিৰিক্ত তত্ত্ব নহয়, কেবল কৰণীয় ধাপ দিব`,
       en: `Act as a practical AI Career Coach for a beginner with low technical confidence.
@@ -169,7 +169,7 @@ Current Resume:
 2) Professional summary (৪-৫ লাইন)
 3) Skills section (JD মিল থকা keyword সহ)
 4) Experience bullets - STAR format, quantifiable language
-5) Freshers হলে project-based experience format
+5) Freshers হ’লে project-based experience format
 6) ATS-friendly plain text version
 7) Cover letter opening ৩টা ভিন্ন style-ত
 
@@ -221,7 +221,7 @@ Rules:
 5) body language + voice + pause quick checklist
 6) Interview আগৰ ২৪ ঘন্টাৰ prep plan
 
-গুরুত্বপূর্ণ:
+গুৰুত্বপূৰ্ণ:
 - Assamese explanation
 - simple English lines where needed
 - tone: warm, respectful, confidence-building`,
@@ -313,7 +313,7 @@ Rules:
 6) দিনৰ শেষত মিছা নোহোৱা progress report format
 
 tone:
-- কড়া নহয়, সহযোগী
+- কঠোৰ নহয়, সহযোগী
 - confidence আৰু consistency বঢ়োৱা`,
       en: `You are my Daily Study Accountability Coach.
 
@@ -657,7 +657,7 @@ Provide:
 1) ৮ লাইনৰ plain-language summary
 2) কাৰ বাবে (eligibility)
 3) কি লাভ/কি বাধ্যবাধকতা
-4) কাগজপত্র কি লাগিব
+4) কাগজপত্ৰ কি লাগিব
 5) deadline আৰু important date
 6) "কি ভুল নকৰিব" তালিকা
 7) WhatsApp share format (very short)
@@ -890,7 +890,7 @@ Rules:
 অনুগ্ৰহ কৰি:
 1) ঘৰুৱা AI ব্যৱহাৰৰ ১২টা স্পষ্ট নিয়ম
 2) homework-ত acceptable আৰু unacceptable use
-3) privacy, misinformation, plagiarism ৰ simple সতর্কতা
+3) privacy, misinformation, plagiarism ৰ simple সতৰ্কতা
 4) সপ্তাহত এবাৰ parent-child review meeting template
 5) ভুল হ’লে punishment নহয়, correction-based approach
 6) শিশুৰ self-reflection প্ৰশ্ন ১০টা

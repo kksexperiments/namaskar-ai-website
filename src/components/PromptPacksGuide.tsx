@@ -63,7 +63,7 @@ const TEMPLATE_ITEMS: TemplateItem[] = [
     promptEn:
       "Act as a content strategist. Context: My niche is [topic], audience is [audience], platform is [Instagram/YouTube], and posting frequency is [X/week]. Task: Generate 30 content ideas with hook, format, and CTA. Output format: Table with columns: Day, Idea, Hook, Format, CTA.",
     promptAs:
-      "আপুনি content strategist হিচাপে কাম কৰক। Context: মোৰ niche [topic], audience [audience], platform [Instagram/YouTube], আৰু posting frequency [X/week]। Task: hook, format আৰু CTAসহ ৩০টা content idea তৈরি কৰক। Output format: Day, Idea, Hook, Format, CTA টেবুল।",
+      "আপুনি content strategist হিচাপে কাম কৰক। Context: মোৰ niche [topic], audience [audience], platform [Instagram/YouTube], আৰু posting frequency [X/week]। Task: hook, format আৰু CTAসহ ৩০টা content idea তৈৰি কৰক। Output format: Day, Idea, Hook, Format, CTA টেবুল।",
   },
 ];
 
@@ -86,7 +86,7 @@ const PromptPacksGuide = ({ language }: PromptPacksGuideProps) => {
         { title: "Role", body: "AI-ক কোন ৰূপত কাম কৰাব (teacher, coach, marketer) স্পষ্ট কৰক।" },
         { title: "Context", body: "আপোনাৰ পৰিস্থিতি, লক্ষ্য, সীমাবদ্ধতা, audience উল্লেখ কৰক।" },
         { title: "Task", body: "AI-এ সঠিকভাৱে কি কৰিব লাগে তাক action ভাষাত লিখক।" },
-        { title: "Output", body: "ফলাফলৰ format নির্ধারণ কৰক (table, bullets, checklist, script)।" },
+        { title: "Output", body: "ফলাফলৰ format নিৰ্ধাৰণ কৰক (table, bullets, checklist, script)।" },
       ]
     : [
         { title: "Role", body: "Define who AI should act as: teacher, coach, marketer, and so on." },
@@ -97,7 +97,7 @@ const PromptPacksGuide = ({ language }: PromptPacksGuideProps) => {
 
   const mistakes = isAssamese
     ? [
-        "Role নলিখি সোজাকৈ vague প্রশ্ন কৰা",
+        "Role নলিখি সোজাকৈ vague প্ৰশ্ন কৰা",
         "Context নেদি generic output আশা কৰা",
         "একেলগে বহু কাম দিয়া",
         "Desired output format উল্লেখ নকৰা",

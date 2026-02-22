@@ -82,7 +82,7 @@ const BestAICourseForAssameseSpeakers = () => {
   const pros = isAssamese
     ? [
         "Structured course-এ learning path স্পষ্ট হয়",
-        "consistent practice-এ execution speed বাড়ে",
+        "consistent practice-এ execution speed বাঢ়ে",
         "mentor feedback-এ ভুল তাড়াতাড়ি ধৰা পৰে",
       ]
     : [
@@ -308,7 +308,7 @@ const BestAICourseForAssameseSpeakers = () => {
           <div className="space-y-5">
             <Card className="border-primary/15 bg-card/95 p-5">
               <h2 className="text-xl font-semibold">
-                {isAssamese ? "দ্রুত উত্তৰ: best AI course selection" : "Fast answer: best AI course selection"}
+                {isAssamese ? "দ্ৰুত উত্তৰ: best AI course selection" : "Fast answer: best AI course selection"}
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 {isAssamese

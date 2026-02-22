@@ -17,7 +17,7 @@ const AIInAssamese = () => {
   const canonicalPath = toLocalePath("/ai-in-assamese", language);
 
   const tocItems = [
-    { id: "fast-answers", label: isAssamese ? "দ্রুত উত্তৰ" : "Fast answers" },
+    { id: "fast-answers", label: isAssamese ? "দ্ৰুত উত্তৰ" : "Fast answers" },
     { id: "who", label: isAssamese ? "এই পৃষ্ঠা কাকৰ বাবে" : "Who this is for" },
     { id: "start", label: isAssamese ? "৩০ মিনিটে আৰম্ভ কৰক" : "30-minute start" },
     { id: "terms", label: isAssamese ? "মূল শব্দসমূহ" : "Core terms" },
@@ -87,7 +87,7 @@ const AIInAssamese = () => {
     ? [
         { title: "Role", body: "AI-ক কোৱা হয় আপুনি তাক কোন ৰূপত কাম কৰাব বিচাৰে (যেনে শিক্ষক, career coach)।" },
         { title: "Context", body: "আপোনাৰ বাস্তৱ তথ্য: লক্ষ্য, সীমাবদ্ধতা, ভাষা, audience।" },
-        { title: "Task", body: "AI-এ কি উৎপাদন কৰিব লাগে তাৰ স্পষ্ট নির্দেশ।" },
+        { title: "Task", body: "AI-এ কি উৎপাদন কৰিব লাগে তাৰ স্পষ্ট নিৰ্দেশ।" },
         { title: "Output format", body: "final উত্তৰ কিদৰে দিব (সূচী, bullets, short summary, script ইত্যাদি)।" },
       ]
     : [
@@ -267,7 +267,7 @@ const AIInAssamese = () => {
 
             <div className="space-y-5">
               <Card id="fast-answers" className="border-primary/15 bg-card/95 p-5">
-                <h2 className="text-xl font-semibold">{isAssamese ? "দ্রুত উত্তৰ: common search queries" : "Fast answers: common search queries"}</h2>
+                <h2 className="text-xl font-semibold">{isAssamese ? "দ্ৰুত উত্তৰ: common search queries" : "Fast answers: common search queries"}</h2>
                 <div className="mt-3 space-y-2">
                   {fastAnswers.map((item) => (
                     <div key={item.query} className="rounded-lg border border-border bg-muted/35 p-3 text-sm leading-relaxed">
@@ -282,7 +282,7 @@ const AIInAssamese = () => {
                 <h2 className="text-xl font-semibold">{isAssamese ? "এই পৃষ্ঠা কাকৰ বাবে" : "Who this page is for"}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {isAssamese
-                    ? "যদি আপুনি AI-ক কঠিন বা technical বুলি ভাবি আছিল, এই গাইড আপোনাৰ বাবে। ছাত্র-ছাত্রী, early-career professional, শিক্ষক, সৰু ব্যৱসায়ী আৰু অভিভাৱকসকলৰ বাস্তৱ পৰিস্থিতি ধৰি এই পৃষ্ঠা সাজি তোলা হৈছে।"
+                    ? "যদি আপুনি AI-ক কঠিন বা technical বুলি ভাবি আছিল, এই গাইড আপোনাৰ বাবে। ছাত্ৰ-ছাত্ৰী, early-career professional, শিক্ষক, সৰু ব্যৱসায়ী আৰু অভিভাৱকসকলৰ বাস্তৱ পৰিস্থিতি ধৰি এই পৃষ্ঠা সাজি তোলা হৈছে।"
                     : "If AI feels technical or overwhelming, this guide is for you. It is designed for students, early-career professionals, teachers, parents, and small business owners."}
                 </p>
               </Card>

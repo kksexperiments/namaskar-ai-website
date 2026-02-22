@@ -153,7 +153,7 @@ const LearningRoadmaps = () => {
           title: "২. কেৰিয়াৰত AI (AI for Career Growth)",
           benefits: [
             "CV optimize কৰিবলৈ AI workflow পাব।",
-            "ইণ্টাৰভিউ প্রস্তুতিৰ বাবে prompt template শিকিব।",
+            "ইণ্টাৰভিউ প্ৰস্তুতিৰ বাবে prompt template শিকিব।",
             "LinkedIn profile আৰু outreach strategy উন্নত কৰিব।",
           ],
           teaser: "ভিডিঅ’ মাৰ্চ মাহত লাইভ হ’ব",
@@ -175,7 +175,7 @@ const LearningRoadmaps = () => {
           title: "৪. সৰু ব্যৱসায়ত AI (AI for Small Business)",
           benefits: [
             "দোকান আৰু ব্যৱসায় বঢ়াবলৈ AI tool ব্যৱহাৰ শিকিব।",
-            "customer reply আৰু offer copy দ্রুত লিখিব পাৰিব।",
+            "customer reply আৰু offer copy দ্ৰুত লিখিব পাৰিব।",
             "দৈনিক marketing workflow সহজ হ’ব।",
           ],
           teaser: "ভিডিঅ’ মাৰ্চ মাহত লাইভ হ’ব",
@@ -186,7 +186,7 @@ const LearningRoadmaps = () => {
           title: "৫. শিক্ষক আৰু অভিভাৱকৰ বাবে AI (AI for Teachers & Parents)",
           benefits: [
             "হ’মৱৰ্ক explanation আৰু question bank সহজ কৰিব।",
-            "পৰীক্ষাৰ প্রস্তুতিৰ বাবে smart checklist পাব।",
+            "পৰীক্ষাৰ প্ৰস্তুতিৰ বাবে smart checklist পাব।",
             "শিশুৰ শিকাৰ plan AI-ৰ সহায়ত সহজে গঠন কৰিব।",
           ],
           teaser: "ভিডিঅ’ এপ্ৰিল মাহত লাইভ হ’ব",
