@@ -20,6 +20,7 @@ Launch target: February 28, 2026
 | BL-005 | Finalize Gemini-inspired theme direction | Awaiting inputs | You | Theme system now supports variants, but Gemini references are not yet documented | Share Gemini ideas/screenshots; map to final palette and typography decisions |
 | BL-006 | Configure community channel env vars for production (`VITE_WHATSAPP_GROUP_URL`, `VITE_TELEGRAM_CHANNEL_URL`) | Ready | You | App now intentionally disables missing links | Set env vars on hosting platform and smoke test CTA behavior |
 | BL-011 | Set strict-launch env vars (`VITE_SITE_URL`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_WAITLIST_ENDPOINT`) | Ready | You | `npm run check:launch:strict` currently fails in local environment | Add env vars in hosting + local CI context and rerun strict check |
+| BL-012 | Fix PostHog runtime errors on live pages (`config.js` 404, flags 401, MIME mismatch) | Ready | Joint | Browser smoke logs show repeated console errors on home/auth routes | Validate `VITE_POSTHOG_KEY`/project config and disable PostHog until credentials are correct |
 
 ## Completed
 
