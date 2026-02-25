@@ -109,6 +109,13 @@ Wait for DNS propagation, then re-check domain status in Vercel.
 
 - Standard readiness check: `npm run check:launch`
 - Strict readiness check (fails on missing env vars): `npm run check:launch:strict`
+- Strict readiness check using pulled Vercel production env file: `npm run check:launch:strict:vercel-prod`
+- Strict readiness check using pulled Vercel preview env file: `npm run check:launch:strict:vercel-preview`
+
+If needed, refresh local env snapshots first:
+
+- `vercel env pull /tmp/namaskar-env-production --environment=production`
+- `vercel env pull /tmp/namaskar-env-preview --environment=preview`
 
 Persistent backlog file for unfinished launch items:
 

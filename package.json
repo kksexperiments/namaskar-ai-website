@@ -14,6 +14,9 @@
     "build": "vite build",
     "check:launch": "node scripts/check-launch-readiness.mjs",
     "check:launch:strict": "node scripts/check-launch-readiness.mjs --strict",
+    "check:launch:with-env": "node scripts/check-launch-readiness-with-env.mjs",
+    "check:launch:strict:vercel-prod": "node scripts/check-launch-readiness-with-env.mjs --strict --env-file /tmp/namaskar-env-production",
+    "check:launch:strict:vercel-preview": "node scripts/check-launch-readiness-with-env.mjs --strict --env-file /tmp/namaskar-env-preview",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
