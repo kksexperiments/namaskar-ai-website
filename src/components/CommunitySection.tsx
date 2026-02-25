@@ -20,7 +20,7 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
       : { tools: "Tools", tutorials: "Tutorials", insights: "Insights" };
 
   return (
-    <section id="community" className="py-20">
+    <section id="community" className="py-20 heritage-section-block">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-6 mb-12 animate-fade-in">
           <div className="flex items-center justify-center gap-2 sm:gap-3">
@@ -47,7 +47,7 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          <Card className="p-4 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
+          <Card className="heritage-panel-card p-4 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
             <div className="text-center space-y-3">
               <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mx-auto group-hover:scale-105 transition-transform duration-300">
                 <MessageCircle className="w-5 h-5 text-white" />
@@ -57,6 +57,7 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
               {whatsappUrl ? (
                 <Button
                   asChild
+                  data-magnetic="true"
                   className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -78,7 +79,7 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
+          <Card className="heritage-panel-card p-4 bg-gradient-card border-0 shadow-card hover:shadow-elegant transition-all duration-300 animate-slide-up group">
             <div className="text-center space-y-3">
               <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mx-auto group-hover:scale-105 transition-transform duration-300">
                 <Send className="w-5 h-5 text-white" />
@@ -88,6 +89,7 @@ const CommunitySection = ({ currentLanguage, t }: CommunitySectionProps) => {
               {telegramUrl ? (
                 <Button
                   asChild
+                  data-magnetic="true"
                   className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 rounded-lg transition-all duration-300 min-h-[44px]"
                 >
                   <a href={telegramUrl} target="_blank" rel="noopener noreferrer">

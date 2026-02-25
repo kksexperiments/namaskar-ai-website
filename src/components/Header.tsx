@@ -235,7 +235,11 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
 
             {/* Join Community CTA */}
             <Link to={communityPath} className="hidden sm:inline-flex">
-              <Button size="sm" className="bg-gradient-primary text-white shadow-button">
+              <Button
+                size="sm"
+                data-magnetic="true"
+                className="magnetic-cta heritage-primary-cta bg-gradient-primary text-white shadow-button"
+              >
                 {t.hero.secondaryCta}
               </Button>
             </Link>
@@ -243,7 +247,8 @@ const Header = ({ currentLanguage, onLanguageChange, t }: HeaderProps) => {
               <Button
                 size="icon"
                 aria-label={t.hero.secondaryCta}
-                className="bg-gradient-primary text-white shadow-button"
+                data-magnetic="true"
+                className="magnetic-cta heritage-primary-cta bg-gradient-primary text-white shadow-button"
               >
                 <Users className="h-4 w-4" />
               </Button>
