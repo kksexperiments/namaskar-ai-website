@@ -111,6 +111,8 @@ Wait for DNS propagation, then re-check domain status in Vercel.
 - Strict readiness check (fails on missing env vars): `npm run check:launch:strict`
 - Strict readiness check using pulled Vercel production env file: `npm run check:launch:strict:vercel-prod`
 - Strict readiness check using pulled Vercel preview env file: `npm run check:launch:strict:vercel-preview`
+- Production smoke check (key pages + canonical/chunk sanity): `npm run check:smoke:prod`
+- Production smoke check including waitlist endpoint response shape (expects `email_notified`, use after BL-002): `npm run check:smoke:prod:endpoint`
 
 If needed, refresh local env snapshots first:
 

@@ -17,6 +17,8 @@
     "check:launch:with-env": "node scripts/check-launch-readiness-with-env.mjs",
     "check:launch:strict:vercel-prod": "node scripts/check-launch-readiness-with-env.mjs --strict --env-file /tmp/namaskar-env-production",
     "check:launch:strict:vercel-preview": "node scripts/check-launch-readiness-with-env.mjs --strict --env-file /tmp/namaskar-env-preview",
+    "check:smoke:prod": "node scripts/check-production-smoke.mjs --base-url https://www.namaskarai.in",
+    "check:smoke:prod:endpoint": "node scripts/check-production-smoke.mjs --base-url https://www.namaskarai.in --check-endpoint --expect-email-notified",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"
