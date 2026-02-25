@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { trackEvent } from "@/lib/analytics";
 import { submitLead } from "@/lib/leadCapture";
 import { Loader2, Mail } from "lucide-react";
+import useTypewriterPlaceholder from "@/hooks/useTypewriterPlaceholder";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -12,6 +13,12 @@ const NewsletterSignup = () => {
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const { toast } = useToast();
+    const magicInputPlaceholder = useTypewriterPlaceholder([
+        "AI in Assamese",
+        "Assamese AI learning",
+        "learn AI Assam",
+        "prompt packs Assamese",
+    ]);
 
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -71,15 +78,20 @@ const NewsletterSignup = () => {
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                     <Input
                         type="email"
-                        placeholder="Enter your email address"
+                        placeholder={magicInputPlaceholder || "Enter your email address"}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10 h-12"
+                        className="heritage-magic-input pl-10 h-12"
                         required
                         disabled={loading}
                     />
                 </div>
-                <Button type="submit" className="w-full h-12 font-semibold" disabled={loading}>
+                <Button
+                    type="submit"
+                    data-magnetic="true"
+                    className="magnetic-cta heritage-primary-cta w-full h-12 font-semibold"
+                    disabled={loading}
+                >
                     {loading ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

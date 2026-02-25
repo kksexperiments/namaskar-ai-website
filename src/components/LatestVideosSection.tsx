@@ -226,7 +226,7 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
   const threadsProfileUrl = "https://www.threads.com/@namaskar.ai";
 
   return (
-    <section className="bg-gradient-hero py-20">
+    <section className="heritage-section-block bg-gradient-hero py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 space-y-6 text-center animate-fade-in">
@@ -244,7 +244,7 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
           {videos.map((video, index) => (
             <div
               key={`${video.url || "empty"}-${index}`}
-              className="rounded-2xl border border-primary/10 bg-card/60 p-4 shadow-card"
+              className="heritage-panel-card rounded-2xl border border-primary/10 bg-card/60 p-4 shadow-card"
             >
               <div className="mb-3 flex items-center justify-between gap-3">
                 <span className="inline-flex items-center gap-2 text-xs font-semibold text-primary">
@@ -273,7 +273,7 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
 
         {/* Follow links (no more embeds beyond 6) */}
         <div className="flex flex-col items-stretch justify-center gap-3 text-center sm:flex-row sm:items-center">
-          <Button asChild className="min-h-[44px] rounded-xl">
+          <Button asChild data-magnetic="true" className="magnetic-cta min-h-[44px] rounded-xl">
             <a href={facebookProfileUrl} target="_blank" rel="noreferrer noopener">
               <Facebook className="h-5 w-5" />
               {t.latestVideos.followFacebook}
@@ -281,7 +281,7 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
             </a>
           </Button>
 
-          <Button asChild variant="outline" className="min-h-[44px] rounded-xl">
+          <Button asChild variant="outline" data-magnetic="true" className="magnetic-cta min-h-[44px] rounded-xl">
             <a href={instagramProfileUrl} target="_blank" rel="noreferrer noopener">
               <Instagram className="h-5 w-5" />
               {t.latestVideos.followInstagram}
@@ -293,7 +293,8 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
             asChild
             variant="ghost"
             size="sm"
-            className="min-h-[40px] rounded-xl"
+            data-magnetic="true"
+            className="magnetic-cta min-h-[40px] rounded-xl"
           >
             <a href={threadsProfileUrl} target="_blank" rel="noreferrer noopener">
               {t.latestVideos.followThreads}
@@ -307,4 +308,3 @@ const LatestVideosSection = ({ t }: LatestVideosSectionProps) => {
 };
 
 export default LatestVideosSection;
-

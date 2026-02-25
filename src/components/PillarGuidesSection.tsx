@@ -73,7 +73,7 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
   ];
 
   return (
-    <section id="pillar-guides" className="relative py-16">
+    <section id="pillar-guides" className="relative py-16 heritage-section-block">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_6%_20%,hsl(var(--accent)/0.14),transparent_38%),radial-gradient(circle_at_95%_80%,hsl(var(--primary)/0.12),transparent_35%)]" />
 
       <div className="platform-shell relative">
@@ -86,12 +86,19 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
           {guides.map((guide) => (
             <Card
               key={guide.path}
-              className="border-primary/15 bg-[linear-gradient(145deg,hsl(var(--card)),hsl(var(--accent)/0.08),hsl(var(--primary)/0.09))] p-5 shadow-card transition hover:-translate-y-0.5 hover:shadow-elegant"
+              className="heritage-panel-card border-primary/15 bg-[linear-gradient(145deg,hsl(var(--card)),hsl(var(--accent)/0.08),hsl(var(--primary)/0.09))] p-5 shadow-card transition hover:-translate-y-0.5 hover:shadow-elegant"
             >
-              <guide.icon className="mb-3 h-5 w-5 text-primary" />
+              <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/40 bg-white/30 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_10px_20px_-16px_rgba(26,58,58,0.55)] backdrop-blur-md">
+                <guide.icon className="h-5 w-5" />
+              </div>
               <h3 className="text-lg font-semibold">{guide.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{guide.description}</p>
-              <Button asChild variant="outline" className="mt-4 w-full border-primary/25">
+              <Button
+                asChild
+                variant="outline"
+                data-magnetic="true"
+                className="magnetic-cta mt-4 w-full border-primary/25"
+              >
                 <Link to={guide.path}>
                   {isAssamese ? "খোলক" : "Open Guide"}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -101,13 +108,19 @@ const PillarGuidesSection = ({ currentLanguage }: PillarGuidesSectionProps) => {
           ))}
         </div>
 
-        <Card className="mt-5 border-primary/15 bg-card/95 p-4">
+        <Card className="heritage-panel-card mt-5 border-primary/15 bg-card/95 p-4">
           <h3 className="text-sm font-semibold text-foreground">
             {isAssamese ? "Search-targeted long-form guides" : "Search-targeted long-form guides"}
           </h3>
           <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {searchGuides.map((guide) => (
-              <Button key={guide.path} asChild variant="outline" className="justify-start">
+              <Button
+                key={guide.path}
+                asChild
+                variant="outline"
+                data-magnetic="true"
+                className="magnetic-cta justify-start"
+              >
                 <Link to={guide.path}>
                   {guide.title}
                   <ArrowRight className="ml-auto h-4 w-4" />

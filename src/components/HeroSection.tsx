@@ -77,18 +77,25 @@ const HeroSection = ({
   };
 
   return (
-    <section className="relative overflow-hidden border-b border-primary/10 bg-[radial-gradient(circle_at_10%_0%,hsl(var(--accent)/0.22),transparent_42%),radial-gradient(circle_at_95%_15%,hsl(var(--primary)/0.2),transparent_38%),linear-gradient(180deg,hsl(var(--background)),hsl(var(--background)))] py-12 lg:py-14">
+    <section
+      id="hero"
+      className="heritage-section-block relative overflow-hidden border-b border-primary/10 bg-[radial-gradient(circle_at_10%_0%,hsl(var(--accent)/0.22),transparent_42%),radial-gradient(circle_at_95%_15%,hsl(var(--primary)/0.2),transparent_38%),linear-gradient(180deg,hsl(var(--background)),hsl(var(--background)))] py-12 lg:py-14"
+    >
       <div className="pointer-events-none absolute inset-0 cultural-pattern opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-stretch gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-          <Card className="overflow-hidden border-primary/20 bg-[linear-gradient(130deg,hsl(var(--card)),hsl(var(--accent)/0.1),hsl(var(--primary)/0.08))] p-6 shadow-elegant sm:p-8">
+          <Card className="heritage-hero-card overflow-hidden border-primary/20 bg-[linear-gradient(130deg,hsl(var(--card)),hsl(var(--accent)/0.1),hsl(var(--primary)/0.08))] p-6 shadow-elegant sm:p-8">
             <div className="mb-4 inline-flex items-center rounded-full border border-primary/25 bg-card/70 px-3 py-1 text-xs font-semibold text-primary">
               <Wand2 className="mr-1.5 h-3.5 w-3.5" />
               {isAssamese ? "Assamese-first AI learning" : "Assamese-first AI learning"}
             </div>
 
-            <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+            <h1
+              className={`text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl ${
+                isAssamese ? "heritage-assamese-title" : ""
+              }`}
+            >
               <span className="gradient-text">{t.hero.headline}</span>
             </h1>
 
@@ -102,7 +109,8 @@ const HeroSection = ({
               <Button
                 size="lg"
                 onClick={onNewsletterClick}
-                className="bg-gradient-primary px-6 py-3 font-semibold text-white shadow-button transition-all duration-300 hover:-translate-y-0.5"
+                data-magnetic="true"
+                className="magnetic-cta heritage-primary-cta bg-gradient-primary px-6 py-3 font-semibold text-white shadow-button transition-all duration-300 hover:-translate-y-0.5"
               >
                 {t.hero.primaryCta}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -112,7 +120,8 @@ const HeroSection = ({
                 variant="outline"
                 size="lg"
                 onClick={onCommunityClick}
-                className="border-2 border-primary/50 bg-card/70 px-6 py-3 font-semibold transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
+                data-magnetic="true"
+                className="magnetic-cta border-2 border-primary/50 bg-card/70 px-6 py-3 font-semibold transition-all duration-300 hover:bg-primary hover:text-primary-foreground"
               >
                 <Play className="mr-2 h-4 w-4" />
                 {t.hero.secondaryCta}
@@ -164,13 +173,16 @@ const HeroSection = ({
               </div>
 
               <Link to={promptPacksPath} className="mt-4 block">
-                <Button className="w-full bg-gradient-primary font-semibold text-white">
+                <Button
+                  data-magnetic="true"
+                  className="magnetic-cta heritage-primary-cta w-full bg-gradient-primary font-semibold text-white"
+                >
                   {isAssamese ? "Prompt Packs খোলক" : "Open Prompt Packs"}
                 </Button>
               </Link>
             </Card>
 
-            <Card className="border-primary/15 bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.08),hsl(var(--accent)/0.12))] p-5 shadow-card">
+            <Card className="heritage-panel-card border-primary/15 bg-[linear-gradient(140deg,hsl(var(--card)),hsl(var(--primary)/0.08),hsl(var(--accent)/0.12))] p-5 shadow-card">
               <h3 className="mb-3 text-base font-semibold">
                 {isAssamese ? "আপোনাৰ পৰিস্থিতিৰ বাবে দ্ৰুত লেন" : "Quick Lanes by Situation"}
               </h3>

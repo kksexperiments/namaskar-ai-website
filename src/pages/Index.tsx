@@ -11,11 +11,45 @@ import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { toLocalePath } from "@/lib/locale";
 import { toAbsoluteSiteUrl } from "@/lib/site";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ReactNode, useEffect, useRef } from "react";
+
+const sectionRevealVariants = {
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.55,
+      delay: index * 0.08,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  }),
+};
+
+const HomeSectionReveal = ({ children, index }: { children: ReactNode; index: number }) => (
+  <motion.div
+    custom={index}
+    variants={sectionRevealVariants}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.18 }}
+  >
+    {children}
+  </motion.div>
+);
+
+const HeritageDivider = () => <div aria-hidden="true" className="heritage-miri-divider mx-auto w-full max-w-7xl" />;
 
 const Index = () => {
   const { language, switchLanguage, showModal, closeModal, t } = useLanguage();
   const isAssamese = language === "as";
   const canonicalPath = toLocalePath("/", language);
+  const homepageRef = useRef<HTMLDivElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollY } = useScroll();
+  const jaapiGridY = useTransform(scrollY, (value) => (prefersReducedMotion ? 0 : value * 0.2));
 
   const scrollToCommunity = () => {
     document.getElementById('community')?.scrollIntoView({ behavior: 'smooth' });
@@ -24,6 +58,50 @@ const Index = () => {
   const scrollToResources = () => {
     document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const root = homepageRef.current;
+    if (!root) {
+      return;
+    }
+
+    const magneticNodes = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-magnetic="true"]')
+    );
+
+    const cleanups = magneticNodes.map((node) => {
+      const handleMove = (event: MouseEvent) => {
+        const rect = node.getBoundingClientRect();
+        const offsetX = event.clientX - (rect.left + rect.width / 2);
+        const offsetY = event.clientY - (rect.top + rect.height / 2);
+        node.style.setProperty("--magnetic-x", `${Math.max(-6, Math.min(6, offsetX * 0.08))}`);
+        node.style.setProperty("--magnetic-y", `${Math.max(-6, Math.min(6, offsetY * 0.08))}`);
+      };
+
+      const reset = () => {
+        node.style.setProperty("--magnetic-x", "0");
+        node.style.setProperty("--magnetic-y", "0");
+      };
+
+      node.addEventListener("mousemove", handleMove);
+      node.addEventListener("mouseleave", reset);
+      node.addEventListener("blur", reset);
+
+      return () => {
+        node.removeEventListener("mousemove", handleMove);
+        node.removeEventListener("mouseleave", reset);
+        node.removeEventListener("blur", reset);
+      };
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, [language, prefersReducedMotion]);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -144,7 +222,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div ref={homepageRef} className="heritage-homepage min-h-screen bg-background">
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <motion.div className="heritage-jaapi-grid absolute inset-[-10%]" style={{ y: jaapiGridY }} />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(227,197,140,0.24),transparent_36%),radial-gradient(circle_at_95%_8%,rgba(26,58,58,0.12),transparent_32%),linear-gradient(180deg,rgba(253,252,248,0.86),rgba(253,252,248,0.96))]" />
+      </div>
+      <div className="relative z-10">
       <Seo
         title={isAssamese ? "নমস্কাৰ AI | অসমীয়াত AI শিকক" : "Namaskar AI | Learn AI in Assamese"}
         description={
@@ -182,47 +265,61 @@ const Index = () => {
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <div className="section-reveal" style={{ animationDelay: "60ms" }}>
+        <HomeSectionReveal index={0}>
           <HeroSection
             currentLanguage={language}
             t={t}
             onNewsletterClick={scrollToResources}
             onCommunityClick={scrollToCommunity}
           />
-        </div>
+        </HomeSectionReveal>
+        <HeritageDivider />
 
         {/* Resources Section */}
-        <div className="section-reveal" style={{ animationDelay: "120ms" }}>
+        <HomeSectionReveal index={1}>
           <ResourcesSection currentLanguage={language} t={t} />
-        </div>
+        </HomeSectionReveal>
+        <HeritageDivider />
 
         {/* Pillar Guides */}
-        <div className="section-reveal" style={{ animationDelay: "180ms" }}>
+        <HomeSectionReveal index={2}>
           <PillarGuidesSection currentLanguage={language} />
-        </div>
+        </HomeSectionReveal>
+        <HeritageDivider />
 
         {/* News Section */}
-        <div className="section-reveal" style={{ animationDelay: "220ms" }}>
+        <HomeSectionReveal index={3}>
           <NewsSection t={t} currentLanguage={language} />
-        </div>
+        </HomeSectionReveal>
+        <HeritageDivider />
 
         {/* Community Section */}
-        <div className="section-reveal" style={{ animationDelay: "260ms" }}>
+        <HomeSectionReveal index={4}>
           <CommunitySection currentLanguage={language} t={t} />
-        </div>
+        </HomeSectionReveal>
+        <HeritageDivider />
 
         {/* Latest Videos (Facebook embeds) */}
-        <div className="section-reveal" style={{ animationDelay: "300ms" }}>
+        <HomeSectionReveal index={5}>
           <InstagramSection t={t} />
-        </div>
+        </HomeSectionReveal>
       </main>
 
       {/* Footer */}
-      <Footer
-        currentLanguage={language}
-        onLanguageChange={switchLanguage}
-        t={t}
-      />
+      <motion.div
+        variants={sectionRevealVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.05 }}
+        custom={6}
+      >
+        <Footer
+          currentLanguage={language}
+          onLanguageChange={switchLanguage}
+          t={t}
+        />
+      </motion.div>
+      </div>
     </div>
   );
 };

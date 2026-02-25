@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Clock, TrendingUp, ArrowRight, Mail, Rocket, FileText, LucideIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import useTypewriterPlaceholder from "@/hooks/useTypewriterPlaceholder";
 import { supabase } from "@/integrations/supabase/client";
 import { trackEvent } from "@/lib/analytics";
 import { submitLead } from "@/lib/leadCapture";
@@ -49,6 +50,21 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
   const [articles, setArticles] = useState<ArticlePreview[]>([]);
   const [loadingArticles, setLoadingArticles] = useState(true);
   const { toast } = useToast();
+  const magicInputPlaceholder = useTypewriterPlaceholder(
+    currentLanguage === "as"
+      ? [
+          "AI in Assamese",
+          "Assamese AI learning",
+          "prompt packs Assamese",
+          "learn AI Assam",
+        ]
+      : [
+          "AI in Assamese",
+          "Assamese AI learning",
+          "learn AI Assam",
+          "prompt packs Assamese",
+        ]
+  );
 
   useEffect(() => {
     fetchArticles();
@@ -161,7 +177,7 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
       : fallbackNewsItems;
 
   return (
-    <section id="news" className="py-20 bg-gradient-to-br from-background via-background to-muted/20">
+    <section id="news" className="heritage-section-block py-20 bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.news.headline}</h2>
@@ -188,7 +204,7 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
             {newsItems.map((item, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-lg transition-all duration-300 border-0 bg-card/50 backdrop-blur overflow-hidden"
+                className="heritage-panel-card group overflow-hidden border-0 bg-card/50 backdrop-blur transition-all duration-300 hover:shadow-lg"
               >
                 {item.featured_image && (
                   <div className="aspect-video w-full overflow-hidden">
@@ -252,14 +268,18 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
 
         <div className="text-center mt-8">
           <Link to={toLocalePath("/news", currentLanguage)}>
-            <Button variant="outline" className="border-primary/20 hover:bg-primary hover:text-primary-foreground">
+            <Button
+              variant="outline"
+              data-magnetic="true"
+              className="magnetic-cta border-primary/20 hover:bg-primary hover:text-primary-foreground"
+            >
               View All News
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </Link>
         </div>
 
-        <Card className="mt-12 border-primary/20 bg-gradient-to-r from-card to-card/50">
+        <Card className="heritage-panel-card mt-12 border-primary/20 bg-gradient-to-r from-card to-card/50">
           <CardHeader className="text-center">
             <CardTitle className="flex items-center justify-center gap-2">
               <Mail className="w-5 h-5" />
@@ -271,13 +291,13 @@ const NewsSection = ({ t, currentLanguage }: NewsSectionProps) => {
             <form onSubmit={handleSubmit} className="flex gap-2 max-w-md mx-auto">
               <Input
                 type="email"
-                placeholder={t.newsletter.placeholder}
+                placeholder={magicInputPlaceholder || t.newsletter.placeholder}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1"
+                className="heritage-magic-input flex-1"
                 required
               />
-              <Button type="submit" disabled={isLoading}>
+              <Button type="submit" disabled={isLoading} data-magnetic="true" className="magnetic-cta heritage-primary-cta">
                 {isLoading ? "..." : t.newsletter.button}
               </Button>
             </form>
